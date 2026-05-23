@@ -1,0 +1,69 @@
+// Modèle de données — registre de provenance + scoring + ventes.
+// Aligné sur docs/backend-vercel.md §1, élargi pour porter les sorties
+// des sous-agents Sourcing et Scoring sans perte d'information.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Work {
+  id             Int      @id // objectID du musée (Met pour l'instant)
+  title          String
+  artist         String?
+  artistBio      String?  // ex. "French, 1759-1840"
+  artistDeath    Int?
+  objectDate     String?  // libellé brut Met (peut contenir des dates approximatives)
+  department     String?
+  classification String?
+  medium         String?
+  dimensions     String?
+  creditLine     String?
+  source         String   @default("The Metropolitan Museum of Art (Open Access, CC0)")
+  objectUrl      String?
+  imageUrl       String?
+  localFile      String?  // chemin dans le stockage objet (R2/S3) quand activé
+  resolutionPx   Int      @default(0)
+  width          Int?
+  height         Int?
+
+  // Gates de conformité (sourcing → revue humaine sur ue=null)
+  gateUsSource   Boolean  @default(false)
+  gateUe         Boolean? // null = à valider par un humain
+  gateNoTm       Boolean  @default(true)
+  resolutionOk   Boolean?
+
+  // Scoring (4 axes /10) — alimenté par l'heuristique ou Claude
+  momentum       Int      @default(5)
+  attribution    Int      @default(5)
+  translatab     Int      @default(5)
+  competition    Int      @default(5)
+  scoreFinal     Float?
+  hook           String? // accroche provenance (storytelling fiche produit)
+  angle          String? // suggestion de différenciation si saturé
+
+  // Pipeline : source → gate → score → restore → publish
+  status         String   @default("gate")
+  collection     String?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  sales          Sale[]
+}
+
+model Sale {
+  id        Int      @id @default(autoincrement())
+  workId    Int
+  product   String   // poster | framed | canvas | torchon | coussin | mug
+  amount    Float
+  soldAt    DateTime @default(now())
+
+  work      Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@index([workId])
+}

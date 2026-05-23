@@ -36,13 +36,15 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 - `finance/` — calculateur de viabilité (xlsx) + comparateur fournisseurs.
 - `agents/sourcing_agent.py` — sous-agent Sourcing (API du Met) → registre de provenance.
 - `agents/scoring_agent.py` — sous-agent Scoring (4 axes pondérés, modes `heuristic` & `llm`) → registre noté par produit.
-- `cockpit/provenance-cockpit.jsx` — webapp de pilotage (front React, persistance via window.storage).
+- `web/` — cockpit Next.js 15 (App Router, TS) + Prisma + Postgres (Neon) + HTTP Basic Auth, prêt pour déploiement Vercel.
+- `cockpit/provenance-cockpit.jsx` — prototype React initial conservé pour référence (remplacé par `web/`).
 
 ## État actuel & prochaines tâches
-- ✅ Stratégie, finances, sous-agents Sourcing + Scoring, cockpit front, scaffold backend.
+- ✅ Stratégie, finances, sous-agents Sourcing + Scoring, cockpit Next.js + backend Prisma/Postgres.
+- ⏭️ Provisionner Neon + déployer sur Vercel (voir `web/README.md`).
 - ⏭️ Ajouter d'autres sources (Rijksmuseum, BHL) au sourcing.
-- ⏭️ **Porter le cockpit en Next.js** (`backend-vercel.md`) : remplacer `window.storage` par `fetch('/api/works')`, brancher Prisma/Postgres, afficher le registre scoré.
-- ⏭️ Boucle de feedback Analytics : réinjecter ventes réelles pour repondérer les axes.
+- ⏭️ Boucle de feedback Analytics : réinjecter ventes réelles via la table `Sale` pour repondérer les axes.
+- ⏭️ Cron Vercel : sourcing quotidien + scoring auto des nouvelles œuvres (gates restent humains).
 
 ## Conventions
 - Langue : français (docs, commentaires, UI).

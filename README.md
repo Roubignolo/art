@@ -20,8 +20,12 @@ Art/
 ├─ agents/
 │  ├─ sourcing_agent.py        Sous-agent Sourcing (API du Met) + registre provenance
 │  └─ scoring_agent.py         Sous-agent Scoring (4 axes pondérés, mode heuristic|llm)
+├─ web/                        Cockpit Next.js 15 + Prisma + Postgres (Neon)
+│  ├─ app/                     UI + routes API (works, scoring)
+│  ├─ prisma/schema.prisma     Modèle Work + Sale
+│  └─ README.md                Détail stack + déploiement Vercel pas-à-pas
 └─ cockpit/
-   └─ provenance-cockpit.jsx   Webapp de pilotage (front-end React)
+   └─ provenance-cockpit.jsx   Prototype React initial (gardé pour référence)
 ```
 
 ## Démarrage rapide
@@ -41,8 +45,14 @@ pip install anthropic
 export ANTHROPIC_API_KEY=…
 python agents/scoring_agent.py -i collection_botanique/registre_provenance.json -p poster --llm
 
-# 3. Piloter
-# Ouvrir cockpit/provenance-cockpit.jsx, onglet Import, coller le registre.
+# 3. Lancer le cockpit (Next.js + Postgres)
+cd web
+npm install
+cp .env.example .env.local            # DATABASE_URL Neon + COCKPIT_PASSWORD
+npx prisma db push                    # crée les tables
+npm run dev                            # → http://localhost:3000
+
+# 4. Déployer sur Vercel (voir web/README.md pour le pas-à-pas Neon + Vercel)
 ```
 
 ## Conformité (à ne jamais retirer)
