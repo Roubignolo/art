@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Node / Next.js (à venir avec backend-vercel)
+node_modules/
+.next/
+out/
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Secrets — RÈGLE DURE : ne jamais commit
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials*
+*secret*
+*token*
+
+# Données locales / sorties d'agents
+data/
+output/
+*.sqlite
+*.db
