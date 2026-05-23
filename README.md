@@ -18,7 +18,8 @@ Art/
 ├─ finance/
 │  └─ calculateur-viabilite.xlsx   Modèle + comparateur de fournisseurs
 ├─ agents/
-│  └─ sourcing_agent.py        Sous-agent Sourcing (API du Met) + registre provenance
+│  ├─ sourcing_agent.py        Sous-agent Sourcing (API du Met) + registre provenance
+│  └─ scoring_agent.py         Sous-agent Scoring (4 axes pondérés, mode heuristic|llm)
 └─ cockpit/
    └─ provenance-cockpit.jsx   Webapp de pilotage (front-end React)
 ```
@@ -26,11 +27,21 @@ Art/
 ## Démarrage rapide
 
 ```bash
-# 1. Sourcer une première collection
+# 1. Sourcer une première collection (gates DP/marque/résolution appliqués)
 pip install requests pillow
-python agents/sourcing_agent.py        # → collection_botanique/registre_provenance.json
+python agents/sourcing_agent.py
+#   → collection_botanique/registre_provenance.json
 
-# 2. Piloter
+# 2. Scorer les œuvres pour un produit cible (mode heuristique, offline)
+python agents/scoring_agent.py -i collection_botanique/registre_provenance.json -p poster
+#   → collection_botanique/registre_scoring_poster.json
+
+# 2bis. Variante avec estimation momentum/concurrence par Claude
+pip install anthropic
+export ANTHROPIC_API_KEY=…
+python agents/scoring_agent.py -i collection_botanique/registre_provenance.json -p poster --llm
+
+# 3. Piloter
 # Ouvrir cockpit/provenance-cockpit.jsx, onglet Import, coller le registre.
 ```
 

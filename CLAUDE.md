@@ -35,13 +35,14 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 - `docs/` — business plan, brief marque, moteur scoring, plan projet, architecture agents, backend Vercel.
 - `finance/` — calculateur de viabilité (xlsx) + comparateur fournisseurs.
 - `agents/sourcing_agent.py` — sous-agent Sourcing (API du Met) → registre de provenance.
+- `agents/scoring_agent.py` — sous-agent Scoring (4 axes pondérés, modes `heuristic` & `llm`) → registre noté par produit.
 - `cockpit/provenance-cockpit.jsx` — webapp de pilotage (front React, persistance via window.storage).
 
 ## État actuel & prochaines tâches
-- ✅ Stratégie, finances, scoring, sous-agent Sourcing, cockpit front, scaffold backend.
-- ⏭️ **Sous-agent Scoring** : prend le registre, ajoute signaux tendance/saturation, classe les œuvres.
-- ⏭️ **Porter le cockpit en Next.js** (`backend-vercel.md`) : remplacer `window.storage` par `fetch('/api/works')`, brancher Prisma/Postgres.
+- ✅ Stratégie, finances, sous-agents Sourcing + Scoring, cockpit front, scaffold backend.
 - ⏭️ Ajouter d'autres sources (Rijksmuseum, BHL) au sourcing.
+- ⏭️ **Porter le cockpit en Next.js** (`backend-vercel.md`) : remplacer `window.storage` par `fetch('/api/works')`, brancher Prisma/Postgres, afficher le registre scoré.
+- ⏭️ Boucle de feedback Analytics : réinjecter ventes réelles pour repondérer les axes.
 
 ## Conventions
 - Langue : français (docs, commentaires, UI).
