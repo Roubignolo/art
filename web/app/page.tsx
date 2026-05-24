@@ -328,25 +328,113 @@ export default function App() {
 
   const css = `
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=JetBrains+Mono:wght@400;600&display=swap');
-  :root{--paper:#F2EBDD;--paper2:#EAE0CC;--card:#FBF7EE;--ink:#211C15;--ink2:#5C5345;--line:#D8CBB0;--brass:#A9803F;--sage:#4F6B4A;--ox:#8A3A30;}
+  :root{
+    /* Palette papier (signature de la marque) */
+    --paper:#F2EBDD; --paper2:#EAE0CC; --paper3:#FCF9F1;
+    --card:#FBF7EE;
+    --ink:#211C15; --ink2:#5C5345; --ink3:#867864;
+    --line:#D8CBB0; --line-strong:#BFAE8B;
+    --brass:#A9803F; --brass-hover:#C09653; --brass-press:#8C6A33;
+    --sage:#4F6B4A; --sage-soft:#E7EDE5;
+    --ox:#8A3A30; --ox-soft:#FBEAE5;
+    --warn-soft:#F5EDDC;
+    /* Tokens (inspirés de Linear : letter-spacing négatif sur display, scale 4/8/12/16/24/32/48) */
+    --sp-xxs:4px; --sp-xs:8px; --sp-sm:12px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px;
+    --r-xs:2px; --r-sm:4px; --r-md:6px; --r-pill:9999px;
+    --t-fast:120ms; --t-base:180ms;
+    --shadow-1:0 1px 0 rgba(33,28,21,.04);
+    --shadow-2:0 1px 2px rgba(33,28,21,.06), 0 1px 0 rgba(33,28,21,.04);
+    --shadow-3:0 4px 12px rgba(33,28,21,.10), 0 1px 0 rgba(33,28,21,.04);
+    --ring:0 0 0 2px rgba(169,128,63,.35);
+  }
   *{box-sizing:border-box}
-  .cd{background:var(--card);border:1px solid var(--line);border-radius:2px;box-shadow:0 1px 0 rgba(33,28,21,.04)}
-  .serif{font-family:'Fraunces',serif} .body{font-family:'Newsreader',serif} .mono{font-family:'JetBrains Mono',monospace}
-  .navi{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;border-left:2px solid transparent;color:var(--ink2);font-size:14px}
-  .navi:hover{background:var(--paper2)} .navi.on{border-left-color:var(--brass);color:var(--ink);background:var(--paper2)}
-  .pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:999px;border:1px solid currentColor;display:inline-block}
-  .wrow{cursor:pointer} .wrow:hover{background:var(--paper2)}
+  html,body{margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+  /* Fonts ─────────────────────── */
+  .serif{font-family:'Fraunces',serif;letter-spacing:-0.012em}
+  .body{font-family:'Newsreader',serif}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* Hiérarchie typographique (display Fraunces avec letter-spacing négatif comme Linear) */
+  .h-page{font:600 26px/1.15 'Fraunces',serif;letter-spacing:-0.022em;color:var(--ink);margin:0 0 4px}
+  .h-section{font:600 17px/1.2 'Fraunces',serif;letter-spacing:-0.015em;color:var(--ink);margin:0 0 12px}
+  .eyebrow{font:500 10px/1.3 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--ink2);text-transform:uppercase;display:inline-block}
+  .caption{font:400 12px/1.4 'Newsreader',serif;color:var(--ink2)}
+  .sub{font:400 14px/1.5 'Newsreader',serif;color:var(--ink2);margin:0 0 18px}
+
+  /* Cards ─────────────────────── */
+  .cd{background:var(--card);border:1px solid var(--line);border-radius:var(--r-xs);box-shadow:var(--shadow-1);transition:box-shadow var(--t-base) ease,transform var(--t-base) ease,border-color var(--t-base) ease}
+  .cd-hover:hover{box-shadow:var(--shadow-3);transform:translateY(-1px);border-color:var(--line-strong)}
+
+  /* Sidebar ─────────────────────── */
+  .navi{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;border-left:2px solid transparent;color:var(--ink2);font:400 14px 'Newsreader',serif;transition:background var(--t-fast) ease,color var(--t-fast) ease,border-color var(--t-fast) ease}
+  .navi:hover{background:var(--paper2);color:var(--ink)}
+  .navi.on{border-left-color:var(--brass);color:var(--ink);background:var(--paper2);font-weight:500}
+  .nav-section{padding:14px 14px 4px;color:var(--ink3);font:500 9px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+  .nav-divider{height:1px;background:var(--line);margin:10px 0;opacity:.5}
+
+  /* Badges / Pills (Linear status-badge pattern, palette papier) ────── */
+  .pill{font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.04em;padding:3px 8px;border-radius:var(--r-pill);border:1px solid currentColor;display:inline-block;white-space:nowrap}
+  .badge{font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.04em;padding:3px 8px;border-radius:var(--r-pill);display:inline-block;white-space:nowrap}
+  .badge-success{background:var(--sage-soft);color:var(--sage)}
+  .badge-warning{background:var(--warn-soft);color:var(--brass)}
+  .badge-danger{background:var(--ox-soft);color:var(--ox)}
+  .badge-neutral{background:var(--paper2);color:var(--ink2)}
+
+  /* Row hover ────────────────── */
+  .wrow{cursor:pointer;transition:background var(--t-fast) ease}
+  .wrow:hover{background:var(--paper2)}
+
+  /* Inputs ─────────────────────── */
   input[type=range]{accent-color:var(--brass);width:100%}
-  .inp{font-family:'JetBrains Mono',monospace;background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:6px 8px;width:100%;color:var(--ink);font-size:13px}
-  .btn{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;padding:6px 10px;border-radius:2px;cursor:pointer;border:1px solid var(--line);background:var(--paper)}
-  .btn:hover{background:var(--paper2)} .btn:disabled{opacity:.5;cursor:not-allowed}
-  .err{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ox);padding:8px 14px;border-top:1px solid var(--line);background:#FBEAE5}
-  .thumb{width:46px;height:46px;object-fit:cover;border-radius:2px;border:1px solid var(--line);background:var(--paper);flex-shrink:0}
-  .thumb-empty{display:flex;align-items:center;justify-content:center;color:var(--ink2)}
-  .preview{width:100%;max-height:280px;object-fit:contain;background:var(--paper);border:1px solid var(--line);border-radius:2px}
-  .tab{font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--line);background:var(--paper);cursor:pointer;border-radius:2px}
+  .inp{font:400 13px 'JetBrains Mono',monospace;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-xs);padding:8px 10px;width:100%;color:var(--ink);transition:border-color var(--t-fast) ease,box-shadow var(--t-fast) ease}
+  .inp:hover{border-color:var(--line-strong)}
+  .inp:focus{outline:none;border-color:var(--brass);box-shadow:var(--ring)}
+
+  /* Buttons (variants Linear) ───────────── */
+  .btn{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.05em;padding:7px 12px;border-radius:var(--r-xs);cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);transition:all var(--t-fast) ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .btn:hover{background:var(--paper2);border-color:var(--line-strong)}
+  .btn:active{transform:translateY(0.5px)}
+  .btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  .btn:disabled{opacity:.45;cursor:not-allowed;background:var(--paper);transform:none}
+  .btn-primary{background:var(--brass);border-color:var(--brass);color:#fff}
+  .btn-primary:hover{background:var(--brass-hover);border-color:var(--brass-hover);color:#fff}
+  .btn-primary:active{background:var(--brass-press);border-color:var(--brass-press)}
+  .btn-ghost{background:transparent;border-color:transparent;color:var(--ink2)}
+  .btn-ghost:hover{background:var(--paper2);color:var(--ink);border-color:transparent}
+  .btn-danger{color:var(--ox);border-color:var(--ox)}
+  .btn-danger:hover{background:var(--ox-soft);border-color:var(--ox);color:var(--ox)}
+
+  /* Interface tabs (≠ sidebar) ────────── */
+  .tab{font:500 11px/1 'JetBrains Mono',monospace;padding:6px 12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;border-radius:var(--r-xs);color:var(--ink2);transition:all var(--t-fast) ease}
+  .tab:hover{border-color:var(--line-strong);color:var(--ink)}
   .tab.on{border-color:var(--brass);color:var(--brass);background:var(--card)}
-  .mtag{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--paper2);color:var(--ink2);padding:2px 6px;border-radius:2px;margin:0 4px 4px 0;display:inline-block}
+
+  /* Tags marketing ─────────── */
+  .mtag{font:500 10px/1 'JetBrains Mono',monospace;background:var(--paper2);color:var(--ink2);padding:3px 7px;border-radius:var(--r-xs);margin:0 4px 4px 0;display:inline-block}
+
+  /* Images ──────────────────── */
+  .thumb{width:48px;height:48px;object-fit:cover;border-radius:var(--r-xs);border:1px solid var(--line);background:var(--paper);flex-shrink:0;transition:border-color var(--t-fast) ease}
+  .thumb:hover{border-color:var(--line-strong)}
+  .thumb-empty{display:flex;align-items:center;justify-content:center;color:var(--ink3)}
+  .preview{width:100%;max-height:280px;object-fit:contain;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-xs)}
+
+  /* Data table (sticky header + zebra subtile) ────────── */
+  .dt{width:100%;border-collapse:collapse;font-size:13px}
+  .dt thead th{position:sticky;top:0;background:var(--paper2);text-align:left;padding:10px 14px;font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);box-shadow:inset 0 -1px 0 var(--line);z-index:1}
+  .dt tbody td{padding:10px 14px;border-bottom:1px solid var(--paper2);color:var(--ink);font-size:13px}
+  .dt tbody tr:hover{background:var(--paper2)}
+  .dt tbody tr:last-child td{border-bottom:none}
+
+  /* Error banner ───────────── */
+  .err{font:500 11px 'JetBrains Mono',monospace;color:var(--ox);padding:10px 14px;border-top:1px solid var(--line);background:var(--ox-soft)}
+
+  /* KPI label color override (calme) ─────── */
+  .kpi-label{font:500 10px 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase}
+
+  /* Anim utility ───────────── */
+  .fade{animation:fadeIn 200ms ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
   `;
 
   const Kpi = ({ k, v, sub, tone }: { k: string; v: string | number; sub?: string; tone?: string }) => (
@@ -370,19 +458,37 @@ export default function App() {
           </div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: ".18em", color: "var(--ink2)", marginTop: 4 }}>POSTE DE PILOTAGE</div>
         </div>
-        {([
-          ["pilotage",    "Pilotage",    LayoutGrid],
-          ["oeuvres",     "Œuvres",      ListChecks],
-          ["connecteurs", "Connecteurs", Plug],
-          ["commandes",   "Commandes",   Package],
-          ["viabilite",   "Viabilité",   Calculator],
-          ["import",      "Import",      Upload],
-        ] as const).map(([k, l, I]) => (
-          <div key={k} className={"navi " + (tab === k ? "on" : "")} onClick={() => setTab(k)}>
-            <I size={15} /> <span>{l}</span>
-          </div>
-        ))}
-        <div className="navi" onClick={reload}><RefreshCw size={15} /> <span>Recharger</span></div>
+        {/* Section : vue d'ensemble */}
+        <div className={"navi " + (tab === "pilotage" ? "on" : "")} onClick={() => setTab("pilotage")}>
+          <LayoutGrid size={15} /> <span>Pilotage</span>
+        </div>
+
+        {/* Section : catalogue */}
+        <div className="nav-section">Catalogue</div>
+        <div className={"navi " + (tab === "oeuvres" ? "on" : "")} onClick={() => setTab("oeuvres")}>
+          <ListChecks size={15} /> <span>Œuvres</span>
+        </div>
+        <div className={"navi " + (tab === "import" ? "on" : "")} onClick={() => setTab("import")}>
+          <Upload size={15} /> <span>Import</span>
+        </div>
+
+        {/* Section : opérations */}
+        <div className="nav-section">Opérations</div>
+        <div className={"navi " + (tab === "connecteurs" ? "on" : "")} onClick={() => setTab("connecteurs")}>
+          <Plug size={15} /> <span>Connecteurs</span>
+        </div>
+        <div className={"navi " + (tab === "commandes" ? "on" : "")} onClick={() => setTab("commandes")}>
+          <Package size={15} /> <span>Commandes</span>
+        </div>
+
+        {/* Section : outils */}
+        <div className="nav-section">Outils</div>
+        <div className={"navi " + (tab === "viabilite" ? "on" : "")} onClick={() => setTab("viabilite")}>
+          <Calculator size={15} /> <span>Viabilité</span>
+        </div>
+        <div className="navi" onClick={reload}>
+          <RefreshCw size={15} /> <span>Recharger</span>
+        </div>
         <div style={{ padding: 14, marginTop: 12 }}>
           <div className="cd" style={{ padding: 12 }}>
             <div className="mono" style={{ fontSize: 9, color: "var(--ink2)", letterSpacing: ".08em" }}>SEUIL DE RENTABILITÉ</div>
@@ -721,9 +827,10 @@ export default function App() {
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(420px, 1fr))", gap: 12 }}>
                 {connectors.map((c) => {
-                  const cfgColor =
-                    c.status === "configured" ? "var(--sage)" :
-                    c.status === "missing_key" ? "var(--ox)" : "var(--brass)";
+                  const badgeClass =
+                    c.status === "configured" ? "badge badge-success" :
+                    c.status === "missing_key" ? "badge badge-danger" :
+                    "badge badge-warning";
                   const cat = {
                     ai: "🧠 IA",
                     data: "📚 Données",
@@ -732,17 +839,17 @@ export default function App() {
                     mockup: "🖼️ Mockup",
                   }[c.category];
                   return (
-                    <div key={c.id} className="cd" style={{ padding: 14 }}>
+                    <div key={c.id} className="cd cd-hover" style={{ padding: 16 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: 8 }}>
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", letterSpacing: ".06em" }}>{cat}</div>
-                          <div className="serif" style={{ fontSize: 16, fontWeight: 600 }}>{c.name}</div>
+                          <div className="eyebrow">{cat}</div>
+                          <div className="serif" style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.015em", marginTop: 2 }}>{c.name}</div>
                           <a href={c.docUrl} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "var(--brass)", textDecoration: "none" }}>
                             doc ↗
                           </a>
                         </div>
-                        <span className="pill" style={{ color: cfgColor }}>
-                          {c.status === "configured" ? "✓ CONFIGURÉ" : c.status === "missing_key" ? "✗ CLÉ MANQUANTE" : c.status.toUpperCase()}
+                        <span className={badgeClass}>
+                          {c.status === "configured" ? "✓ Configuré" : c.status === "missing_key" ? "✗ Clé manquante" : c.status}
                         </span>
                       </div>
 
@@ -803,43 +910,43 @@ export default function App() {
                 </div>
               </div>
             ) : (
-              <div className="cd" style={{ padding: 0 }}>
-                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <div className="cd" style={{ padding: 0, overflow: "hidden" }}>
+                <table className="dt">
                   <thead>
-                    <tr style={{ borderBottom: "1px solid var(--line)", background: "var(--paper2)" }}>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">DATE</th>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">ŒUVRE</th>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">PRODUIT</th>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">FOURNISSEUR</th>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">STATUT</th>
-                      <th style={{ textAlign: "right", padding: "8px 12px", fontSize: 11 }} className="mono">MONTANT</th>
-                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">TRACKING</th>
+                    <tr>
+                      <th>Date</th>
+                      <th>Œuvre</th>
+                      <th>Produit</th>
+                      <th>Fournisseur</th>
+                      <th>Statut</th>
+                      <th style={{ textAlign: "right" }}>Montant</th>
+                      <th>Tracking</th>
                     </tr>
                   </thead>
                   <tbody>
                     {orders.map((o) => {
-                      const statusColor = {
-                        paid:          "var(--ink2)",
-                        in_production: "var(--brass)",
-                        shipped:       "var(--brass)",
-                        delivered:     "var(--sage)",
-                        canceled:      "var(--ox)",
-                        error:         "var(--ox)",
-                      }[o.status] || "var(--ink2)";
+                      const badgeClass = {
+                        paid:          "badge badge-neutral",
+                        in_production: "badge badge-warning",
+                        shipped:       "badge badge-warning",
+                        delivered:     "badge badge-success",
+                        canceled:      "badge badge-danger",
+                        error:         "badge badge-danger",
+                      }[o.status] || "badge badge-neutral";
                       return (
-                        <tr key={o.id} style={{ borderBottom: "1px solid var(--paper2)" }}>
-                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">{new Date(o.createdAt).toLocaleDateString("fr-FR")}</td>
-                          <td style={{ padding: "8px 12px", fontSize: 13 }}>{o.work?.title || `#${o.workId}`}</td>
-                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">{o.product}</td>
-                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">
+                        <tr key={o.id}>
+                          <td className="mono">{new Date(o.createdAt).toLocaleDateString("fr-FR")}</td>
+                          <td>{o.work?.title || `#${o.workId}`}</td>
+                          <td className="mono" style={{ fontSize: 12 }}>{o.product}</td>
+                          <td className="mono" style={{ fontSize: 12 }}>
                             {o.provider === "gelato" ? "🇫🇷 Gelato" : "🇬🇧 Prodigi"}
                           </td>
-                          <td style={{ padding: "8px 12px" }}><span className="pill" style={{ color: statusColor }}>{o.status}</span></td>
-                          <td style={{ padding: "8px 12px", fontSize: 12, textAlign: "right" }} className="mono">{o.amount.toFixed(2)} {o.currency}</td>
-                          <td style={{ padding: "8px 12px", fontSize: 11 }} className="mono">
+                          <td><span className={badgeClass}>{o.status}</span></td>
+                          <td className="mono" style={{ textAlign: "right" }}>{o.amount.toFixed(2)} {o.currency}</td>
+                          <td className="mono" style={{ fontSize: 11 }}>
                             {o.trackingUrl ? (
-                              <a href={o.trackingUrl} target="_blank" rel="noreferrer" style={{ color: "var(--brass)", textDecoration: "none" }}>
-                                <Truck size={11} style={{ display: "inline", marginRight: 3 }} />{o.trackingCode || "voir"} <ExternalLink size={9} style={{ display: "inline" }} />
+                              <a href={o.trackingUrl} target="_blank" rel="noreferrer" style={{ color: "var(--brass)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                                <Truck size={11} />{o.trackingCode || "voir"} <ExternalLink size={9} />
                               </a>
                             ) : o.trackingCode || "—"}
                           </td>
@@ -893,7 +1000,7 @@ export default function App() {
             </p>
             <textarea className="inp mono" rows={10} placeholder='[ { "objectID": 12345, "title": "...", ... } ]' value={imp} onChange={(e) => setImp(e.target.value)} style={{ maxWidth: 760, fontSize: 12 }} />
             <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
-              <button className="btn" disabled={busy || !imp.trim()} style={{ color: "var(--sage)" }} onClick={importJson}>
+              <button className="btn btn-primary" disabled={busy || !imp.trim()} onClick={importJson}>
                 {busy ? "Import…" : "Importer le JSON"}
               </button>
               <button className="btn" onClick={() => { setImp(""); }}>Vider le champ</button>
