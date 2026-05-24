@@ -14,6 +14,7 @@ type MarketingItem = {
   description: string;
   hook: string;
   tags: string[];
+  titleSource?: "wikidata" | "original";
 };
 
 type Work = {
@@ -490,9 +491,12 @@ export default function App() {
                           if (!m) {
                             return <div className="body" style={{ fontSize: 12, color: "var(--ink2)" }}>Pas de contenu pour cette langue. Relance la génération.</div>;
                           }
+                          const srcBadge = m.titleSource === "wikidata"
+                            ? { color: "var(--sage)", text: "✓ titre officiel Wikidata" }
+                            : { color: "var(--ink2)", text: "titre original conservé (non traduit)" };
                           return (
                             <div className="body" style={{ fontSize: 13, lineHeight: 1.55 }}>
-                              <Mfield l="Titre court" v={m.title} />
+                              <Mfield l="Titre court" v={m.title} sub={srcBadge.text} subColor={srcBadge.color} />
                               <Mfield l="Titre listing Etsy (SEO)" v={m.listingTitle} mono />
                               <Mfield l="Description" v={m.description} block />
                               <Mfield l="Accroche provenance" v={m.hook} block />
@@ -572,11 +576,12 @@ function Gate({ ok, label }: { ok: boolean | null; label: string }) {
   const t = ok === true ? "✓" : ok === false ? "✗" : "?";
   return <span className="pill" style={{ color: c }}>{t} {label}</span>;
 }
-function Mfield({ l, v, mono, block }: { l: string; v: string; mono?: boolean; block?: boolean }) {
+function Mfield({ l, v, mono, block, sub, subColor }: { l: string; v: string; mono?: boolean; block?: boolean; sub?: string; subColor?: string }) {
   return (
     <div style={{ marginTop: 8 }}>
       <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", letterSpacing: ".06em", marginBottom: 2 }}>
         {l.toUpperCase()} <span style={{ color: "var(--ink2)" }}>· {v.length} chars</span>
+        {sub && <span style={{ color: subColor || "var(--ink2)", marginLeft: 8 }}>· {sub}</span>}
       </div>
       <div className={mono ? "mono" : "body"} style={{ fontSize: mono ? 12 : 13, padding: block ? "4px 0" : 0, color: "var(--ink)" }}>
         {v || <span style={{ color: "var(--ink2)" }}>—</span>}
