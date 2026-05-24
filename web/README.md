@@ -2,6 +2,8 @@
 
 Front-end de pilotage + API du projet **Art**. Porte le cockpit React livré (anciennement `cockpit/provenance-cockpit.jsx`) sur Next.js 15 + Prisma + Postgres, avec une protection HTTP Basic Auth pour le déploiement public.
 
+**Production** : <https://art-cockpit.vercel.app> · projet Vercel `art-cockpit` · branche `main` auto-déployée · root directory `web`.
+
 ## Stack
 
 | Brique     | Choix                                              |
