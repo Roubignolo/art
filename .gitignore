@@ -43,3 +43,4 @@ data/
 output/
 *.sqlite
 *.db
+.vercel

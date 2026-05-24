@@ -1,223 +1,239 @@
 #!/usr/bin/env python3
 """
-Sous-agent SOURCING — Phase 0
-Interroge l'API publique du Metropolitan Museum (sans clé), filtre les œuvres
-réellement en domaine public + haute résolution, applique les GATES du moteur
-de scoring, produit le REGISTRE DE PROVENANCE (CSV + JSON) et télécharge les
-masters des œuvres retenues.
+Sous-agent SOURCING — orchestrateur multi-sources.
 
-Dépendances :  pip install requests pillow
-Lancement   :  python sourcing_agent.py
-Doc API Met :  https://metmuseum.github.io/
+Dispatche la query vers le connecteur choisi (Met / Rijksmuseum / BHL),
+applique le gate G4 résolution sur l'image, télécharge optionnellement les
+masters et écrit le registre de provenance (JSON + CSV) au format consommé
+par scoring_agent.py et /api/works POST du cockpit.
 
-NB : ce script est conçu pour tourner sur TA machine (l'API n'est pas joignable
-depuis l'environnement de chat). Aucune clé d'API n'est nécessaire.
+Dépendances :  pip install pillow         (requests N'est PAS utilisé — urllib stdlib)
+
+Exemples :
+  python agents/sourcing_agent.py --source met --query botanical --target 20
+  python agents/sourcing_agent.py --source rijks --query landscape --target 15
+  python agents/sourcing_agent.py --source bhl --query fern --titles 3 --pages 20
+
+Variables d'environnement requises par source :
+  - met         : aucune
+  - rijksmuseum : RIJKSMUSEUM_API_KEY (https://www.rijksmuseum.nl/en/research/conduct-research/data/api)
+  - bhl         : BHL_API_KEY         (https://www.biodiversitylibrary.org/getapikey.aspx)
+
+Conformité : ce script PRODUIT des décisions provisoires sur les gates.
+La validation humaine reste obligatoire sur les lignes REVIEW et avant
+toute production POD (cf. CLAUDE.md règles dures).
 """
 
-import os, csv, json, time, datetime, io
-import requests
-from PIL import Image
+from __future__ import annotations
 
-# ─────────────────────────── CONFIGURATION ───────────────────────────
-THEME_QUERY     = "botanical"     # thème de la 1re collection (ex: "botanical", "ornithology", "celestial map")
-TARGET_COUNT    = 20              # nombre d'œuvres retenues visé
-MIN_LONG_EDGE   = 3000            # px sur le grand côté (≈ poster A3 @150 DPI). 5000+ pour grands formats.
-MAX_TO_SCAN     = 300             # plafond d'objets inspectés (politesse + temps)
-OUTPUT_DIR      = "collection_botanique"
-DOWNLOAD_MASTERS= True            # télécharger les fichiers HD des œuvres retenues
-REQUEST_PAUSE   = 0.15            # pause entre appels (politesse envers l'API)
+import argparse
+import os
+import sys
+import time
+from typing import Iterator, Any
 
-BASE = "https://collectionapi.metmuseum.org/public/collection/v1"
-EU_DEATH_CUTOFF = datetime.date.today().year - 71   # UE : auteur mort depuis 70 ans révolus
-US_PUB_CUTOFF   = datetime.date.today().year - 95    # US : publié il y a 95 ans (≤1930 en 2026)
+# Permet d'importer le package `sources` que l'on soit lancé depuis la racine
+# du repo ou depuis n'importe quel cwd.
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+if THIS_DIR not in sys.path:
+    sys.path.insert(0, THIS_DIR)
 
-# Garde-fou marque résiduelle (G2) — liste minimale, la validation humaine reste requise
-TRADEMARK_FLAGS = ["disney","mickey","betty boop","marvel","pixar","nintendo","coca",
-                   "warner","pokemon","star wars","barbie","lego"]
-
-session = requests.Session()
-session.headers.update({"User-Agent": "Phase0-SourcingAgent/1.0 (curated public-domain POD)"})
+from sources.base import (  # noqa: E402
+    DEFAULT_MIN_LONG_EDGE,
+    http_get_bytes,
+    summarize,
+    verify_resolution,
+    write_registry,
+)
 
 
-# ─────────────────────────── APPELS API ───────────────────────────
-def _get(url, params=None, tries=4):
-    for i in range(tries):
-        try:
-            r = session.get(url, params=params, timeout=30)
-            if r.status_code == 200:
-                return r.json()
-            if r.status_code in (429, 500, 502, 503):
-                time.sleep(1.5 * (i + 1)); continue
-            return None
-        except requests.RequestException:
-            time.sleep(1.5 * (i + 1))
-    return None
+# ─────────────────────────── DISPATCH ───────────────────────────
 
-def search_objects(query):
-    data = _get(f"{BASE}/search", {"q": query, "hasImages": "true"})
-    return (data or {}).get("objectIDs") or []
-
-def fetch_object(object_id):
-    return _get(f"{BASE}/objects/{object_id}")
-
-
-# ─────────────────────────── GATES (filtres éliminatoires) ───────────────────────────
-def _year(s):
-    """Extrait une année d'un champ Met (ex '1901-01-01' ou '1880')."""
-    if not s: return None
-    digits = "".join(c for c in str(s)[:4] if c.isdigit())
-    return int(digits) if len(digits) == 4 else None
-
-def check_gates(obj):
-    """Retourne (decision, raisons, infos) sans encore vérifier la résolution (G4 à part)."""
-    reasons = {}
-
-    # G3 + G1(US) : le Met confirme le domaine public (CC0)
-    reasons["g1_us_g3_source"] = bool(obj.get("isPublicDomain"))
-
-    # G1(UE) conservateur : mort de l'auteur > 70 ans, sinon œuvre très ancienne
-    death = _year(obj.get("artistEndDate"))
-    end   = _year(obj.get("objectEndDate"))
-    if death is not None:
-        reasons["g1_ue"] = death <= EU_DEATH_CUTOFF
-    elif end is not None:
-        reasons["g1_ue"] = end <= 1900            # marge de sécurité si auteur inconnu
-    else:
-        reasons["g1_ue"] = None                    # indéterminé → REVIEW
-
-    # G2 : marque résiduelle (garde-fou minimal)
-    hay = f"{obj.get('title','')} {obj.get('artistDisplayName','')}".lower()
-    reasons["g2_no_trademark"] = not any(t in hay for t in TRADEMARK_FLAGS)
-
-    # image disponible ?
-    reasons["has_image"] = bool(obj.get("primaryImage"))
-
-    # décision provisoire (résolution vérifiée ensuite)
-    if not reasons["has_image"] or not reasons["g1_us_g3_source"] or not reasons["g2_no_trademark"]:
-        decision = "REJET"
-    elif reasons["g1_ue"] is False:
-        decision = "REJET"
-    elif reasons["g1_ue"] is None:
-        decision = "REVIEW"   # à valider par un humain (date d'auteur inconnue)
-    else:
-        decision = "CANDIDAT" # passe les gates, reste la résolution
-    return decision, reasons
-
-def verify_resolution(image_bytes):
-    """Retourne (long_edge_px, width, height) ou (0,0,0) si illisible."""
-    try:
-        im = Image.open(io.BytesIO(image_bytes))
-        w, h = im.size
-        return max(w, h), w, h
-    except Exception:
-        return 0, 0, 0
+def get_iterator(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
+    if args.source == "met":
+        from sources.met import iter_candidates
+        return iter_candidates(args.query, max_scan=args.max_scan, pause=args.pause)
+    if args.source == "rijks" or args.source == "rijksmuseum":
+        from sources.rijksmuseum import iter_candidates
+        return iter_candidates(
+            args.query, max_scan=args.max_scan, pause=args.pause,
+            min_long_edge=args.min_resolution,
+        )
+    if args.source == "bhl":
+        from sources.bhl import iter_candidates
+        return iter_candidates(
+            args.query, max_titles=args.titles, pages_per_title=args.pages,
+            pause=args.pause,
+        )
+    raise ValueError(f"source inconnue : {args.source}")
 
 
-# ─────────────────────────── REGISTRE DE PROVENANCE ───────────────────────────
-def build_record(obj, decision, reasons, res=(None, None, None), local_file=""):
-    long_edge, w, h = res
-    return {
-        "objectID":        obj.get("objectID"),
-        "decision":        decision,
-        "title":           obj.get("title"),
-        "artist":          obj.get("artistDisplayName"),
-        "artist_bio":      obj.get("artistDisplayBio"),
-        "artist_death":    obj.get("artistEndDate"),
-        "object_date":     obj.get("objectDate"),
-        "object_end_year": obj.get("objectEndDate"),
-        "department":      obj.get("department"),
-        "classification":  obj.get("classification"),
-        "medium":          obj.get("medium"),
-        "dimensions":      obj.get("dimensions"),
-        "credit_line":     obj.get("creditLine"),
-        "is_public_domain":obj.get("isPublicDomain"),
-        "source":          "The Metropolitan Museum of Art (Open Access, CC0)",
-        "object_url":      obj.get("objectURL"),
-        "image_url":       obj.get("primaryImage"),
-        "resolution_px":   long_edge,
-        "width":           w,
-        "height":          h,
-        "resolution_ok":   (long_edge or 0) >= MIN_LONG_EDGE if long_edge else None,
-        "gate_g1_us_g3":   reasons.get("g1_us_g3_source"),
-        "gate_g1_ue":      reasons.get("g1_ue"),
-        "gate_g2_marque":  reasons.get("g2_no_trademark"),
-        "local_file":      local_file,
-    }
+# ─────────────────────────── PIPELINE COMMUN ───────────────────────────
+
+def _process_resolution(rec: dict[str, Any], img_bytes: bytes, min_long_edge: int) -> dict[str, Any]:
+    """Met à jour width/height/resolution_px/resolution_ok et ajuste la décision
+    si la résolution force un REJET. N'écrase pas un REVIEW gate UE existant."""
+    long_edge, w, h = verify_resolution(img_bytes)
+    rec["resolution_px"] = long_edge
+    rec["width"] = w or None
+    rec["height"] = h or None
+    rec["resolution_ok"] = (long_edge >= min_long_edge) if long_edge else False
+    if rec["resolution_ok"] is False and rec["decision"] != "REJET":
+        rec["decision"] = "REJET"
+        rec["reason"] = f"résolution {long_edge}px < {min_long_edge}px"
+    return rec
 
 
-# ─────────────────────────── BOUCLE PRINCIPALE ───────────────────────────
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    masters_dir = os.path.join(OUTPUT_DIR, "masters")
-    if DOWNLOAD_MASTERS:
+def main() -> int:
+    args = _parse_args()
+
+    out_dir = args.output_dir or f"collection_{args.source}_{args.query.replace(' ', '_')}"
+    masters_dir = os.path.join(out_dir, "masters")
+    if args.download:
         os.makedirs(masters_dir, exist_ok=True)
 
-    print(f"🔎 Recherche « {THEME_QUERY} » sur l'API du Met…")
-    ids = search_objects(THEME_QUERY)
-    print(f"   {len(ids)} objets trouvés. Inspection (max {MAX_TO_SCAN})…\n")
+    print(f"🔎 Source: {args.source}   query: « {args.query} »   cible: {args.target} candidats")
+    print(f"   Sortie : {out_dir}/registre_provenance.{{json,csv}}\n")
 
-    records, kept = [], 0
-    for i, oid in enumerate(ids[:MAX_TO_SCAN]):
-        if kept >= TARGET_COUNT:
+    try:
+        iterator = get_iterator(args)
+    except RuntimeError as e:
+        print(f"❌ {e}", file=sys.stderr)
+        return 2
+
+    records: list[dict[str, Any]] = []
+    kept = 0
+    i = 0
+
+    try:
+        items = iter(iterator)
+    except RuntimeError as e:
+        print(f"❌ {e}", file=sys.stderr)
+        return 2
+
+    while True:
+        try:
+            rec = next(items)
+        except StopIteration:
             break
-        obj = fetch_object(oid)
-        time.sleep(REQUEST_PAUSE)
-        if not obj:
+        except RuntimeError as e:
+            # Clé API manquante levée lazy au 1er appel HTTP du connecteur.
+            print(f"❌ {e}", file=sys.stderr)
+            return 2
+        i += 1
+        if kept >= args.target:
+            break
+
+        # Rejets précoces (gates DP/marque/source) : on archive et on continue.
+        if rec["decision"] == "REJET":
+            records.append(rec)
+            print(f"[{i:>3}] ⤫ REJET  {(rec.get('title') or '')[:55]}")
             continue
 
-        decision, reasons = check_gates(obj)
-        if decision == "REJET":
-            records.append(build_record(obj, decision, reasons))
+        img_url = rec.get("image_url")
+        if not img_url:
+            rec["decision"] = "REJET"
+            rec["reason"] = "image_url manquante"
+            records.append(rec)
+            print(f"[{i:>3}] ⤫ pas d'image")
             continue
 
-        # vérification de résolution (G4) — on télécharge l'image pour mesurer
-        res, local_file = (None, None, None), ""
-        img_url = obj.get("primaryImage")
-        if img_url:
-            try:
-                ir = session.get(img_url, timeout=60)
-                if ir.status_code == 200:
-                    res = verify_resolution(ir.content)
-                    if (res[0] or 0) >= MIN_LONG_EDGE and decision in ("CANDIDAT", "REVIEW"):
-                        if DOWNLOAD_MASTERS:
-                            ext = os.path.splitext(img_url)[1].split("?")[0] or ".jpg"
-                            local_file = os.path.join(masters_dir, f"{oid}{ext}")
-                            with open(local_file, "wb") as f:
-                                f.write(ir.content)
-                        kept += 1
-                        tag = "✅ RETENU" if decision == "CANDIDAT" else "🟠 RETENU (à valider)"
-                    else:
-                        decision = "REJET" if (res[0] or 0) < MIN_LONG_EDGE else decision
-                        tag = f"⤫ résolution {res[0]}px < {MIN_LONG_EDGE}"
-                else:
-                    tag = "⤫ image inaccessible"
-            except requests.RequestException:
-                tag = "⤫ erreur image"
-            time.sleep(REQUEST_PAUSE)
+        # Pour les sources qui n'ont PAS déjà rempli resolution_px (Met, BHL),
+        # on télécharge pour mesurer. Rijks renseigne déjà → on saute le téléchargement.
+        if rec.get("resolution_px"):
+            res_known = True
         else:
-            tag = "⤫ pas d'image"
+            res_known = False
+            img_bytes = http_get_bytes(img_url)
+            time.sleep(args.pause)
+            if img_bytes is None:
+                rec["decision"] = "REJET"
+                rec["reason"] = "image inaccessible"
+                records.append(rec)
+                print(f"[{i:>3}] ⤫ image inaccessible")
+                continue
+            rec = _process_resolution(rec, img_bytes, args.min_resolution)
 
-        records.append(build_record(obj, decision, reasons, res, local_file))
-        print(f"[{i+1:>3}] {str(obj.get('title'))[:48]:48s} {tag}")
+        # Téléchargement du master (si demandé ET candidat retenu)
+        if args.download and rec["decision"] in ("CANDIDAT", "REVIEW"):
+            if not res_known:
+                ext = os.path.splitext(img_url)[1].split("?")[0][:5] or ".jpg"
+            else:
+                # Rijks : on n'a pas img_bytes encore, fetch maintenant
+                img_bytes = http_get_bytes(img_url)
+                time.sleep(args.pause)
+                ext = ".jpg"
+                if img_bytes is None:
+                    rec["decision"] = "REJET"
+                    rec["reason"] = "image inaccessible au DL"
+                    records.append(rec)
+                    print(f"[{i:>3}] ⤫ image inaccessible au DL")
+                    continue
+            local_path = os.path.join(masters_dir, f"{rec['objectID']}{ext}")
+            try:
+                with open(local_path, "wb") as f:
+                    f.write(img_bytes)
+                rec["local_file"] = local_path
+            except OSError as e:
+                rec["reason"] = f"erreur écriture master: {e}"
 
-    # ── écriture du registre ──
-    json_path = os.path.join(OUTPUT_DIR, "registre_provenance.json")
-    csv_path  = os.path.join(OUTPUT_DIR, "registre_provenance.csv")
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
-    if records:
-        with open(csv_path, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=list(records[0].keys()))
-            w.writeheader(); w.writerows(records)
+        if rec["decision"] in ("CANDIDAT", "REVIEW"):
+            kept += 1
+            tag = "✅ RETENU" if rec["decision"] == "CANDIDAT" else "🟠 RETENU (à valider)"
+            print(f"[{i:>3}] {tag}  {(rec.get('title') or '')[:55]}  ({rec['resolution_px']}px)")
+        else:
+            print(f"[{i:>3}] ⤫ REJET  {(rec.get('title') or '')[:55]}")
 
-    retenus = [r for r in records if r["local_file"]]
-    print(f"\n── Bilan ──")
-    print(f"   Objets inspectés : {len(records)}")
-    print(f"   Œuvres RETENUES  : {len(retenus)}  (dossier : {masters_dir})")
-    print(f"   Registre         : {csv_path}")
-    print(f"\n👤 Étape suivante : valide manuellement les lignes 'REVIEW' (gate UE)")
-    print(f"   avant de passer ces œuvres au sous-agent Scoring.")
+        records.append(rec)
+
+    json_path, csv_path = write_registry(records, out_dir)
+    bilan = summarize(records)
+
+    print("\n── Bilan ──")
+    print(f"   Inspectés      : {len(records)}")
+    print(f"   ✅ CANDIDAT   : {bilan['CANDIDAT']}")
+    print(f"   🟠 REVIEW     : {bilan['REVIEW']}  ← validation humaine requise")
+    print(f"   ❌ REJET      : {bilan['REJET']}")
+    print(f"   Registre JSON  : {json_path}")
+    print(f"   Registre CSV   : {csv_path}")
+    if args.download:
+        print(f"   Masters HD     : {masters_dir}/")
+
+    print("\n👤 Étape suivante : importer le registre dans le cockpit")
+    print(f"   curl -u art:$COCKPIT_PASSWORD -X POST https://art-cockpit.vercel.app/api/works \\")
+    print(f"     -H 'Content-Type: application/json' \\")
+    print(f"     -d @{json_path}")
+    return 0
+
+
+# ─────────────────────────── CLI ───────────────────────────
+
+def _parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description="Sous-agent SOURCING multi-sources.")
+    p.add_argument("--source", "-s", required=True,
+                   choices=["met", "rijks", "rijksmuseum", "bhl"],
+                   help="Connecteur à utiliser.")
+    p.add_argument("--query", "-q", required=True,
+                   help="Mot-clé de recherche (ex: botanical, fern, landscape).")
+    p.add_argument("--target", "-t", type=int, default=20,
+                   help="Nombre d'œuvres retenues visé (défaut: 20).")
+    p.add_argument("--max-scan", type=int, default=200,
+                   help="Plafond d'objets à inspecter (Met/Rijks). Défaut: 200.")
+    p.add_argument("--titles", type=int, default=5,
+                   help="(BHL) nombre d'ouvrages à scanner. Défaut: 5.")
+    p.add_argument("--pages", type=int, default=30,
+                   help="(BHL) pages d'illustration max par ouvrage. Défaut: 30.")
+    p.add_argument("--min-resolution", type=int, default=DEFAULT_MIN_LONG_EDGE,
+                   help=f"Seuil gate G4 en pixels (défaut: {DEFAULT_MIN_LONG_EDGE}).")
+    p.add_argument("--pause", type=float, default=0.15,
+                   help="Pause entre appels API (politesse). Défaut: 0.15s.")
+    p.add_argument("--no-download", dest="download", action="store_false",
+                   help="N'écrit pas les masters sur disque (métadonnées + gates seulement).")
+    p.add_argument("--output-dir", "-o", default=None,
+                   help="Dossier de sortie (défaut: collection_<source>_<query>).")
+    p.set_defaults(download=True)
+    return p.parse_args()
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

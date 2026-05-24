@@ -20,7 +20,8 @@ Art/
 ├─ finance/
 │  └─ calculateur-viabilite.xlsx   Modèle + comparateur de fournisseurs
 ├─ agents/
-│  ├─ sourcing_agent.py        Sous-agent Sourcing (API du Met) + registre provenance
+│  ├─ sourcing_agent.py        Orchestrateur Sourcing (CLI multi-sources)
+│  ├─ sources/                 Connecteurs : met.py, rijksmuseum.py, bhl.py
 │  └─ scoring_agent.py         Sous-agent Scoring (4 axes pondérés, mode heuristic|llm)
 ├─ web/                        Cockpit Next.js 15 + Prisma + Postgres (Neon)
 │  ├─ app/                     UI + routes API (works, scoring)
@@ -35,8 +36,14 @@ Art/
 ```bash
 # 1. Sourcer une première collection (gates DP/marque/résolution appliqués)
 pip install requests pillow
-python agents/sourcing_agent.py
-#   → collection_botanique/registre_provenance.json
+python agents/sourcing_agent.py --source met --query botanical --target 20
+#   → collection_met_botanical/registre_provenance.json
+
+# Variantes (clé API gratuite à exporter d'abord) :
+export RIJKSMUSEUM_API_KEY=…                  # https://www.rijksmuseum.nl/en/research/conduct-research/data/api
+python agents/sourcing_agent.py --source rijks --query landscape --target 15
+export BHL_API_KEY=…                          # https://www.biodiversitylibrary.org/getapikey.aspx
+python agents/sourcing_agent.py --source bhl --query fern --titles 3 --pages 20
 
 # 2. Scorer les œuvres pour un produit cible (mode heuristique, offline)
 python agents/scoring_agent.py -i collection_botanique/registre_provenance.json -p poster

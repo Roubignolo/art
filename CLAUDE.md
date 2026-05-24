@@ -34,14 +34,14 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 ## Structure du repo
 - `docs/` — business plan, brief marque, moteur scoring, plan projet, architecture agents, backend Vercel.
 - `finance/` — calculateur de viabilité (xlsx) + comparateur fournisseurs.
-- `agents/sourcing_agent.py` — sous-agent Sourcing (API du Met) → registre de provenance.
+- `agents/sourcing_agent.py` — orchestrateur Sourcing multi-sources (CLI). Dispatche vers `agents/sources/{met,rijksmuseum,bhl}.py` selon `--source`. Format de sortie commun (snake_case) consommable par `/api/works` POST et `scoring_agent.py`.
+- `agents/sources/` — connecteurs : Met (sans clé), Rijksmuseum (`RIJKSMUSEUM_API_KEY`), BHL (`BHL_API_KEY`). IDs préfixés par offset pour éviter les collisions (Met < 10M, Rijks 10M–20M, BHL ≥ 20M).
 - `agents/scoring_agent.py` — sous-agent Scoring (4 axes pondérés, modes `heuristic` & `llm`) → registre noté par produit.
 - `web/` — cockpit Next.js 15 (App Router, TS) + Prisma + Postgres (Neon) + HTTP Basic Auth. Déployé en production sur Vercel : <https://art-cockpit.vercel.app> (user `art`).
 - `cockpit/provenance-cockpit.jsx` — prototype React initial conservé pour référence (remplacé par `web/`).
 
 ## État actuel & prochaines tâches
-- ✅ Stratégie, finances, sous-agents Sourcing + Scoring, cockpit Next.js + backend Prisma/Postgres, déployé sur Vercel (Neon Postgres, root directory `web/`, branche prod `main`, auto-deploy à chaque push).
-- ⏭️ Ajouter d'autres sources (Rijksmuseum, BHL) au sourcing.
+- ✅ Stratégie, finances, sous-agents Sourcing (multi-sources Met/Rijks/BHL) + Scoring + Marketing multilingue (Wikidata), cockpit Next.js + backend Prisma/Postgres, déployé sur Vercel (Neon Postgres, root directory `web/`, branche prod `main`, auto-deploy à chaque push).
 - ⏭️ Boucle de feedback Analytics : réinjecter ventes réelles via la table `Sale` pour repondérer les axes.
 - ⏭️ Cron Vercel : sourcing quotidien + scoring auto des nouvelles œuvres (gates restent humains).
 
