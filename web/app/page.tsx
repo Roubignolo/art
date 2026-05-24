@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   Archive, LayoutGrid, ListChecks, Calculator, Upload, Check, X,
   ChevronRight, Leaf, Image as ImageIcon, ShieldCheck, AlertTriangle,
-  Sparkles, RefreshCw, Wand2, Languages,
+  Sparkles, RefreshCw, Wand2, Languages, Plug, Package, Truck, ExternalLink,
 } from "lucide-react";
 
 /* ---------- Types ---------- */
@@ -16,6 +16,8 @@ type MarketingItem = {
   tags: string[];
   titleSource?: "wikidata" | "original";
 };
+
+type MockupSet = { templates: string[]; lifestyle: string[]; generatedAt: string };
 
 type Work = {
   id: number;
@@ -42,7 +44,47 @@ type Work = {
   hook: string | null;
   angle: string | null;
   marketing: Record<string, MarketingItem> | null;
+  mockups: Record<string, MockupSet> | null;
+  line: "standard" | "signature" | null;
+  etsyListingId: string | null;
   status: string;
+};
+
+type Connector = {
+  id: string;
+  name: string;
+  description: string;
+  docUrl: string;
+  category: "ai" | "data" | "marketplace" | "pod" | "mockup";
+  status: "configured" | "missing_key" | "ok" | "error";
+  configHint: string;
+  requiredEnv: string[];
+  hasTest: boolean;
+  ordersLast30: number | null;
+  // Champs locaux (résultat du dernier test live)
+  lastTest?: { ok: boolean; detail: string; durationMs: number; at: string };
+};
+
+type Order = {
+  id: number;
+  workId: number;
+  marketplace: string;
+  marketplaceOrderId: string;
+  provider: "gelato" | "prodigi";
+  providerOrderId: string | null;
+  product: string;
+  quantity: number;
+  amount: number;
+  currency: string;
+  status: string;
+  trackingCode: string | null;
+  trackingUrl: string | null;
+  customerName: string | null;
+  customerCountry: string | null;
+  errorMessage: string | null;
+  createdAt: string;
+  updatedAt: string;
+  work?: { id: number; title: string; artist: string | null; imageUrl: string | null; line: string | null };
 };
 
 type Config = {
@@ -94,13 +136,17 @@ function decide(w: Work): { d: string; c: string } {
 export default function App() {
   const [works, setWorks] = useState<Work[] | null>(null);
   const [cfg, setCfg] = useState<Config>(DEFAULTS);
-  const [tab, setTab] = useState<"pilotage" | "oeuvres" | "viabilite" | "import">("pilotage");
+  const [tab, setTab] = useState<"pilotage" | "oeuvres" | "viabilite" | "import" | "connecteurs" | "commandes">("pilotage");
   const [sel, setSel] = useState<number | null>(null);
   const [imp, setImp] = useState("");
   const [busy, setBusy] = useState(false);
   const [busyMkt, setBusyMkt] = useState(false);
+  const [busyMockup, setBusyMockup] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [lang, setLang] = useState<string>("fr");
+  const [connectors, setConnectors] = useState<Connector[] | null>(null);
+  const [orders, setOrders] = useState<Order[] | null>(null);
+  const [testingId, setTestingId] = useState<string | null>(null);
 
   const reload = useCallback(async () => {
     try {
@@ -218,6 +264,62 @@ export default function App() {
     await reload();
   }, [reload]);
 
+  /** Charge la liste des connecteurs (statuts configurés). */
+  const loadConnectors = useCallback(async () => {
+    try {
+      const r = await fetch("/api/connectors");
+      if (!r.ok) throw new Error(`API ${r.status}`);
+      const data = await r.json();
+      setConnectors(data.connectors);
+    } catch (e) { setErr((e as Error).message); }
+  }, []);
+
+  /** Ping live un connecteur. Met à jour son `lastTest` localement. */
+  const testConnector = useCallback(async (id: string) => {
+    setTestingId(id); setErr(null);
+    try {
+      const r = await fetch(`/api/connectors/test/${id}`, { method: "POST" });
+      const data = await r.json();
+      const at = new Date().toISOString();
+      setConnectors((cur) => (cur || []).map((c) =>
+        c.id === id ? { ...c, lastTest: { ok: !!data.ok, detail: String(data.detail || ""), durationMs: Number(data.durationMs || 0), at } } : c,
+      ));
+    } catch (e) { setErr((e as Error).message); }
+    finally { setTestingId(null); }
+  }, []);
+
+  /** Charge la liste des commandes. */
+  const loadOrders = useCallback(async () => {
+    try {
+      const r = await fetch("/api/orders");
+      if (!r.ok) throw new Error(`API ${r.status}`);
+      setOrders(await r.json());
+    } catch (e) { setErr((e as Error).message); }
+  }, []);
+
+  /** Génère les mockups (templates + lifestyle IA) pour une œuvre. */
+  const genMockups = useCallback(async (id: number, product = "framed_a2_oak") => {
+    setBusyMockup(true); setErr(null);
+    try {
+      const r = await fetch("/api/mockup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, product }),
+      });
+      const data = await r.json();
+      if (!r.ok && r.status !== 202) throw new Error(data?.error || `Mockup ${r.status}`);
+      if (data?.warning) setErr(data.warning);
+      if (data?.work) setWorks((cur) => (cur || []).map((w) => (w.id === id ? { ...w, ...data.work } : w)));
+    } catch (e) { setErr((e as Error).message); }
+    finally { setBusyMockup(false); }
+  }, []);
+
+  // Auto-load au changement d'onglet
+  useEffect(() => {
+    if (tab === "connecteurs" && connectors === null) loadConnectors();
+    if (tab === "commandes" && orders === null) loadOrders();
+  }, [tab, connectors, orders, loadConnectors, loadOrders]);
+
   if (!works) {
     return <div style={{ padding: 40, fontFamily: "system-ui", color: "#5C5345" }}>Chargement…</div>;
   }
@@ -268,7 +370,14 @@ export default function App() {
           </div>
           <div className="mono" style={{ fontSize: 9, letterSpacing: ".18em", color: "var(--ink2)", marginTop: 4 }}>POSTE DE PILOTAGE</div>
         </div>
-        {([["pilotage", "Pilotage", LayoutGrid], ["oeuvres", "Œuvres", ListChecks], ["viabilite", "Viabilité", Calculator], ["import", "Import", Upload]] as const).map(([k, l, I]) => (
+        {([
+          ["pilotage",    "Pilotage",    LayoutGrid],
+          ["oeuvres",     "Œuvres",      ListChecks],
+          ["connecteurs", "Connecteurs", Plug],
+          ["commandes",   "Commandes",   Package],
+          ["viabilite",   "Viabilité",   Calculator],
+          ["import",      "Import",      Upload],
+        ] as const).map(([k, l, I]) => (
           <div key={k} className={"navi " + (tab === k ? "on" : "")} onClick={() => setTab(k)}>
             <I size={15} /> <span>{l}</span>
           </div>
@@ -451,6 +560,81 @@ export default function App() {
                     </div>
                   )}
 
+                  {/* Routing POD : ligne produit (standard → Gelato, signature → Prodigi) */}
+                  {!gateFail(selected) && selected.gateUe !== null && (
+                    <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+                      <div className="mono" style={{ fontSize: 10, letterSpacing: ".08em", color: "var(--ink2)", marginBottom: 8 }}>
+                        ROUTING POD
+                      </div>
+                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                        {([
+                          ["standard", "🇫🇷 Standard → Gelato",  "var(--sage)"],
+                          ["signature", "🇬🇧 Signature → Prodigi", "var(--brass)"],
+                          [null,       "Non décidé",              "var(--ink2)"],
+                        ] as const).map(([val, label, color]) => (
+                          <button
+                            key={String(val)}
+                            className="btn"
+                            onClick={() => patchWork(selected.id, { line: val })}
+                            style={{
+                              borderColor: selected.line === val ? color : "var(--line)",
+                              color: selected.line === val ? color : "var(--ink2)",
+                            }}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="body" style={{ fontSize: 11, color: "var(--ink2)", marginTop: 6 }}>
+                        {selected.line === "signature"
+                          ? "→ Prodigi : Hahnemühle Photo Rag, encadrés FATG, white-label intégral"
+                          : selected.line === "standard"
+                          ? "→ Gelato : production locale FR, intégration Etsy stable, ~10-20% moins cher"
+                          : "Choisis une ligne pour activer le routing automatique des commandes."}
+                      </div>
+
+                      {/* Bouton Génération mockups */}
+                      <div style={{ marginTop: 10, display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                        <button
+                          className="btn"
+                          disabled={busyMockup}
+                          style={{ color: "var(--brass)" }}
+                          onClick={() => genMockups(selected.id)}
+                        >
+                          <Wand2 size={11} style={{ display: "inline", marginRight: 4 }} />
+                          {busyMockup ? "Génération mockups…" : selected.mockups ? "Régénérer mockups" : "Générer mockups (templates + IA)"}
+                        </button>
+                        {selected.etsyListingId && (
+                          <a
+                            href={`https://www.etsy.com/listing/${selected.etsyListingId}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn"
+                            style={{ textDecoration: "none", color: "var(--brass)" }}
+                          >
+                            <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />
+                            Voir sur Etsy
+                          </a>
+                        )}
+                      </div>
+
+                      {/* Affichage des mockups générés */}
+                      {selected.mockups && Object.entries(selected.mockups).map(([product, set]) => (
+                        <div key={product} style={{ marginTop: 10 }}>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", marginBottom: 4 }}>
+                            {product.toUpperCase()} · généré {new Date(set.generatedAt).toLocaleString("fr-FR")}
+                          </div>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
+                            {[...set.templates, ...set.lifestyle].slice(0, 6).map((url, i) => (
+                              /* eslint-disable-next-line @next/next/no-img-element */
+                              <img key={i} src={url} alt={`mockup ${i + 1}`} style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover", border: "1px solid var(--line)", borderRadius: 2 }} loading="lazy" />
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   {/* Marketing multilingue */}
                   <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
@@ -514,6 +698,159 @@ export default function App() {
               </div>
             )}
           </div>
+        )}
+
+        {tab === "connecteurs" && (
+          <>
+            <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: "0 0 4px" }}>Connecteurs</h1>
+            <p className="body" style={{ color: "var(--ink2)", margin: "0 0 18px", fontSize: 14 }}>
+              Statut des intégrations externes (clés API, services). Clique sur <strong>Tester</strong> pour pinger le service en live.
+            </p>
+            <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+              <button className="btn" onClick={loadConnectors}><RefreshCw size={11} style={{ display: "inline", marginRight: 4 }} />Recharger</button>
+              <button className="btn" disabled={!connectors || !!testingId} onClick={async () => {
+                if (!connectors) return;
+                for (const c of connectors.filter((x) => x.hasTest && x.status === "configured")) {
+                  await testConnector(c.id);
+                }
+              }}>Tout tester</button>
+            </div>
+
+            {!connectors ? (
+              <div className="body" style={{ color: "var(--ink2)" }}>Chargement…</div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(420px, 1fr))", gap: 12 }}>
+                {connectors.map((c) => {
+                  const cfgColor =
+                    c.status === "configured" ? "var(--sage)" :
+                    c.status === "missing_key" ? "var(--ox)" : "var(--brass)";
+                  const cat = {
+                    ai: "🧠 IA",
+                    data: "📚 Données",
+                    marketplace: "🏪 Marketplace",
+                    pod: "🖨️ POD",
+                    mockup: "🖼️ Mockup",
+                  }[c.category];
+                  return (
+                    <div key={c.id} className="cd" style={{ padding: 14 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: 8 }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", letterSpacing: ".06em" }}>{cat}</div>
+                          <div className="serif" style={{ fontSize: 16, fontWeight: 600 }}>{c.name}</div>
+                          <a href={c.docUrl} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "var(--brass)", textDecoration: "none" }}>
+                            doc ↗
+                          </a>
+                        </div>
+                        <span className="pill" style={{ color: cfgColor }}>
+                          {c.status === "configured" ? "✓ CONFIGURÉ" : c.status === "missing_key" ? "✗ CLÉ MANQUANTE" : c.status.toUpperCase()}
+                        </span>
+                      </div>
+
+                      <div className="body" style={{ fontSize: 12, color: "var(--ink2)", margin: "8px 0", lineHeight: 1.5 }}>
+                        {c.description}
+                      </div>
+
+                      <div className="mono" style={{ fontSize: 10, color: "var(--ink2)" }}>
+                        {c.configHint}
+                        {c.ordersLast30 !== null && <> · <strong style={{ color: "var(--ink)" }}>{c.ordersLast30}</strong> commandes / 30j</>}
+                      </div>
+
+                      {c.lastTest && (
+                        <div style={{ marginTop: 8, padding: 8, borderRadius: 2, background: c.lastTest.ok ? "#E7EDE5" : "#FBEAE5" }}>
+                          <div className="mono" style={{ fontSize: 10, color: c.lastTest.ok ? "var(--sage)" : "var(--ox)" }}>
+                            {c.lastTest.ok ? "✓ OK" : "✗ ERREUR"} · {c.lastTest.durationMs} ms · {new Date(c.lastTest.at).toLocaleTimeString("fr-FR")}
+                          </div>
+                          <div className="body" style={{ fontSize: 11, color: "var(--ink)", marginTop: 2 }}>{c.lastTest.detail}</div>
+                        </div>
+                      )}
+
+                      {c.hasTest && (
+                        <div style={{ marginTop: 10, display: "flex", gap: 6 }}>
+                          <button
+                            className="btn"
+                            disabled={c.status === "missing_key" || testingId === c.id}
+                            onClick={() => testConnector(c.id)}
+                            style={{ color: c.status === "missing_key" ? "var(--ink2)" : "var(--brass)" }}
+                          >
+                            {testingId === c.id ? "Test…" : "Tester maintenant"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        )}
+
+        {tab === "commandes" && (
+          <>
+            <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: "0 0 4px" }}>Commandes</h1>
+            <p className="body" style={{ color: "var(--ink2)", margin: "0 0 18px", fontSize: 14 }}>
+              Toutes les ventes Etsy avec leur statut de production et d'expédition. Routées automatiquement vers Gelato (standard) ou Prodigi (signature) selon la ligne de l'œuvre.
+            </p>
+            <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+              <button className="btn" onClick={loadOrders}><RefreshCw size={11} style={{ display: "inline", marginRight: 4 }} />Recharger</button>
+            </div>
+
+            {!orders ? (
+              <div className="body" style={{ color: "var(--ink2)" }}>Chargement…</div>
+            ) : orders.length === 0 ? (
+              <div className="cd" style={{ padding: 24 }}>
+                <div className="body" style={{ fontSize: 13, color: "var(--ink2)" }}>
+                  Aucune commande pour le moment. Les ventes Etsy apparaîtront ici dès que le webhook <code>/api/etsy/webhook</code> sera connecté (cf. roadmap P3.4).
+                </div>
+              </div>
+            ) : (
+              <div className="cd" style={{ padding: 0 }}>
+                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                  <thead>
+                    <tr style={{ borderBottom: "1px solid var(--line)", background: "var(--paper2)" }}>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">DATE</th>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">ŒUVRE</th>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">PRODUIT</th>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">FOURNISSEUR</th>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">STATUT</th>
+                      <th style={{ textAlign: "right", padding: "8px 12px", fontSize: 11 }} className="mono">MONTANT</th>
+                      <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11 }} className="mono">TRACKING</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.map((o) => {
+                      const statusColor = {
+                        paid:          "var(--ink2)",
+                        in_production: "var(--brass)",
+                        shipped:       "var(--brass)",
+                        delivered:     "var(--sage)",
+                        canceled:      "var(--ox)",
+                        error:         "var(--ox)",
+                      }[o.status] || "var(--ink2)";
+                      return (
+                        <tr key={o.id} style={{ borderBottom: "1px solid var(--paper2)" }}>
+                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">{new Date(o.createdAt).toLocaleDateString("fr-FR")}</td>
+                          <td style={{ padding: "8px 12px", fontSize: 13 }}>{o.work?.title || `#${o.workId}`}</td>
+                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">{o.product}</td>
+                          <td style={{ padding: "8px 12px", fontSize: 12 }} className="mono">
+                            {o.provider === "gelato" ? "🇫🇷 Gelato" : "🇬🇧 Prodigi"}
+                          </td>
+                          <td style={{ padding: "8px 12px" }}><span className="pill" style={{ color: statusColor }}>{o.status}</span></td>
+                          <td style={{ padding: "8px 12px", fontSize: 12, textAlign: "right" }} className="mono">{o.amount.toFixed(2)} {o.currency}</td>
+                          <td style={{ padding: "8px 12px", fontSize: 11 }} className="mono">
+                            {o.trackingUrl ? (
+                              <a href={o.trackingUrl} target="_blank" rel="noreferrer" style={{ color: "var(--brass)", textDecoration: "none" }}>
+                                <Truck size={11} style={{ display: "inline", marginRight: 3 }} />{o.trackingCode || "voir"} <ExternalLink size={9} style={{ display: "inline" }} />
+                              </a>
+                            ) : o.trackingCode || "—"}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </>
         )}
 
         {tab === "viabilite" && (

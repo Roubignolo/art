@@ -50,6 +50,17 @@ model Work {
   // { "fr": { title, listingTitle, description, hook, tags[] }, "en": {...}, ... }
   marketing      Json?
 
+  // Mockups générés (3 templates Dynamic Mockups + 3 lifestyle IA Flux Pro Kontext).
+  // Structure attendue : { product: { templates: [url, ...], lifestyle: [url, ...] } }
+  mockups        Json?
+
+  // Ligne produit pour routing POD : "standard" → Gelato, "signature" → Prodigi (cf.
+  // docs/benchmark-pod-fournisseurs.md §5). Null = pas encore décidé.
+  line           String?  // "standard" | "signature" | null
+
+  // Listing Etsy associé (rempli après publish via /api/etsy/publish).
+  etsyListingId  String?
+
   // Pipeline : source → gate → score → restore → publish
   status         String   @default("gate")
   collection     String?
@@ -58,6 +69,7 @@ model Work {
   updatedAt      DateTime @updatedAt
 
   sales          Sale[]
+  orders         Order[]
 }
 
 model Sale {
@@ -70,4 +82,35 @@ model Sale {
   work      Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
 
   @@index([workId])
+}
+
+// Commande full lifecycle : vente Etsy → production Gelato/Prodigi → tracking
+// → livraison. Alimentée par les webhooks Etsy (création) et Gelato/Prodigi
+// (status updates).
+model Order {
+  id                Int      @id @default(autoincrement())
+  workId            Int
+  marketplace       String   @default("etsy")   // etsy | ebay | shopify
+  marketplaceOrderId String                       // ex: Etsy receipt_id
+  provider          String                       // gelato | prodigi
+  providerOrderId   String?                      // ex: Gelato order id
+  product           String                       // ex: framed_poster_a2_oak
+  quantity          Int      @default(1)
+  amount            Float                        // total payé client (devise marketplace)
+  currency          String   @default("EUR")
+  status            String   @default("paid")    // paid | dispatched | in_production | shipped | delivered | canceled | error
+  trackingCode      String?
+  trackingUrl       String?
+  customerName      String?
+  customerCountry   String?
+  errorMessage      String?  // si status=error, raison
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  work              Work     @relation(fields: [workId], references: [id], onDelete: Restrict)
+
+  @@unique([marketplace, marketplaceOrderId, product])
+  @@index([workId])
+  @@index([provider, status])
+  @@index([createdAt])
 }

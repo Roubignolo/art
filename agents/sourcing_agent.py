@@ -19,6 +19,11 @@ Variables d'environnement requises par source :
   - rijksmuseum : RIJKSMUSEUM_API_KEY (https://www.rijksmuseum.nl/en/research/conduct-research/data/api)
   - bhl         : BHL_API_KEY         (https://www.biodiversitylibrary.org/getapikey.aspx)
 
+Push direct vers le cockpit après sourcing (optionnel) :
+  --push-to-cockpit URL --cockpit-user USER --cockpit-password PASS
+Ex : --push-to-cockpit https://art-cockpit.vercel.app --cockpit-user art \
+                      --cockpit-password "$COCKPIT_PASSWORD"
+
 Conformité : ce script PRODUIT des décisions provisoires sur les gates.
 La validation humaine reste obligatoire sur les lignes REVIEW et avant
 toute production POD (cf. CLAUDE.md règles dures).
@@ -27,6 +32,8 @@ toute production POD (cf. CLAUDE.md règles dures).
 from __future__ import annotations
 
 import argparse
+import base64
+import json
 import os
 import sys
 import time
@@ -199,11 +206,55 @@ def main() -> int:
     if args.download:
         print(f"   Masters HD     : {masters_dir}/")
 
-    print("\n👤 Étape suivante : importer le registre dans le cockpit")
-    print(f"   curl -u art:$COCKPIT_PASSWORD -X POST https://art-cockpit.vercel.app/api/works \\")
-    print(f"     -H 'Content-Type: application/json' \\")
-    print(f"     -d @{json_path}")
+    # Push direct vers le cockpit si demandé
+    if args.push_to_cockpit:
+        push_ok = push_registry_to_cockpit(records, args.push_to_cockpit, args.cockpit_user, args.cockpit_password)
+        if not push_ok:
+            return 3
+    else:
+        print("\n👤 Étape suivante : importer le registre dans le cockpit")
+        print(f"   curl -u art:$COCKPIT_PASSWORD -X POST https://art-cockpit.vercel.app/api/works \\")
+        print(f"     -H 'Content-Type: application/json' \\")
+        print(f"     -d @{json_path}")
     return 0
+
+
+def push_registry_to_cockpit(
+    records: list[dict[str, Any]],
+    base_url: str,
+    user: str,
+    password: str,
+) -> bool:
+    """POST le registre vers /api/works du cockpit. Auth HTTP Basic.
+
+    On utilise urllib stdlib pour éviter une dépendance optionnelle.
+    """
+    from urllib import request, error
+    url = base_url.rstrip("/") + "/api/works"
+    payload = json.dumps(records).encode("utf-8")
+    creds = base64.b64encode(f"{user}:{password}".encode("utf-8")).decode("ascii")
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Basic {creds}",
+        "User-Agent": "art-cockpit/0.1 (sourcing-push)",
+    }
+    print(f"\n📤 Push vers {url} ({len(records)} records)…")
+    try:
+        req = request.Request(url, data=payload, headers=headers, method="POST")
+        with request.urlopen(req, timeout=60) as r:
+            body = r.read().decode("utf-8", errors="replace")
+            if r.status >= 200 and r.status < 300:
+                print(f"   ✅ HTTP {r.status} — {body[:200]}")
+                return True
+            print(f"   ⚠ HTTP {r.status} — {body[:200]}", file=sys.stderr)
+            return False
+    except error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace") if e.fp else ""
+        print(f"   ❌ HTTP {e.code} — {body[:300]}", file=sys.stderr)
+        return False
+    except error.URLError as e:
+        print(f"   ❌ Erreur réseau : {e}", file=sys.stderr)
+        return False
 
 
 # ─────────────────────────── CLI ───────────────────────────
@@ -231,8 +282,18 @@ def _parse_args() -> argparse.Namespace:
                    help="N'écrit pas les masters sur disque (métadonnées + gates seulement).")
     p.add_argument("--output-dir", "-o", default=None,
                    help="Dossier de sortie (défaut: collection_<source>_<query>).")
+    p.add_argument("--push-to-cockpit", default=None,
+                   help="URL base du cockpit (ex: https://art-cockpit.vercel.app). Si défini, "
+                        "POST le registre vers /api/works après écriture des fichiers.")
+    p.add_argument("--cockpit-user", default=os.environ.get("COCKPIT_USER", "art"),
+                   help="Utilisateur HTTP Basic Auth du cockpit (défaut: 'art' ou COCKPIT_USER).")
+    p.add_argument("--cockpit-password", default=os.environ.get("COCKPIT_PASSWORD", ""),
+                   help="Mot de passe HTTP Basic Auth du cockpit (défaut: COCKPIT_PASSWORD env).")
     p.set_defaults(download=True)
-    return p.parse_args()
+    args = p.parse_args()
+    if args.push_to_cockpit and not args.cockpit_password:
+        p.error("--push-to-cockpit requiert --cockpit-password ou la variable d'env COCKPIT_PASSWORD")
+    return args
 
 
 if __name__ == "__main__":
