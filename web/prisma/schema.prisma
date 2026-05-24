@@ -43,8 +43,12 @@ model Work {
   translatab     Int      @default(5)
   competition    Int      @default(5)
   scoreFinal     Float?
-  hook           String? // accroche provenance (storytelling fiche produit)
+  hook           String? // accroche provenance (storytelling fiche produit, FR rapide)
   angle          String? // suggestion de différenciation si saturé
+
+  // Marketing multilingue généré par Claude. Structure attendue :
+  // { "fr": { title, listingTitle, description, hook, tags[] }, "en": {...}, ... }
+  marketing      Json?
 
   // Pipeline : source → gate → score → restore → publish
   status         String   @default("gate")

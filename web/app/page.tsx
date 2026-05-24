@@ -4,10 +4,18 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   Archive, LayoutGrid, ListChecks, Calculator, Upload, Check, X,
   ChevronRight, Leaf, Image as ImageIcon, ShieldCheck, AlertTriangle,
-  Sparkles, RefreshCw, Wand2,
+  Sparkles, RefreshCw, Wand2, Languages,
 } from "lucide-react";
 
 /* ---------- Types ---------- */
+type MarketingItem = {
+  title: string;
+  listingTitle: string;
+  description: string;
+  hook: string;
+  tags: string[];
+};
+
 type Work = {
   id: number;
   title: string;
@@ -32,6 +40,7 @@ type Work = {
   scoreFinal: number | null;
   hook: string | null;
   angle: string | null;
+  marketing: Record<string, MarketingItem> | null;
   status: string;
 };
 
@@ -50,6 +59,14 @@ const STAGES = [
   { key: "restore", label: "Restauré",        icon: ImageIcon },
   { key: "publish", label: "Publié",          icon: Check },
 ];
+
+const LOCALES = [
+  { code: "fr", flag: "🇫🇷", label: "Français" },
+  { code: "en", flag: "🇬🇧", label: "English" },
+  { code: "de", flag: "🇩🇪", label: "Deutsch" },
+  { code: "it", flag: "🇮🇹", label: "Italiano" },
+  { code: "es", flag: "🇪🇸", label: "Español" },
+] as const;
 
 const DEFAULTS: Config = { prix: 25, port: 5, base: 16, coutDesign: 0.5, designs: 1000, ventesGagnant: 3, fixes: 150, hitrate: 5 };
 const CFG_KEY = "provenance.cfg.v1";
@@ -80,7 +97,9 @@ export default function App() {
   const [sel, setSel] = useState<number | null>(null);
   const [imp, setImp] = useState("");
   const [busy, setBusy] = useState(false);
+  const [busyMkt, setBusyMkt] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [lang, setLang] = useState<string>("fr");
 
   const reload = useCallback(async () => {
     try {
@@ -151,6 +170,29 @@ export default function App() {
     finally { setBusy(false); }
   }, []);
 
+  /** Marketing multilingue : appelle /api/marketing pour générer les 5 langues. */
+  const genMarketing = useCallback(async (id: number) => {
+    setBusyMkt(true); setErr(null);
+    try {
+      const r = await fetch("/api/marketing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, locales: LOCALES.map((l) => l.code) }),
+      });
+      if (r.status === 503) {
+        setErr("ANTHROPIC_API_KEY non configurée côté serveur.");
+        return;
+      }
+      if (!r.ok) {
+        const body = await r.json().catch(() => ({}));
+        throw new Error(body?.error || `Marketing ${r.status}`);
+      }
+      const updated = await r.json();
+      setWorks((cur) => (cur || []).map((w) => (w.id === id ? { ...w, ...updated } : w)));
+    } catch (e) { setErr((e as Error).message); }
+    finally { setBusyMkt(false); }
+  }, []);
+
   const importJson = useCallback(async () => {
     setBusy(true); setErr(null);
     try {
@@ -196,6 +238,12 @@ export default function App() {
   .btn{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;padding:6px 10px;border-radius:2px;cursor:pointer;border:1px solid var(--line);background:var(--paper)}
   .btn:hover{background:var(--paper2)} .btn:disabled{opacity:.5;cursor:not-allowed}
   .err{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ox);padding:8px 14px;border-top:1px solid var(--line);background:#FBEAE5}
+  .thumb{width:46px;height:46px;object-fit:cover;border-radius:2px;border:1px solid var(--line);background:var(--paper);flex-shrink:0}
+  .thumb-empty{display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+  .preview{width:100%;max-height:280px;object-fit:contain;background:var(--paper);border:1px solid var(--line);border-radius:2px}
+  .tab{font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border:1px solid var(--line);background:var(--paper);cursor:pointer;border-radius:2px}
+  .tab.on{border-color:var(--brass);color:var(--brass);background:var(--card)}
+  .mtag{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--paper2);color:var(--ink2);padding:2px 6px;border-radius:2px;margin:0 4px 4px 0;display:inline-block}
   `;
 
   const Kpi = ({ k, v, sub, tone }: { k: string; v: string | number; sub?: string; tone?: string }) => (
@@ -291,10 +339,16 @@ export default function App() {
                   {works.map((w) => {
                     const dc = decide(w);
                     return (
-                      <div key={w.id} className="wrow" onClick={() => setSel(w.id)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 14px", borderBottom: "1px solid var(--paper2)", background: sel === w.id ? "var(--paper2)" : "" }}>
-                        <div style={{ flex: 1 }}>
-                          <div className="body" style={{ fontSize: 14 }}>{w.title}</div>
-                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)" }}>{w.artist || "—"} · {w.objectDate || "—"} · {w.resolutionPx}px</div>
+                      <div key={w.id} className="wrow" onClick={() => setSel(w.id)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderBottom: "1px solid var(--paper2)", background: sel === w.id ? "var(--paper2)" : "" }}>
+                        {w.imageUrl ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img className="thumb" src={w.imageUrl} alt={w.title} loading="lazy" />
+                        ) : (
+                          <div className="thumb thumb-empty"><ImageIcon size={18} /></div>
+                        )}
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="body" style={{ fontSize: 14, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{w.title}</div>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)" }}>{w.artist || "—"} · {w.objectDate || "—"} · {w.resolutionPx}px {w.marketing ? "· 🌍" : ""}</div>
                         </div>
                         <span className="pill" style={{ color: dc.c }}>{dc.d}</span>
                         <ChevronRight size={14} color="var(--ink2)" />
@@ -315,6 +369,14 @@ export default function App() {
                     </div>
                     <X size={18} style={{ cursor: "pointer" }} onClick={() => setSel(null)} />
                   </div>
+
+                  {/* Aperçu image */}
+                  {selected.imageUrl && (
+                    <div style={{ marginTop: 14 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img className="preview" src={selected.imageUrl} alt={selected.title} loading="lazy" />
+                    </div>
+                  )}
 
                   {/* Provenance */}
                   <div style={{ marginTop: 14, fontSize: 13, lineHeight: 1.7 }} className="body">
@@ -368,7 +430,7 @@ export default function App() {
                           <input type="range" min="0" max="10" value={selected[k]} onChange={(e) => patchWork(selected.id, { [k]: +e.target.value } as Partial<Work>)} />
                         </div>
                       ))}
-                      <textarea className="inp body" rows={2} placeholder="Accroche provenance (storytelling de la fiche produit)…" value={selected.hook ?? ""} onChange={(e) => patchWork(selected.id, { hook: e.target.value })} style={{ marginTop: 6, resize: "vertical" }} />
+                      <textarea className="inp body" rows={2} placeholder="Accroche provenance (storytelling FR rapide)…" value={selected.hook ?? ""} onChange={(e) => patchWork(selected.id, { hook: e.target.value })} style={{ marginTop: 6, resize: "vertical" }} />
                       {selected.angle && (
                         <div className="body" style={{ marginTop: 6, fontSize: 12, color: "var(--ink2)" }}>
                           <strong>Angle recommandé :</strong> {selected.angle}
@@ -387,6 +449,63 @@ export default function App() {
                       </div>
                     </div>
                   )}
+
+                  {/* Marketing multilingue */}
+                  <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                      <span className="mono" style={{ fontSize: 10, letterSpacing: ".08em", color: "var(--ink2)" }}>
+                        <Languages size={11} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
+                        MARKETING — 5 LANGUES
+                      </span>
+                      <button className="btn" disabled={busyMkt} style={{ color: "var(--brass)" }} onClick={() => genMarketing(selected.id)}>
+                        <Wand2 size={11} style={{ display: "inline", marginRight: 4 }} />
+                        {busyMkt ? "Génération…" : selected.marketing ? "Régénérer (FR/EN/DE/IT/ES)" : "Générer (FR/EN/DE/IT/ES)"}
+                      </button>
+                    </div>
+
+                    {!selected.marketing ? (
+                      <div className="body" style={{ fontSize: 12, color: "var(--ink2)", padding: 10, background: "var(--paper2)", borderRadius: 2 }}>
+                        Aucun contenu marketing généré. Clique sur le bouton ci-dessus — Claude écrira en 1 appel les 5 versions linguistiques (titre court, titre Etsy SEO, description, accroche provenance, 10 tags).
+                      </div>
+                    ) : (
+                      <>
+                        <div style={{ display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap" }}>
+                          {LOCALES.map((loc) => {
+                            const has = !!selected.marketing?.[loc.code];
+                            return (
+                              <button
+                                key={loc.code}
+                                className={"tab " + (lang === loc.code ? "on" : "")}
+                                onClick={() => setLang(loc.code)}
+                                style={{ opacity: has ? 1 : 0.4 }}
+                                title={has ? loc.label : `${loc.label} — non généré`}
+                              >
+                                {loc.flag} {loc.code.toUpperCase()}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {(() => {
+                          const m = selected.marketing?.[lang];
+                          if (!m) {
+                            return <div className="body" style={{ fontSize: 12, color: "var(--ink2)" }}>Pas de contenu pour cette langue. Relance la génération.</div>;
+                          }
+                          return (
+                            <div className="body" style={{ fontSize: 13, lineHeight: 1.55 }}>
+                              <Mfield l="Titre court" v={m.title} />
+                              <Mfield l="Titre listing Etsy (SEO)" v={m.listingTitle} mono />
+                              <Mfield l="Description" v={m.description} block />
+                              <Mfield l="Accroche provenance" v={m.hook} block />
+                              <div style={{ marginTop: 8 }}>
+                                <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", marginBottom: 4, letterSpacing: ".06em" }}>TAGS SEO</div>
+                                {m.tags.map((t, i) => <span key={i} className="mtag">{t}</span>)}
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -452,4 +571,16 @@ function Gate({ ok, label }: { ok: boolean | null; label: string }) {
   const c = ok === true ? "var(--sage)" : ok === false ? "var(--ox)" : "var(--brass)";
   const t = ok === true ? "✓" : ok === false ? "✗" : "?";
   return <span className="pill" style={{ color: c }}>{t} {label}</span>;
+}
+function Mfield({ l, v, mono, block }: { l: string; v: string; mono?: boolean; block?: boolean }) {
+  return (
+    <div style={{ marginTop: 8 }}>
+      <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", letterSpacing: ".06em", marginBottom: 2 }}>
+        {l.toUpperCase()} <span style={{ color: "var(--ink2)" }}>· {v.length} chars</span>
+      </div>
+      <div className={mono ? "mono" : "body"} style={{ fontSize: mono ? 12 : 13, padding: block ? "4px 0" : 0, color: "var(--ink)" }}>
+        {v || <span style={{ color: "var(--ink2)" }}>—</span>}
+      </div>
+    </div>
+  );
 }
