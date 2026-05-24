@@ -357,10 +357,22 @@ Le flow technique précis :
 ### Pour démarrer (1re vente) : Option A
 
 Ça fait gagner des semaines de dev. Bascule vers Option B quand tu auras besoin de :
+
 - Sélection master selon variant (différents crops pour A3 vs canvas square)
-- Stratégie multi-fournisseur (Gelato pour standard, Prodigi pour premium)
+- **Stratégie multi-fournisseur Gelato + Prodigi** (cf. [`benchmark-pod-fournisseurs.md`](benchmark-pod-fournisseurs.md) §5) — routing automatique par ligne produit
 - Batching de commandes
 - Détection de fraude / vérification pré-print
+- **Génération d'inserts provenance dynamiques** par commande (PDF A6 avec QR code vers la fiche musée)
+
+### ⚠ Sécuriser les webhooks Gelato (pas de HMAC natif)
+
+**Point d'attention découvert** : Gelato ne signe pas ses webhooks en HMAC nativement (contrairement à Printful). Pour éviter qu'un attaquant injecte de fausses notifications de commande sur notre endpoint `/api/gelato/webhook`, on doit :
+
+1. Configurer l'URL webhook avec un **secret en query string** : `https://art-cockpit.vercel.app/api/gelato/webhook?secret=XYZ`
+2. Côté handler, refuser toute requête sans ce secret
+3. Stocker `GELATO_WEBHOOK_SECRET` en env var Vercel
+
+Pour Prodigi (CloudEvents v1.0) et Printful (HMAC natif), la signature est gérée par leur SDK respectif sans effort supplémentaire.
 
 ### Détails techniques importants
 
@@ -402,11 +414,44 @@ Sources : [Etsy API v3 Auth](https://developer.etsy.com/documentation/essentials
 ---
 
 <a name="6-sav"></a>
-## 6. Service client & SAV
+## 6. Service client, packaging, facture
+
+### Ce que reçoit concrètement l'acheteur
+
+**Le colis** (cf. [`benchmark-pod-fournisseurs.md`](benchmark-pod-fournisseurs.md) §6 pour la grille comparative complète) :
+
+- Carton extérieur **neutre, sans logo POD** (Gelato et Prodigi)
+- Posters dans **tube triangulaire renforcé**, encadrés à plat avec coins de protection + I-beams + double cannelure
+- Étiquette d'expédition au **nom de la boutique** (intégral chez Prodigi, modifiable chez Gelato pour la plupart des transporteurs)
+- Délai : **3-5 j en FR/UE** via Gelato (production locale), 4-7 j via Prodigi
+
+**Dans le colis** :
+
+- **Packing slip white-label gratuit** au nom de la boutique — pas de logo POD
+- **Insert provenance recommandé** : carte A6 imprimée à la demande avec
+  - Recto : œuvre + artiste + dates + collection source + QR code vers la fiche musée
+  - Verso : mot de remerciement + signature marque + URL boutique
+  - Coût : ~0,50 € par colis (gratuit chez Prodigi sur fine art + insert payant à 2£/0,50£ Pro, ou 0,49$ chez Gelato+ requis)
+  - **C'est ce qui matérialise physiquement la valeur "Provenance" pour le client.**
+
+**Côté Etsy** :
+
+- Email de confirmation au nom de la boutique
+- Email de tracking au nom de la boutique
+- **Facture commerciale Etsy au nom de la boutique** (visible dans le compte du client + envoyée par email)
+- Tracking carrier visible (La Poste, UPS) — la ville d'origine de l'usine apparaît mais c'est en petits caractères et peu lu
+
+### Dropshipping direct : aucune ré-expédition par nous
+
+Le modèle POD c'est **usine → client final**. Aucun des fournisseurs (Gelato, Prodigi, Printful) ne propose le mode "envoi au marchand pour réexpédition". Le seul cas où on reçoit chez nous : **sample orders** (commandes de notre propre produit) pour QC ou prises de vue.
+
+### Seule fuite white-label résiduelle inévitable
+
+Pour les commandes **hors-UE (FR→US/UK)**, la **déclaration douanière CN23** porte l'adresse de l'usine d'origine comme expéditeur physique. Le destinataire peut le voir sur le tracking carrier. C'est technique, partagé par les 3 POD, et il n'y a pas de contournement. Impact réel : faible (la majorité des clients ne lisent pas la CN23).
 
 ### Qui répond aux clients ? **Toi**.
 
-Gelato fait du **B2B uniquement** — support marchand 24/7 mais **zéro contact avec le client final**. Tout litige passe par toi :
+Gelato et Prodigi font du **B2B uniquement** — support marchand 24/7 mais **zéro contact avec le client final**. Tout litige passe par toi :
 
 | Situation              | Qui agit                                                                |
 |------------------------|-------------------------------------------------------------------------|
@@ -427,7 +472,9 @@ Vue la nature POD : pas de retour pour "j'ai changé d'avis" (impossible de reve
 
 ### Provisionner dans la marge
 
-Compter **~3-5 % des commandes en réclamation** sur du poster encadré (le plus fragile à l'expédition). Sur une marge nette de 8-10 €/vente, c'est ~0,30 € de "casse" à intégrer dans le pricing.
+Compter **~3-5 % des commandes en réclamation** sur du poster encadré (le plus fragile à l'expédition). Sur une marge nette de 14-32 €/vente, c'est ~0,40-1,40 € de "casse" à intégrer dans le pricing.
+
+**Important** : aucun des 3 POD ne propose d'**endpoint API pour ouvrir un claim/refund automatiquement** — il faut ouvrir un ticket manuel via leur dashboard ou support. À prévoir dans le cockpit (P3) : une UI "Ouvrir un litige" avec champs prédéfinis (photos du défaut, n° commande Etsy, n° commande Gelato/Prodigi) qui envoie un email ou pré-remplit le dashboard.
 
 ### Templates de réponse à préparer
 

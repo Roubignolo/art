@@ -11,7 +11,7 @@ On ne vend pas l'art (il est libre) mais la **curation, la restauration et la co
 ## Décisions déjà prises (ne pas relitiger sans raison)
 - **Modèle** : domaine public curé (et non « tendances + IA »), pour minimiser le risque marque.
 - **Statut** : micro-entreprise (Phase 0-1), bascule société (EURL/SASU) seulement au scale.
-- **Fournisseur POD** : Gelato (défaut, production UE) et Prodigi (pièces premium) ; pas Printful (plus cher), pas le moins cher absolu (qualité).
+- **Fournisseur POD** : architecture hybride **Gelato (défaut)** + **Prodigi (signature premium)**. Décision confirmée et chiffrée dans [`docs/benchmark-pod-fournisseurs.md`](docs/benchmark-pod-fournisseurs.md) après recherche octobre 2026 (3 sub-agents, ~50 sources). Gelato = production locale FR (Velocity Switch, 3-5j FR/UE), intégration Etsy la plus stable, Mockup API native. Prodigi = white-label intégral (sender 100% modifiable, packing slip + insert gratuit), fine art Hahnemühle Photo Rag + German Etching, encadrés FATG approved. **Printful écarté** : bugs sync Etsy rapportés en 2026 + arrêt warehousing EU/UK/Canada au 1er mars 2026 + sender pas modifiable pour DHL/UPS/FedEx.
 - **Produits** : art mural d'abord (poster, encadré, toile), puis giftables (mug, coussin, torchon).
 - **Sources** : institutions CC0 (Met, Rijksmuseum, Smithsonian, Biodiversity Heritage Library). PAS les versions « enhanced » de rawpixel sur du merch.
 
@@ -32,7 +32,7 @@ Marge/vente = (prix + port) − frais Etsy (6,5 % + 3 % + 0,25 $ + 0,20 $) − b
 Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant × marge). Voir `finance/`.
 
 ## Structure du repo
-- `docs/` — business plan, brief marque, moteur scoring, plan projet, architecture agents, backend Vercel, **process-vente-production** (flow concret Etsy/Gelato/mockups), **roadmap-mise-en-vente** (todo op détaillée par phases).
+- `docs/` — business plan, brief marque, moteur scoring, plan projet, architecture agents, backend Vercel, **process-vente-production** (flow concret Etsy/Gelato/mockups), **roadmap-mise-en-vente** (todo op détaillée par phases), **benchmark-pod-fournisseurs** (comparatif Printful/Gelato/Prodigi + décision hybride + grille white-label).
 - `finance/` — calculateur de viabilité (xlsx) + comparateur fournisseurs.
 - `agents/sourcing_agent.py` — orchestrateur Sourcing multi-sources (CLI). Dispatche vers `agents/sources/{met,rijksmuseum,bhl}.py` selon `--source`. Format de sortie commun (snake_case) consommable par `/api/works` POST et `scoring_agent.py`.
 - `agents/sources/` — connecteurs : Met (sans clé), Rijksmuseum (`RIJKSMUSEUM_API_KEY`), BHL (`BHL_API_KEY`). IDs préfixés par offset pour éviter les collisions (Met < 10M, Rijks 10M–20M, BHL ≥ 20M).
@@ -42,7 +42,8 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 
 ## État actuel & prochaines tâches
 - ✅ Stratégie, finances, sous-agents Sourcing (multi-sources Met/Rijks/BHL) + Scoring + Marketing multilingue (Wikidata), cockpit Next.js + backend Prisma/Postgres, déployé sur Vercel (Neon Postgres, root directory `web/`, branche prod `main`, auto-deploy à chaque push).
-- ✅ Process vente & production documenté (`docs/process-vente-production.md`) : flow Etsy/Gelato, fiche type, mockups hybrides (Dynamic Mockups + Flux Pro Kontext), SAV, coûts réels par vente. Décision : Etsy seul en P0-P1, eBay en P2, écarter Amazon.
+- ✅ Process vente & production documenté (`docs/process-vente-production.md`) : flow Etsy/Gelato, fiche type, mockups hybrides (Dynamic Mockups + Flux Pro Kontext), SAV (packaging neutre, white-label, dropshipping direct, facture Etsy au nom de la boutique, insert provenance physique recommandé), coûts réels par vente. Décision : Etsy seul en P0-P1, eBay en P2, écarter Amazon.
+- ✅ Benchmark POD documenté (`docs/benchmark-pod-fournisseurs.md`) : Gelato par défaut + Prodigi pour signature premium + Printful écarté. Précise les réponses opérationnelles : oui pour les encadrés (oak/noyer Gelato, FATG vrai bois Prodigi), oui pour la facture au nom de la boutique (Etsy), oui pour le dropshipping direct (jamais de ré-expédition par nous), white-label intégral possible.
 - ✅ Roadmap mise en vente détaillée par phases (`docs/roadmap-mise-en-vente.md`) — 5 phases P0→P4, 6-8 semaines pour un founder solo, ~400€ + ~$50/mo récurrent.
 - ⏭️ **P0 (manuel, 1-2 sem.)** : ouvrir Etsy + déclarer Gelato comme production partner + finaliser marque.
 - ⏭️ **P1-P2 (manuel, 2 sem.)** : 1er listing puis collection d'amorçage 15 listings.

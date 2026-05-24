@@ -54,13 +54,17 @@
   - [ ] Politique de confidentialité (RGPD)
 - [ ] 👤 Configurer le **profil de livraison** par défaut (un profile par zone : UE, UK, US, monde) — coûts à pré-calculer avec [Gelato shipping calculator](https://www.gelato.com/shipping)
 
-### P0.4 — Déclaration du production partner Gelato (1 j) 🔴🔒
+### P0.4 — Déclaration des production partners Gelato + Prodigi (1 j) 🔴🔒
 
-- [ ] 🔴👤 Créer un compte Gelato (https://www.gelato.com) — gratuit, gratuit jusqu'à 10 produits avec mockups
-- [ ] 🔴👤 Dans Etsy : **Shop Manager → Settings → Production Partners → Add → Gelato**
-   - Renseigner : nom du partenaire, lieu de production, lien vers leur site
+Décision validée dans [`benchmark-pod-fournisseurs.md`](benchmark-pod-fournisseurs.md) : architecture hybride **Gelato (défaut) + Prodigi (signature premium)**, Printful écarté (instabilité Etsy 2026 + arrêt warehousing EU mars 2026).
+
+- [ ] 🔴👤 Créer un compte Gelato (<https://www.gelato.com>) — gratuit, free jusqu'à 10 produits avec mockups
+- [ ] 🔴👤 Créer un compte Prodigi (<https://www.prodigi.com>) — gratuit
+- [ ] 🔴👤 Dans Etsy : **Shop Manager → Settings → Production Partners → Add → Gelato** ET **Add → Prodigi**
+   - Renseigner pour chacun : nom du partenaire, lieu de production, lien vers leur site
    - *Sans cette déclaration, ton shop risque la suspension pour POD non déclaré*
-- [ ] 👤 Lier Gelato ↔ Etsy via le dashboard Gelato (intégration native)
+- [ ] 👤 Lier Gelato ↔ Etsy via le dashboard Gelato (intégration native, sync 1-5 min)
+- [ ] 👤 Prodigi : la création de listing Etsy se fait **manuellement** côté Etsy puis import dans Prodigi (cf. benchmark §1 — limite connue de l'intégration Prodigi)
 
 ### P0.5 — Politique d'attribution domaine public (1 j)
 
@@ -105,11 +109,13 @@
 
 ### P1.3 — Créer le produit sur Gelato (0,5 j)
 
+Décision : Van Gogh Irises = **ligne standard → Gelato** (pas signature premium, donc pas Prodigi). Cf. règle de routing dans [`benchmark-pod-fournisseurs.md`](benchmark-pod-fournisseurs.md) §5.
+
 - [ ] 👤 Dans le dashboard Gelato → **Add Product → Wall Art → Framed Poster**
   - Format A2 (42 × 59,4 cm)
   - Papier 200 gsm semi-mat
   - Cadre chêne par défaut (option naturel + noir + blanc en variants)
-- [ ] 👤 Upload du fichier print restauré
+- [ ] 👤 Upload du fichier print restauré (sRGB, 300 DPI, PDF/X préféré)
 - [ ] 👤 Vérifier le **mockup auto-généré par Gelato** (la zone d'impression et le rendu)
 - [ ] 👤 Configurer les **variants** : A3 / A2 / 50×70, et 3 cadres (chêne, noir, naturel) → max 12 SKUs
 - [ ] 👤 Définir les prix de vente (cf. tableau `process-vente-production.md` §3)
@@ -136,13 +142,25 @@
   - [ ] Attribute "When was it made" : **2026** (la date d'impression, pas l'œuvre originale)
   - [ ] Renew automatically ON
 
-### P1.6 — Commander un échantillon physique (3-5 j de délai)
+### P1.6 — Préparer l'insert provenance physique (0,5 j)
+
+Pour matérialiser la valeur "Provenance" dans le colis (cf. [`process-vente-production.md`](process-vente-production.md) §6).
+
+- [ ] 👤 Designer une carte A6 (105 × 148 mm) recto-verso pour Van Gogh Irises :
+  - **Recto** : titre œuvre + artiste + dates + collection source + QR code vers <https://www.metmuseum.org/art/collection/search/436528>
+  - **Verso** : "Merci de votre confiance — pièce restaurée et imprimée par Provenance" + signature founder + URL boutique Etsy
+- [ ] 👤 Tester le QR code (caméra téléphone → ouvre bien la fiche Met)
+- [ ] 👤 Phase 1 : impression à la main pour l'échantillon (10 exemplaires sur papier 250g)
+- [ ] 👤 Phase 2 (10+ ventes) : automatiser via API Prodigi/Gelato insert (0,49-0,50 € par colis)
+
+### P1.7 — Commander un échantillon physique (3-5 j de délai)
 
 - [ ] 🔴👤 Acheter ton propre produit (test A2 encadré chêne, ~67 €) — depuis ton propre Etsy ou directement Gelato Sample Order
 - [ ] 👤 Vérifier à la réception :
   - [ ] Fidélité colorimétrique vs ce que tu avais visualisé
   - [ ] Qualité du papier / cadre (équerres, vitrage, fixation)
-  - [ ] Emballage (carton tube ou colis plat, anti-pli)
+  - [ ] Emballage : carton extérieur neutre ? Coins de protection ? Étiquette d'expédition au nom de la boutique ?
+  - [ ] Packing slip white-label dans le colis ? Au bon nom ?
   - [ ] Délai effectif vs annoncé
 - [ ] 👤 **Décision go/no-go** sur l'étape suivante. Si défaut, retravailler le master ou changer de spec produit.
 
@@ -227,27 +245,45 @@ Pour chaque œuvre (× 5) :
 - [ ] ⚙️ Stocker `ETSY_API_KEY` + tokens OAuth en env vars Vercel (chiffrés)
 - [ ] ⚙️ Bouton "Publier sur Etsy" dans le cockpit
 
-### P3.4 — Webhook Etsy `order.paid` → Gelato create order (3-4 j) 🔴⚙️
+### P3.4 — Webhook Etsy `order.paid` → routing Gelato OU Prodigi (3-4 j) 🔴⚙️
+
+Architecture hybride définie dans [`benchmark-pod-fournisseurs.md`](benchmark-pod-fournisseurs.md) §5 : le routing se fait automatiquement par tag de produit (standard → Gelato, signature → Prodigi).
 
 - [ ] ⚙️ Configurer le webhook Etsy (Etsy v3 webhooks GA depuis 2025)
 - [ ] ⚙️ Route `/api/etsy/webhook` qui valide le HMAC-SHA256 et :
   1. Récupère le receipt complet (GET `resource_url`)
-  2. Pour chaque line item, mappe `SKU → workId → productUid Gelato`
-  3. POST `https://order.gelatoapis.com/v4/orders` (création commande)
-  4. Stocke la commande dans une nouvelle table `Order` (à ajouter à Prisma)
-- [ ] ⚙️ Stocker `GELATO_API_KEY` en env var Vercel
+  2. Pour chaque line item, mappe `SKU → workId` en DB
+  3. Détermine le fournisseur selon `work.line` (`'standard'` → Gelato, `'signature'` → Prodigi)
+  4. POST sur le bon endpoint :
+     - Gelato : `https://order.gelatoapis.com/v4/orders`
+     - Prodigi : `https://api.prodigi.com/v4.0/orders`
+  5. Génère le PDF insert provenance (A6 avec QR code vers fiche musée), l'attache à la commande
+  6. Stocke la commande dans une nouvelle table `Order` (workId, marketplace, provider, providerOrderId, status, ...) à ajouter à Prisma
+- [ ] ⚙️ Stocker `GELATO_API_KEY`, `PRODIGI_API_KEY` et `GELATO_WEBHOOK_SECRET` en env vars Vercel
 
-### P3.5 — Webhook Gelato `shipped` → tracking Etsy (1-2 j) ⚙️
+### P3.5 — Webhooks Gelato + Prodigi `shipped` → tracking Etsy (2-3 j) ⚙️
 
-- [ ] ⚙️ Route `/api/gelato/webhook` qui :
-  1. Sur `order_item_tracking_code_updated`, récupère le tracking
+- [ ] ⚙️ Route `/api/gelato/webhook?secret=XYZ` (Gelato n'a **pas de HMAC natif** — sécuriser via URL signée custom, cf. benchmark §7)
+- [ ] ⚙️ Route `/api/prodigi/webhook` (CloudEvents v1.0 + URL signée native)
+- [ ] ⚙️ Sur événement `shipped` (côté Gelato `order_item_status_updated`, côté Prodigi `com.prodigi.order.status.stage.changed#Shipped`) :
+  1. Récupère tracking_code + carrier
   2. POST sur Etsy `/v3/.../receipts/{receipt_id}/tracking` pour informer le client
   3. Update la table `Order` avec le statut
 
-### P3.6 — Production partner declaration check (0,5 j)
+### P3.6 — UI de litige manuel (aucun POD n'a d'API claim/refund) (1 j) ⚙️
 
-- [ ] ⚙️ Ajouter une checklist visible dans le cockpit ("Production partner Gelato déclaré sur Etsy ? OUI/NON")
-- [ ] ⚙️ Audit log de toutes les fiches publiées (qui, quand, vers quel listing Etsy)
+Aucun des 3 POD (Gelato, Prodigi, Printful) n'expose d'endpoint API pour ouvrir un claim/refund — cf. [benchmark §1](benchmark-pod-fournisseurs.md). On automatise au maximum la préparation, le clic final reste humain.
+
+- [ ] ⚙️ Bouton "Ouvrir un litige" dans la fiche commande du cockpit avec :
+  - Champ "type de problème" (défaut impression, colis perdu, casse à la livraison, retard, autre)
+  - Upload photos
+  - Génération automatique du brouillon email (vers support@gelato.com ou support@prodigi.com) avec n° commande Etsy + n° commande fournisseur + description + photos en pièces jointes
+  - Tracking dans la table `Order` (status `litigation_open`)
+
+### P3.7 — Production partner declaration check + audit (0,5 j)
+
+- [ ] ⚙️ Ajouter une checklist visible dans le cockpit ("Production partners déclarés sur Etsy ? Gelato OUI/NON, Prodigi OUI/NON")
+- [ ] ⚙️ Audit log de toutes les fiches publiées (qui, quand, vers quel listing Etsy, via quel fournisseur)
 
 **Livrable P3** : un clic dans le cockpit déclenche restauration → mockups → publication Etsy. Une vente Etsy déclenche automatiquement la fab Gelato → expédition → tracking au client.
 
