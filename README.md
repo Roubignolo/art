@@ -4,6 +4,8 @@ Projet d'édition d'art à la demande : curation d'œuvres du **domaine public**
 
 > **Thèse** : on ne vend pas l'art (il est libre), on vend la **curation, la restauration et la confiance**. La rentabilité dépend du *hit-rate* de sélection, pas du volume.
 
+**Cockpit en production** : <https://art-cockpit.vercel.app> (HTTP Basic Auth, user `art`). Auto-déployé à chaque push sur `main` depuis `web/`. Voir [`web/README.md`](web/README.md) pour la stack et la procédure complète.
+
 ## Structure du repo
 
 ```
