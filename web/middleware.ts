@@ -5,9 +5,10 @@ import { NextResponse, type NextRequest } from "next/server";
 // Si COCKPIT_PASSWORD est absent, l'auth est désactivée (utile en dev local).
 
 export const config = {
-  // On laisse passer les assets Next.js ET les images publiques destinées à Etsy
-  // (/brand, /renders) — sinon 401 en boucle / galerie inaccessible.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|brand|renders).*)"],
+  // On laisse passer UNIQUEMENT les assets Next.js (sinon 401 en boucle).
+  // Tout le reste — cockpit, API, ET /brand + /renders — est protégé par Basic Auth.
+  // (Pour rouvrir un asset au public un jour : ré-exclure son préfixe ici.)
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
 
 export function middleware(req: NextRequest) {
