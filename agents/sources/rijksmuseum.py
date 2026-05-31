@@ -148,6 +148,12 @@ def _normalize(obj: dict[str, Any], min_long_edge: int) -> dict[str, Any]:
         "height":           height or None,
         "resolution_ok":    res_ok,
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":      extract_year(maker.get("dateOfBirth")) if maker else None,
+        "object_begin_year": dating.get("yearEarly"),
+        "accession_number":  object_number or None,
+        "rights_statement":  "Rijksstudio CC0 · permitDownload=true" if g1_us_g3 else None,
+        "wikidata_url":      None,
     }
 
 

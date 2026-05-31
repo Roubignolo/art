@@ -174,6 +174,12 @@ def _normalize(row: dict[str, Any]) -> dict[str, Any]:
         "height":           None,
         "resolution_ok":    None,
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":      (lambda yy: int(yy[0]) if len(yy) >= 2 else None)(re.findall(r"\d{4}", artist or "")),
+        "object_begin_year": end,
+        "accession_number":  dnr.get("record_ID"),
+        "rights_statement":  "CC0 (Smithsonian Open Access · usage.access=CC0)" if g1_us_g3 else None,
+        "wikidata_url":      None,
     }
 
 

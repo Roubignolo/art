@@ -221,5 +221,11 @@ def iter_candidates(
                 "height":           None,
                 "resolution_ok":    None,
                 "local_file":       "",
+                # ── Preuve domaine public ──
+                "artist_birth":      extract_year(bio),
+                "object_begin_year": pub_year,
+                "accession_number":  None,
+                "rights_statement":  "Public Domain (Biodiversity Heritage Library)",
+                "wikidata_url":      None,
                 "_book_url":        item_url,  # debug / traçabilité
             }

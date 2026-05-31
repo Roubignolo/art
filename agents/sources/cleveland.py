@@ -126,6 +126,12 @@ def _normalize(obj: dict[str, Any], min_long_edge: int) -> dict[str, Any]:
         "height":           height or None,
         "resolution_ok":    res_ok,
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":      createur.get("birth_year"),
+        "object_begin_year": obj.get("creation_date_earliest"),
+        "accession_number":  obj.get("accession_number"),
+        "rights_statement":  obj.get("share_license_status"),
+        "wikidata_url":      None,
     }
 
 

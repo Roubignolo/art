@@ -37,6 +37,14 @@ model Work {
   gateNoTm       Boolean  @default(true)
   resolutionOk   Boolean?
 
+  // Preuve de domaine public (cf. agents/sources/base.py build_dp_evidence)
+  artistBirth     Int?     // année de naissance auteur
+  objectBeginYear Int?     // année de début de création
+  accessionNumber String?  // n° d'inventaire institutionnel
+  rightsStatement String?  // énoncé de droits (CC0, PD Mark, NoC, isPublicDomain…)
+  wikidataUrl     String?  // référence Wikidata de l'œuvre
+  dpEvidence      String?  // preuve consolidée, lisible (UE/US + institution + Wikidata)
+
   // Scoring (4 axes /10) — alimenté par l'heuristique ou Claude
   momentum       Int      @default(5)
   attribution    Int      @default(5)

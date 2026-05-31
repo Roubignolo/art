@@ -18,6 +18,14 @@ Exemples :
   python agents/sourcing_agent.py --source cleveland --query monet --target 20
   python agents/sourcing_agent.py --source smithsonian --query hokusai --target 20
   python agents/sourcing_agent.py --source europeana --query "still life" --target 20
+  # + preuve de domaine public recoupée par Wikidata (gratuit) :
+  python agents/sourcing_agent.py --source met --query "van gogh" --target 20 --enrich-dp
+
+Chaque œuvre porte une PREUVE DE DOMAINE PUBLIC consolidée (champ dp_evidence) :
+règle UE (décès auteur +70 ans), règle US (publié ≤ ~1930), énoncé de droits de
+l'institution, et recoupement Wikidata (P570/P571/P6216) avec --enrich-dp.
+Champs DP : artist_birth, object_begin_year, accession_number, rights_statement,
+wikidata_url, wikidata_copyright_status, dp_evidence, dp_confirmations.
 
 Variables d'environnement par source (toutes facultatives sauf rijks/bhl) :
   - met         : aucune
@@ -60,6 +68,7 @@ if THIS_DIR not in sys.path:
 
 from sources.base import (  # noqa: E402
     DEFAULT_MIN_LONG_EDGE,
+    finalize_record,
     http_get_bytes,
     summarize,
     verify_resolution,
@@ -189,6 +198,11 @@ def main() -> int:
                 continue
             rec = _process_resolution(rec, img_bytes, args.min_resolution)
 
+        # Recoupement Wikidata (preuve DP) sur les œuvres retenues — gratuit.
+        if args.enrich_dp and rec["decision"] in ("CANDIDAT", "REVIEW"):
+            from sources import wikidata_dp
+            wikidata_dp.enrich(rec, source=args.source, pause=args.pause)
+
         # Téléchargement du master (si demandé ET candidat retenu)
         if args.download and rec["decision"] in ("CANDIDAT", "REVIEW"):
             if not res_known:
@@ -220,6 +234,10 @@ def main() -> int:
             print(f"[{i:>3}] ⤫ REJET  {(rec.get('title') or '')[:55]}")
 
         records.append(rec)
+
+    # Preuve DP consolidée (dp_evidence) sur tous les records, y compris rejets (audit).
+    for r in records:
+        finalize_record(r)
 
     json_path, csv_path = write_registry(records, out_dir)
     bilan = summarize(records)
@@ -307,6 +325,10 @@ def _parse_args() -> argparse.Namespace:
                    help=f"Seuil gate G4 en pixels (défaut: {DEFAULT_MIN_LONG_EDGE}).")
     p.add_argument("--pause", type=float, default=0.15,
                    help="Pause entre appels API (politesse). Défaut: 0.15s.")
+    p.add_argument("--enrich-dp", dest="enrich_dp", action="store_true",
+                   help="Recoupe la preuve de domaine public via Wikidata (gratuit) sur les "
+                        "œuvres retenues : décès auteur (P570), inception (P571), statut droit "
+                        "(P6216). Affine le gate UE quand il était indéterminé.")
     p.add_argument("--no-download", dest="download", action="store_false",
                    help="N'écrit pas les masters sur disque (métadonnées + gates seulement).")
     p.add_argument("--output-dir", "-o", default=None,

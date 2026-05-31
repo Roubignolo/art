@@ -99,6 +99,14 @@ def _normalize(obj: dict[str, Any]) -> dict[str, Any]:
         "height":           None,
         "resolution_ok":    None,  # rempli par l'orchestrateur après check résolution
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":       extract_year(obj.get("artistBeginDate")),
+        "object_begin_year":  obj.get("objectBeginDate"),
+        "accession_number":   obj.get("accessionNumber"),
+        "rights_statement":   (obj.get("rightsAndReproduction")
+                               or ("Met Open Access · isPublicDomain=true" if g1_us_g3 else None)),
+        "wikidata_url":       obj.get("objectWikidata_URL"),
+        "artist_wikidata_url": obj.get("artistWikidata_URL"),
     }
 
 

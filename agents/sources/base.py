@@ -184,6 +184,85 @@ def empty_record(object_id: Any, decision: str, reason: str = "") -> dict[str, A
     }
 
 
+# ─────────────────────────── PREUVE DE DOMAINE PUBLIC ───────────────────────────
+
+# Champs de provenance DP ajoutés au SourcingRecord (au-delà des gates).
+# Remplis par les connecteurs quand l'API les expose, complétés par
+# l'enrichissement Wikidata, consolidés par finalize_record().
+DP_FIELDS = [
+    "artist_birth",              # année de naissance auteur
+    "object_begin_year",         # année de début de création
+    "accession_number",          # n° d'inventaire institutionnel (preuve de garde)
+    "rights_statement",          # énoncé de droits institutionnel (CC0, PD Mark, NoC, URL…)
+    "wikidata_url",              # référence Wikidata de l'œuvre
+    "artist_wikidata_url",       # référence Wikidata de l'auteur
+    "wikidata_copyright_status", # P6216 (ex. "public domain") — recoupement indépendant
+    "dp_evidence",               # preuve consolidée, lisible et auditable
+    "dp_confirmations",          # liste des confirmations indépendantes (institution, wikidata…)
+]
+
+
+def build_dp_evidence(rec: dict[str, Any]) -> tuple[str, list[str]]:
+    """Compose une preuve DP auditable + la liste des confirmations indépendantes.
+
+    Ne RIEN inventer : on n'affirme une règle que si la donnée existe. Une donnée
+    manquante est signalée « ? … à vérifier » (déclenche la validation humaine).
+    """
+    parts: list[str] = []
+    confirmations: list[str] = []
+    artist = rec.get("artist") or "auteur inconnu"
+    death = extract_year(rec.get("artist_death"))
+    pub = (extract_year(rec.get("object_begin_year"))
+           or extract_year(rec.get("object_end_year"))
+           or extract_year(rec.get("object_date")))
+
+    # Règle UE — auteur † depuis 70 ans révolus
+    if death:
+        libre = death + 71
+        statut = "✓" if death <= EU_DEATH_CUTOFF else "✗ ENCORE PROTÉGÉ"
+        parts.append(f"UE {statut} : {artist} † {death} → domaine public depuis {libre}")
+    elif rec.get("gate_g1_ue") is None:
+        parts.append("UE ? : décès de l'auteur inconnu — vérification humaine requise")
+
+    # Règle US — publié il y a ≥ 95 ans
+    if pub:
+        statut = "✓" if pub <= US_PUB_CUTOFF else "✗"
+        parts.append(f"US {statut} : œuvre {pub} (seuil ≤ {US_PUB_CUTOFF})")
+
+    # G3 — énoncé de droits de l'institution
+    if rec.get("rights_statement"):
+        parts.append(f"institution : {rec['rights_statement']}")
+        confirmations.append(f"institution:{rec['rights_statement']}")
+    elif rec.get("is_public_domain"):
+        confirmations.append("institution:public_domain")
+
+    # Recoupement indépendant Wikidata
+    if rec.get("wikidata_copyright_status"):
+        parts.append(f"Wikidata P6216 : {rec['wikidata_copyright_status']}")
+        confirmations.append(f"wikidata:{rec['wikidata_copyright_status']}")
+    if rec.get("wikidata_url"):
+        parts.append(f"réf. {rec['wikidata_url']}")
+
+    if rec.get("accession_number"):
+        parts.append(f"accession {rec['accession_number']}")
+
+    return " · ".join(parts), confirmations
+
+
+def finalize_record(rec: dict[str, Any]) -> dict[str, Any]:
+    """Garantit la présence des champs DP + (re)calcule la preuve consolidée.
+
+    Idempotent : appelé par l'orchestrateur après normalisation et après
+    l'éventuel enrichissement Wikidata.
+    """
+    for k in DP_FIELDS:
+        rec.setdefault(k, None)
+    evidence, confirmations = build_dp_evidence(rec)
+    rec["dp_evidence"] = evidence or None
+    rec["dp_confirmations"] = confirmations
+    return rec
+
+
 # ─────────────────────────── REGISTRE (sortie) ───────────────────────────
 
 def write_registry(records: list[dict[str, Any]], out_dir: str, name: str = "registre_provenance") -> tuple[str, str]:

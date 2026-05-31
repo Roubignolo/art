@@ -40,7 +40,7 @@ _FIELDS = ",".join([
     "id", "title", "artist_display", "artist_title", "date_display",
     "date_start", "date_end", "medium_display", "dimensions", "credit_line",
     "is_public_domain", "classification_title", "department_title",
-    "image_id", "api_link",
+    "image_id", "api_link", "main_reference_number",
 ])
 
 
@@ -61,6 +61,12 @@ def _death_year_depuis_display(artist_display: str) -> int | None:
     if len(annees) >= 2:
         return int(annees[1])
     return None
+
+
+def _birth_year_depuis_display(artist_display: str) -> int | None:
+    """1re année à 4 chiffres de artist_display (naissance)."""
+    annees = re.findall(r"\d{4}", artist_display or "")
+    return int(annees[0]) if annees else None
 
 
 def _normalize(obj: dict[str, Any]) -> dict[str, Any]:
@@ -119,6 +125,12 @@ def _normalize(obj: dict[str, Any]) -> dict[str, Any]:
         "height":           None,
         "resolution_ok":    None,
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":      _birth_year_depuis_display(obj.get("artist_display") or ""),
+        "object_begin_year": obj.get("date_start") if isinstance(obj.get("date_start"), int) else extract_year(obj.get("date_start")),
+        "accession_number":  obj.get("main_reference_number"),
+        "rights_statement":  "Art Institute of Chicago · CC0 (is_public_domain)" if g1_us_g3 else None,
+        "wikidata_url":      None,
     }
 
 

@@ -44,6 +44,12 @@ type Work = {
   gateUsSource: boolean;
   gateUe: boolean | null;
   gateNoTm: boolean;
+  artistBirth: number | null;
+  objectBeginYear: number | null;
+  accessionNumber: string | null;
+  rightsStatement: string | null;
+  wikidataUrl: string | null;
+  dpEvidence: string | null;
   momentum: number;
   attribution: number;
   translatab: number;
@@ -655,6 +661,32 @@ export default function App() {
                       </div>
                     )}
                   </div>
+
+                  {/* === Preuve domaine public (v2) === */}
+                  {(selected.dpEvidence || selected.rightsStatement || selected.wikidataUrl || selected.artistDeath || selected.accessionNumber) && (
+                    <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+                      <div className="mono" style={{ fontSize: 10, letterSpacing: ".08em", color: "var(--ink2)", marginBottom: 8 }}>
+                        <ShieldCheck size={11} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
+                        PREUVE DOMAINE PUBLIC
+                      </div>
+                      {selected.dpEvidence && (
+                        <div className="body" style={{ fontSize: 12, lineHeight: 1.6, padding: 10, background: "var(--paper2)", borderLeft: "3px solid var(--sage)", borderRadius: "0 2px 2px 0" }}>
+                          {selected.dpEvidence}
+                        </div>
+                      )}
+                      <div style={{ marginTop: 8, fontSize: 12, lineHeight: 1.7 }} className="body">
+                        {(selected.artistBirth || selected.artistDeath) && <Row l="Auteur (naissance–décès)" v={`${selected.artistBirth ?? "?"} – ${selected.artistDeath ?? "?"}`} />}
+                        {selected.objectBeginYear && <Row l="Année de l'œuvre" v={String(selected.objectBeginYear)} />}
+                        {selected.rightsStatement && <Row l="Droits (institution)" v={selected.rightsStatement} />}
+                        {selected.accessionNumber && <Row l="N° d'accession" v={selected.accessionNumber} />}
+                      </div>
+                      {selected.wikidataUrl && (
+                        <a href={selected.wikidataUrl} target="_blank" rel="noreferrer" className="btn" style={{ marginTop: 8, textDecoration: "none", color: "var(--brass)" }}>
+                          <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} /> Référence Wikidata
+                        </a>
+                      )}
+                    </div>
+                  )}
 
                   {/* Scoring */}
                   {!gateFail(selected) && selected.gateUe !== null && (

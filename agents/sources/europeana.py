@@ -72,7 +72,8 @@ def _search(query: str, start: int, rows: int, key: str) -> dict[str, Any] | Non
 
 
 def _normalize(item: dict[str, Any]) -> dict[str, Any]:
-    rights = (_first(item.get("rights")) or "").lower()
+    rights_url = _first(item.get("rights"))
+    rights = (rights_url or "").lower()
     g1_us_g3 = any(tok in rights for tok in _DROITS_LIBRES)
 
     title = _first(item.get("title"))
@@ -127,6 +128,12 @@ def _normalize(item: dict[str, Any]) -> dict[str, Any]:
         "height":           None,
         "resolution_ok":    None,
         "local_file":       "",
+        # ── Preuve domaine public ──
+        "artist_birth":      None,
+        "object_begin_year": year,
+        "accession_number":  None,
+        "rights_statement":  rights_url,   # URL de licence Europeana (PD Mark / CC0 / NoC)
+        "wikidata_url":      None,
     }
 
 

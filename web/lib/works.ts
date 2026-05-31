@@ -28,6 +28,14 @@ export type SourcingRecord = {
   gate_g2_marque?: boolean | null;
   local_file?: string | null;
   decision?: string | null;
+  // Preuve de domaine public (cf. agents/sources/base.py)
+  artist_birth?: string | number | null;
+  object_begin_year?: string | number | null;
+  accession_number?: string | null;
+  rights_statement?: string | null;
+  wikidata_url?: string | null;
+  wikidata_copyright_status?: string | null;
+  dp_evidence?: string | null;
 };
 
 function asInt(v: unknown): number | null {
@@ -63,6 +71,13 @@ export function toWorkUpsert(rec: SourcingRecord) {
     gateUe:         rec.gate_g1_ue ?? null,
     gateNoTm:       rec.gate_g2_marque ?? true,
     resolutionOk:   rec.resolution_ok ?? null,
+    // Preuve de domaine public
+    artistBirth:       asInt(rec.artist_birth),
+    objectBeginYear:   asInt(rec.object_begin_year),
+    accessionNumber:   rec.accession_number ?? null,
+    rightsStatement:   rec.rights_statement ?? null,
+    wikidataUrl:       rec.wikidata_url ?? null,
+    dpEvidence:        rec.dp_evidence ?? null,
   } satisfies Partial<Prisma.WorkUncheckedCreateInput>;
 
   return {

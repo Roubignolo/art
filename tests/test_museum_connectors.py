@@ -9,7 +9,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from agents.sources import artic, cleveland, europeana, smithsonian  # noqa: E402
+from agents.sources import artic, base, cleveland, europeana, smithsonian  # noqa: E402
 
 
 class TestArtic(unittest.TestCase):
@@ -20,6 +20,7 @@ class TestArtic(unittest.TestCase):
             "artist_title": "Vincent van Gogh",
             "artist_display": "Vincent van Gogh\nDutch, 1853–1890",
             "date_display": "1889",
+            "date_start": 1889,
             "date_end": 1889,
             "medium_display": "Oil on canvas",
             "dimensions": "73 × 92 cm",
@@ -39,6 +40,10 @@ class TestArtic(unittest.TestCase):
         self.assertTrue(r["gate_g1_ue"])
         self.assertIn("/iiif/2/abc-123/", r["image_url"])
         self.assertEqual(r["artist_death"], 1890)
+        # preuve DP : naissance parsée + énoncé de droits
+        self.assertEqual(r["artist_birth"], 1853)
+        self.assertEqual(r["object_begin_year"], 1889)
+        self.assertIn("CC0", r["rights_statement"])
 
     def test_non_domaine_public_rejet(self):
         r = artic._normalize(self._obj(is_public_domain=False))
@@ -95,6 +100,10 @@ class TestCleveland(unittest.TestCase):
         self.assertEqual(r["artist_death"], 1890)
         self.assertEqual(r["resolution_px"], 4000)
         self.assertTrue(r["resolution_ok"])
+        # preuve DP : naissance structurée + accession + licence
+        self.assertEqual(r["artist_birth"], 1853)
+        self.assertEqual(r["accession_number"], "1947.209")
+        self.assertEqual(r["rights_statement"], "CC0")
 
     def test_basse_resolution_rejet(self):
         r = cleveland._normalize(
@@ -225,6 +234,39 @@ class TestEuropeana(unittest.TestCase):
     def test_bandes_offsets_toutes_distinctes(self):
         offs = {artic.ID_OFFSET, cleveland.ID_OFFSET, smithsonian.ID_OFFSET, europeana.ID_OFFSET}
         self.assertEqual(len(offs), 4)  # aucune collision de bande
+
+
+class TestPreuveDP(unittest.TestCase):
+    def test_evidence_complete(self):
+        rec = {
+            "artist": "Vincent van Gogh", "artist_death": 1890, "object_begin_year": 1889,
+            "gate_g1_us_g3": True, "is_public_domain": True, "rights_statement": "CC0",
+            "wikidata_copyright_status": "public domain",
+            "wikidata_url": "https://www.wikidata.org/wiki/Q18689458", "accession_number": "1993.132",
+        }
+        ev, conf = base.build_dp_evidence(rec)
+        self.assertIn("† 1890", ev)
+        self.assertIn("1889", ev)
+        self.assertIn("CC0", ev)
+        self.assertIn("public domain", ev)
+        self.assertIn("1993.132", ev)
+        self.assertGreaterEqual(len(conf), 2)  # institution + wikidata
+
+    def test_deces_inconnu_signale_review(self):
+        ev, _ = base.build_dp_evidence({"artist": "X", "gate_g1_ue": None})
+        self.assertIn("vérification humaine", ev)
+
+    def test_auteur_encore_protege(self):
+        ev, _ = base.build_dp_evidence({"artist": "Z", "artist_death": 1990, "gate_g1_us_g3": True})
+        self.assertIn("ENCORE PROTÉGÉ", ev)
+
+    def test_finalize_remplit_defauts_et_evidence(self):
+        rec = {"artist": "Y", "artist_death": 1880}
+        base.finalize_record(rec)
+        for k in base.DP_FIELDS:
+            self.assertIn(k, rec)
+        self.assertIsInstance(rec["dp_confirmations"], list)
+        self.assertTrue(rec["dp_evidence"])
 
 
 if __name__ == "__main__":
