@@ -4,8 +4,9 @@
 # .env par agents/sources/base.py), afin de débloquer la future demande de clé
 # PROJET (production) — Europeana exige de l'activité sur une clé perso d'abord.
 #
-# - Auto-désactivation après END_DATE (no-op) : laisser le cron en place est sans risque.
-# - À retirer du crontab une fois la clé projet obtenue (voir README.md).
+# - Auto-désactivation après END_DATE (no-op) : laisser l'agent en place est sans risque.
+# - Planifié par launchd : ~/Library/LaunchAgents/com.art.europeana-keepalive.plist
+#   (copie versionnée : scripts/com.art.europeana-keepalive.plist). Retrait : voir README.md.
 # - N'écrit aucun master sur disque : juste quelques appels Search API + un log.
 
 set -uo pipefail

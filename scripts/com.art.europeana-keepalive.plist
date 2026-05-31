@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copie VERSIONNÉE du LaunchAgent. L'agent ACTIF vit dans
+     ~/Library/LaunchAgents/com.art.europeana-keepalive.plist
+     Installer : launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.art.europeana-keepalive.plist
+     (adapter les chemins /Users/jeromefiron/... à ta machine si besoin). -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.art.europeana-keepalive</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/jeromefiron/Dev/art/scripts/europeana-keepalive.sh</string>
+  </array>
+
+  <!-- launchd a un PATH minimal : on y ajoute python3 (framework) + homebrew. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.13/bin</string>
+    <key>LANG</key>
+    <string>en_US.UTF-8</string>
+  </dict>
+
+  <!-- 3x/jour. Si le Mac dort à l'heure prévue, launchd rejoue au réveil. -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/Users/jeromefiron/Dev/art/logs/europeana-keepalive.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/jeromefiron/Dev/art/logs/europeana-keepalive.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

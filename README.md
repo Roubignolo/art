@@ -79,12 +79,17 @@ npm run dev                            # → http://localhost:3000
 
 - **🔑 Clé API Europeana — passer en PRODUCTION (clé PROJET).**
   On utilise pour l'instant une clé **personnelle** gratuite (dans `.env`, chargée auto). Europeana
-  refuse la clé **projet** tant qu'il n'y a pas d'activité sur une clé perso. Un cron de keep-alive
-  génère cette activité : `scripts/europeana-keepalive.sh` (3×/jour — 10h/15h/20h — jusqu'au **2026-06-08**,
-  puis no-op automatique ; logs dans `logs/europeana-keepalive.log`).
-  **→ Après cette fenêtre : redemander la clé PROJET** sur <https://pro.europeana.eu/page/get-api>
-  (citer l'usage généré + l'app live `art-cockpit`), remplacer `EUROPEANA_API_KEY` dans `.env`,
-  puis **retirer le cron** : `crontab -e` et supprimer la ligne `europeana-keepalive`.
+  refuse la clé **projet** tant qu'il n'y a pas d'activité sur une clé perso. Un agent **launchd**
+  de keep-alive génère cette activité : `scripts/europeana-keepalive.sh`, planifié par
+  `~/Library/LaunchAgents/com.art.europeana-keepalive.plist` (3×/jour — 10h/15h/20h, **rejoue au
+  réveil** si le Mac dormait — jusqu'au **2026-06-08** puis no-op auto ; logs `logs/europeana-keepalive.log`).
+  - Installer / recharger : `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.art.europeana-keepalive.plist`
+  - Forcer un run : `launchctl kickstart -k gui/$(id -u)/com.art.europeana-keepalive`
+  - **Retirer** (une fois la clé projet obtenue) : `launchctl bootout gui/$(id -u)/com.art.europeana-keepalive && rm ~/Library/LaunchAgents/com.art.europeana-keepalive.plist`
+  - *(copie versionnée du plist : `scripts/com.art.europeana-keepalive.plist`)*
+
+  **→ Après la fenêtre : redemander la clé PROJET** sur <https://pro.europeana.eu/page/get-api>
+  (citer l'usage généré + l'app live `art-cockpit`), puis remplacer `EUROPEANA_API_KEY` dans `.env`.
 
 ---
 
