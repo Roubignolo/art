@@ -51,6 +51,19 @@ def _centrer(d: ImageDraw.ImageDraw, texte: str, font, y: int, largeur: int,
     return y + (bb[3] - bb[1])
 
 
+def _police_ajustee(d: ImageDraw.ImageDraw, texte: str, role: str, taille_max: int,
+                    largeur_max: int):
+    """Plus grande police ≤ taille_max dont ``texte`` tient dans ``largeur_max``."""
+    t = taille_max
+    while t > 12:
+        f = charger_police(t, role=role)
+        bb = d.textbbox((0, 0), texte, font=f)
+        if (bb[2] - bb[0]) <= largeur_max:
+            return f
+        t -= 2
+    return charger_police(12, role=role)
+
+
 def _filet(d: ImageDraw.ImageDraw, y: int, largeur: int, marge: int, couleur: RGB = LAITON,
            epaisseur: int = 2, orn: bool = True) -> None:
     d.line([(marge, y), (largeur - marge, y)], fill=couleur, width=epaisseur)
@@ -125,8 +138,8 @@ def recto(infos: InfosProvenance, vignette: Optional[Image.Image] = None,
         carte.paste(v, (vx, y))
         y += v.height + int(H * 0.035)
 
-    # titre + artiste
-    f_titre = charger_police(int(W * 0.062), role="titrage")
+    # titre + artiste (titre auto-ajusté pour ne pas déborder)
+    f_titre = _police_ajustee(d, infos.titre, "titrage", int(W * 0.062), W - 2 * marge)
     y = _centrer(d, infos.titre, f_titre, y, W, ENCRE) + int(H * 0.018)
     f_art = charger_police(int(W * 0.040), role="texte")
     artiste = f"{infos.artiste} ({infos.dates_artiste})" if infos.dates_artiste else infos.artiste

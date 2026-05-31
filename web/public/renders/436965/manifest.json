@@ -1,0 +1,27 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/436965",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/436965/master_restaure.jpg",
+    "avant_apres": "/Users/jeromefiron/Dev/art/web/public/renders/436965/avant_apres.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/436965/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/436965/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/436965/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/436965/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/436965/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/436965/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/436965/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/436965/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 4000,
+    "hauteur_avant": 2518,
+    "largeur_apres": 3818,
+    "hauteur_apres": 2343,
+    "upscale_methode": "aucun",
+    "equilibrage_blancs": true,
+    "debruitage": true,
+    "accentuation": true
+  }
+}
