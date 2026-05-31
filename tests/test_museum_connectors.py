@@ -9,7 +9,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from agents.sources import artic, cleveland  # noqa: E402
+from agents.sources import artic, cleveland, europeana, smithsonian  # noqa: E402
 
 
 class TestArtic(unittest.TestCase):
@@ -132,6 +132,99 @@ class TestCleveland(unittest.TestCase):
         # garantie anti-collision entre bandes d'ID
         self.assertNotEqual(artic.ID_OFFSET, cleveland.ID_OFFSET)
         self.assertGreater(cleveland.ID_OFFSET, artic.ID_OFFSET)
+
+
+class TestSmithsonian(unittest.TestCase):
+    def _row(self, **over):
+        media = over.pop("media", [{"type": "Images", "usage": {"access": "CC0"},
+                                    "idsId": "FS-7011_03",
+                                    "content": "https://ids.si.edu/ids/deliveryService?id=FS-7011_03"}])
+        name = over.pop("name", [{"label": "Maker", "content": "Katsushika Hokusai (1760-1849)"}])
+        date = over.pop("date", [{"label": "Date", "content": "Edo period, 1830"}])
+        row = {
+            "id": "edanmdm-fsg_F1903", "title": "Bridge at Yedo", "unitCode": "FSG", "type": "edanmdm",
+            "content": {
+                "descriptiveNonRepeating": {
+                    "title": {"content": "Bridge at Yedo"},
+                    "record_link": "http://n2t.net/ark:/65665/x",
+                    "online_media": {"media": media},
+                },
+                "freetext": {"name": name, "date": date},
+            },
+        }
+        row.update(over)
+        return row
+
+    def test_candidat_cc0(self):
+        r = smithsonian._normalize(self._row())
+        self.assertEqual(r["decision"], "CANDIDAT")
+        self.assertEqual(r["artist_death"], 1849)
+        self.assertTrue(r["gate_g1_us_g3"])
+        self.assertIn("/iiif/", r["image_url"])
+        self.assertTrue(smithsonian.ID_OFFSET <= r["objectID"] < smithsonian.ID_OFFSET + 90_000_000)
+
+    def test_sans_media_rejet(self):
+        r = smithsonian._normalize(self._row(media=[]))
+        self.assertFalse(r["gate_g1_us_g3"])
+        self.assertEqual(r["decision"], "REJET")
+
+    def test_media_non_cc0_rejet(self):
+        r = smithsonian._normalize(self._row(media=[{"type": "Images", "usage": {"access": "Restricted"},
+                                                     "idsId": "X", "content": "u"}]))
+        self.assertEqual(r["decision"], "REJET")
+
+    def test_id_stable(self):
+        a = smithsonian._normalize(self._row())["objectID"]
+        b = smithsonian._normalize(self._row())["objectID"]
+        self.assertEqual(a, b)  # hash déterministe
+
+
+class TestEuropeana(unittest.TestCase):
+    def _item(self, **over):
+        base = {
+            "id": "/90402/SK_A_3262",
+            "title": ["Sunflowers"],
+            "dataProvider": ["Van Gogh Museum"],
+            "rights": ["http://creativecommons.org/publicdomain/mark/1.0/"],
+            "edmIsShownBy": ["https://img/full.jpg"],
+            "edmPreview": ["https://thumb"],
+            "year": ["1889"],
+            "dcCreator": ["Vincent van Gogh"],
+            "guid": "https://europeana.eu/item/90402/SK_A_3262",
+            "country": ["Netherlands"],
+        }
+        base.update(over)
+        return base
+
+    def test_candidat_domaine_public(self):
+        r = europeana._normalize(self._item())
+        self.assertEqual(r["decision"], "CANDIDAT")
+        self.assertTrue(r["gate_g1_us_g3"])
+        self.assertEqual(r["image_url"], "https://img/full.jpg")
+        self.assertTrue(europeana.ID_OFFSET <= r["objectID"] < europeana.ID_OFFSET + 90_000_000)
+
+    def test_droits_cc_by_rejet(self):
+        r = europeana._normalize(self._item(rights=["http://creativecommons.org/licenses/by/4.0/"]))
+        self.assertFalse(r["gate_g1_us_g3"])
+        self.assertEqual(r["decision"], "REJET")
+
+    def test_noc_accepte(self):
+        r = europeana._normalize(self._item(rights=["http://rightsstatements.org/vocab/NoC-OKLR/1.0/"]))
+        self.assertTrue(r["gate_g1_us_g3"])
+
+    def test_oeuvre_recente_rejet(self):
+        r = europeana._normalize(self._item(year=["1975"]))
+        self.assertFalse(r["gate_g1_ue"])
+        self.assertEqual(r["decision"], "REJET")
+
+    def test_annee_inconnue_review(self):
+        r = europeana._normalize(self._item(year=[]))
+        self.assertIsNone(r["gate_g1_ue"])
+        self.assertEqual(r["decision"], "REVIEW")
+
+    def test_bandes_offsets_toutes_distinctes(self):
+        offs = {artic.ID_OFFSET, cleveland.ID_OFFSET, smithsonian.ID_OFFSET, europeana.ID_OFFSET}
+        self.assertEqual(len(offs), 4)  # aucune collision de bande
 
 
 if __name__ == "__main__":

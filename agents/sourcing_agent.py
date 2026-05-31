@@ -3,10 +3,10 @@
 Sous-agent SOURCING — orchestrateur multi-sources.
 
 Dispatche la query vers le connecteur choisi (Met / Rijksmuseum / BHL /
-Art Institute of Chicago / Cleveland), applique le gate G4 résolution sur
-l'image, télécharge optionnellement les masters et écrit le registre de
-provenance (JSON + CSV) au format consommé par scoring_agent.py et
-/api/works POST du cockpit.
+Art Institute of Chicago / Cleveland / Smithsonian / Europeana), applique le
+gate G4 résolution sur l'image, télécharge optionnellement les masters et écrit
+le registre de provenance (JSON + CSV) au format consommé par scoring_agent.py
+et /api/works POST du cockpit.
 
 Dépendances :  pip install pillow         (requests N'est PAS utilisé — urllib stdlib)
 
@@ -16,17 +16,21 @@ Exemples :
   python agents/sourcing_agent.py --source bhl --query fern --titles 3 --pages 20
   python agents/sourcing_agent.py --source artic --query "van gogh" --target 20
   python agents/sourcing_agent.py --source cleveland --query monet --target 20
+  python agents/sourcing_agent.py --source smithsonian --query hokusai --target 20
+  python agents/sourcing_agent.py --source europeana --query "still life" --target 20
 
-Variables d'environnement requises par source :
+Variables d'environnement par source (toutes facultatives sauf rijks/bhl) :
   - met         : aucune
-  - rijksmuseum : RIJKSMUSEUM_API_KEY (https://www.rijksmuseum.nl/en/research/conduct-research/data/api)
+  - rijksmuseum : RIJKSMUSEUM_API_KEY (https://www.rijksmuseum.nl/.../data/api)
   - bhl         : BHL_API_KEY         (https://www.biodiversitylibrary.org/getapikey.aspx)
-  - artic       : aucune (Art Institute of Chicago, CC0)
+  - artic       : aucune (Art Institute of Chicago, CC0, IIIF)
   - cleveland   : aucune (Cleveland Museum of Art, CC0)
+  - smithsonian : SMITHSONIAN_API_KEY (repli DEMO_KEY) — https://api.data.gov/signup/
+  - europeana   : EUROPEANA_API_KEY   (repli api2demo)  — https://pro.europeana.eu/pages/get-api
+                  (Europeana agrège Paris Musées + musées français/européens, filtre DP/CC0)
 
 Bandes d'ID (anti-collision, < max Int Prisma 2,147 G) :
-  Met 0 · Rijks 10M · BHL 20M · AIC 300M · Cleveland 400M
-  (réservé : Smithsonian 500M, Paris Musées 600M — à câbler).
+  Met 0 · Rijks 10M · BHL 20M · AIC 300M · Cleveland 400M · Smithsonian 500M · Europeana 600M.
 
 Push direct vers le cockpit après sourcing (optionnel) :
   --push-to-cockpit URL --cockpit-user USER --cockpit-password PASS
@@ -90,6 +94,12 @@ def get_iterator(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
             args.query, max_scan=args.max_scan, pause=args.pause,
             min_long_edge=args.min_resolution,
         )
+    if args.source == "smithsonian" or args.source == "si":
+        from sources.smithsonian import iter_candidates
+        return iter_candidates(args.query, max_scan=args.max_scan, pause=args.pause)
+    if args.source == "europeana":
+        from sources.europeana import iter_candidates
+        return iter_candidates(args.query, max_scan=args.max_scan, pause=args.pause)
     raise ValueError(f"source inconnue : {args.source}")
 
 
@@ -280,7 +290,8 @@ def push_registry_to_cockpit(
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Sous-agent SOURCING multi-sources.")
     p.add_argument("--source", "-s", required=True,
-                   choices=["met", "rijks", "rijksmuseum", "bhl", "artic", "cleveland"],
+                   choices=["met", "rijks", "rijksmuseum", "bhl", "artic", "cleveland",
+                            "smithsonian", "si", "europeana"],
                    help="Connecteur à utiliser.")
     p.add_argument("--query", "-q", required=True,
                    help="Mot-clé de recherche (ex: botanical, fern, landscape).")
