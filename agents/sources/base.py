@@ -26,6 +26,39 @@ except ImportError:
     HAS_PIL = False
 
 
+# ─────────────────────────── chargement .env ───────────────────────────
+
+def _charger_dotenv() -> None:
+    """Charge un fichier .env local (agents/.env ou racine du repo) dans
+    os.environ, SANS écraser une variable déjà définie. Zéro dépendance.
+
+    Permet de poser les clés de sourcing (SMITHSONIAN_API_KEY, EUROPEANA_API_KEY,
+    RIJKSMUSEUM_API_KEY, BHL_API_KEY) dans un .env gitignoré plutôt que de les
+    exporter à chaque session. Les variables d'env explicites restent prioritaires.
+    """
+    import pathlib
+
+    ici = pathlib.Path(__file__).resolve()
+    for chemin in (ici.parents[1] / ".env", ici.parents[2] / ".env"):
+        try:
+            if not chemin.is_file():
+                continue
+            for ligne in chemin.read_text(encoding="utf-8").splitlines():
+                ligne = ligne.strip()
+                if not ligne or ligne.startswith("#") or "=" not in ligne:
+                    continue
+                cle, _, val = ligne.partition("=")
+                cle = cle.strip()
+                val = val.strip().strip('"').strip("'")
+                if cle and cle not in os.environ:
+                    os.environ[cle] = val
+        except OSError:
+            continue
+
+
+_charger_dotenv()
+
+
 # ─────────────────────────── HTTP partagé ───────────────────────────
 
 UA = "art-cockpit/0.1 (sourcing) +https://art-cockpit.vercel.app"
