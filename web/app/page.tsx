@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   Archive, LayoutGrid, ListChecks, Calculator, Upload, Check, X,
-  ChevronRight, Leaf, Image as ImageIcon, ShieldCheck, AlertTriangle,
+  ChevronRight, Tag, Image as ImageIcon, ShieldCheck, AlertTriangle,
   Sparkles, RefreshCw, Wand2, Languages, Plug, Package, Truck, ExternalLink,
 } from "lucide-react";
 
@@ -18,6 +18,14 @@ type MarketingItem = {
 };
 
 type MockupSet = { templates: string[]; lifestyle: string[]; generatedAt: string };
+
+type ListingVariant = { sku: string; label: string; format: string; prix: number; margeNette: number; provider: string };
+type ListingDraft = {
+  locale: string; title: string; titleLength: number; titleWarning?: string;
+  description: string; tags: string[]; materials: string[]; taxonomyHint: string;
+  variants: ListingVariant[]; prixAffiche: number; galerieHint: string[]; conformite: string[];
+};
+type ListingResult = { workId: number; mode: string; reason?: string; draft: ListingDraft };
 
 type Work = {
   id: number;
@@ -55,7 +63,7 @@ type Connector = {
   name: string;
   description: string;
   docUrl: string;
-  category: "ai" | "data" | "marketplace" | "pod" | "mockup";
+  category: "ai" | "data" | "marketplace" | "pod" | "mockup" | "render";
   status: "configured" | "missing_key" | "ok" | "error";
   configHint: string;
   requiredEnv: string[];
@@ -147,6 +155,8 @@ export default function App() {
   const [connectors, setConnectors] = useState<Connector[] | null>(null);
   const [orders, setOrders] = useState<Order[] | null>(null);
   const [testingId, setTestingId] = useState<string | null>(null);
+  const [listing, setListing] = useState<ListingResult | null>(null);
+  const [busyListing, setBusyListing] = useState(false);
 
   const reload = useCallback(async () => {
     try {
@@ -314,6 +324,22 @@ export default function App() {
     finally { setBusyMockup(false); }
   }, []);
 
+  /** Aperçu du listing Etsy (dry-run) : titre/tags/description + matrice variantes×prix. */
+  const previewListing = useCallback(async (id: number, locale: string) => {
+    setBusyListing(true); setErr(null);
+    try {
+      const r = await fetch("/api/etsy/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, locale, dryRun: true }),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data?.error || `Listing ${r.status}`);
+      setListing({ workId: id, ...data });
+    } catch (e) { setErr((e as Error).message); }
+    finally { setBusyListing(false); }
+  }, []);
+
   // Auto-load au changement d'onglet
   useEffect(() => {
     if (tab === "connecteurs" && connectors === null) loadConnectors();
@@ -451,12 +477,17 @@ export default function App() {
 
       {/* RAIL */}
       <aside style={{ width: 210, borderRight: "1px solid var(--line)", background: "var(--paper)", flexShrink: 0 }}>
-        <div style={{ padding: "20px 16px", borderBottom: "1px solid var(--line)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Leaf size={18} color="var(--brass)" />
-            <span className="serif" style={{ fontWeight: 900, fontSize: 19, letterSpacing: "-.01em" }}>PROVENANCE</span>
+        <div style={{ padding: "18px 16px", borderBottom: "1px solid var(--line)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/sceau.png" alt="Vellum & Cie" width={26} height={26} style={{ display: "block" }} />
+            <div>
+              <div className="serif" style={{ fontWeight: 600, fontSize: 17, letterSpacing: "-.01em", lineHeight: 1.05 }}>
+                VELLUM <span style={{ color: "var(--brass)", fontStyle: "italic", fontWeight: 500 }}>&amp; Cie</span>
+              </div>
+            </div>
           </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: ".18em", color: "var(--ink2)", marginTop: 4 }}>POSTE DE PILOTAGE</div>
+          <div className="mono" style={{ fontSize: 8.5, letterSpacing: ".16em", color: "var(--ink2)", marginTop: 6 }}>ÉDITIONS · DOMAINE PUBLIC</div>
         </div>
         {/* Section : vue d'ensemble */}
         <div className={"navi " + (tab === "pilotage" ? "on" : "")} onClick={() => setTab("pilotage")}>
@@ -723,6 +754,10 @@ export default function App() {
                           </a>
                         )}
                       </div>
+                      <div className="body" style={{ fontSize: 11, color: "var(--ink2)", marginTop: 6 }}>
+                        Sans clé : moteur local gratuit (10 visuels + carte provenance) →{" "}
+                        <code style={{ fontSize: 10 }}>python -m agents.render --met-id {selected.id} --out web/public/renders/{selected.id}</code>
+                      </div>
 
                       {/* Affichage des mockups générés */}
                       {selected.mockups && Object.entries(selected.mockups).map(([product, set]) => (
@@ -800,6 +835,62 @@ export default function App() {
                       </>
                     )}
                   </div>
+
+                  {/* === Aperçu listing Etsy (v2) === */}
+                  <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--line)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                      <span className="mono" style={{ fontSize: 10, letterSpacing: ".08em", color: "var(--ink2)" }}>
+                        <Tag size={11} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
+                        APERÇU LISTING ETSY
+                      </span>
+                      <button className="btn" disabled={busyListing} style={{ color: "var(--brass)" }} onClick={() => previewListing(selected.id, lang)}>
+                        <Wand2 size={11} style={{ display: "inline", marginRight: 4 }} />
+                        {busyListing ? "Assemblage…" : `Aperçu (${lang.toUpperCase()})`}
+                      </button>
+                    </div>
+                    {listing && listing.workId === selected.id ? (
+                      <div className="body" style={{ fontSize: 13 }}>
+                        {listing.mode === "preview" && listing.reason && (
+                          <div className="mono" style={{ fontSize: 9, color: "var(--ink2)", marginBottom: 8 }}>aperçu — {listing.reason}</div>
+                        )}
+                        <div style={{ marginBottom: 10 }}>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)" }}>TITRE · {listing.draft.titleLength}/140</div>
+                          <div className="serif" style={{ fontSize: 15, lineHeight: 1.35 }}>{listing.draft.title}</div>
+                          {listing.draft.titleWarning && <div className="body" style={{ fontSize: 11, color: "var(--brass)", marginTop: 2 }}>⚠ {listing.draft.titleWarning}</div>}
+                        </div>
+                        <div style={{ marginBottom: 10 }}>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", marginBottom: 4 }}>TAGS · {listing.draft.tags.length}/13</div>
+                          {listing.draft.tags.map((t, i) => <span key={i} className="mtag">{t}</span>)}
+                        </div>
+                        <div style={{ marginBottom: 10 }}>
+                          <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", marginBottom: 4 }}>VARIANTES · prix → marge nette</div>
+                          <table className="dt" style={{ width: "100%", fontSize: 12 }}>
+                            <tbody>
+                              {listing.draft.variants.map((v) => (
+                                <tr key={v.sku}>
+                                  <td style={{ padding: "3px 6px" }}>{v.label} <span className="mono" style={{ fontSize: 9, color: "var(--ink2)" }}>{v.format}</span></td>
+                                  <td className="mono" style={{ padding: "3px 6px", textAlign: "right" }}>{v.prix.toFixed(2)}€</td>
+                                  <td className="mono" style={{ padding: "3px 6px", textAlign: "right", color: "var(--sage)" }}>+{v.margeNette.toFixed(2)}€</td>
+                                  <td className="mono" style={{ padding: "3px 6px", fontSize: 9, color: "var(--ink2)" }}>{v.provider}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                        <details>
+                          <summary className="mono" style={{ fontSize: 10, color: "var(--ink2)", cursor: "pointer" }}>DESCRIPTION COMPLÈTE ↓</summary>
+                          <div className="body" style={{ whiteSpace: "pre-wrap", fontSize: 12, marginTop: 6, lineHeight: 1.6 }}>{listing.draft.description}</div>
+                        </details>
+                        <div style={{ marginTop: 10, padding: 8, background: "var(--paper2)", borderRadius: 2 }}>
+                          {listing.draft.conformite.map((c, i) => <div key={i} className="body" style={{ fontSize: 11, color: "var(--ink2)" }}>• {c}</div>)}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="body" style={{ fontSize: 12, color: "var(--ink2)", padding: 10, background: "var(--paper2)", borderRadius: 2 }}>
+                        Assemble un brouillon Etsy complet (titre SEO ≤140c, 13 tags, description avec provenance + « sourced by », matrice variantes×prix Gelato avec marges). Génère d'abord le marketing pour un titre optimal.
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -837,6 +928,7 @@ export default function App() {
                     marketplace: "🏪 Marketplace",
                     pod: "🖨️ POD",
                     mockup: "🖼️ Mockup",
+                    render: "🎨 Rendu",
                   }[c.category];
                   return (
                     <div key={c.id} className="cd cd-hover" style={{ padding: 16 }}>

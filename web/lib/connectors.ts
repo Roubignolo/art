@@ -20,7 +20,7 @@ export type ConnectorDef = {
   docUrl: string;
   requiredEnv: string[]; // ex: ["ANTHROPIC_API_KEY"]
   optional?: boolean;     // ex: Wikidata est utilisable sans clé
-  category: "ai" | "data" | "marketplace" | "pod" | "mockup";
+  category: "ai" | "data" | "marketplace" | "pod" | "mockup" | "render";
   /** Si défini, ping live (200 OK = ok, autre = error). Ne PAS lancer si requiredEnv manque. */
   test?: () => Promise<{ ok: boolean; detail: string }>;
 };
@@ -153,6 +153,22 @@ export const CONNECTORS: ConnectorDef[] = [
       });
       if (!r.ok) return { ok: false, detail: `HTTP ${r.status}` };
       return { ok: true, detail: "auth OK (liste mockups accessible)" };
+    },
+  },
+  {
+    id: "replicate",
+    name: "Replicate (Real-ESRGAN)",
+    description: "Restauration HD cloud (super-résolution ×2/×4). Optionnel : sans clé, le moteur LOCAL Pillow fait l'upscale Lanczos gratuitement.",
+    docUrl: "https://replicate.com/nightmareai/real-esrgan",
+    requiredEnv: ["REPLICATE_API_TOKEN"],
+    optional: true,
+    category: "render",
+    test: async () => {
+      const r = await fetchJson("https://api.replicate.com/v1/account", {
+        headers: { Authorization: `Bearer ${process.env.REPLICATE_API_TOKEN!}` },
+      });
+      if (r.status === 401 || r.status === 403) return { ok: false, detail: `HTTP ${r.status}` };
+      return { ok: true, detail: `auth OK (HTTP ${r.status})` };
     },
   },
   {

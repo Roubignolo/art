@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Vellum & Cie — logotype vectoriel (master éditable).
+  Police de production : Fraunces (titrage). Fallback sérif ici pour portabilité.
+  Palette : encre #2A2622 · laiton #A9803F · papier #F4EFE6.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" width="1600" height="520">
+  <style>
+    .wordmark { font-family: "Fraunces", "Didot", "Georgia", serif; fill: #2A2622; }
+    .cie      { font-family: "Fraunces", "Didot", "Georgia", serif; font-style: italic; fill: #A9803F; }
+    .baseline { font-family: "Newsreader", "Georgia", serif; fill: #6B645B; letter-spacing: 3px; }
+    .mono     { font-family: "Fraunces", "Didot", "Georgia", serif; fill: #2A2622; }
+  </style>
+
+  <!-- Sceau monogramme -->
+  <g transform="translate(40,55)">
+    <ellipse cx="205" cy="205" rx="200" ry="200" fill="none" stroke="#A9803F" stroke-width="5"/>
+    <ellipse cx="205" cy="205" rx="168" ry="168" fill="none" stroke="#A9803F" stroke-width="2.5"/>
+    <text class="mono" x="205" y="262" font-size="200" text-anchor="middle">V&amp;C</text>
+    <path d="M 70 205 l 12 -12 l 12 12 l -12 12 z" fill="#A9803F"/>
+    <path d="M 316 205 l 12 -12 l 12 12 l -12 12 z" fill="#A9803F"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text class="wordmark" x="500" y="240" font-size="170" letter-spacing="18">VELLUM</text>
+  <text class="cie" x="1330" y="240" font-size="96">&amp; Cie</text>
+
+  <!-- Filet + baseline -->
+  <line x1="502" y1="300" x2="1520" y2="300" stroke="#A9803F" stroke-width="3"/>
+  <text class="baseline" x="504" y="365" font-size="52">ÉDITIONS D'ART · DOMAINE PUBLIC</text>
+</svg>

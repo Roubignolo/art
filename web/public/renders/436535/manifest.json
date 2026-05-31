@@ -1,0 +1,27 @@
+{
+  "dossier": "web/public/renders/436535",
+  "fichiers": {
+    "master": "web/public/renders/436535/master_restaure.jpg",
+    "avant_apres": "web/public/renders/436535/avant_apres.jpg",
+    "poster_nu": "web/public/renders/436535/catalogue/01_poster_nu.jpg",
+    "encadre": "web/public/renders/436535/catalogue/02_encadre_chene.jpg",
+    "detail": "web/public/renders/436535/catalogue/03_detail.jpg",
+    "options_cadres": "web/public/renders/436535/catalogue/04_cadres.jpg",
+    "comparatif": "web/public/renders/436535/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "web/public/renders/436535/lifestyle/galerie.jpg",
+      "web/public/renders/436535/lifestyle/scandinave.jpg",
+      "web/public/renders/436535/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 4000,
+    "hauteur_avant": 3184,
+    "largeur_apres": 3836,
+    "hauteur_apres": 3011,
+    "upscale_methode": "aucun",
+    "equilibrage_blancs": true,
+    "debruitage": true,
+    "accentuation": true
+  }
+}

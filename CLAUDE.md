@@ -37,6 +37,9 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 - `agents/sourcing_agent.py` — orchestrateur Sourcing multi-sources (CLI). Dispatche vers `agents/sources/{met,rijksmuseum,bhl}.py` selon `--source`. Format de sortie commun (snake_case) consommable par `/api/works` POST et `scoring_agent.py`.
 - `agents/sources/` — connecteurs : Met (sans clé), Rijksmuseum (`RIJKSMUSEUM_API_KEY`), BHL (`BHL_API_KEY`). IDs préfixés par offset pour éviter les collisions (Met < 10M, Rijks 10M–20M, BHL ≥ 20M).
 - `agents/scoring_agent.py` — sous-agent Scoring (4 axes pondérés, modes `heuristic` & `llm`) → registre noté par produit.
+- `agents/render/` — **moteur de rendu local (Pillow, zéro clé)** : restauration HD (rognage bords, colorimétrie, accentuation, upscale Lanczos/Replicate), mockups encadrés (moulures coupe d'onglet, marie-louise, verre, ombre), scènes lifestyle (perspective maison), comparatif tailles, **carte de provenance A6**, et `brand_assets.py` (bannière/icône/logo). CLI : `python -m agents.render --met-id <id> --out <dir>`. Bascule cloud (Dynamic Mockups + fal.ai) via `/api/mockup` quand les clés sont posées.
+- `docs/brand/` — identité de marque **Vellum & Cie** (nom retenu vs « Provenance » jugé générique ; dispo domaine/INPI à confirmer), `logo.svg`. `docs/etsy-listing-system.md` (best practices Etsy 2026 + kit type) · `docs/economie-gelato.md` (économie unitaire Gelato + seuil hit-rate recalibré ~1,1 %).
+- `tests/` — tests `unittest` (gates sourcing, scoring, moteur de rendu). `python -m unittest discover -s tests`.
 - `web/` — cockpit Next.js 15 (App Router, TS) + Prisma + Postgres (Neon) + HTTP Basic Auth. Déployé en production sur Vercel : <https://art-cockpit.vercel.app> (user `art`).
 - `cockpit/provenance-cockpit.jsx` — prototype React initial conservé pour référence (remplacé par `web/`).
 
@@ -45,9 +48,10 @@ Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant 
 - ✅ Process vente & production documenté (`docs/process-vente-production.md`) : flow Etsy/Gelato, fiche type, mockups hybrides (Dynamic Mockups + Flux Pro Kontext), SAV (packaging neutre, white-label, dropshipping direct, facture Etsy au nom de la boutique, insert provenance physique recommandé), coûts réels par vente. Décision : Etsy seul en P0-P1, eBay en P2, écarter Amazon.
 - ✅ Benchmark POD documenté (`docs/benchmark-pod-fournisseurs.md`) : Gelato par défaut + Prodigi pour signature premium + Printful écarté. Précise les réponses opérationnelles : oui pour les encadrés (oak/noyer Gelato, FATG vrai bois Prodigi), oui pour la facture au nom de la boutique (Etsy), oui pour le dropshipping direct (jamais de ré-expédition par nous), white-label intégral possible.
 - ✅ Roadmap mise en vente détaillée par phases (`docs/roadmap-mise-en-vente.md`) — 5 phases P0→P4, 6-8 semaines pour un founder solo, ~400€ + ~$50/mo récurrent.
-- ⏭️ **P0 (manuel, 1-2 sem.)** : ouvrir Etsy + déclarer Gelato comme production partner + finaliser marque.
+- ✅ **v2 (mai 2026)** : moteur de rendu local `agents/render/` (restauration + 10 visuels + carte provenance, validé sur Met 436535) · identité de marque **Vellum & Cie** (dossier + assets PNG/SVG) · système de listing Etsy + `lib/etsy-listing.ts` + `lib/pricing.ts` · routes `/api/etsy/publish` (preview/POST), `/api/etsy/oauth` (PKCE), `/api/restoration` (Replicate) + `/api/mockup` réel (fal.ai/Dynamic Mockups) · cockpit : aperçu listing + galerie rendus + marque · finance recalibrée Gelato · tests `unittest`. `next build` vert.
+- ⏭️ **P0 (manuel, 1-2 sem.)** : ouvrir Etsy + déclarer Gelato comme production partner + **confirmer dispo nom Vellum & Cie (registrar + INPI/EUIPO)**.
 - ⏭️ **P1-P2 (manuel, 2 sem.)** : 1er listing puis collection d'amorçage 15 listings.
-- ⏭️ **P3 (code, 2-3 sem.)** : restoration agent + mockup agent + push Etsy + webhook order.paid → Gelato.
+- ⏭️ **P3 (reste à câbler)** : OAuth Etsy live (tokens) + webhook order.paid → création commande Gelato + insert provenance dynamique par commande.
 - ⏭️ **P4 (code, 1 sem.)** : analytics + repondération scoring sur ventes réelles.
 
 ## Conventions
