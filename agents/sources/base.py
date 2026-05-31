@@ -56,10 +56,27 @@ def http_get_json(url: str, params: dict[str, Any] | None = None, tries: int = 4
     return None
 
 
+_IMG_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+           "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+
+
 def http_get_bytes(url: str, timeout: int = 60) -> bytes | None:
-    """Télécharge un binaire (image). Renvoie None si réseau/HTTP error."""
+    """Télécharge un binaire (image). Renvoie None si réseau/HTTP error.
+
+    Pose un Referer égal à l'origine de l'image + un UA navigateur : certains
+    serveurs (ex. IIIF de l'Art Institute of Chicago) renvoient 403 sans cela
+    (protection hotlink). Inoffensif pour les autres hôtes.
+    """
+    from urllib.parse import urlsplit
+
+    parts = urlsplit(url)
+    headers = {
+        "Referer": f"{parts.scheme}://{parts.netloc}/",
+        "User-Agent": _IMG_UA,
+        "Accept": "image/avif,image/webp,image/*,*/*;q=0.8",
+    }
     try:
-        r = session().get(url, timeout=timeout)
+        r = session().get(url, timeout=timeout, headers=headers)
         if r.status_code == 200:
             return r.content
         return None

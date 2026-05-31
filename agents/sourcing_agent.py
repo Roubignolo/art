@@ -2,10 +2,11 @@
 """
 Sous-agent SOURCING — orchestrateur multi-sources.
 
-Dispatche la query vers le connecteur choisi (Met / Rijksmuseum / BHL),
-applique le gate G4 résolution sur l'image, télécharge optionnellement les
-masters et écrit le registre de provenance (JSON + CSV) au format consommé
-par scoring_agent.py et /api/works POST du cockpit.
+Dispatche la query vers le connecteur choisi (Met / Rijksmuseum / BHL /
+Art Institute of Chicago / Cleveland), applique le gate G4 résolution sur
+l'image, télécharge optionnellement les masters et écrit le registre de
+provenance (JSON + CSV) au format consommé par scoring_agent.py et
+/api/works POST du cockpit.
 
 Dépendances :  pip install pillow         (requests N'est PAS utilisé — urllib stdlib)
 
@@ -13,11 +14,19 @@ Exemples :
   python agents/sourcing_agent.py --source met --query botanical --target 20
   python agents/sourcing_agent.py --source rijks --query landscape --target 15
   python agents/sourcing_agent.py --source bhl --query fern --titles 3 --pages 20
+  python agents/sourcing_agent.py --source artic --query "van gogh" --target 20
+  python agents/sourcing_agent.py --source cleveland --query monet --target 20
 
 Variables d'environnement requises par source :
   - met         : aucune
   - rijksmuseum : RIJKSMUSEUM_API_KEY (https://www.rijksmuseum.nl/en/research/conduct-research/data/api)
   - bhl         : BHL_API_KEY         (https://www.biodiversitylibrary.org/getapikey.aspx)
+  - artic       : aucune (Art Institute of Chicago, CC0)
+  - cleveland   : aucune (Cleveland Museum of Art, CC0)
+
+Bandes d'ID (anti-collision, < max Int Prisma 2,147 G) :
+  Met 0 · Rijks 10M · BHL 20M · AIC 300M · Cleveland 400M
+  (réservé : Smithsonian 500M, Paris Musées 600M — à câbler).
 
 Push direct vers le cockpit après sourcing (optionnel) :
   --push-to-cockpit URL --cockpit-user USER --cockpit-password PASS
@@ -71,6 +80,15 @@ def get_iterator(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
         return iter_candidates(
             args.query, max_titles=args.titles, pages_per_title=args.pages,
             pause=args.pause,
+        )
+    if args.source == "artic":
+        from sources.artic import iter_candidates
+        return iter_candidates(args.query, max_scan=args.max_scan, pause=args.pause)
+    if args.source == "cleveland":
+        from sources.cleveland import iter_candidates
+        return iter_candidates(
+            args.query, max_scan=args.max_scan, pause=args.pause,
+            min_long_edge=args.min_resolution,
         )
     raise ValueError(f"source inconnue : {args.source}")
 
@@ -262,7 +280,7 @@ def push_registry_to_cockpit(
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Sous-agent SOURCING multi-sources.")
     p.add_argument("--source", "-s", required=True,
-                   choices=["met", "rijks", "rijksmuseum", "bhl"],
+                   choices=["met", "rijks", "rijksmuseum", "bhl", "artic", "cleveland"],
                    help="Connecteur à utiliser.")
     p.add_argument("--query", "-q", required=True,
                    help="Mot-clé de recherche (ex: botanical, fern, landscape).")
