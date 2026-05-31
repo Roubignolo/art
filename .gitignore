@@ -44,3 +44,6 @@ output/
 *.sqlite
 *.db
 .vercel
+
+# Sorties locales du sous-agent sourcing (registres + masters)
+collection_*/
