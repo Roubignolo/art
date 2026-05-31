@@ -43,7 +43,7 @@ def _api_key() -> str:
     key = os.environ.get("EUROPEANA_API_KEY", "").strip()
     if not key:
         print("  ⚠ EUROPEANA_API_KEY absente → repli api2demo (rate-limité). "
-              "Clé gratuite : https://pro.europeana.eu/pages/get-api", file=sys.stderr)
+              "Clé personnelle gratuite (instantanée) : https://pro.europeana.eu/page/get-api", file=sys.stderr)
         return "api2demo"
     return key
 
