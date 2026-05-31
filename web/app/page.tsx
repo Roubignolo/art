@@ -27,6 +27,16 @@ type ListingDraft = {
 };
 type ListingResult = { workId: number; mode: string; reason?: string; draft: ListingDraft };
 
+type PreviewWork = {
+  id: number;
+  title: string;
+  artist: string | null;
+  source?: string | null;
+  dpEvidence?: string | null;
+  wikidataUrl?: string | null;
+  dir: string; // ex: "/renders/436965"
+};
+
 type Work = {
   id: number;
   title: string;
@@ -150,7 +160,7 @@ function decide(w: Work): { d: string; c: string } {
 export default function App() {
   const [works, setWorks] = useState<Work[] | null>(null);
   const [cfg, setCfg] = useState<Config>(DEFAULTS);
-  const [tab, setTab] = useState<"pilotage" | "oeuvres" | "viabilite" | "import" | "connecteurs" | "commandes">("pilotage");
+  const [tab, setTab] = useState<"pilotage" | "oeuvres" | "apercus" | "viabilite" | "import" | "connecteurs" | "commandes">("pilotage");
   const [sel, setSel] = useState<number | null>(null);
   const [imp, setImp] = useState("");
   const [busy, setBusy] = useState(false);
@@ -163,6 +173,7 @@ export default function App() {
   const [testingId, setTestingId] = useState<string | null>(null);
   const [listing, setListing] = useState<ListingResult | null>(null);
   const [busyListing, setBusyListing] = useState(false);
+  const [collection, setCollection] = useState<PreviewWork[] | null>(null);
 
   const reload = useCallback(async () => {
     try {
@@ -313,6 +324,17 @@ export default function App() {
     } catch (e) { setErr((e as Error).message); }
   }, []);
 
+  /** Charge l'index des aperçus générés (web/public/renders/collection.json). */
+  const loadCollection = useCallback(async () => {
+    try {
+      const r = await fetch("/renders/collection.json", { cache: "no-store" });
+      if (!r.ok) throw new Error(`renders ${r.status}`);
+      setCollection(await r.json());
+    } catch {
+      setCollection([]); // pas encore de collection générée
+    }
+  }, []);
+
   /** Génère les mockups (templates + lifestyle IA) pour une œuvre. */
   const genMockups = useCallback(async (id: number, product = "framed_a2_oak") => {
     setBusyMockup(true); setErr(null);
@@ -350,7 +372,8 @@ export default function App() {
   useEffect(() => {
     if (tab === "connecteurs" && connectors === null) loadConnectors();
     if (tab === "commandes" && orders === null) loadOrders();
-  }, [tab, connectors, orders, loadConnectors, loadOrders]);
+    if (tab === "apercus" && collection === null) loadCollection();
+  }, [tab, connectors, orders, collection, loadConnectors, loadOrders, loadCollection]);
 
   if (!works) {
     return <div style={{ padding: 40, fontFamily: "system-ui", color: "#5C5345" }}>Chargement…</div>;
@@ -504,6 +527,9 @@ export default function App() {
         <div className="nav-section">Catalogue</div>
         <div className={"navi " + (tab === "oeuvres" ? "on" : "")} onClick={() => setTab("oeuvres")}>
           <ListChecks size={15} /> <span>Œuvres</span>
+        </div>
+        <div className={"navi " + (tab === "apercus" ? "on" : "")} onClick={() => setTab("apercus")}>
+          <ImageIcon size={15} /> <span>Aperçus</span>
         </div>
         <div className={"navi " + (tab === "import" ? "on" : "")} onClick={() => setTab("import")}>
           <Upload size={15} /> <span>Import</span>
@@ -1011,6 +1037,72 @@ export default function App() {
                   );
                 })}
               </div>
+            )}
+          </>
+        )}
+
+        {tab === "apercus" && (
+          <>
+            <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: "0 0 4px" }}>Aperçus</h1>
+            <p className="body" style={{ color: "var(--ink2)", margin: "0 0 18px", fontSize: 14 }}>
+              Galeries générées par le moteur de rendu local (restauration + mockups + carte de provenance).
+              {collection && collection.length > 0 ? ` ${collection.length} œuvre${collection.length > 1 ? "s" : ""}.` : ""}
+            </p>
+            {collection === null ? (
+              <div className="body" style={{ color: "var(--ink2)" }}>Chargement…</div>
+            ) : collection.length === 0 ? (
+              <div className="cd" style={{ padding: 24 }}>
+                <div className="body" style={{ fontSize: 13, color: "var(--ink2)" }}>
+                  Aucun aperçu généré. Lance <code>python scripts/build_previews.py met &quot;Monet&quot; 4</code> puis commit/push.
+                </div>
+              </div>
+            ) : (
+              collection.map((w) => {
+                const imgs: [string, string][] = [
+                  ["catalogue/02_encadre_chene.jpg", "Encadré chêne"],
+                  ["lifestyle/galerie.jpg", "Scène galerie"],
+                  ["lifestyle/scandinave.jpg", "Scène scandinave"],
+                  ["lifestyle/atelier.jpg", "Scène atelier"],
+                  ["catalogue/01_poster_nu.jpg", "Tirage nu"],
+                  ["catalogue/03_detail.jpg", "Détail texture"],
+                  ["catalogue/04_cadres.jpg", "Options cadres"],
+                  ["catalogue/05_tailles.jpg", "Comparatif tailles"],
+                  ["avant_apres.jpg", "Avant / après"],
+                  ["provenance_recto.png", "Provenance · recto"],
+                  ["provenance_verso.png", "Provenance · verso"],
+                ];
+                return (
+                  <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
+                      <div>
+                        <h2 className="serif" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{w.title}</h2>
+                        <div className="mono" style={{ fontSize: 11, color: "var(--ink2)", marginTop: 3 }}>
+                          #{w.id} · {w.artist || "—"}{w.source ? ` · ${w.source}` : ""}
+                        </div>
+                      </div>
+                      {w.wikidataUrl && (
+                        <a href={w.wikidataUrl} target="_blank" rel="noreferrer" className="btn" style={{ textDecoration: "none", color: "var(--brass)", flexShrink: 0 }}>
+                          <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />Wikidata
+                        </a>
+                      )}
+                    </div>
+                    {w.dpEvidence && (
+                      <div className="body" style={{ fontSize: 12, lineHeight: 1.6, padding: 10, marginTop: 10, background: "var(--paper2)", borderLeft: "3px solid var(--sage)", borderRadius: "0 2px 2px 0" }}>
+                        <ShieldCheck size={12} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />{w.dpEvidence}
+                      </div>
+                    )}
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 10, marginTop: 14 }}>
+                      {imgs.map(([file, label]) => (
+                        <a key={file} href={`${w.dir}/${file}`} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={`${w.dir}/${file}`} alt={label} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover", border: "1px solid var(--line)", borderRadius: 3, background: "var(--paper2)" }} />
+                          <div className="mono" style={{ fontSize: 9, color: "var(--ink2)", marginTop: 3 }}>{label}</div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })
             )}
           </>
         )}
