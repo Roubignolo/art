@@ -47,3 +47,6 @@ output/
 
 # Sorties locales du sous-agent sourcing (registres + masters)
 collection_*/
+
+# Logs locaux (cron keep-alive, etc.)
+logs/

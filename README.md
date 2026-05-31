@@ -75,6 +75,17 @@ npm run dev                            # → http://localhost:3000
 - **Phase 0** : micro-entreprise, sourcing manuel, cockpit en local, mesure du hit-rate.
 - **Phase 1+** : backend Vercel + Postgres, automatisation, scale — *seulement* une fois le hit-rate prouvé au-dessus du seuil de rentabilité.
 
+## ⏳ Rappels / à faire
+
+- **🔑 Clé API Europeana — passer en PRODUCTION (clé PROJET).**
+  On utilise pour l'instant une clé **personnelle** gratuite (dans `.env`, chargée auto). Europeana
+  refuse la clé **projet** tant qu'il n'y a pas d'activité sur une clé perso. Un cron de keep-alive
+  génère cette activité : `scripts/europeana-keepalive.sh` (3×/jour — 10h/15h/20h — jusqu'au **2026-06-08**,
+  puis no-op automatique ; logs dans `logs/europeana-keepalive.log`).
+  **→ Après cette fenêtre : redemander la clé PROJET** sur <https://pro.europeana.eu/page/get-api>
+  (citer l'usage généré + l'app live `art-cockpit`), remplacer `EUROPEANA_API_KEY` dans `.env`,
+  puis **retirer le cron** : `crontab -e` et supprimer la ligne `europeana-keepalive`.
+
 ---
 
 *Avertissement : ni conseil juridique ni financier. Statut domaine public, marque et fiscalité à faire valider par des professionnels avant passage à l'échelle.*
