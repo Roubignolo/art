@@ -60,6 +60,10 @@ def main(argv: Optional[list[str]] = None) -> int:
     ap.add_argument("--profils", default="chene,noir,blanc", help="profils de cadre (csv)")
     ap.add_argument("--scenes", default="galerie,scandinave,atelier", help="scènes lifestyle (csv)")
     ap.add_argument("--no-restauration", action="store_true", help="désactive le pipeline de restauration")
+    ap.add_argument("--profil", choices=["fidele", "archive"], default="fidele",
+                    help="fidele (défaut, n'altère pas la teinte) | archive (corrige les scans abîmés NON calibrés)")
+    ap.add_argument("--profil-papier", default=None,
+                    help="chemin d'un profil ICC papier (Hahnemühle/Prodigi) pour un soft-proof gamut exact")
     ap.add_argument("--long-edge", type=int, default=4000, help="résolution print cible (grand côté)")
     # métadonnées manuelles (mode --image)
     ap.add_argument("--titre", default="")
@@ -92,11 +96,28 @@ def main(argv: Optional[list[str]] = None) -> int:
         scenes_choisies=[s.strip() for s in args.scenes.split(",") if s.strip()],
         long_edge_print=args.long_edge,
         restauration=not args.no_restauration,
+        profil=args.profil,
+        profil_papier=args.profil_papier,
     )
+    if manifeste.get("couleur"):
+        c = manifeste["couleur"]
+        flag = "→ converti en sRGB (ICC relatif+BPC)" if c["converti_srgb"] else "déjà sRGB, aucune conversion"
+        print(f"  couleur : source {c['espace_source']} · {flag}")
     if manifeste.get("restauration"):
         r = manifeste["restauration"]
-        print(f"  restauration : {r['largeur_avant']}×{r['hauteur_avant']} → "
+        print(f"  restauration : profil {r['profil']} · {r['largeur_avant']}×{r['hauteur_avant']} → "
               f"{r['largeur_apres']}×{r['hauteur_apres']} ({r['upscale_methode']})")
+    if manifeste.get("fidelite"):
+        from .fidelity import RapportFidelite, formater_rapport
+        print(formater_rapport(RapportFidelite(**manifeste["fidelite"])))
+    if manifeste.get("gamut"):
+        g = manifeste["gamut"]
+        if g["methode"] == "icc-softproof":
+            print(f"  gamut ({g['profil_papier']}) : {g['hors_gamut_pct']}% hors-gamut · "
+                  f"ΔE max {g['delta_e_max']} en {g['region_max']} ({g['teinte_a_risque']})")
+        else:
+            print(f"  gamut (heuristique) : chroma max {g['chroma_max']} · "
+                  f"{g['pct_chroma_elevee']}% très saturé ({g['teinte_a_risque']}) — fournir --profil-papier pour un soft-proof exact")
 
     if infos is not None:
         print("→ Carte de provenance (recto/verso)…")

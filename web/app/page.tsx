@@ -35,6 +35,15 @@ type PreviewWork = {
   dpEvidence?: string | null;
   wikidataUrl?: string | null;
   dir: string; // ex: "/renders/436965"
+  encadre?: string | null; // chemin réel du mockup encadré (nom dépend du 1er profil)
+  // Audit de fidélité colorimétrique (cf. agents/render/fidelity.py)
+  fidelite?: { verdict: string; deltaE: number; chroma: number; dominante: number } | null;
+  // Gestion couleur ICC (cf. agents/render/couleur.py)
+  couleur?: { espaceSource: string | null; convertiSrgb: boolean | null } | null;
+  gamut?: {
+    methode: string | null; teinteARisque: string | null; chromaMax: number | null;
+    pctChromaElevee: number | null; horsGamutPct: number | null; profilPapier: string | null;
+  } | null;
 };
 
 type Work = {
@@ -1045,7 +1054,8 @@ export default function App() {
           <>
             <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: "0 0 4px" }}>Aperçus</h1>
             <p className="body" style={{ color: "var(--ink2)", margin: "0 0 18px", fontSize: 14 }}>
-              Galeries générées par le moteur de rendu local (restauration + mockups + carte de provenance).
+              Galeries générées par le moteur de rendu local (préparation print fidèle + mockups + carte de provenance).
+              Chaque master passe l&apos;audit de fidélité colorimétrique vs l&apos;original du musée.
               {collection && collection.length > 0 ? ` ${collection.length} œuvre${collection.length > 1 ? "s" : ""}.` : ""}
             </p>
             {collection === null ? (
@@ -1059,7 +1069,7 @@ export default function App() {
             ) : (
               collection.map((w) => {
                 const imgs: [string, string][] = [
-                  ["catalogue/02_encadre_chene.jpg", "Encadré chêne"],
+                  [w.encadre || "catalogue/02_encadre_chene.jpg", "Encadré"],
                   ["lifestyle/galerie.jpg", "Scène galerie"],
                   ["lifestyle/scandinave.jpg", "Scène scandinave"],
                   ["lifestyle/atelier.jpg", "Scène atelier"],
@@ -1067,7 +1077,6 @@ export default function App() {
                   ["catalogue/03_detail.jpg", "Détail texture"],
                   ["catalogue/04_cadres.jpg", "Options cadres"],
                   ["catalogue/05_tailles.jpg", "Comparatif tailles"],
-                  ["avant_apres.jpg", "Avant / après"],
                   ["provenance_recto.png", "Provenance · recto"],
                   ["provenance_verso.png", "Provenance · verso"],
                 ];
@@ -1080,15 +1089,50 @@ export default function App() {
                           #{w.id} · {w.artist || "—"}{w.source ? ` · ${w.source}` : ""}
                         </div>
                       </div>
-                      {w.wikidataUrl && (
-                        <a href={w.wikidataUrl} target="_blank" rel="noreferrer" className="btn" style={{ textDecoration: "none", color: "var(--brass)", flexShrink: 0 }}>
-                          <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />Wikidata
-                        </a>
-                      )}
+                      <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
+                        {w.fidelite && (
+                          <span
+                            className="badge"
+                            title={`ΔE2000 ${w.fidelite.deltaE} · chroma ${Math.round(w.fidelite.chroma * 100)}% · dominante ${Math.round(w.fidelite.dominante * 100)}% (vs original musée)`}
+                            style={
+                              w.fidelite.verdict === "FIDÈLE"
+                                ? { background: "var(--sage-soft)", color: "var(--sage)" }
+                                : w.fidelite.verdict === "INFIDÈLE"
+                                ? { background: "var(--ox-soft)", color: "var(--ox)" }
+                                : { background: "var(--warn-soft)", color: "var(--brass)" }
+                            }
+                          >
+                            {w.fidelite.verdict === "FIDÈLE" ? "✓ FIDÈLE" : w.fidelite.verdict} · ΔE {w.fidelite.deltaE}
+                          </span>
+                        )}
+                        {w.wikidataUrl && (
+                          <a href={w.wikidataUrl} target="_blank" rel="noreferrer" className="btn" style={{ textDecoration: "none", color: "var(--brass)" }}>
+                            <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />Wikidata
+                          </a>
+                        )}
+                      </div>
                     </div>
                     {w.dpEvidence && (
                       <div className="body" style={{ fontSize: 12, lineHeight: 1.6, padding: 10, marginTop: 10, background: "var(--paper2)", borderLeft: "3px solid var(--sage)", borderRadius: "0 2px 2px 0" }}>
                         <ShieldCheck size={12} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />{w.dpEvidence}
+                      </div>
+                    )}
+                    {(w.couleur || w.gamut) && (
+                      <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", marginTop: 8, display: "flex", gap: 14, flexWrap: "wrap" }}>
+                        {w.couleur?.espaceSource && (
+                          <span>
+                            Couleur : {w.couleur.convertiSrgb ? `${w.couleur.espaceSource} → sRGB (ICC)` : "sRGB (livraison directe)"}
+                          </span>
+                        )}
+                        {w.gamut && (w.gamut.methode === "icc-softproof" ? (
+                          <span title="Soft-proof ICC — le RIP du POD fait le mapping final vers le papier">
+                            Soft-proof ICC : {w.gamut.horsGamutPct}% hors-gamut{w.gamut.profilPapier ? ` (${w.gamut.profilPapier})` : ""}
+                          </span>
+                        ) : (
+                          <span title="Pré-écran de chroma approximatif — PAS un vrai soft-proof. Fournir un profil papier pour une mesure ICC exacte ; le RIP du POD fait le mapping final.">
+                            Saturation (approx.) : zone la + saturée {w.gamut.teinteARisque} (C* {w.gamut.chromaMax}) · {w.gamut.pctChromaElevee}% très saturé
+                          </span>
+                        ))}
                       </div>
                     )}
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 10, marginTop: 14 }}>

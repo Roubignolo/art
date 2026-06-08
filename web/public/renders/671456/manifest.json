@@ -1,17 +1,16 @@
 {
-  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/671456",
+  "dossier": "web/public/renders/671456",
   "fichiers": {
-    "master": "/Users/jeromefiron/Dev/art/web/public/renders/671456/master_restaure.jpg",
-    "avant_apres": "/Users/jeromefiron/Dev/art/web/public/renders/671456/avant_apres.jpg",
-    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/671456/catalogue/01_poster_nu.jpg",
-    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/671456/catalogue/02_encadre_chene.jpg",
-    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/671456/catalogue/03_detail.jpg",
-    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/671456/catalogue/04_cadres.jpg",
-    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/671456/catalogue/05_tailles.jpg",
+    "master": "web/public/renders/671456/master_restaure.jpg",
+    "poster_nu": "web/public/renders/671456/catalogue/01_poster_nu.jpg",
+    "encadre": "web/public/renders/671456/catalogue/02_encadre_chene.jpg",
+    "detail": "web/public/renders/671456/catalogue/03_detail.jpg",
+    "options_cadres": "web/public/renders/671456/catalogue/04_cadres.jpg",
+    "comparatif": "web/public/renders/671456/catalogue/05_tailles.jpg",
     "lifestyle": [
-      "/Users/jeromefiron/Dev/art/web/public/renders/671456/lifestyle/galerie.jpg",
-      "/Users/jeromefiron/Dev/art/web/public/renders/671456/lifestyle/scandinave.jpg",
-      "/Users/jeromefiron/Dev/art/web/public/renders/671456/lifestyle/atelier.jpg"
+      "web/public/renders/671456/lifestyle/galerie.jpg",
+      "web/public/renders/671456/lifestyle/scandinave.jpg",
+      "web/public/renders/671456/lifestyle/atelier.jpg"
     ]
   },
   "restauration": {
@@ -20,8 +19,55 @@
     "largeur_apres": 2392,
     "hauteur_apres": 3873,
     "upscale_methode": "aucun",
-    "equilibrage_blancs": true,
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
     "debruitage": true,
-    "accentuation": true
+    "accentuation": true,
+    "box_rognage": [
+      1,
+      1,
+      2393,
+      3874
+    ],
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 0.43,
+    "delta_e_p95": 0.86,
+    "delta_e_max": 1.14,
+    "region_max": [
+      0.417,
+      0.948
+    ],
+    "chroma_ratio": 0.999,
+    "dominante_ratio": 0.999,
+    "derive_teinte_deg": 1.0,
+    "patchs_delaves": 0,
+    "n_patchs": 1440,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 0.4, chroma 100% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 42.1,
+    "chroma_p99": 36.0,
+    "pct_chroma_elevee": 0.0,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.717,
+      0.24
+    ],
+    "teinte_a_risque": "vert",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
   }
 }

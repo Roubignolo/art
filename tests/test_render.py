@@ -11,7 +11,7 @@ from PIL import Image  # noqa: E402
 from agents.render.frames import PROFILS, encadrer, ombre_portee  # noqa: E402
 from agents.render.mockup import comparatif_tailles, poster_nu  # noqa: E402
 from agents.render.perspective import coeffs_perspective, coeffs_vers_quad  # noqa: E402
-from agents.render.restoration import restaurer, rogner_bords  # noqa: E402
+from agents.render.restoration import box_bords, restaurer, rogner_bords  # noqa: E402
 
 
 def _image_test(w=120, h=90):
@@ -89,6 +89,13 @@ class TestRestauration(unittest.TestCase):
         out, rapport = restaurer(img, long_edge_cible=200)
         # déjà au-dessus de la cible → pas d'upscale
         self.assertEqual(rapport.upscale_methode, "aucun")
+
+    def test_image_degeneree_degrade_proprement(self):
+        # un côté de 1-2 px ne doit JAMAIS crasher (box_bords → None, pas d'IndexError)
+        for size in [(1, 1), (1, 5), (5, 1), (2, 2)]:
+            self.assertIsNone(box_bords(Image.new("RGB", size)))
+        out, _ = restaurer(Image.new("RGB", (1, 5)), long_edge_cible=20)
+        self.assertEqual(out.mode, "RGB")
 
 
 class TestMockups(unittest.TestCase):

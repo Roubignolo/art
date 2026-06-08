@@ -117,16 +117,16 @@ function assemblerDescription(work: WorkLite, ml: MarketingLocale, locale: strin
   lignes.push(fr ? "✦ IMPRESSION & FINITION" : "✦ PRINT & FINISH");
   lignes.push(
     fr
-      ? "Fichier restauré en haute résolution (nettoyage, colorimétrie fidèle). Impression à la demande sur papiers et supports de qualité galerie, production locale FR/UE (3-5 j ouvrés)."
-      : "High-resolution restored file (clean-up, faithful colour). Made to order on gallery-grade papers and supports, local EU production (3-5 business days).",
+      ? "Fichier haute résolution préparé avec soin : gestion colorimétrique (sRGB fidèle à l'original du musée), pas de retouche des couleurs de l'artiste. Impression à la demande sur papiers et supports de qualité galerie, production locale FR/UE (3-5 j ouvrés)."
+      : "High-resolution file carefully prepared: colour-managed (sRGB faithful to the museum original), the artist's colours left untouched. Made to order on gallery-grade papers and supports, local EU production (3-5 business days).",
   );
   lignes.push("");
 
   // Attribution obligatoire
   lignes.push(
     fr
-      ? "Œuvre du domaine public, sélectionnée et restaurée par Vellum & Cie (« sourced by », jamais « made by »). Nous vendons la curation, la restauration et l'impression — l'image, elle, appartient à tous."
-      : 'Public-domain work, selected and restored by Vellum & Cie ("sourced by," never "made by"). We sell curation, restoration and printing — the image itself belongs to everyone.',
+      ? "Œuvre du domaine public, sélectionnée et préparée pour l'impression par Vellum & Cie (« sourced by », jamais « made by »). Nous vendons la curation, la provenance documentée et un tirage fidèle — l'image, elle, appartient à tous."
+      : 'Public-domain work, selected and prepared for print by Vellum & Cie ("sourced by," never "made by"). We sell curation, documented provenance and a faithful print — the image itself belongs to everyone.',
   );
   return lignes.join("\n");
 }
@@ -162,8 +162,8 @@ export function construireListing(work: WorkLite, locale = "fr"): EtsyListingDra
 
   const materials =
     locale === "fr"
-      ? ["domaine public", "papier qualité galerie", "impression giclée", "restauration HD"]
-      : ["public domain", "gallery-grade paper", "giclée print", "HD restoration"];
+      ? ["domaine public", "papier qualité galerie", "impression giclée", "couleur fidèle"]
+      : ["public domain", "gallery-grade paper", "giclée print", "faithful colour"];
 
   return {
     locale,
@@ -188,14 +188,14 @@ export function construireListing(work: WorkLite, locale = "fr"): EtsyListingDra
     galerieHint: [
       "01 — tirage nu sur mur neutre",
       "02 — encadré chêne (vue principale)",
-      "03 — détail texture (restauration)",
+      "03 — détail texture (haute définition)",
       "04 — options de cadres",
       "05 — comparatif des tailles",
       "06 — scène lifestyle galerie",
       "07 — scène lifestyle scandinave",
       "08 — scène lifestyle atelier",
-      "09 — avant / après restauration",
-      "10 — carte de provenance",
+      "09 — carte de provenance (recto)",
+      "10 — carte de provenance (verso)",
     ],
     conformite: [
       'Attribution « sourced by » présente dans la description.',

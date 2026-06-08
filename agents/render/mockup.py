@@ -22,6 +22,8 @@ from typing import Dict, List, Optional, Tuple
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 from . import frames, scenes
+from .couleur import assurer_srgb, rapport_gamut, taguer_srgb
+from .fidelity import auditer_fidelite
 from .perspective import coeffs_vers_quad
 from .restoration import composer_avant_apres, restaurer
 from .typo import charger_police
@@ -212,8 +214,9 @@ def lifestyle(art: Image.Image, scene_nom: str, profil: Optional[str] = None,
 
 def _sauver(img: Image.Image, chemin: str, qualite: int = 90) -> str:
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
+    # Tague sRGB sur les fichiers livrés (consigne Gelato ; neutre pour Prodigi).
     if chemin.lower().endswith((".jpg", ".jpeg")):
-        img.convert("RGB").save(chemin, "JPEG", quality=qualite, optimize=True)
+        img.convert("RGB").save(chemin, "JPEG", quality=qualite, optimize=True, icc_profile=taguer_srgb())
     else:
         img.save(chemin)
     return chemin
@@ -227,23 +230,58 @@ def generer_galerie(
     scenes_choisies: Optional[List[str]] = None,
     long_edge_print: int = 4000,
     restauration: bool = True,
+    profil: str = "fidele",
+    profil_papier: Optional[str] = None,
 ) -> Dict:
-    """Génère la galerie complète et retourne un manifeste (chemins + métadonnées)."""
+    """Génère la galerie complète et retourne un manifeste (chemins + métadonnées).
+
+    Chaîne couleur : la source est ramenée en **sRGB** (gestion ICC) avant toute
+    chose, puis :
+      • audit de fidélité — master vs source recalée, en sRGB → verdict honnête ;
+      • soft-proof gamut — quelles couleurs profondes risquent l'écrêtage print.
+    L'avant/après n'est émis QUE si une vraie restauration couleur a eu lieu
+    (profil "archive") — en mode fidèle, il n'y a rien à « restaurer » à montrer.
+    """
     profils = profils or ["chene", "noir", "blanc"]
     scenes_choisies = scenes_choisies or ["galerie", "scandinave", "atelier"]
 
-    if restauration:
-        master, rapport = restaurer(source, long_edge_cible=long_edge_print)
-    else:
-        master, rapport = source.convert("RGB"), None
+    # Gestion couleur UNE seule fois : sRGB de livraison + provenance de l'espace
+    # source. Réutilisée pour la restauration ET la référence d'audit (pas de 2e
+    # conversion pleine résolution sur les sources à profil non-sRGB).
+    source_srgb, infos_icc = assurer_srgb(source)
+    couleur = {"espace_source": infos_icc["espace_source"], "converti_srgb": infos_icc["converti"]}
 
-    manifeste: Dict = {"dossier": dossier, "fichiers": {}, "restauration": asdict(rapport) if rapport else None}
+    if restauration:
+        master, rapport = restaurer(source_srgb, long_edge_cible=long_edge_print,
+                                    profil=profil, infos_couleur=infos_icc)
+    else:
+        master, rapport = source_srgb.convert("RGB"), None
+
+    manifeste: Dict = {
+        "dossier": dossier, "fichiers": {},
+        "restauration": asdict(rapport) if rapport else None,
+        "couleur": couleur,
+    }
+
+    # Audit de fidélité colorimétrique (garde-fou anti-délavage) — toujours, même
+    # en préparation print : si une étape « neutre » dérive, c'est un bug à voir.
+    # La référence est la source DÉJÀ color-managée en sRGB (mesure la VÉRITÉ, pas
+    # une co-mésinterprétation), recalée sur le recadrage du master.
+    ref = source_srgb
+    if rapport is not None and rapport.box_rognage:
+        ref = ref.crop(rapport.box_rognage)
+    fid = auditer_fidelite(ref, master)
+    manifeste["fidelite"] = fid.to_dict()
+
+    # Soft-proof gamut (informatif, jamais une correction).
+    manifeste["gamut"] = rapport_gamut(master, profil_papier=profil_papier)
 
     # master web (pour la galerie ; le print HD reste en mémoire/local séparé)
     web = _redim_long_edge(master, 2000)
     manifeste["fichiers"]["master"] = _sauver(web, f"{dossier}/master_restaure.jpg")
 
-    if restauration:
+    # Avant/après : honnête seulement quand on a réellement modifié la couleur.
+    if restauration and rapport is not None and rapport.deplace_teinte:
         manifeste["fichiers"]["avant_apres"] = _sauver(
             composer_avant_apres(source, master), f"{dossier}/avant_apres.jpg")
 

@@ -40,13 +40,36 @@ Options : `--profils chene,noir,blanc` · `--scenes galerie,scandinave,atelier`
 | `provenance_recto.png` / `provenance_verso.png` | carte A6 (insert physique) |
 | `manifest.json` | inventaire + rapport de restauration |
 
-## Pipeline de restauration
+## Pipeline de restauration — « fidélité d'abord »
+Voir [`docs/restauration-politique.md`](../../docs/restauration-politique.md).
+Un master de musée est **déjà** fidèle (mire + ICC) → on ne touche **pas** à la teinte.
+
+**Profil `fidele` (défaut)** — n'altère pas la couleur :
 1. **rognage** des bords (supprime le fond uni des scans de musée)
-2. **équilibrage des blancs** (gray-world)
-3. **autocontraste** doux (préserve hautes/basses lumières)
-4. **débruitage** préservant les bords
-5. **accentuation** (unsharp mask)
-6. **upscale** → Real-ESRGAN (Replicate si `REPLICATE_API_TOKEN`) sinon Lanczos
+2. **débruitage** léger préservant les bords
+3. **accentuation** (unsharp mask)
+4. **upscale** → Real-ESRGAN (Replicate si `REPLICATE_API_TOKEN`) sinon Lanczos
+
+**Profil `archive`** (opt-in, `--profil archive`) — scans NON calibrés / abîmés
+seulement : ajoute balance des blancs + autocontraste **bornés**, sur décision
+humaine. Jamais sur un fichier musée. `gray-world` global est proscrit.
+
+## Audit de fidélité (garde-fou automatique)
+Après chaque rendu, `fidelity.auditer_fidelite` compare le master à la source
+(vérité terrain) en CIELAB / ΔE2000 et émet **FIDÈLE / À REVOIR / INFIDÈLE**
+(inscrit au `manifest.json`, surfacé dans le cockpit). Détecte la dérive couleur,
+la neutralisation d'une dominante voulue (signature gray-world) et le délavage.
+Né de l'incident Cézanne : le gray-world délavait le bleu volontaire de la nappe.
+
+## Gestion couleur (ICC) — `couleur.py`
+La « correction » légitime, à l'inverse du gray-world : transporter fidèlement
+l'apparence vers l'espace imprimeur.
+- **`assurer_srgb`** : garantit le **sRGB** de livraison (Gelato/Prodigi). Si la source
+  porte un profil ≠ sRGB (Adobe RGB…), conversion ICC relatif-colorimétrique + BPC.
+  Fichiers livrés **tagués sRGB**. On ne pré-convertit PAS en CMYK : le RIP du POD mappe.
+- **`rapport_gamut`** : soft-proof **informatif** (jamais une correction). Avec
+  `--profil-papier <icc>` (Hahnemühle/Prodigi) → vrai soft-proof ICC (% hors-gamut) ;
+  sinon → pré-écran chroma approximatif. Aide au choix du papier (mat < baryté/toile).
 
 ## Bascule cloud (optionnelle)
 - `REPLICATE_API_TOKEN` → super-résolution Real-ESRGAN.
@@ -54,7 +77,8 @@ Options : `--profils chene,noir,blanc` · `--scenes galerie,scandinave,atelier`
   (templates + hero shots Flux Pro Kontext). Sans clés, ce moteur local fait tout.
 
 ## Architecture (modules)
-`perspective.py` (solveur 8×8 sans numpy) · `restoration.py` · `frames.py`
+`perspective.py` (solveur 8×8 sans numpy) · `restoration.py` · `couleur.py`
+(gestion ICC + soft-proof) · `fidelity.py` (audit ΔE2000) · `frames.py`
 (moulures à coupe d'onglet) · `scenes.py` (intérieurs procéduraux) · `mockup.py`
 (orchestrateur) · `provenance_card.py` (sceau + carte A6) · `typo.py` ·
 `brand_assets.py` · `cli.py`.

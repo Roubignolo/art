@@ -61,7 +61,12 @@ for rec in mod.iter_candidates(query, max_scan=80):
 
     dossier = os.path.join(OUT, str(oid))
     print(f"→ {(rec.get('title') or '')[:55]}  ({max(img.size)}px)")
-    generer_galerie(img, dossier, long_edge_print=MIN_RES)
+    manifeste = generer_galerie(img, dossier, long_edge_print=MIN_RES)
+    fid = manifeste.get("fidelite") or {}
+    couleur = manifeste.get("couleur") or {}
+    gam = manifeste.get("gamut") or {}
+    print(f"   fidélité : {fid.get('verdict')} (ΔE {fid.get('delta_e_moyen')}) · "
+          f"couleur : {couleur.get('espace_source')} · gamut : {gam.get('methode')}")
 
     infos = InfosProvenance(
         titre=rec.get("title") or "Sans titre",
@@ -83,6 +88,26 @@ for rec in mod.iter_candidates(query, max_scan=80):
         "dpEvidence": rec.get("dp_evidence"),
         "wikidataUrl": rec.get("wikidata_url"),
         "dir": f"/renders/{oid}",
+        # chemin réel du mockup encadré (nom dépend du 1er profil) — le front ne le devine pas
+        "encadre": os.path.relpath(manifeste["fichiers"]["encadre"], dossier),
+        "fidelite": {
+            "verdict": fid.get("verdict"),
+            "deltaE": fid.get("delta_e_moyen"),
+            "chroma": fid.get("chroma_ratio"),
+            "dominante": fid.get("dominante_ratio"),
+        } if fid else None,
+        "couleur": {
+            "espaceSource": couleur.get("espace_source"),
+            "convertiSrgb": couleur.get("converti_srgb"),
+        } if couleur else None,
+        "gamut": {
+            "methode": gam.get("methode"),
+            "teinteARisque": gam.get("teinte_a_risque"),
+            "chromaMax": gam.get("chroma_max"),
+            "pctChromaElevee": gam.get("pct_chroma_elevee"),
+            "horsGamutPct": gam.get("hors_gamut_pct"),
+            "profilPapier": gam.get("profil_papier"),
+        } if gam else None,
     })
     count += 1
 

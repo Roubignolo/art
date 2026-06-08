@@ -6,7 +6,26 @@
     "source": "Metropolitan Museum of Art, New York, NY",
     "dpEvidence": "UE ✓ : Vincent van Gogh † 1890 → domaine public depuis 1961 · US ✓ : œuvre 1889 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · accession 1993.132",
     "wikidataUrl": "https://www.wikidata.org/wiki/Q18689458",
-    "dir": "/renders/436535"
+    "dir": "/renders/436535",
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.57,
+      "chroma": 0.987,
+      "dominante": 0.983
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 49.5,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "encadre": "catalogue/02_encadre_chene.jpg"
   },
   {
     "id": 436965,
@@ -15,7 +34,26 @@
     "source": "The Metropolitan Museum of Art (Open Access, CC0)",
     "dpEvidence": "UE ✓ : Edouard Manet † 1883 → domaine public depuis 1954 · US ✓ : œuvre 1874 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911640 · accession 1976.201.14",
     "wikidataUrl": "https://www.wikidata.org/wiki/Q19911640",
-    "dir": "/renders/436965"
+    "dir": "/renders/436965",
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.39,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 31.8,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "encadre": "catalogue/02_encadre_chene.jpg"
   },
   {
     "id": 435882,
@@ -24,7 +62,26 @@
     "source": "The Metropolitan Museum of Art (Open Access, CC0)",
     "dpEvidence": "UE ✓ : Paul Cézanne † 1906 → domaine public depuis 1977 · US ✓ : œuvre 1885 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19904841 · accession 51.112.1",
     "wikidataUrl": "https://www.wikidata.org/wiki/Q19904841",
-    "dir": "/renders/435882"
+    "dir": "/renders/435882",
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 1.0,
+      "dominante": 0.998
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 65.2,
+      "pctChromaElevee": 0.3,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "encadre": "catalogue/02_encadre_chene.jpg"
   },
   {
     "id": 671456,
@@ -33,6 +90,25 @@
     "source": "The Metropolitan Museum of Art (Open Access, CC0)",
     "dpEvidence": "UE ✓ : Gustave Caillebotte † 1894 → domaine public depuis 1965 · US ✓ : œuvre 1893 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912216 · accession 2014.736",
     "wikidataUrl": "https://www.wikidata.org/wiki/Q19912216",
-    "dir": "/renders/671456"
+    "dir": "/renders/671456",
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.43,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 42.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "encadre": "catalogue/02_encadre_chene.jpg"
   }
 ]

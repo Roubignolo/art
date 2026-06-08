@@ -1,20 +1,29 @@
 """Restauration des masters — pipeline local (Pillow) + bascule Replicate.
 
-Objectif marque : transformer un scan d'institution (parfois plat, jauni,
-sous-contrasté) en un master print « valeur artistique considérable » qui
-justifie le positionnement premium ET sécurise juridiquement l'usage
-(cf. docs/brief-marque.md).
+POLITIQUE « FIDÉLITÉ D'ABORD » (cf. docs/restauration-politique.md)
+------------------------------------------------------------------
+Un master open-access de musée (Met, AIC, Cleveland, Rijks…) est DÉJÀ une
+reproduction colorimétriquement fidèle : il a été numérisé sous mire + profil
+ICC, selon les référentiels FADGI / Metamorfoze. Le « corriger » en couleur le
+DÉGRADE. Notre analyse a montré qu'un gray-world global effaçait ~75 % du
+parti-pris chromatique des peintres (la nappe bleue de Cézanne virait au blanc).
 
-Pipeline local (zéro clé) :
-  1. équilibrage des blancs (gray-world)
-  2. autocontraste doux (préserve les hautes/basses lumières)
-  3. débruitage léger préservant les bords
-  4. accentuation (unsharp mask)
-  5. upscale Lanczos vers la résolution print cible
+→ Profil « fidele » (DÉFAUT) = préparation print qui NE DÉPLACE PAS LA TEINTE :
+    1. rognage des bords de scan (liseré uni)         [neutre en couleur]
+    2. débruitage léger préservant les bords           [neutre en couleur]
+    3. accentuation (unsharp mask)                     [neutre en couleur]
+    4. upscale Lanczos / Real-ESRGAN vers la cible print
+
+→ Profil « archive » (OPT-IN, scans NON calibrés / abîmés seulement) = ajoute
+  une balance des blancs + un autocontraste BORNÉS. À n'activer que sur décision
+  humaine (jamais sur un fichier musée), et toujours contrôlé a posteriori par
+  agents.render.fidelity.auditer_fidelite (verdict FIDÈLE / À REVOIR / INFIDÈLE).
+
+La règle dure : on ne neutralise JAMAIS une dominante sur la moyenne de l'image
+(gray-world), ni un blanc PEINT (drapé, nappe = contenu, pas une mire).
 
 Bascule optionnelle : si REPLICATE_API_TOKEN est présent, l'upscale Lanczos
-est remplacé par un vrai super-résolution Real-ESRGAN (×2/×4). Sinon, on
-reste 100 % local et fonctionnel.
+est remplacé par un vrai super-résolution Real-ESRGAN (×2/×4).
 """
 
 from __future__ import annotations
@@ -26,6 +35,8 @@ from dataclasses import dataclass
 from typing import Optional, Tuple
 
 from PIL import Image, ImageChops, ImageFilter, ImageOps, ImageStat
+
+from .couleur import assurer_srgb
 
 try:  # requests est déjà une dépendance des connecteurs sourcing
     import requests
@@ -42,13 +53,23 @@ class RapportRestauration:
     largeur_apres: int
     hauteur_apres: int
     upscale_methode: str          # "aucun" | "lanczos" | "real-esrgan"
-    equilibrage_blancs: bool
+    profil: str                   # "fidele" (défaut) | "archive"
+    equilibrage_blancs: bool      # gray-world — False en mode fidèle
+    contraste: bool               # autocontraste — False en mode fidèle
     debruitage: bool
     accentuation: bool
+    box_rognage: Optional[Tuple[int, int, int, int]] = None  # recadrage appliqué (pour l'audit)
+    espace_source: str = "sRGB présumé (sans profil ICC)"    # profil ICC d'entrée détecté
+    converti_srgb: bool = False                              # une conversion ICC→sRGB a eu lieu
 
     @property
     def long_edge_apres(self) -> int:
         return max(self.largeur_apres, self.hauteur_apres)
+
+    @property
+    def deplace_teinte(self) -> bool:
+        """Vrai si une étape a pu modifier la couleur (→ audit de fidélité requis)."""
+        return self.equilibrage_blancs or self.contraste
 
 
 # ───────────────────────────── chargement ─────────────────────────────
@@ -68,16 +89,18 @@ def charger(source: str) -> Image.Image:
 
 # ───────────────────────── recadrage des bords ─────────────────────────
 
-def rogner_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18) -> Image.Image:
-    """Supprime un liseré uniforme (fond noir/blanc des scans de musée).
+def box_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18
+              ) -> Optional[Tuple[int, int, int, int]]:
+    """Boîte de rognage du liseré uniforme, ou None s'il n'y a rien à rogner.
 
-    Beaucoup d'institutions photographient l'œuvre sur un fond uni : le Met
-    renvoie par ex. un fond noir pur ``(1,1,1)``. On détecte la couleur des
-    coins, on isole le contenu (différence > ``tol``) et on rogne — sans jamais
-    couper plus de ``max_frac`` par côté (garde-fou anti-rognage d'œuvre sombre).
+    Détecte la couleur des coins (fond uni d'un scan de musée), isole le contenu
+    (différence > ``tol``) et borne à ``max_frac`` par côté. Exposée pour que
+    l'audit de fidélité puisse recaler l'original sur le master (même cadrage).
     """
     rgb = img.convert("RGB")
     w, h = rgb.size
+    if w < 3 or h < 3:
+        return None  # image dégénérée (1-2 px de côté) : rien à rogner, et getpixel hors limites
     coins = [rgb.getpixel((1, 1)), rgb.getpixel((w - 2, 1)),
              rgb.getpixel((1, h - 2)), rgb.getpixel((w - 2, h - 2))]
     # couleur de bord = médiane par canal des 4 coins
@@ -86,7 +109,7 @@ def rogner_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18) -> Ima
     masque = diff.point(lambda v: 255 if v > tol else 0)
     bbox = masque.getbbox()
     if not bbox:
-        return rgb
+        return None
     g, t, dr, b = bbox
     # garde-fous : ne jamais rogner plus de max_frac par côté
     g = min(g, int(w * max_frac))
@@ -94,8 +117,15 @@ def rogner_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18) -> Ima
     dr = max(dr, w - int(w * max_frac))
     b = max(b, h - int(h * max_frac))
     if (g, t, dr, b) == (0, 0, w, h):
-        return rgb
-    return rgb.crop((g, t, dr, b))
+        return None
+    return (g, t, dr, b)
+
+
+def rogner_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18) -> Image.Image:
+    """Supprime un liseré uniforme (fond noir/blanc des scans de musée)."""
+    rgb = img.convert("RGB")
+    box = box_bords(rgb, tol, max_frac)
+    return rgb.crop(box) if box else rgb
 
 
 # ───────────────────────── étapes colorimétriques ─────────────────────────
@@ -200,21 +230,48 @@ def restaurer(
     img: Image.Image,
     *,
     long_edge_cible: int = 4000,
+    profil: str = "fidele",
     rogner: bool = True,
-    equilibrage: bool = True,
     debruitage: bool = True,
     accentuation: bool = True,
     upscale: bool = True,
+    equilibrage: Optional[bool] = None,
+    contraste: Optional[bool] = None,
+    infos_couleur: Optional[dict] = None,
 ) -> Tuple[Image.Image, RapportRestauration]:
-    """Applique le pipeline complet et retourne (image_restaurée, rapport)."""
-    largeur_avant, hauteur_avant = img.size
-    out = img.convert("RGB")
+    """Applique le pipeline et retourne (image_restaurée, rapport).
 
-    if rogner:
-        out = rogner_bords(out)
+    ``profil`` :
+      • "fidele" (défaut) — aucune étape ne déplace la teinte (cf. docstring module).
+      • "archive" — ajoute balance des blancs + autocontraste bornés (scans abîmés
+        NON calibrés, sur décision humaine ; à valider via fidelity.auditer_fidelite).
+
+    ``equilibrage`` / ``contraste`` forcent explicitement ces étapes couleur ; si
+    None (défaut), elles découlent du profil (off en "fidele", on en "archive").
+    """
+    if equilibrage is None:
+        equilibrage = (profil == "archive")
+    if contraste is None:
+        contraste = (profil == "archive")
+
+    largeur_avant, hauteur_avant = img.size
+    # Étape 0 — gestion couleur : garantir le sRGB de livraison (gestion ICC).
+    # N'est PAS une correction esthétique : transporte fidèlement l'apparence
+    # dans l'espace attendu par les RIP Gelato/Prodigi. Si l'appelant a déjà géré
+    # la couleur (generer_galerie passe infos_couleur + une image déjà sRGB), on
+    # réutilise son résultat pour éviter une seconde conversion pleine résolution.
+    if infos_couleur is not None:
+        out, infos_icc = img.convert("RGB"), infos_couleur
+    else:
+        out, infos_icc = assurer_srgb(img)
+
+    box = box_bords(out) if rogner else None
+    if box:
+        out = out.crop(box)
     if equilibrage:
         out = equilibrer_blancs(out)
-    out = autocontraste(out)
+    if contraste:
+        out = autocontraste(out)
     if debruitage:
         out = debruiter_leger(out)
     if accentuation:
@@ -240,17 +297,25 @@ def restaurer(
         largeur_apres=largeur_apres,
         hauteur_apres=hauteur_apres,
         upscale_methode=methode,
+        profil=profil,
         equilibrage_blancs=equilibrage,
+        contraste=contraste,
         debruitage=debruitage,
         accentuation=accentuation,
+        box_rognage=box,
+        espace_source=infos_icc["espace_source"],
+        converti_srgb=infos_icc["converti"],
     )
     return out, rapport
 
 
 def composer_avant_apres(avant: Image.Image, apres: Image.Image, hauteur: int = 900) -> Image.Image:
-    """Visuel marketing « avant / après restauration » (split vertical net).
+    """Split avant/après — émis UNIQUEMENT en profil « archive », quand une vraie
+    correction couleur d'un défaut a eu lieu (scan non calibré/jauni).
 
-    Très performant sur Instagram/Pinterest (pilier différenciation restauration).
+    En profil « fidèle » il n'y a rien à « restaurer » → ce visuel n'est pas produit
+    (cf. docs/restauration-politique.md §2/§6). Ce n'est PAS un argument marketing
+    systématique de « restauration couleur ».
     """
     def _cadrer(im: Image.Image) -> Image.Image:
         im = im.convert("RGB")

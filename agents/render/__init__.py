@@ -19,12 +19,21 @@ from .mockup import (
     options_cadres,
     poster_nu,
 )
+from .couleur import assurer_srgb, rapport_gamut, srgb_icc_bytes, taguer_srgb
+from .fidelity import RapportFidelite, auditer_fidelite, formater_rapport
 from .provenance_card import InfosProvenance, generer_carte, recto, verso, sceau
 from .restoration import RapportRestauration, charger, composer_avant_apres, restaurer
 
 __all__ = [
     "restaurer",
     "RapportRestauration",
+    "auditer_fidelite",
+    "RapportFidelite",
+    "formater_rapport",
+    "assurer_srgb",
+    "rapport_gamut",
+    "srgb_icc_bytes",
+    "taguer_srgb",
     "charger",
     "composer_avant_apres",
     "generer_galerie",
