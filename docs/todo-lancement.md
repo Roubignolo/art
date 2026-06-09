@@ -69,8 +69,8 @@
 
 - ✅ **Catalogue source** : 60 œuvres curées, 100 % FIDÈLES, taguées (sujet/mouvement/palette) — [collection.json](../web/public/renders/collection.json).
 - ✅ **Chaîne couleur** : sRGB de livraison (ICC), audit de fidélité ΔE2000, soft-proof gamut — cf. [restauration-politique.md](restauration-politique.md).
-- ⏳ **Mise en page produit (ratios non standard)** : module de calcul passe-partout/bordure par œuvre + grille de tailles catalogue — cf. [decision-encadrement-tailles.md](decision-encadrement-tailles.md). **(en cours)**
-- ⏳ **Mockups = produit livré** : rendre le **vrai** passe-partout (Prodigi) / bordure fichier (Gelato), pas un cadre sur mesure.
+- ✅ **Mise en page produit (ratios non standard)** : module `agents/render/layout.py` (taille catalogue au ratio le plus proche + passe-partout/bordure asymétrique, jamais de crop) — cf. [decision-encadrement-tailles.md](decision-encadrement-tailles.md).
+- ✅ **Mockups = produit livré** : `frames.encadrer(ratio_cible=…)` rend le vrai passe-partout (Prodigi) / bordure fichier (Gelato) ; 60 mockups encadrés régénérés.
 - ⬜ Geler la **grille de tailles** définitive par ligne (après réponses mails §3.2/3.3).
 - ⬜ Générer les **fichiers print** finaux (Gelato : bordure intégrée au bon ratio · Prodigi : ratio exact + `fitPrintArea` + mount).
 
