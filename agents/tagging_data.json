@@ -113,6 +113,27 @@
     {"query": "coast fishing boats", "artiste": "Winslow Homer", "collection_attendue": ["Marine", "Réalisme"]},
     {"query": "windmill landscape", "artiste": "Jacob van Ruisdael", "collection_attendue": ["Paysage", "Âge d'or hollandais"]},
     {"query": "dancers ballet", "artiste": "Edgar Degas", "collection_attendue": ["Scène de genre", "Impressionnisme"]},
-    {"query": "garden landscape", "artiste": "Camille Pissarro", "collection_attendue": ["Paysage", "Impressionnisme"]}
+    {"query": "garden landscape", "artiste": "Camille Pissarro", "collection_attendue": ["Paysage", "Impressionnisme"]},
+    {"query": "roses", "artiste": "Pierre-Joseph Redouté", "collection_attendue": ["Botanique", "Floral", "Illustration naturaliste"]},
+    {"query": "heron birds", "artiste": "John James Audubon", "collection_attendue": ["Oiseaux & faune", "Illustration naturaliste"]},
+    {"query": "butterfly insects metamorphosis", "artiste": "Maria Sibylla Merian", "collection_attendue": ["Botanique", "Oiseaux & faune", "Illustration naturaliste"]},
+    {"query": "still life flowers", "artiste": "Jan Davidsz de Heem", "collection_attendue": ["Nature morte", "Floral", "Âge d'or hollandais"]},
+    {"query": "Venice canal", "artiste": "Joseph Mallord William Turner", "collection_attendue": ["Architecture & ville", "Marine", "Romantisme"]},
+    {"query": "Rouen cathedral", "artiste": "Claude Monet", "collection_attendue": ["Architecture & ville", "Impressionnisme"]},
+    {"query": "bathers", "artiste": "Pierre-Auguste Renoir", "collection_attendue": ["Nu", "Impressionnisme"]},
+    {"query": "horses racing", "artiste": "Edgar Degas", "collection_attendue": ["Animaux", "Scène de genre", "Impressionnisme"]},
+    {"query": "snow winter", "artiste": "Camille Pissarro", "collection_attendue": ["Paysage", "Impressionnisme"]},
+    {"query": "birds and flowers", "artiste": "Ohara Koson", "collection_attendue": ["Estampes japonaises", "Oiseaux & faune"]},
+    {"query": "moon night", "artiste": "Tsukioka Yoshitoshi", "collection_attendue": ["Estampes japonaises"]},
+    {"query": "flowers pastel", "artiste": "Odilon Redon", "collection_attendue": ["Floral", "Symbolisme"]},
+    {"query": "peasants gleaners", "artiste": "Jean-François Millet", "collection_attendue": ["Scène de genre", "École de Barbizon"]},
+    {"query": "forest trees", "artiste": "Camille Corot", "collection_attendue": ["Paysage", "École de Barbizon"]},
+    {"query": "river Seine", "artiste": "Alfred Sisley", "collection_attendue": ["Paysage", "Impressionnisme"]},
+    {"query": "boats regatta sea", "artiste": "Gustave Caillebotte", "collection_attendue": ["Marine", "Impressionnisme"]},
+    {"query": "self-portrait", "artiste": "Vincent van Gogh", "collection_attendue": ["Portrait", "Post-impressionnisme"]},
+    {"query": "tulips botanical", "artiste": null, "collection_attendue": ["Botanique", "Floral"]},
+    {"query": "constellations zodiac chart", "artiste": null, "collection_attendue": ["Cartes célestes & astronomie"]},
+    {"query": "Tahiti women", "artiste": "Paul Gauguin", "collection_attendue": ["Portrait", "Post-impressionnisme"]},
+    {"query": "harbor sunset", "artiste": "Joseph Mallord William Turner", "collection_attendue": ["Marine", "Romantisme"]}
   ]
 }

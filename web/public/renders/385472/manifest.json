@@ -1,0 +1,119 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/385472",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/385472/master_restaure.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/385472/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/385472/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/385472/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/385472/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/385472/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/385472/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/385472/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/385472/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 2466,
+    "hauteur_avant": 3407,
+    "largeur_apres": 2459,
+    "hauteur_apres": 3398,
+    "upscale_methode": "aucun",
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
+    "debruitage": true,
+    "accentuation": true,
+    "box_rognage": [
+      4,
+      0,
+      2463,
+      3398
+    ],
+    "espace_source": "sRGB présumé (sans profil ICC)",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB présumé (sans profil ICC)",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 0.23,
+    "delta_e_p95": 0.84,
+    "delta_e_max": 1.03,
+    "region_max": [
+      0.129,
+      0.094
+    ],
+    "chroma_ratio": 1.0,
+    "dominante_ratio": 1.0,
+    "derive_teinte_deg": 1.8,
+    "patchs_delaves": 8,
+    "n_patchs": 1680,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 0.2, chroma 100% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 11.1,
+    "chroma_p99": 10.1,
+    "pct_chroma_elevee": 0.0,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.843,
+      0.135
+    ],
+    "teinte_a_risque": "vert",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Oiseaux & faune"
+    ],
+    "mouvement": null,
+    "palette": [
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ],
+    "collections": [
+      "Oiseaux & faune",
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ],
+    "famille_dominante": "olive",
+    "familles": [
+      [
+        "olive",
+        0.671
+      ],
+      [
+        "doré",
+        0.329
+      ]
+    ],
+    "chaleur": 0.329,
+    "saturation": 3.9,
+    "clarte": 89.9,
+    "contraste": 8.4,
+    "swatches": [
+      "#eae5dd",
+      "#f1eeec",
+      "#f3f0ef",
+      "#edeae8",
+      "#cec4b6"
+    ]
+  }
+}

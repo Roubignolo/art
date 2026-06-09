@@ -14,6 +14,8 @@ Wikidata + moteur local). Aucune clé. Aucune invention : tout vient des musées
 
 import json
 import os
+import re
+import shutil
 import sys
 from collections import Counter
 
@@ -30,9 +32,43 @@ from agents.sources.base import finalize_record  # noqa: E402
 
 OUT = os.path.join(ROOT, "web", "public", "renders")
 MIN_RES = 3000
-N_PAR_REQUETE = int(sys.argv[1]) if len(sys.argv) > 1 else 2
-CAP = int(sys.argv[2]) if len(sys.argv) > 2 else 40
+N_PAR_REQUETE = int(sys.argv[1]) if len(sys.argv) > 1 else 3
+TARGET = int(sys.argv[2]) if len(sys.argv) > 2 else 60  # taille TOTALE visée pour la collection
 IDX = os.path.join(OUT, "collection.json")
+
+# Curation automatique : on ne garde que des œuvres MURALES 2D (pas d'objets 3D).
+_CLASSIF_2D = ("painting", "print", "drawing", "watercolor", "pastel", "miniature",
+               "woodblock", "etching", "engraving", "lithograph")
+
+
+def _est_2d(rec):
+    """Vrai si l'œuvre est une pièce murale plate (peinture/estampe/dessin), pas
+    un objet 3D (épée, céramique, globe-horloge…) qui ferait un mauvais wall art."""
+    classif = (rec.get("classification") or "").lower()
+    objn = (rec.get("object_name") or "").lower()
+    return (any(k in classif for k in _CLASSIF_2D)
+            or any(k in objn for k in ("print", "drawing", "watercolor", "painting")))
+
+
+def _norm_titre(titre):
+    """Titre normalisé pour le dédoublonnage (retire séries, parenthèses, casse)."""
+    t = (titre or "").lower()
+    t = re.split(r"\(|,|;| from the series| from the | also known as", t)[0]
+    return re.sub(r"[^a-z0-9 ]", "", t).strip()
+
+
+# Sujets dévotionnels religieux : hors-thème pour une marque de déco murale.
+_HORS_THEME = re.compile(
+    r"\b(madonna|virgin|crucifix|christ|saint|holy family|our lady|annunciation"
+    r"|nativity|baptism|apostle|gospel|jesus|piet[àa]|martyr|adoration of the|lamentation)\b",
+    re.I,
+)
+
+
+def _hors_theme(rec):
+    """Vrai si l'œuvre est un sujet dévotionnel religieux (écarté de la curation déco)."""
+    hay = (rec.get("title") or "") + " " + " ".join(rec.get("tags") or [])
+    return bool(_HORS_THEME.search(hay))
 
 
 def _charger_index():
@@ -122,26 +158,37 @@ def _enrichir_existants(by_id):
 
 def main():
     by_id = _charger_index()
-    print(f"Collection actuelle : {len(by_id)} œuvres · cible +{CAP} (≤{N_PAR_REQUETE}/requête)\n")
+    print(f"Collection actuelle : {len(by_id)} œuvres · cible TOTALE {TARGET} (≤{N_PAR_REQUETE}/requête)\n")
     _enrichir_existants(by_id)
     _sauver_index(by_id)
 
-    rendus = 0
+    seen_titres = {_norm_titre(c.get("title")) for c in by_id.values()}
+    debut = len(by_id)
     for req in tagging.REQUETES:
-        if rendus >= CAP:
+        if len(by_id) >= TARGET:
             break
         q = f"{req['artiste']} {req['query']}" if req.get("artiste") else req["query"]
         print(f"\n🔎 « {q} »  → attendu {req['collection_attendue']}")
         pris = 0
-        for rec in met.iter_candidates(q, max_scan=40):
-            if pris >= N_PAR_REQUETE or rendus >= CAP:
+        for rec in met.iter_candidates(q, max_scan=60):
+            if pris >= N_PAR_REQUETE or len(by_id) >= TARGET:
                 break
             if rec.get("decision") != "CANDIDAT" or not rec.get("image_url"):
                 continue
             oid = rec["objectID"]
             if oid in by_id:
-                pris += 1
-                continue
+                continue  # déjà rendu : ne compte PAS dans le quota NEW (on creuse plus loin)
+            # ── curation automatique (attention extrême) ──
+            if not _est_2d(rec):
+                continue  # objet 3D → mauvais wall art
+            if _hors_theme(rec):
+                continue  # sujet dévotionnel religieux → hors-thème déco
+            meta = tagging.tag_oeuvre(rec)  # sujet + mouvement (sans palette)
+            if not meta["sujet"] and not meta["mouvement"]:
+                continue  # incatégorisable / hors-thème
+            nt = _norm_titre(rec.get("title"))
+            if nt and nt in seen_titres:
+                continue  # doublon de la même œuvre
             try:
                 img = charger(rec["image_url"])
             except Exception as e:
@@ -160,6 +207,11 @@ def main():
             except Exception as e:
                 print(f"  ⤫ {oid} rendu KO ({e})")
                 continue
+            verdict = (manifeste.get("fidelite") or {}).get("verdict")
+            if verdict == "INFIDÈLE":  # garde-fou : jamais d'œuvre infidèle au catalogue
+                shutil.rmtree(dossier, ignore_errors=True)
+                print(f"  ⤫ {oid} écarté : audit INFIDÈLE")
+                continue
             pal = analyser_palette(Image.open(os.path.join(dossier, "master_restaure.jpg")).convert("RGB"))
             tags = tagging.tag_oeuvre(rec, pal["tags"])
             manifeste["tags"] = tags
@@ -171,15 +223,14 @@ def main():
             except Exception:
                 pass
             by_id[oid] = _entree_collection(oid, rec, manifeste, tags, pal)
+            seen_titres.add(nt)
             _sauver_index(by_id)  # incrémental : robuste à l'interruption
-            fid = (manifeste.get("fidelite") or {}).get("verdict")
-            print(f"  ✓ {oid} {rec.get('artist')} — {(rec.get('title') or '')[:38]} · "
-                  f"{tags['collections']} · {fid}")
+            print(f"  ✓ {oid} {rec.get('artist')} — {(rec.get('title') or '')[:36]} · "
+                  f"{tags['collections']} · {verdict}")
             pris += 1
-            rendus += 1
 
     _sauver_index(by_id)
-    print(f"\n✓ {rendus} œuvres ajoutées · {len(by_id)} au total dans la collection")
+    print(f"\n✓ {len(by_id) - debut} œuvres ajoutées · {len(by_id)} au total dans la collection")
     cnt = Counter()
     for c in by_id.values():
         for t in (c.get("tags") or {}).get("collections", []):

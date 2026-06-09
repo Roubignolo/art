@@ -1807,5 +1807,1690 @@
       "horsGamutPct": null,
       "profilPapier": null
     }
+  },
+  {
+    "id": 55236,
+    "title": "Fuji Seen from Kanaya on the Tōkaidō (Tōkaidō Kanaya no Fuji), from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei)",
+    "artist": "Katsushika Hokusai",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Katsushika Hokusai † 1849 → domaine public depuis 1920 · US ✓ : œuvre 1820 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q96146639 · accession JP1294",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q96146639",
+    "dir": "/renders/55236",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#546b73",
+        "#828e7d",
+        "#92a89b",
+        "#c0a786",
+        "#c8ba98"
+      ],
+      "famille": "olive",
+      "chaleur": 0.043
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 31.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 56727,
+    "title": "Kajikazawa in Kai Province (Kōshū Kajikazawa), from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei)",
+    "artist": "Katsushika Hokusai",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Katsushika Hokusai † 1849 → domaine public depuis 1920 · US ✓ : œuvre 1830 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP2581",
+    "wikidataUrl": "",
+    "dir": "/renders/56727",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Bleus profonds",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Bleus profonds",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Bleus profonds",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#dccbae",
+        "#4e7587",
+        "#bcbba6",
+        "#678f97",
+        "#93a39b"
+      ],
+      "famille": "bleu",
+      "chaleur": 0.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "violet",
+      "chromaMax": 22.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 39569,
+    "title": "Eighteen Songs of a Nomad Flute: The Story of Lady Wenji",
+    "artist": "Unidentified artist",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "US ✓ : œuvre 1400 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q78871177 · accession 1973.120.3",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q78871177",
+    "dir": "/renders/39569",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Portrait",
+        "Animaux"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Portrait",
+        "Animaux",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#725c47",
+        "#78644d",
+        "#8a7053",
+        "#5f5142",
+        "#9c7e5c"
+      ],
+      "famille": "olive",
+      "chaleur": 0.088
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.38,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB IEC61966-2.1",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 33.2,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436485,
+    "title": "Vanitas Still Life",
+    "artist": "Jacques de Gheyn II",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Jacques de Gheyn II † 1629 → domaine public depuis 1700 · US ✓ : œuvre 1603 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911453 · accession 1974.1",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911453",
+    "dir": "/renders/436485",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral",
+        "Nature morte"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Tons orangés",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Floral",
+        "Nature morte",
+        "Tons orangés",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons orangés",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#2a1d14",
+        "#1e1914",
+        "#392a1a",
+        "#342316",
+        "#2b2218"
+      ],
+      "famille": "doré",
+      "chaleur": 0.625
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.47,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 33.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436122,
+    "title": "The Collector of Prints",
+    "artist": "Edgar Degas",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Edgar Degas † 1917 → domaine public depuis 1988 · US ✓ : œuvre 1866 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911849 · accession 29.100.44",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911849",
+    "dir": "/renders/436122",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Portrait"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Portrait",
+        "Impressionnisme",
+        "Verts & nature",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#342a1e",
+        "#131210",
+        "#1a1714",
+        "#261d15",
+        "#564730"
+      ],
+      "famille": "olive",
+      "chaleur": 0.33
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.48,
+      "chroma": 0.999,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 34.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 828288,
+    "title": "Plate 131, Fritillaria Imperialis, from \"Les Liliacées\"",
+    "artist": "Pierre Joseph Redouté",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Pierre Joseph Redouté † 1840 → domaine public depuis 1911 · US ✓ : œuvre 1802 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2019.282.43",
+    "wikidataUrl": "",
+    "dir": "/renders/828288",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Floral",
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#f0ebdf",
+        "#f0ece1",
+        "#939d8a",
+        "#f2ede2",
+        "#efe9da"
+      ],
+      "famille": "vert",
+      "chaleur": 0.167
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.35,
+      "chroma": 0.998,
+      "dominante": 0.998
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 31.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 385472,
+    "title": "A Stag Beetle",
+    "artist": "Pierre Joseph Redouté",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Pierre Joseph Redouté † 1840 → domaine public depuis 1911 · US ✓ : œuvre 1770 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2008.436",
+    "wikidataUrl": "",
+    "dir": "/renders/385472",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Oiseaux & faune"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Oiseaux & faune",
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#eae5dd",
+        "#f1eeec",
+        "#f3f0ef",
+        "#edeae8",
+        "#cec4b6"
+      ],
+      "famille": "olive",
+      "chaleur": 0.329
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.23,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 11.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 366733,
+    "title": "A Poppy in Three Stages of Flowering, with a Caterpillar, Pupa and Butterfly",
+    "artist": "Johanna Helena Herolt (née Graff)",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Johanna Helena Herolt (née Graff) † 1723 → domaine public depuis 1794 · US ✓ : œuvre 1668 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2005.4",
+    "wikidataUrl": "",
+    "dir": "/renders/366733",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral",
+        "Botanique",
+        "Oiseaux & faune"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Floral",
+        "Botanique",
+        "Oiseaux & faune",
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#f3edea",
+        "#efe8e5",
+        "#e2dcd8",
+        "#b1ac9f",
+        "#e9e1dd"
+      ],
+      "famille": "vert",
+      "chaleur": 0.448
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.26,
+      "chroma": 0.999,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "orange",
+      "chromaMax": 41.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 337769,
+    "title": "Four Tulips:  Boter man (Butter Man), Joncker (Nobleman), Grote geplumaceerde (The Great Plumed One), and Voorwint (With the Wind)",
+    "artist": "Jacob Marrel",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Jacob Marrel † 1681 → domaine public depuis 1752 · US ✓ : œuvre 1635 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 68.66",
+    "wikidataUrl": "",
+    "dir": "/renders/337769",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral",
+        "Oiseaux & faune"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Floral",
+        "Oiseaux & faune",
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Sépia & neutres",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#ece0d0",
+        "#f1e7da",
+        "#c7a696",
+        "#f6ede2",
+        "#f4e9dc"
+      ],
+      "famille": "olive",
+      "chaleur": 0.379
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.24,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "orange",
+      "chromaMax": 44.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436636,
+    "title": "Still Life with a Glass and Oysters",
+    "artist": "Jan Davidsz de Heem",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Jan Davidsz de Heem † 1684 → domaine public depuis 1755 · US ✓ : œuvre 1635 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912043 · accession 71.78",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19912043",
+    "dir": "/renders/436636",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Nature morte"
+      ],
+      "mouvement": "Âge d'or hollandais",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Nature morte",
+        "Âge d'or hollandais",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#201c0f",
+        "#3b2814",
+        "#7c6137",
+        "#48371c",
+        "#634722"
+      ],
+      "famille": "olive",
+      "chaleur": 0.241
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.34,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 59.8,
+      "pctChromaElevee": 0.6,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437308,
+    "title": "Morning, An Overcast Day, Rouen",
+    "artist": "Camille Pissarro",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Camille Pissarro † 1903 → domaine public depuis 1974 · US ✓ : œuvre 1896 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19906270 · accession 1980.21.1",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19906270",
+    "dir": "/renders/437308",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Marine"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Marine",
+        "Impressionnisme",
+        "Verts & nature",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#66635e",
+        "#cdc9c5",
+        "#c2bdb6",
+        "#9e978c",
+        "#b6aa9c"
+      ],
+      "famille": "olive",
+      "chaleur": 0.267
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.49,
+      "chroma": 0.993,
+      "dominante": 0.994
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 19.5,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437432,
+    "title": "Tilla Durieux (Ottilie Godeffroy, 1880–1971)",
+    "artist": "Auguste Renoir",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Auguste Renoir † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1914 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q1321055 · accession 61.101.13",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q1321055",
+    "dir": "/renders/437432",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Portrait"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Tons orangés"
+      ],
+      "collections": [
+        "Portrait",
+        "Impressionnisme",
+        "Tons orangés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons orangés"
+      ],
+      "swatches": [
+        "#885741",
+        "#5f3f2f",
+        "#6f5540",
+        "#806b50",
+        "#b6977f"
+      ],
+      "famille": "doré",
+      "chaleur": 0.695
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.54,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 38.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 438011,
+    "title": "Eugène Murer (Hyacinthe-Eugène Meunier, 1841–1906)",
+    "artist": "Auguste Renoir",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Auguste Renoir † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1877 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912240 · accession 2003.20.9",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19912240",
+    "dir": "/renders/438011",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Portrait"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Portrait",
+        "Impressionnisme",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#0f1311",
+        "#756440",
+        "#957f5b",
+        "#2a2c29",
+        "#4f4030"
+      ],
+      "famille": "doré",
+      "chaleur": 0.445
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.39,
+      "chroma": 0.998,
+      "dominante": 0.998
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 47.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 438815,
+    "title": "Madame Georges Charpentier (Marguerite-Louise Lemonnier, 1848–1904) and Her Children, Georgette-Berthe (1872–1945) and Paul-Emile-Charles (1875–1895)",
+    "artist": "Auguste Renoir",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Auguste Renoir † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1878 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q686105 · accession 07.122",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q686105",
+    "dir": "/renders/438815",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Portrait",
+        "Animaux"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Portrait",
+        "Animaux",
+        "Impressionnisme",
+        "Verts & nature",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#272827",
+        "#6c624c",
+        "#484640",
+        "#644d3d",
+        "#86846f"
+      ],
+      "famille": "olive",
+      "chaleur": 0.169
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.48,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 31.6,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436162,
+    "title": "Sulking",
+    "artist": "Edgar Degas",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Edgar Degas † 1917 → domaine public depuis 1988 · US ✓ : œuvre 1870 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911700 · accession 29.100.43",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911700",
+    "dir": "/renders/436162",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Tons orangés"
+      ],
+      "collections": [
+        "Impressionnisme",
+        "Tons orangés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons orangés"
+      ],
+      "swatches": [
+        "#3d2417",
+        "#231b15",
+        "#5a3620",
+        "#837862",
+        "#5f4e3c"
+      ],
+      "famille": "doré",
+      "chaleur": 0.743
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.44,
+      "chroma": 0.999,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 32.5,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437307,
+    "title": "Poplars, Eragny",
+    "artist": "Camille Pissarro",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Camille Pissarro † 1903 → domaine public depuis 1974 · US ✓ : œuvre 1895 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q18629676 · accession 67.187.93",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q18629676",
+    "dir": "/renders/437307",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Paysage",
+        "Impressionnisme",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#4d522f",
+        "#9d9e63",
+        "#d9d5cd",
+        "#6a753c",
+        "#87804b"
+      ],
+      "famille": "vert",
+      "chaleur": 0.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.54,
+      "chroma": 0.973,
+      "dominante": 0.972
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "cyan",
+      "chromaMax": 54.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437314,
+    "title": "The Garden of the Tuileries on a Winter Afternoon",
+    "artist": "Camille Pissarro",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Camille Pissarro † 1903 → domaine public depuis 1974 · US ✓ : œuvre 1899 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911912 · accession 66.36",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911912",
+    "dir": "/renders/437314",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Paysage",
+        "Impressionnisme",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#d7cfc2",
+        "#685e46",
+        "#b29979",
+        "#868961",
+        "#cbbdab"
+      ],
+      "famille": "olive",
+      "chaleur": 0.032
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.43,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "cyan",
+      "chromaMax": 47.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436952,
+    "title": "The Funeral",
+    "artist": "Edouard Manet",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Edouard Manet † 1883 → domaine public depuis 1954 · US ✓ : œuvre 1867 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q2494850 · accession 10.36",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q2494850",
+    "dir": "/renders/436952",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Paysage",
+        "Impressionnisme",
+        "Verts & nature",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#21322d",
+        "#525541",
+        "#9ba19e",
+        "#6d766b",
+        "#2f4c41"
+      ],
+      "famille": "vert",
+      "chaleur": 0.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.4,
+      "chroma": 1.0,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 29.0,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 815478,
+    "title": "Murasaki Shikibu at Ishiyamadera Temple, based on the print “The Moon at Ishiyama,” from the series One Hundred Aspects of the Moon (Tsuki hyakushi: Ishiyama no tsuki)",
+    "artist": "Tsukioka Yoshitoshi",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Tsukioka Yoshitoshi † 1892 → domaine public depuis 1963 · US ✓ : œuvre 1891 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q78610361 · accession 2019.41",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q78610361",
+    "dir": "/renders/815478",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Cartes célestes & astronomie"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Cartes célestes & astronomie",
+        "Ukiyo-e",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#8b6d43",
+        "#89846a",
+        "#756847",
+        "#2d261b",
+        "#897857"
+      ],
+      "famille": "olive",
+      "chaleur": 0.01
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 31.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 815476,
+    "title": "The Spirit of the Deceased Yūgao Entwined in Moonflower Vines, based on the print “The Lady of the Evening Faces,” from the series One Hundred Aspects of the Moon (Tsuki hyakushi: Genji Yūgao no maki)",
+    "artist": "Tsukioka Yoshitoshi",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Tsukioka Yoshitoshi † 1892 → domaine public depuis 1963 · US ✓ : œuvre 1882 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q78610431 · accession 2019.40",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q78610431",
+    "dir": "/renders/815476",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Cartes célestes & astronomie",
+        "Portrait"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Cartes célestes & astronomie",
+        "Portrait",
+        "Ukiyo-e",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#8f7045",
+        "#8a7952",
+        "#7f714d",
+        "#877650",
+        "#56492e"
+      ],
+      "famille": "olive",
+      "chaleur": 0.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.35,
+      "chroma": 1.001,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 31.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437382,
+    "title": "Vase of Flowers (Pink Background)",
+    "artist": "Odilon Redon",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Odilon Redon † 1916 → domaine public depuis 1987 · US ✓ : œuvre 1901 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19905372 · accession 59.16.3",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19905372",
+    "dir": "/renders/437382",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral"
+      ],
+      "mouvement": "Symbolisme",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Floral",
+        "Symbolisme",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#c59d73",
+        "#d0b193",
+        "#866846",
+        "#c6a98a",
+        "#d0aa80"
+      ],
+      "famille": "olive",
+      "chaleur": 0.349
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.4,
+      "chroma": 0.996,
+      "dominante": 0.996
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 72.9,
+      "pctChromaElevee": 1.9,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437379,
+    "title": "Bouquet of Flowers",
+    "artist": "Odilon Redon",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Odilon Redon † 1916 → domaine public depuis 1987 · US ✓ : œuvre 1900 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19913963 · accession 56.50",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19913963",
+    "dir": "/renders/437379",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral",
+        "Nature morte"
+      ],
+      "mouvement": "Symbolisme",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Floral",
+        "Nature morte",
+        "Symbolisme",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#8e775f",
+        "#9c866c",
+        "#514c4f",
+        "#7f4737",
+        "#8c634c"
+      ],
+      "famille": "doré",
+      "chaleur": 0.577
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.4,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 67.8,
+      "pctChromaElevee": 0.7,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437381,
+    "title": "Etruscan Vase with Flowers",
+    "artist": "Odilon Redon",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Odilon Redon † 1916 → domaine public depuis 1987 · US ✓ : œuvre 1900 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912146 · accession 53.140.5",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19912146",
+    "dir": "/renders/437381",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral",
+        "Nature morte"
+      ],
+      "mouvement": "Symbolisme",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Floral",
+        "Nature morte",
+        "Symbolisme",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#6a573a",
+        "#403327",
+        "#7f6a40",
+        "#8d835a",
+        "#70664f"
+      ],
+      "famille": "olive",
+      "chaleur": 0.086
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.38,
+      "chroma": 0.996,
+      "dominante": 0.996
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 39.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437094,
+    "title": "Autumn Landscape with a Flock of Turkeys",
+    "artist": "Jean-François Millet",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Jean-François Millet † 1875 → domaine public depuis 1946 · US ✓ : œuvre 1872 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912159 · accession 17.120.209",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19912159",
+    "dir": "/renders/437094",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "École de Barbizon",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Paysage",
+        "École de Barbizon",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#797259",
+        "#4d401e",
+        "#372e18",
+        "#928e78",
+        "#5d4b20"
+      ],
+      "famille": "olive",
+      "chaleur": 0.003
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.39,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 40.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437097,
+    "title": "Haystacks: Autumn",
+    "artist": "Jean-François Millet",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Jean-François Millet † 1875 → domaine public depuis 1946 · US ✓ : œuvre 1869 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911604 · accession 60.71.12",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911604",
+    "dir": "/renders/437097",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "École de Barbizon",
+      "palette": [
+        "Verts & nature"
+      ],
+      "collections": [
+        "Paysage",
+        "École de Barbizon",
+        "Verts & nature"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature"
+      ],
+      "swatches": [
+        "#71664b",
+        "#5a4c30",
+        "#9a7b4b",
+        "#797763",
+        "#a69168"
+      ],
+      "famille": "olive",
+      "chaleur": 0.021
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.3,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 44.0,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437304,
+    "title": "Two Young Peasant Women",
+    "artist": "Camille Pissarro",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Camille Pissarro † 1903 → domaine public depuis 1974 · US ✓ : œuvre 1891 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19911649 · accession 1973.311.5",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19911649",
+    "dir": "/renders/437304",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "collections": [
+        "Impressionnisme",
+        "Verts & nature",
+        "Sépia & neutres"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Verts & nature",
+        "Sépia & neutres"
+      ],
+      "swatches": [
+        "#4b4641",
+        "#6b6e5f",
+        "#978c73",
+        "#ac9e82",
+        "#8a7663"
+      ],
+      "famille": "olive",
+      "chaleur": 0.208
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.44,
+      "chroma": 0.998,
+      "dominante": 0.998
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 32.8,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 436947,
+    "title": "Boating",
+    "artist": "Edouard Manet",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Edouard Manet † 1883 → domaine public depuis 1954 · US ✓ : œuvre 1874 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q15290965 · accession 29.100.115",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q15290965",
+    "dir": "/renders/436947",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Marine"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Bleus profonds"
+      ],
+      "collections": [
+        "Marine",
+        "Impressionnisme",
+        "Bleus profonds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Bleus profonds"
+      ],
+      "swatches": [
+        "#428182",
+        "#332e25",
+        "#74654f",
+        "#426160",
+        "#879888"
+      ],
+      "famille": "turquoise",
+      "chaleur": 0.108
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.41,
+      "chroma": 1.0,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 28.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437680,
+    "title": "The Bridge at Villeneuve-la-Garenne",
+    "artist": "Alfred Sisley",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Alfred Sisley † 1899 → domaine public depuis 1970 · US ✓ : œuvre 1872 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q6382435 · accession 64.287",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q6382435",
+    "dir": "/renders/437680",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Marine",
+        "Architecture & ville"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Bleus profonds"
+      ],
+      "collections": [
+        "Marine",
+        "Architecture & ville",
+        "Impressionnisme",
+        "Bleus profonds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Bleus profonds"
+      ],
+      "swatches": [
+        "#4d483e",
+        "#4f7892",
+        "#767c6b",
+        "#76898b",
+        "#9d9582"
+      ],
+      "famille": "bleu",
+      "chaleur": 0.057
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.45,
+      "chroma": 1.0,
+      "dominante": 1.005
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "cyan",
+      "chromaMax": 32.3,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
+  },
+  {
+    "id": 437683,
+    "title": "Sahurs Meadows in Morning Sun",
+    "artist": "Alfred Sisley",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Alfred Sisley † 1899 → domaine public depuis 1970 · US ✓ : œuvre 1894 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · Wikidata P6216 : public domain · réf. https://www.wikidata.org/wiki/Q19912603 · accession 1991.277.3",
+    "wikidataUrl": "https://www.wikidata.org/wiki/Q19912603",
+    "dir": "/renders/437683",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage"
+      ],
+      "mouvement": "Impressionnisme",
+      "palette": [
+        "Bleus profonds"
+      ],
+      "collections": [
+        "Paysage",
+        "Impressionnisme",
+        "Bleus profonds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Bleus profonds"
+      ],
+      "swatches": [
+        "#304437",
+        "#6f919f",
+        "#829fa6",
+        "#ab976e",
+        "#5d766e"
+      ],
+      "famille": "bleu",
+      "chaleur": 0.026
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 0.995,
+      "dominante": 0.99
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 35.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    }
   }
 ]
