@@ -60,6 +60,52 @@
 - ⬜ **Verre anti-reflet (moth-eye)** : disponible sur quelles zones d'expédition / tailles ?
 - ⬜ **Insert provenance** : confirmer prix (2£ / 0,50£ Pro) + format A6 + dépôt du PDF par commande via API.
 
+### 3.bis — Brouillons prêts à envoyer 📨
+
+**Canaux :**
+- **Prodigi** → email **`support@prodigi.com`** (technique/API) · `sales@prodigi.com` (commercial).
+- **Gelato** → **pas d'email public** : formulaire <https://www.gelato.com/contact> ou **chat live 24/7** du dashboard (le plus fiable une fois le compte créé). Coller le texte ci-dessous.
+
+*(Rédigés en anglais — langue du support des deux ; remplacer `[Nom / boutique]`.)*
+
+---
+
+**➤ GELATO** — *à coller dans le formulaire / chat. Objet : « Pre-onboarding — fine-art posters & framed prints, non-standard aspect ratios »*
+
+> Hi Gelato team,
+>
+> We're launching a print-on-demand art shop (public-domain museum reproductions) on Etsy, with Gelato as our default producer. Before finalizing our file pipeline, could you confirm a few technical points?
+>
+> 1. **Aspect-ratio handling (fit vs fill):** if an uploaded image's aspect ratio doesn't exactly match the product/size ratio, what does Gelato do by default — center-crop to fill, stretch, add a white border (fit/contain), or reject/warn? Can we force a "fit/contain, no crop" behaviour, and if so via the API or the editor? What is the exact attribute/field name?
+> 2. **Custom poster sizes:** what are the exact min and max width/height, and the step (1 cm? 1 mm?) for a custom-size poster? Is custom sizing available via the API (v4), or only via the editor?
+> 3. **Framed prints:** are framed sizes limited to the standard catalogue, or can frames follow custom poster sizes? Could you send the full list of framed sizes with their aspect ratios? Is there any passe-partout / mat option (configurable width/colour), or is the poster mounted edge-to-edge by the customer?
+> 4. **Templates / safe area:** do you provide per-product print templates with the exact safe area and bleed (poster, framed, canvas)?
+> 5. **White-label:** can the shipping sender, outer carton, label and packing slip be fully white-labelled (no Gelato branding), and under what plan (is Gelato+ required)? Can we include an A6 provenance insert card in the parcel via the API, and at what cost?
+>
+> Thanks a lot — happy to share more about our use case.
+> [Nom / boutique]
+
+---
+
+**➤ PRODIGI** — *email à `support@prodigi.com`. Objet : « Pre-onboarding API questions — framed fine-art prints (mounts, sizing, ICC profiles) »*
+
+> Hi Prodigi team,
+>
+> We're launching a print-on-demand art shop (public-domain museum reproductions) and plan to use Prodigi for our premium "signature" line (Hahnemühle fine art + real-wood framing). A few technical confirmations before we build our pipeline:
+>
+> 1. **Sizing / no-crop:** can you confirm that ordering with `sizing=fitPrintArea` preserves the image aspect ratio with no crop and no distortion (white space added as needed), while `fillPrintArea` (default) center-crops? We must never crop the artwork.
+> 2. **Mounts via API:** can we enable the mount (passe-partout) and choose its colour (snow white / black / hayseed) per order via the Print API? Are mat widths fixed per frame size (1"/1.5"/2"), or configurable?
+> 3. **Sizes:** could you send the full list of Classic and Box frame sizes with (a) outer/glazing size, (b) aspect ratio, and (c) the visible image size after the mount, for each? And confirm there is no true mm-level custom size.
+> 4. **PDF:** can you confirm a PDF upload is printed at the received size with no resizing (so we control the ratio entirely in the file)?
+> 5. **ICC profiles:** where can we download your printer/paper ICC profiles for Hahnemühle **Photo Rag** and **German Etching**, for accurate soft-proofing on our side?
+> 6. **Anti-reflective glazing (moth-eye):** which sizes / shipping regions support it?
+> 7. **Provenance insert:** can we include an A6 insert card per order via the API, and what's the cost (standard vs Prodigi Pro)?
+>
+> Thanks very much.
+> [Nom / boutique]
+
+---
+
 ### 3.4 Échantillons & QC 👤 🔴
 - ⬜ Commander un **sample order** par produit/ligne (Gelato encadré chêne + Prodigi fine art matté) à notre adresse.
 - ⬜ Vérifier : fidélité couleur vs soft-proof · qualité cadre/verre/mat · emballage neutre · packing slip white-label · délai réel.
