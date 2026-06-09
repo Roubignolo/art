@@ -1,0 +1,122 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/11114",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/11114/master_restaure.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/11114/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/11114/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/11114/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/11114/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/11114/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/11114/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/11114/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/11114/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 4000,
+    "hauteur_avant": 2380,
+    "largeur_apres": 3925,
+    "hauteur_apres": 2370,
+    "upscale_methode": "aucun",
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
+    "debruitage": true,
+    "accentuation": true,
+    "box_rognage": [
+      0,
+      0,
+      3925,
+      2370
+    ],
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 0.41,
+    "delta_e_p95": 0.71,
+    "delta_e_max": 0.97,
+    "region_max": [
+      0.677,
+      0.983
+    ],
+    "chroma_ratio": 1.0,
+    "dominante_ratio": 1.0,
+    "derive_teinte_deg": 1.1,
+    "patchs_delaves": 1,
+    "n_patchs": 1392,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 0.4, chroma 100% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 40.9,
+    "chroma_p99": 26.0,
+    "pct_chroma_elevee": 0.0,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.427,
+      0.948
+    ],
+    "teinte_a_risque": "vert",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Animaux"
+    ],
+    "mouvement": "Réalisme",
+    "palette": [
+      "Bleus profonds"
+    ],
+    "collections": [
+      "Animaux",
+      "Réalisme",
+      "Bleus profonds"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Bleus profonds"
+    ],
+    "famille_dominante": "bleu",
+    "familles": [
+      [
+        "bleu",
+        0.787
+      ],
+      [
+        "turquoise",
+        0.127
+      ],
+      [
+        "olive",
+        0.032
+      ],
+      [
+        "doré",
+        0.029
+      ]
+    ],
+    "chaleur": 0.04,
+    "saturation": 15.2,
+    "clarte": 52.4,
+    "contraste": 16.0,
+    "swatches": [
+      "#4d8085",
+      "#32646d",
+      "#3e6c72",
+      "#699394",
+      "#ebe4d8"
+    ]
+  }
+}

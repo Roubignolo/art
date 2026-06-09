@@ -44,6 +44,9 @@ type PreviewWork = {
     methode: string | null; teinteARisque: string | null; chromaMax: number | null;
     pctChromaElevee: number | null; horsGamutPct: number | null; profilPapier: string | null;
   } | null;
+  // Collections (cf. agents/tagging.py + agents/render/palette.py)
+  tags?: { sujet: string[]; mouvement: string | null; palette: string[]; collections: string[] } | null;
+  palette?: { tags: string[]; swatches: string[]; famille: string; chaleur: number } | null;
 };
 
 type Work = {
@@ -183,6 +186,7 @@ export default function App() {
   const [listing, setListing] = useState<ListingResult | null>(null);
   const [busyListing, setBusyListing] = useState(false);
   const [collection, setCollection] = useState<PreviewWork[] | null>(null);
+  const [collFiltre, setCollFiltre] = useState<string | null>(null);
 
   const reload = useCallback(async () => {
     try {
@@ -1066,8 +1070,43 @@ export default function App() {
                   Aucun aperçu généré. Lance <code>python scripts/build_previews.py met &quot;Monet&quot; 4</code> puis commit/push.
                 </div>
               </div>
-            ) : (
-              collection.map((w) => {
+            ) : (() => {
+              const compteur = (sel: (w: PreviewWork) => string[]) => {
+                const m = new Map<string, number>();
+                for (const w of collection) for (const t of sel(w)) m.set(t, (m.get(t) || 0) + 1);
+                return [...m.entries()].sort((a, b) => b[1] - a[1]);
+              };
+              const axes: [string, [string, number][]][] = [
+                ["Sujet", compteur((w) => w.tags?.sujet ?? [])],
+                ["Mouvement", compteur((w) => (w.tags?.mouvement ? [w.tags.mouvement] : []))],
+                ["Palette", compteur((w) => w.palette?.tags ?? [])],
+              ];
+              const visibles = collFiltre
+                ? collection.filter((w) => (w.tags?.collections ?? []).includes(collFiltre))
+                : collection;
+              return (
+                <>
+                  <div className="cd" style={{ padding: 14, marginBottom: 18 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                      <span className="mono" style={{ fontSize: 10, letterSpacing: ".08em", color: "var(--ink2)" }}>COLLECTIONS</span>
+                      {collFiltre && (
+                        <button className="btn btn-ghost" onClick={() => setCollFiltre(null)} style={{ fontSize: 10 }}>
+                          ✕ {collFiltre} ({visibles.length} œuvre{visibles.length > 1 ? "s" : ""})
+                        </button>
+                      )}
+                    </div>
+                    {axes.map(([axe, tags]) => tags.length ? (
+                      <div key={axe} style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
+                        <span className="mono" style={{ fontSize: 9, color: "var(--ink3)", width: 78, flexShrink: 0 }}>{axe}</span>
+                        {tags.map(([t, n]) => (
+                          <button key={t} className={"tab " + (t === collFiltre ? "on" : "")} onClick={() => setCollFiltre(t === collFiltre ? null : t)}>
+                            {t} <span style={{ opacity: 0.55 }}>{n}</span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : null)}
+                  </div>
+                  {visibles.map((w) => {
                 const imgs: [string, string][] = [
                   [w.encadre || "catalogue/02_encadre_chene.jpg", "Encadré"],
                   ["lifestyle/galerie.jpg", "Scène galerie"],
@@ -1135,6 +1174,27 @@ export default function App() {
                         ))}
                       </div>
                     )}
+                    {((w.tags?.collections?.length ?? 0) > 0 || (w.palette?.swatches?.length ?? 0) > 0) && (
+                      <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                        {w.palette?.swatches?.length ? (
+                          <div style={{ display: "flex", borderRadius: 3, overflow: "hidden", border: "1px solid var(--line)" }} title={`Palette — ${w.palette.famille}`}>
+                            {w.palette.swatches.slice(0, 5).map((hex, i) => (
+                              <span key={i} title={hex} style={{ width: 20, height: 20, background: hex, display: "inline-block" }} />
+                            ))}
+                          </div>
+                        ) : null}
+                        {(w.tags?.collections ?? []).map((t) => (
+                          <button
+                            key={t}
+                            className="mtag"
+                            onClick={() => setCollFiltre(t === collFiltre ? null : t)}
+                            style={{ cursor: "pointer", border: t === collFiltre ? "1px solid var(--brass)" : "1px solid var(--line)", color: t === collFiltre ? "var(--brass)" : "var(--ink2)" }}
+                          >
+                            {t}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 10, marginTop: 14 }}>
                       {imgs.map(([file, label]) => (
                         <a key={file} href={`${w.dir}/${file}`} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
@@ -1146,8 +1206,10 @@ export default function App() {
                     </div>
                   </div>
                 );
-              })
-            )}
+              })}
+                </>
+              );
+            })()}
           </>
         )}
 

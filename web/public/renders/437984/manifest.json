@@ -1,0 +1,124 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/437984",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/437984/master_restaure.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/437984/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/437984/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/437984/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/437984/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/437984/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/437984/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/437984/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/437984/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 3177,
+    "hauteur_avant": 4000,
+    "largeur_apres": 3111,
+    "hauteur_apres": 3882,
+    "upscale_methode": "aucun",
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
+    "debruitage": true,
+    "accentuation": true,
+    "box_rognage": [
+      30,
+      59,
+      3141,
+      3941
+    ],
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 0.39,
+    "delta_e_p95": 0.86,
+    "delta_e_max": 1.28,
+    "region_max": [
+      0.592,
+      0.115
+    ],
+    "chroma_ratio": 0.989,
+    "dominante_ratio": 0.989,
+    "derive_teinte_deg": 0.6,
+    "patchs_delaves": 0,
+    "n_patchs": 1824,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 0.4, chroma 99% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 55.9,
+    "chroma_p99": 53.1,
+    "pct_chroma_elevee": 0.1,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.039,
+      0.698
+    ],
+    "teinte_a_risque": "jaune",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Floral",
+      "Portrait"
+    ],
+    "mouvement": "Post-impressionnisme",
+    "palette": [
+      "Verts & nature"
+    ],
+    "collections": [
+      "Floral",
+      "Portrait",
+      "Post-impressionnisme",
+      "Verts & nature"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Verts & nature"
+    ],
+    "famille_dominante": "vert",
+    "familles": [
+      [
+        "vert",
+        0.556
+      ],
+      [
+        "orange",
+        0.16
+      ],
+      [
+        "doré",
+        0.121
+      ],
+      [
+        "olive",
+        0.116
+      ]
+    ],
+    "chaleur": 0.282,
+    "saturation": 24.1,
+    "clarte": 26.3,
+    "contraste": 12.4,
+    "swatches": [
+      "#112418",
+      "#272817",
+      "#38643b",
+      "#662317",
+      "#5e7b57"
+    ]
+  }
+}

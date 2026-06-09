@@ -69,5 +69,54 @@
     "teinte_a_risque": "jaune",
     "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
     "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Paysage"
+    ],
+    "mouvement": "Impressionnisme",
+    "palette": [
+      "Verts & nature"
+    ],
+    "collections": [
+      "Paysage",
+      "Impressionnisme",
+      "Verts & nature"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Verts & nature"
+    ],
+    "famille_dominante": "vert",
+    "familles": [
+      [
+        "vert",
+        0.846
+      ],
+      [
+        "olive",
+        0.078
+      ],
+      [
+        "turquoise",
+        0.039
+      ],
+      [
+        "doré",
+        0.021
+      ]
+    ],
+    "chaleur": 0.021,
+    "saturation": 16.3,
+    "clarte": 39.1,
+    "contraste": 10.2,
+    "swatches": [
+      "#434f3a",
+      "#4b654b",
+      "#334837",
+      "#5b7258",
+      "#55533d"
+    ]
   }
 }

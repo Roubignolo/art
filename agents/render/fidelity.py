@@ -52,6 +52,12 @@ SEUIL_DOMINANTE_RATIO_REVOIR = 0.88
 SEUIL_DOMINANTE_RATIO_INFIDELE = 0.80
 # Un patch « délavé » a perdu plus de ce % de sa chroma.
 SEUIL_PERTE_CHROMA_PATCH = 0.25
+# Le ratio de chroma seul est instable sur les œuvres peu colorées (gravure, sépia) :
+# un infime écart absolu y produit un grand écart de ratio. On n'escalade sur la
+# chroma que si la PERTE ABSOLUE moyenne de C* est significative — un vrai délavage
+# perd 4-6 unités (Manet/Caillebotte), une gravure fidèle perd ~1. Robuste sans
+# dépendre d'un seuil de chroma absolue ajusté sur une seule œuvre.
+SEUIL_PERTE_CHROMA_ABS = 2.0
 # Marge ignorée sur chaque bord avant comparaison (absorbe le bord de scan rogné).
 MARGE_IGNOREE = 0.03
 
@@ -279,6 +285,9 @@ def auditer_fidelite(original: Image.Image, traite: Image.Image, *,
     dom_tr = math.hypot(sum_a_tr / n, sum_b_tr / n)
     dominante_ratio = (dom_tr / dom_or) if dom_or > 0.5 else 1.0
     derive_teinte = (sum_hue / poids_hue) if poids_hue > 0 else 0.0
+    # Perte absolue moyenne de chroma (garde-fou contre les faux positifs de ratio
+    # sur les œuvres peu colorées).
+    perte_chroma_abs = (sum_c_or - sum_c_tr) / n
 
     # ── verdict ──
     raisons: List[str] = []
@@ -299,10 +308,14 @@ def auditer_fidelite(original: Image.Image, traite: Image.Image, *,
     if worst[0] > SEUIL_DELTA_E_MAX:
         _aggraver("À REVOIR")
         raisons.append(f"patch à ΔE {worst[0]:.1f} en ({worst[1][0]:.2f},{worst[1][1]:.2f})")
-    if chroma_ratio < SEUIL_CHROMA_RATIO_INFIDELE:
-        _aggraver("INFIDÈLE"); raisons.append(f"chroma délavée à {chroma_ratio*100:.0f}% de l'original")
-    elif chroma_ratio < SEUIL_CHROMA_RATIO_REVOIR:
-        _aggraver("À REVOIR"); raisons.append(f"chroma réduite à {chroma_ratio*100:.0f}%")
+    # Délavage de chroma : seulement si la perte ABSOLUE est significative (évite
+    # les faux positifs sur gravures/sépia où le ratio bouge sans enjeu visible).
+    if perte_chroma_abs >= SEUIL_PERTE_CHROMA_ABS:
+        if chroma_ratio < SEUIL_CHROMA_RATIO_INFIDELE:
+            _aggraver("INFIDÈLE"); raisons.append(f"chroma délavée à {chroma_ratio*100:.0f}% de l'original")
+        elif chroma_ratio < SEUIL_CHROMA_RATIO_REVOIR:
+            _aggraver("À REVOIR"); raisons.append(f"chroma réduite à {chroma_ratio*100:.0f}%")
+    # Neutralisation d'une dominante (gray-world) : dom_or>0.5 garde déjà les neutres.
     if dominante_ratio < SEUIL_DOMINANTE_RATIO_INFIDELE:
         _aggraver("INFIDÈLE")
         raisons.append(f"dominante chromatique neutralisée ({dominante_ratio*100:.0f}% conservée — signature gray-world)")

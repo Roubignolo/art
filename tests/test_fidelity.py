@@ -115,6 +115,30 @@ class TestAudit(unittest.TestCase):
         rep = auditer_fidelite(_toile_froide(), _toile_froide())
         self.assertEqual(rep.methode, "ciede2000")  # pas « ciede76 » par défaut
 
+    def test_oeuvre_peu_coloree_pas_de_faux_positif_chroma(self):
+        # œuvre peu colorée (gravure/sépia) à couleurs équilibrées (cast global nul) :
+        # même une grosse chute du RATIO de chroma ne doit pas alerter tant que la
+        # PERTE ABSOLUE est faible (le cas Dürer « globe céleste »).
+        from PIL import ImageOps
+        base = Image.new("RGB", (160, 120))
+        px = base.load()
+        for y in range(120):
+            for x in range(160):
+                px[x, y] = (150, 142, 136) if x < 80 else (136, 142, 150)  # chaud|froid → cast ≈ 0
+        delave = Image.blend(base, ImageOps.grayscale(base).convert("RGB"), 0.3)
+        rep = auditer_fidelite(base, delave)
+        self.assertLess(rep.chroma_ratio, 0.85)    # ratio en forte baisse…
+        self.assertGreater(rep.dominante_ratio, 0.9)  # …mais dominante intacte
+        self.assertEqual(rep.verdict, "FIDÈLE")    # perte absolue faible → pas de faux positif
+
+    def test_delavage_franc_reste_detecte(self):
+        # contrôle : un délavage à forte perte absolue est bien capté (non régressé).
+        from PIL import ImageOps
+        base = _toile_froide()
+        delave = Image.blend(base, ImageOps.grayscale(base).convert("RGB"), 0.6)
+        rep = auditer_fidelite(base, delave)
+        self.assertNotEqual(rep.verdict, "FIDÈLE")
+
 
 if __name__ == "__main__":
     unittest.main()

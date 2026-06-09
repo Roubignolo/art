@@ -1,0 +1,129 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/53449",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/53449/master_restaure.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/53449/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/53449/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/53449/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/53449/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/53449/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/53449/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/53449/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/53449/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 3002,
+    "hauteur_avant": 4000,
+    "largeur_apres": 2979,
+    "hauteur_apres": 3992,
+    "upscale_methode": "aucun",
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
+    "debruitage": true,
+    "accentuation": true,
+    "box_rognage": [
+      0,
+      0,
+      2979,
+      3992
+    ],
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB.icc",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 0.45,
+    "delta_e_p95": 0.98,
+    "delta_e_max": 1.38,
+    "region_max": [
+      0.014,
+      0.198
+    ],
+    "chroma_ratio": 0.998,
+    "dominante_ratio": 0.996,
+    "derive_teinte_deg": 1.4,
+    "patchs_delaves": 21,
+    "n_patchs": 1728,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 0.5, chroma 100% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 46.2,
+    "chroma_p99": 26.3,
+    "pct_chroma_elevee": 0.0,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.875,
+      0.26
+    ],
+    "teinte_a_risque": "jaune",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Paysage",
+      "Estampes japonaises",
+      "Cartes célestes & astronomie"
+    ],
+    "mouvement": "Ukiyo-e",
+    "palette": [
+      "Bleus profonds",
+      "Sépia & neutres"
+    ],
+    "collections": [
+      "Paysage",
+      "Estampes japonaises",
+      "Cartes célestes & astronomie",
+      "Ukiyo-e",
+      "Bleus profonds",
+      "Sépia & neutres"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Bleus profonds",
+      "Sépia & neutres"
+    ],
+    "famille_dominante": "bleu",
+    "familles": [
+      [
+        "bleu",
+        0.669
+      ],
+      [
+        "olive",
+        0.223
+      ],
+      [
+        "turquoise",
+        0.038
+      ],
+      [
+        "orange",
+        0.036
+      ]
+    ],
+    "chaleur": 0.043,
+    "saturation": 10.8,
+    "clarte": 57.1,
+    "contraste": 24.4,
+    "swatches": [
+      "#414547",
+      "#66999e",
+      "#fcf6ea",
+      "#6d665e",
+      "#44666a"
+    ]
+  }
+}

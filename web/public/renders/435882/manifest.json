@@ -69,5 +69,54 @@
     "teinte_a_risque": "vert",
     "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
     "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Nature morte"
+    ],
+    "mouvement": "Post-impressionnisme",
+    "palette": [
+      "Bleus profonds"
+    ],
+    "collections": [
+      "Nature morte",
+      "Post-impressionnisme",
+      "Bleus profonds"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Bleus profonds"
+    ],
+    "famille_dominante": "turquoise",
+    "familles": [
+      [
+        "turquoise",
+        0.429
+      ],
+      [
+        "bleu",
+        0.269
+      ],
+      [
+        "olive",
+        0.111
+      ],
+      [
+        "vert",
+        0.079
+      ]
+    ],
+    "chaleur": 0.088,
+    "saturation": 15.4,
+    "clarte": 48.3,
+    "contraste": 19.8,
+    "swatches": [
+      "#5d918e",
+      "#263132",
+      "#c1d0c7",
+      "#746d54",
+      "#375d5f"
+    ]
   }
 }

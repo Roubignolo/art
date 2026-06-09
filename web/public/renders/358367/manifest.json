@@ -1,0 +1,120 @@
+{
+  "dossier": "/Users/jeromefiron/Dev/art/web/public/renders/358367",
+  "fichiers": {
+    "master": "/Users/jeromefiron/Dev/art/web/public/renders/358367/master_restaure.jpg",
+    "poster_nu": "/Users/jeromefiron/Dev/art/web/public/renders/358367/catalogue/01_poster_nu.jpg",
+    "encadre": "/Users/jeromefiron/Dev/art/web/public/renders/358367/catalogue/02_encadre_chene.jpg",
+    "detail": "/Users/jeromefiron/Dev/art/web/public/renders/358367/catalogue/03_detail.jpg",
+    "options_cadres": "/Users/jeromefiron/Dev/art/web/public/renders/358367/catalogue/04_cadres.jpg",
+    "comparatif": "/Users/jeromefiron/Dev/art/web/public/renders/358367/catalogue/05_tailles.jpg",
+    "lifestyle": [
+      "/Users/jeromefiron/Dev/art/web/public/renders/358367/lifestyle/galerie.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/358367/lifestyle/scandinave.jpg",
+      "/Users/jeromefiron/Dev/art/web/public/renders/358367/lifestyle/atelier.jpg"
+    ]
+  },
+  "restauration": {
+    "largeur_avant": 2845,
+    "hauteur_avant": 3774,
+    "largeur_apres": 2845,
+    "hauteur_apres": 3773,
+    "upscale_methode": "aucun",
+    "profil": "fidele",
+    "equilibrage_blancs": false,
+    "contraste": false,
+    "debruitage": true,
+    "accentuation": true,
+    "box_rognage": [
+      0,
+      1,
+      2845,
+      3774
+    ],
+    "espace_source": "sRGB présumé (sans profil ICC)",
+    "converti_srgb": false
+  },
+  "couleur": {
+    "espace_source": "sRGB présumé (sans profil ICC)",
+    "converti_srgb": false
+  },
+  "fidelite": {
+    "delta_e_moyen": 1.25,
+    "delta_e_p95": 3.47,
+    "delta_e_max": 4.74,
+    "region_max": [
+      0.625,
+      0.302
+    ],
+    "chroma_ratio": 0.908,
+    "dominante_ratio": 0.908,
+    "derive_teinte_deg": 2.0,
+    "patchs_delaves": 266,
+    "n_patchs": 1728,
+    "methode": "ciede2000",
+    "verdict": "FIDÈLE",
+    "raisons": [
+      "ΔE moyen 1.2, chroma 91% — conforme"
+    ]
+  },
+  "gamut": {
+    "methode": "heuristique-chroma",
+    "chroma_max": 17.9,
+    "chroma_p99": 15.8,
+    "pct_chroma_elevee": 0.0,
+    "seuil_chroma": 55.0,
+    "region_max": [
+      0.097,
+      0.99
+    ],
+    "teinte_a_risque": "vert",
+    "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
+    "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "tags": {
+    "sujet": [
+      "Cartes célestes & astronomie"
+    ],
+    "mouvement": "Illustration naturaliste",
+    "palette": [
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ],
+    "collections": [
+      "Cartes célestes & astronomie",
+      "Illustration naturaliste",
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ]
+  },
+  "palette": {
+    "tags": [
+      "Tons dorés",
+      "Sépia & neutres",
+      "Camaïeu pastel"
+    ],
+    "famille_dominante": "olive",
+    "familles": [
+      [
+        "olive",
+        0.998
+      ],
+      [
+        "vert",
+        0.002
+      ]
+    ],
+    "chaleur": 0.0,
+    "saturation": 11.4,
+    "clarte": 86.2,
+    "contraste": 7.5,
+    "swatches": [
+      "#e2d9c3",
+      "#b1aca1",
+      "#eee4cb",
+      "#f6ead1",
+      "#fbeed7"
+    ]
+  }
+}
