@@ -77,31 +77,35 @@
     ],
     "mouvement": "Ukiyo-e",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Cartes célestes & astronomie",
       "Portrait",
       "Ukiyo-e",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
+        "doré",
+        0.983
+      ],
+      [
         "olive",
-        0.977
+        0.017
       ],
       [
         "vert",
-        0.023
+        0.0
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 0.983,
     "saturation": 23.2,
     "clarte": 47.0,
     "contraste": 12.6,

@@ -77,39 +77,39 @@
     ],
     "mouvement": "Symbolisme",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Floral",
       "Nature morte",
       "Symbolisme",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.828
-      ],
-      [
-        "vert",
-        0.082
-      ],
-      [
         "doré",
+        0.903
+      ],
+      [
+        "orange",
         0.07
       ],
       [
-        "rose",
+        "bleu",
         0.016
+      ],
+      [
+        "olive",
+        0.008
       ]
     ],
-    "chaleur": 0.086,
+    "chaleur": 0.973,
     "saturation": 19.7,
     "clarte": 42.3,
     "contraste": 14.2,

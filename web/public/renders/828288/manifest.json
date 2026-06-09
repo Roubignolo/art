@@ -76,43 +76,43 @@
     ],
     "mouvement": null,
     "palette": [
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ],
     "collections": [
       "Floral",
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ],
     "famille_dominante": "vert",
     "familles": [
       [
         "vert",
-        0.538
-      ],
-      [
-        "olive",
-        0.29
+        0.507
       ],
       [
         "doré",
-        0.106
+        0.294
       ],
       [
         "orange",
+        0.106
+      ],
+      [
+        "rouge",
         0.061
       ]
     ],
-    "chaleur": 0.167,
+    "chaleur": 0.461,
     "saturation": 8.6,
     "clarte": 85.8,
     "contraste": 12.4,

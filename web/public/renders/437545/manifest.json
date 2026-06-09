@@ -76,41 +76,41 @@
     ],
     "mouvement": "Âge d'or hollandais",
     "palette": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
     "collections": [
       "Paysage",
       "Âge d'or hollandais",
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.618
-      ],
-      [
-        "vert",
-        0.252
-      ],
-      [
         "doré",
-        0.13
+        0.737
+      ],
+      [
+        "olive",
+        0.132
       ],
       [
         "orange",
-        0.0
+        0.13
+      ],
+      [
+        "vert",
+        0.001
       ]
     ],
-    "chaleur": 0.13,
+    "chaleur": 0.867,
     "saturation": 10.2,
     "clarte": 31.7,
     "contraste": 19.4,

@@ -76,38 +76,38 @@
     ],
     "mouvement": "Post-impressionnisme",
     "palette": [
-      "Verts & nature"
+      "Tons orangés"
     ],
     "collections": [
       "Nature morte",
       "Post-impressionnisme",
-      "Verts & nature"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons orangés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.736
-      ],
-      [
         "doré",
-        0.254
+        0.737
       ],
       [
         "orange",
+        0.254
+      ],
+      [
+        "rouge",
         0.009
       ],
       [
-        "vert",
-        0.001
+        "olive",
+        0.0
       ]
     ],
-    "chaleur": 0.263,
+    "chaleur": 1.0,
     "saturation": 23.9,
     "clarte": 56.0,
     "contraste": 16.8,

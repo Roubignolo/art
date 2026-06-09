@@ -76,35 +76,35 @@
     ],
     "mouvement": null,
     "palette": [
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
     "collections": [
       "Oiseaux & faune",
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ]
   },
   "palette": {
     "tags": [
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
+        "doré",
         0.671
       ],
       [
-        "doré",
+        "orange",
         0.329
       ]
     ],
-    "chaleur": 0.329,
+    "chaleur": 1.0,
     "saturation": 3.9,
     "clarte": 89.9,
     "contraste": 8.4,

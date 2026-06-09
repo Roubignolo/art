@@ -76,36 +76,32 @@
     ],
     "mouvement": "Illustration naturaliste",
     "palette": [
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
     "collections": [
       "Cartes célestes & astronomie",
       "Illustration naturaliste",
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ]
   },
   "palette": {
     "tags": [
-      "Tons dorés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.998
-      ],
-      [
-        "vert",
-        0.002
+        "doré",
+        1.0
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 1.0,
     "saturation": 11.4,
     "clarte": 86.2,
     "contraste": 7.5,

@@ -76,43 +76,43 @@
     ],
     "mouvement": null,
     "palette": [
-      "Tons orangés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
     "collections": [
       "Botanique",
-      "Tons orangés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ]
   },
   "palette": {
     "tags": [
-      "Tons orangés",
       "Sépia & neutres",
+      "Tons chauds",
       "Camaïeu pastel"
     ],
-    "famille_dominante": "rouge",
+    "famille_dominante": "rose",
     "familles": [
       [
-        "rouge",
+        "rose",
         0.704
       ],
       [
         "vert",
-        0.279
+        0.272
       ],
       [
-        "orange",
+        "rouge",
         0.012
       ],
       [
         "olive",
-        0.004
+        0.007
       ]
     ],
-    "chaleur": 0.716,
+    "chaleur": 0.721,
     "saturation": 3.5,
     "clarte": 90.4,
     "contraste": 8.5,

@@ -95,26 +95,26 @@
       "Bleus profonds",
       "Camaïeu pastel"
     ],
-    "famille_dominante": "bleu",
+    "famille_dominante": "doré",
     "familles": [
       [
+        "doré",
+        0.381
+      ],
+      [
         "bleu",
-        0.435
-      ],
-      [
-        "olive",
-        0.356
-      ],
-      [
-        "vert",
-        0.134
+        0.366
       ],
       [
         "turquoise",
-        0.074
+        0.121
+      ],
+      [
+        "olive",
+        0.079
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 0.381,
     "saturation": 13.1,
     "clarte": 68.1,
     "contraste": 14.7,

@@ -76,41 +76,41 @@
     ],
     "mouvement": "Impressionnisme",
     "palette": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
     "collections": [
       "Portrait",
       "Impressionnisme",
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.536
-      ],
-      [
         "doré",
-        0.322
-      ],
-      [
-        "vert",
-        0.132
+        0.574
       ],
       [
         "orange",
-        0.009
+        0.322
+      ],
+      [
+        "olive",
+        0.072
+      ],
+      [
+        "vert",
+        0.023
       ]
     ],
-    "chaleur": 0.33,
+    "chaleur": 0.904,
     "saturation": 8.9,
     "clarte": 18.1,
     "contraste": 12.5,

@@ -76,38 +76,38 @@
     ],
     "mouvement": "Impressionnisme",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Scène de genre",
       "Impressionnisme",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.744
-      ],
-      [
-        "vert",
-        0.16
-      ],
-      [
         "doré",
-        0.095
+        0.789
+      ],
+      [
+        "olive",
+        0.109
       ],
       [
         "orange",
-        0.001
+        0.095
+      ],
+      [
+        "vert",
+        0.007
       ]
     ],
-    "chaleur": 0.096,
+    "chaleur": 0.885,
     "saturation": 16.7,
     "clarte": 39.0,
     "contraste": 15.0,

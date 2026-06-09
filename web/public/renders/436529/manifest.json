@@ -76,41 +76,41 @@
     ],
     "mouvement": "Post-impressionnisme",
     "palette": [
-      "Verts & nature",
+      "Tons dorés",
       "Vif & saturé"
     ],
     "collections": [
       "Portrait",
       "Post-impressionnisme",
-      "Verts & nature",
+      "Tons dorés",
       "Vif & saturé"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
+      "Tons dorés",
       "Vif & saturé"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.82
+        "doré",
+        0.834
       ],
       [
         "vert",
-        0.127
+        0.077
       ],
       [
-        "doré",
+        "orange",
         0.051
       ],
       [
-        "bleu",
-        0.002
+        "olive",
+        0.036
       ]
     ],
-    "chaleur": 0.051,
+    "chaleur": 0.884,
     "saturation": 36.8,
     "clarte": 54.3,
     "contraste": 24.5,

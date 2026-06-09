@@ -72,45 +72,45 @@
     ],
     "mouvement": "Post-impressionnisme",
     "palette": [
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ],
     "collections": [
       "Floral",
       "Nature morte",
       "Post-impressionnisme",
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
       "Sépia & neutres",
+      "Tons froids",
       "Camaïeu pastel"
     ],
     "famille_dominante": "vert",
     "familles": [
       [
         "vert",
-        0.515
-      ],
-      [
-        "violet",
-        0.196
+        0.554
       ],
       [
         "bleu",
-        0.184
+        0.372
       ],
       [
         "turquoise",
-        0.095
+        0.037
+      ],
+      [
+        "olive",
+        0.024
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 0.013,
     "saturation": 9.8,
     "clarte": 69.3,
     "contraste": 15.8,

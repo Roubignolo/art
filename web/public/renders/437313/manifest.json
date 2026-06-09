@@ -91,26 +91,26 @@
       "Tons dorés",
       "Camaïeu pastel"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.51
-      ],
-      [
-        "vert",
-        0.397
-      ],
-      [
         "doré",
-        0.087
+        0.597
+      ],
+      [
+        "olive",
+        0.309
       ],
       [
         "orange",
+        0.087
+      ],
+      [
+        "rouge",
         0.004
       ]
     ],
-    "chaleur": 0.091,
+    "chaleur": 0.688,
     "saturation": 15.2,
     "clarte": 68.4,
     "contraste": 14.4,

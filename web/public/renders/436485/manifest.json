@@ -77,41 +77,41 @@
     ],
     "mouvement": null,
     "palette": [
-      "Tons orangés",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
     "collections": [
       "Floral",
       "Nature morte",
-      "Tons orangés",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ]
   },
   "palette": {
     "tags": [
-      "Tons orangés",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons chauds"
     ],
-    "famille_dominante": "doré",
+    "famille_dominante": "orange",
     "familles": [
       [
-        "doré",
+        "orange",
         0.624
       ],
       [
+        "doré",
+        0.371
+      ],
+      [
         "olive",
-        0.368
+        0.004
       ],
       [
-        "vert",
-        0.007
-      ],
-      [
-        "orange",
+        "rouge",
         0.001
       ]
     ],
-    "chaleur": 0.625,
+    "chaleur": 0.996,
     "saturation": 10.7,
     "clarte": 15.2,
     "contraste": 6.5,

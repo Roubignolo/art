@@ -78,40 +78,40 @@
     ],
     "mouvement": "Ukiyo-e",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Paysage",
       "Marine",
       "Estampes japonaises",
       "Ukiyo-e",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.481
+        "doré",
+        0.498
       ],
       [
         "vert",
-        0.245
+        0.177
       ],
       [
         "bleu",
-        0.132
+        0.15
       ],
       [
-        "turquoise",
-        0.073
+        "olive",
+        0.09
       ]
     ],
-    "chaleur": 0.043,
+    "chaleur": 0.542,
     "saturation": 15.1,
     "clarte": 62.9,
     "contraste": 12.3,

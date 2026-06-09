@@ -76,41 +76,41 @@
     ],
     "mouvement": "Impressionnisme",
     "palette": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ],
     "collections": [
       "Paysage",
       "Impressionnisme",
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ],
     "famille_dominante": "vert",
     "familles": [
       [
         "vert",
-        0.46
-      ],
-      [
-        "turquoise",
-        0.343
+        0.353
       ],
       [
         "olive",
-        0.162
+        0.238
       ],
       [
-        "violet",
-        0.026
+        "doré",
+        0.219
+      ],
+      [
+        "turquoise",
+        0.164
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 0.219,
     "saturation": 10.2,
     "clarte": 43.2,
     "contraste": 18.7,

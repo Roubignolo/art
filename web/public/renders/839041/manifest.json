@@ -76,37 +76,37 @@
     ],
     "mouvement": null,
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Botanique",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.502
-      ],
-      [
-        "vert",
-        0.269
-      ],
-      [
         "doré",
-        0.226
+        0.568
       ],
       [
         "orange",
-        0.002
+        0.226
+      ],
+      [
+        "olive",
+        0.193
+      ],
+      [
+        "vert",
+        0.011
       ]
     ],
-    "chaleur": 0.229,
+    "chaleur": 0.796,
     "saturation": 15.0,
     "clarte": 20.7,
     "contraste": 13.5,

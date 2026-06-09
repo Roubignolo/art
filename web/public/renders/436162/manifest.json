@@ -85,26 +85,26 @@
     "tags": [
       "Tons orangés"
     ],
-    "famille_dominante": "doré",
+    "famille_dominante": "orange",
     "familles": [
       [
-        "doré",
+        "orange",
         0.68
       ],
       [
-        "olive",
-        0.231
+        "doré",
+        0.24
       ],
       [
-        "orange",
+        "rouge",
         0.063
       ],
       [
-        "vert",
-        0.027
+        "olive",
+        0.014
       ]
     ],
-    "chaleur": 0.743,
+    "chaleur": 0.983,
     "saturation": 14.3,
     "clarte": 24.1,
     "contraste": 12.4,

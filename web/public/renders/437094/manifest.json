@@ -76,34 +76,34 @@
     ],
     "mouvement": "École de Barbizon",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Paysage",
       "École de Barbizon",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.801
-      ],
-      [
-        "vert",
-        0.196
-      ],
-      [
         "doré",
+        0.942
+      ],
+      [
+        "olive",
+        0.056
+      ],
+      [
+        "orange",
         0.003
       ]
     ],
-    "chaleur": 0.003,
+    "chaleur": 0.944,
     "saturation": 17.5,
     "clarte": 41.3,
     "contraste": 18.1,

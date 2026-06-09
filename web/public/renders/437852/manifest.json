@@ -77,35 +77,35 @@
     ],
     "mouvement": "Romantisme",
     "palette": [
-      "Verts & nature"
+      "Tons orangés"
     ],
     "collections": [
       "Marine",
       "Architecture & ville",
       "Romantisme",
-      "Verts & nature"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons orangés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
+        "doré",
         0.516
       ],
       [
-        "doré",
+        "orange",
         0.484
       ],
       [
-        "orange",
+        "rouge",
         0.0
       ]
     ],
-    "chaleur": 0.484,
+    "chaleur": 1.0,
     "saturation": 22.0,
     "clarte": 41.9,
     "contraste": 25.3,

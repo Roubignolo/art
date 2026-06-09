@@ -76,38 +76,38 @@
     ],
     "mouvement": "Post-impressionnisme",
     "palette": [
-      "Verts & nature"
+      "Tons froids"
     ],
     "collections": [
       "Paysage",
       "Post-impressionnisme",
-      "Verts & nature"
+      "Tons froids"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons froids"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
+        "doré",
+        0.496
+      ],
+      [
         "olive",
-        0.472
+        0.167
       ],
       [
         "vert",
-        0.316
+        0.158
       ],
       [
         "bleu",
-        0.138
-      ],
-      [
-        "turquoise",
-        0.064
+        0.133
       ]
     ],
-    "chaleur": 0.002,
+    "chaleur": 0.497,
     "saturation": 16.9,
     "clarte": 51.3,
     "contraste": 13.1,

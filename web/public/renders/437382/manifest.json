@@ -76,38 +76,38 @@
     ],
     "mouvement": "Symbolisme",
     "palette": [
-      "Verts & nature"
+      "Tons orangés"
     ],
     "collections": [
       "Floral",
       "Symbolisme",
-      "Verts & nature"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons orangés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.621
-      ],
-      [
         "doré",
-        0.33
-      ],
-      [
-        "vert",
-        0.025
+        0.626
       ],
       [
         "orange",
+        0.33
+      ],
+      [
+        "rouge",
         0.018
+      ],
+      [
+        "olive",
+        0.013
       ]
     ],
-    "chaleur": 0.349,
+    "chaleur": 0.974,
     "saturation": 25.5,
     "clarte": 65.9,
     "contraste": 11.8,

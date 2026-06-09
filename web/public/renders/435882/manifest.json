@@ -92,22 +92,22 @@
     "familles": [
       [
         "turquoise",
-        0.429
+        0.562
       ],
       [
         "bleu",
-        0.269
+        0.124
       ],
       [
-        "olive",
-        0.111
+        "doré",
+        0.118
       ],
       [
-        "vert",
-        0.079
+        "orange",
+        0.072
       ]
     ],
-    "chaleur": 0.088,
+    "chaleur": 0.206,
     "saturation": 15.4,
     "clarte": 48.3,
     "contraste": 19.8,

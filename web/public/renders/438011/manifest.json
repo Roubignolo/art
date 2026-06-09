@@ -76,38 +76,38 @@
     ],
     "mouvement": "Impressionnisme",
     "palette": [
-      "Tons dorés"
+      "Tons orangés"
     ],
     "collections": [
       "Portrait",
       "Impressionnisme",
-      "Tons dorés"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Tons dorés"
+      "Tons orangés"
     ],
-    "famille_dominante": "doré",
+    "famille_dominante": "orange",
     "familles": [
       [
-        "doré",
+        "orange",
         0.43
       ],
       [
+        "doré",
+        0.418
+      ],
+      [
         "olive",
-        0.374
+        0.109
       ],
       [
-        "vert",
-        0.168
-      ],
-      [
-        "violet",
-        0.013
+        "bleu",
+        0.021
       ]
     ],
-    "chaleur": 0.445,
+    "chaleur": 0.854,
     "saturation": 16.0,
     "clarte": 34.6,
     "contraste": 22.6,

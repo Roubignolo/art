@@ -76,38 +76,38 @@
     ],
     "mouvement": "Âge d'or hollandais",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Nature morte",
       "Âge d'or hollandais",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.748
-      ],
-      [
         "doré",
-        0.24
-      ],
-      [
-        "vert",
-        0.011
+        0.758
       ],
       [
         "orange",
+        0.24
+      ],
+      [
+        "olive",
+        0.001
+      ],
+      [
+        "rouge",
         0.001
       ]
     ],
-    "chaleur": 0.241,
+    "chaleur": 0.999,
     "saturation": 21.0,
     "clarte": 27.6,
     "contraste": 16.2,

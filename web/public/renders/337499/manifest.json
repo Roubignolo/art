@@ -77,39 +77,39 @@
     ],
     "mouvement": "Romantisme",
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Paysage",
       "Marine",
       "Romantisme",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.696
+        "doré",
+        0.721
       ],
       [
         "bleu",
-        0.163
+        0.178
       ],
       [
-        "doré",
+        "orange",
         0.06
       ],
       [
-        "vert",
-        0.047
+        "olive",
+        0.021
       ]
     ],
-    "chaleur": 0.061,
+    "chaleur": 0.781,
     "saturation": 17.5,
     "clarte": 64.1,
     "contraste": 15.9,

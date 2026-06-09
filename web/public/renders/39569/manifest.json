@@ -72,34 +72,34 @@
     ],
     "mouvement": null,
     "palette": [
-      "Verts & nature"
+      "Tons dorés"
     ],
     "collections": [
       "Portrait",
       "Animaux",
-      "Verts & nature"
+      "Tons dorés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons dorés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
+        "doré",
         0.912
       ],
       [
-        "doré",
+        "orange",
         0.086
       ],
       [
-        "orange",
+        "rouge",
         0.003
       ]
     ],
-    "chaleur": 0.088,
+    "chaleur": 1.0,
     "saturation": 18.8,
     "clarte": 46.4,
     "contraste": 7.5,

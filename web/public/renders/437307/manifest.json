@@ -88,22 +88,26 @@
     "tags": [
       "Verts & nature"
     ],
-    "famille_dominante": "vert",
+    "famille_dominante": "olive",
     "familles": [
       [
-        "vert",
-        0.773
-      ],
-      [
         "olive",
-        0.227
+        0.562
       ],
       [
         "doré",
+        0.436
+      ],
+      [
+        "vert",
+        0.003
+      ],
+      [
+        "orange",
         0.0
       ]
     ],
-    "chaleur": 0.0,
+    "chaleur": 0.436,
     "saturation": 24.4,
     "clarte": 57.2,
     "contraste": 16.9,

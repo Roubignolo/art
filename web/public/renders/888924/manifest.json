@@ -77,38 +77,38 @@
     ],
     "mouvement": null,
     "palette": [
-      "Verts & nature"
+      "Tons orangés"
     ],
     "collections": [
       "Floral",
       "Nature morte",
-      "Verts & nature"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Verts & nature"
+      "Tons orangés"
     ],
-    "famille_dominante": "olive",
+    "famille_dominante": "doré",
     "familles": [
       [
-        "olive",
-        0.461
-      ],
-      [
         "doré",
-        0.426
-      ],
-      [
-        "vert",
-        0.107
+        0.483
       ],
       [
         "orange",
-        0.005
+        0.426
+      ],
+      [
+        "olive",
+        0.077
+      ],
+      [
+        "vert",
+        0.008
       ]
     ],
-    "chaleur": 0.432,
+    "chaleur": 0.915,
     "saturation": 18.8,
     "clarte": 27.2,
     "contraste": 12.2,

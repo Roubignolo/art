@@ -18,11 +18,14 @@ from PIL import Image
 
 from .fidelity import _dims_grille, _grille_lab
 
-# Familles de teinte par secteur d'angle (h° en CIELAB), du plus chaud au plus froid.
+# Familles de teinte par secteur d'angle de teinte CIELAB (h_ab). ATTENTION : la
+# roue Lab est « tournée » par rapport à la roue naïve — le bleu sRGB tombe vers
+# ~300-306°, le rouge vers ~40°, le jaune vers ~100°. Bornes calées sur les
+# angles Lab réels des primaires/secondaires (vérifié dans tests/test_palette).
 _FAMILLES = [
-    ("rouge", 345, 360), ("rouge", 0, 18), ("orange", 18, 45), ("doré", 45, 70),
-    ("olive", 70, 100), ("vert", 100, 160), ("turquoise", 160, 200),
-    ("bleu", 200, 260), ("violet", 260, 295), ("rose", 295, 345),
+    ("rose", 0, 20), ("rouge", 20, 45), ("orange", 45, 70), ("doré", 70, 105),
+    ("olive", 105, 135), ("vert", 135, 175), ("turquoise", 175, 215),
+    ("bleu", 215, 300), ("violet", 300, 330), ("rose", 330, 360),
 ]
 _CHAUDES = {"rouge", "orange", "doré", "rose"}
 _FROIDES = {"vert", "turquoise", "bleu", "violet"}
@@ -115,28 +118,41 @@ def analyser_palette(img: Image.Image, *, n_grille: int = 64) -> Dict:
 
 def _tags_palette(dominante: str, part: Dict[str, float], chaleur: float,
                   sat: float, clarte: float, contraste: float) -> List[str]:
-    """Règles de nommage des collections de tonalité (1 à 3 tags)."""
+    """Règles de nommage des collections de tonalité (1 à 3 tags).
+
+    Le tag couleur principal exige une vraie DOMINANCE (part de chroma), pas juste
+    « famille en tête » — sinon « Verts & nature » devient un fourre-tout. Les
+    œuvres chaudes-mais-vertes (feuillage + sujet chaud) vont aux tons chauds.
+    """
     tags: List[str] = []
+    g = lambda k: part.get(k, 0.0)  # noqa: E731
+    # olive (jaune-vert saturé) = feuillage → compté « nature ». turquoise = teal,
+    # surtout bleu. (Les terres désaturées partent en « Sépia & neutres » plus bas.)
+    vert = g("vert") + g("olive") + g("turquoise") * 0.5
+    bleu = g("bleu") + g("violet") + g("turquoise") * 0.5
 
-    # 1) Teinte dominante (collection couleur principale).
-    if dominante in ("orange", "rouge") or (chaleur >= 0.6 and dominante in ("doré", "orange", "rouge")):
-        tags.append("Tons orangés")
-    elif dominante == "doré" or (dominante == "olive" and clarte >= _L_CLAIR):
-        tags.append("Tons dorés")
-    elif dominante == "bleu" or (dominante == "turquoise" and clarte < _L_CLAIR):
-        tags.append("Bleus profonds")
-    elif dominante in ("vert", "olive", "turquoise"):
-        tags.append("Verts & nature")
-    elif chaleur >= 0.6:
-        tags.append("Tons chauds")
-    elif chaleur <= 0.4:
-        tags.append("Tons froids")
-
-    # 2) Caractère tonal (cumulable).
     if sat < _C_FAIBLE:
+        # œuvre désaturée → neutre/sépia : pas de tag couleur vif, juste un lean.
         tags.append("Sépia & neutres")
-    elif sat >= _C_VIF:
-        tags.append("Vif & saturé")
+        tags.append("Tons chauds" if chaleur >= 0.5 else "Tons froids")
+    else:
+        # œuvre colorée → un tag couleur principal par dominance nette.
+        if g("orange") + g("rouge") >= 0.26:
+            tags.append("Tons orangés")
+        elif g("doré") >= 0.32 and chaleur >= 0.5 and vert < 0.40:
+            tags.append("Tons dorés")
+        elif bleu >= 0.30:
+            tags.append("Bleus profonds")
+        elif vert >= 0.42:
+            tags.append("Verts & nature")
+        elif chaleur >= 0.5:
+            tags.append("Tons chauds")
+        else:
+            tags.append("Tons froids")
+        if sat >= _C_VIF:
+            tags.append("Vif & saturé")
+
+    # Caractère tonal (cumulable).
     if clarte >= _L_CLAIR and sat < _C_VIF:
         tags.append("Camaïeu pastel")
     if contraste >= _CONTRASTE and clarte <= _L_SOMBRE:

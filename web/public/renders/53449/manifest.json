@@ -78,43 +78,43 @@
     ],
     "mouvement": "Ukiyo-e",
     "palette": [
-      "Bleus profonds",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ],
     "collections": [
       "Paysage",
       "Estampes japonaises",
       "Cartes célestes & astronomie",
       "Ukiyo-e",
-      "Bleus profonds",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ]
   },
   "palette": {
     "tags": [
-      "Bleus profonds",
-      "Sépia & neutres"
+      "Sépia & neutres",
+      "Tons froids"
     ],
     "famille_dominante": "bleu",
     "familles": [
       [
         "bleu",
-        0.669
+        0.533
       ],
       [
-        "olive",
-        0.223
+        "doré",
+        0.224
       ],
       [
         "turquoise",
-        0.038
+        0.18
       ],
       [
-        "orange",
+        "rouge",
         0.036
       ]
     ],
-    "chaleur": 0.043,
+    "chaleur": 0.267,
     "saturation": 10.8,
     "clarte": 57.1,
     "contraste": 24.4,

@@ -72,39 +72,39 @@
     ],
     "mouvement": "Symbolisme",
     "palette": [
-      "Tons dorés"
+      "Tons orangés"
     ],
     "collections": [
       "Floral",
       "Nature morte",
       "Symbolisme",
-      "Tons dorés"
+      "Tons orangés"
     ]
   },
   "palette": {
     "tags": [
-      "Tons dorés"
+      "Tons orangés"
     ],
-    "famille_dominante": "doré",
+    "famille_dominante": "orange",
     "familles": [
       [
-        "doré",
+        "orange",
         0.334
       ],
       [
-        "olive",
-        0.318
+        "doré",
+        0.327
       ],
       [
-        "orange",
-        0.162
+        "rouge",
+        0.158
       ],
       [
-        "rose",
-        0.045
+        "bleu",
+        0.06
       ]
     ],
-    "chaleur": 0.577,
+    "chaleur": 0.872,
     "saturation": 20.1,
     "clarte": 47.6,
     "contraste": 12.0,

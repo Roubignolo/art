@@ -32,17 +32,17 @@
       ],
       "mouvement": "Post-impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons froids"
       ],
       "collections": [
         "Paysage",
         "Post-impressionnisme",
-        "Verts & nature"
+        "Tons froids"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons froids"
       ],
       "swatches": [
         "#8b763a",
@@ -51,8 +51,8 @@
         "#8b9e9c",
         "#abab9c"
       ],
-      "famille": "olive",
-      "chaleur": 0.002
+      "famille": "doré",
+      "chaleur": 0.497
     }
   },
   {
@@ -108,7 +108,7 @@
         "#55533d"
       ],
       "famille": "vert",
-      "chaleur": 0.021
+      "chaleur": 0.115
     }
   },
   {
@@ -164,7 +164,7 @@
         "#375d5f"
       ],
       "famille": "turquoise",
-      "chaleur": 0.088
+      "chaleur": 0.206
     }
   },
   {
@@ -201,18 +201,18 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Floral",
         "Paysage",
         "Impressionnisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#202318",
@@ -221,8 +221,8 @@
         "#7d6a4b",
         "#998668"
       ],
-      "famille": "olive",
-      "chaleur": 0.256
+      "famille": "doré",
+      "chaleur": 0.779
     }
   },
   {
@@ -241,18 +241,18 @@
       ],
       "mouvement": "Post-impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Floral",
         "Portrait",
         "Post-impressionnisme",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#112418",
@@ -262,7 +262,7 @@
         "#5e7b57"
       ],
       "famille": "vert",
-      "chaleur": 0.282
+      "chaleur": 0.408
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -299,23 +299,23 @@
       ],
       "mouvement": "Post-impressionnisme",
       "palette": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "collections": [
         "Floral",
         "Nature morte",
         "Post-impressionnisme",
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -326,7 +326,7 @@
         "#e0dbd5"
       ],
       "famille": "vert",
-      "chaleur": 0.0
+      "chaleur": 0.013
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -362,16 +362,16 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Botanique",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#1a1407",
@@ -380,8 +380,8 @@
         "#261c0a",
         "#4f4c30"
       ],
-      "famille": "olive",
-      "chaleur": 0.229
+      "famille": "doré",
+      "chaleur": 0.796
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -417,19 +417,19 @@
       ],
       "mouvement": "Post-impressionnisme",
       "palette": [
-        "Verts & nature",
+        "Tons dorés",
         "Vif & saturé"
       ],
       "collections": [
         "Portrait",
         "Post-impressionnisme",
-        "Verts & nature",
+        "Tons dorés",
         "Vif & saturé"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
+        "Tons dorés",
         "Vif & saturé"
       ],
       "swatches": [
@@ -439,8 +439,8 @@
         "#987e47",
         "#c8c673"
       ],
-      "famille": "olive",
-      "chaleur": 0.051
+      "famille": "doré",
+      "chaleur": 0.884
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -476,17 +476,17 @@
       ],
       "mouvement": "Post-impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Nature morte",
         "Post-impressionnisme",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#b79874",
@@ -495,8 +495,8 @@
         "#8e7451",
         "#a97e58"
       ],
-      "famille": "olive",
-      "chaleur": 0.263
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -554,8 +554,8 @@
         "#736c49",
         "#c1a785"
       ],
-      "famille": "olive",
-      "chaleur": 0.091
+      "famille": "doré",
+      "chaleur": 0.688
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -610,8 +610,8 @@
         "#3b472b",
         "#918e65"
       ],
-      "famille": "vert",
-      "chaleur": 0.001
+      "famille": "olive",
+      "chaleur": 0.419
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -673,8 +673,8 @@
         "#eadac0",
         "#f3e1c6"
       ],
-      "famille": "olive",
-      "chaleur": 0.0
+      "famille": "doré",
+      "chaleur": 0.808
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -712,22 +712,22 @@
       ],
       "mouvement": "Ukiyo-e",
       "palette": [
-        "Bleus profonds",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "collections": [
         "Paysage",
         "Estampes japonaises",
         "Cartes célestes & astronomie",
         "Ukiyo-e",
-        "Bleus profonds",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ]
     },
     "palette": {
       "tags": [
-        "Bleus profonds",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "swatches": [
         "#414547",
@@ -737,7 +737,7 @@
         "#44666a"
       ],
       "famille": "bleu",
-      "chaleur": 0.043
+      "chaleur": 0.267
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -797,8 +797,8 @@
         "#dac6ab",
         "#958f81"
       ],
-      "famille": "olive",
-      "chaleur": 0.208
+      "famille": "doré",
+      "chaleur": 0.944
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -858,8 +858,8 @@
         "#b8ab93",
         "#d3bc9d"
       ],
-      "famille": "olive",
-      "chaleur": 0.074
+      "famille": "doré",
+      "chaleur": 0.983
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -895,21 +895,21 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "collections": [
         "Floral",
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -920,7 +920,7 @@
         "#b8bba6"
       ],
       "famille": "vert",
-      "chaleur": 0.224
+      "chaleur": 0.382
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -956,21 +956,21 @@
       ],
       "mouvement": null,
       "palette": [
-        "Tons orangés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "collections": [
         "Botanique",
-        "Tons orangés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons orangés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -980,8 +980,8 @@
         "#c6beb8",
         "#f1f0ee"
       ],
-      "famille": "rouge",
-      "chaleur": 0.716
+      "famille": "rose",
+      "chaleur": 0.721
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1018,17 +1018,17 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Floral",
         "Nature morte",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#281e14",
@@ -1037,8 +1037,8 @@
         "#695837",
         "#8a7650"
       ],
-      "famille": "olive",
-      "chaleur": 0.432
+      "famille": "doré",
+      "chaleur": 0.915
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1074,22 +1074,22 @@
       ],
       "mouvement": "Illustration naturaliste",
       "palette": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "collections": [
         "Cartes célestes & astronomie",
         "Illustration naturaliste",
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -1099,8 +1099,8 @@
         "#f6ead1",
         "#fbeed7"
       ],
-      "famille": "olive",
-      "chaleur": 0.0
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1136,17 +1136,17 @@
       ],
       "mouvement": "Âge d'or hollandais",
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Nature morte",
         "Âge d'or hollandais",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#130f0b",
@@ -1155,8 +1155,8 @@
         "#3f2e1a",
         "#1b150e"
       ],
-      "famille": "olive",
-      "chaleur": 0.31
+      "famille": "doré",
+      "chaleur": 0.98
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1192,17 +1192,17 @@
       ],
       "mouvement": "Romantisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Marine",
         "Romantisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#beb594",
@@ -1211,8 +1211,8 @@
         "#aa9e75",
         "#b5ac8a"
       ],
-      "famille": "olive",
-      "chaleur": 0.001
+      "famille": "doré",
+      "chaleur": 0.995
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1249,18 +1249,18 @@
       ],
       "mouvement": "Romantisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Paysage",
         "Marine",
         "Romantisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#506b77",
@@ -1269,8 +1269,8 @@
         "#9d8f77",
         "#8d7558"
       ],
-      "famille": "olive",
-      "chaleur": 0.061
+      "famille": "doré",
+      "chaleur": 0.781
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1307,18 +1307,18 @@
       ],
       "mouvement": "Romantisme",
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Marine",
         "Architecture & ville",
         "Romantisme",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#54341b",
@@ -1327,8 +1327,8 @@
         "#ccbc96",
         "#dacca2"
       ],
-      "famille": "olive",
-      "chaleur": 0.484
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1384,7 +1384,7 @@
         "#ebe4d8"
       ],
       "famille": "bleu",
-      "chaleur": 0.04
+      "chaleur": 0.073
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1420,20 +1420,20 @@
       ],
       "mouvement": "Âge d'or hollandais",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Paysage",
         "Âge d'or hollandais",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#201911",
@@ -1442,8 +1442,8 @@
         "#2c2718",
         "#605c48"
       ],
-      "famille": "olive",
-      "chaleur": 0.13
+      "famille": "doré",
+      "chaleur": 0.867
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1479,20 +1479,20 @@
       ],
       "mouvement": "Âge d'or hollandais",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "collections": [
         "Paysage",
         "Âge d'or hollandais",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "swatches": [
         "#312d1d",
@@ -1501,8 +1501,8 @@
         "#9da38e",
         "#898a74"
       ],
-      "famille": "vert",
-      "chaleur": 0.005
+      "famille": "doré",
+      "chaleur": 0.483
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1538,21 +1538,21 @@
       ],
       "mouvement": null,
       "palette": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "collections": [
         "Marine",
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -1562,8 +1562,8 @@
         "#aaa898",
         "#998f78"
       ],
-      "famille": "olive",
-      "chaleur": 0.023
+      "famille": "doré",
+      "chaleur": 0.937
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1599,17 +1599,17 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Scène de genre",
         "Impressionnisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#45433a",
@@ -1618,8 +1618,8 @@
         "#595346",
         "#bfb187"
       ],
-      "famille": "olive",
-      "chaleur": 0.002
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1655,17 +1655,17 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Scène de genre",
         "Impressionnisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#716647",
@@ -1674,8 +1674,8 @@
         "#90815a",
         "#5f4e32"
       ],
-      "famille": "olive",
-      "chaleur": 0.096
+      "famille": "doré",
+      "chaleur": 0.885
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1711,17 +1711,17 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Scène de genre",
         "Impressionnisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#5f6149",
@@ -1730,8 +1730,8 @@
         "#666a52",
         "#54503d"
       ],
-      "famille": "olive",
-      "chaleur": 0.093
+      "famille": "doré",
+      "chaleur": 0.692
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1786,8 +1786,8 @@
         "#5d653d",
         "#545638"
       ],
-      "famille": "vert",
-      "chaleur": 0.027
+      "famille": "olive",
+      "chaleur": 0.231
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1825,19 +1825,19 @@
       ],
       "mouvement": "Ukiyo-e",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Paysage",
         "Marine",
         "Estampes japonaises",
         "Ukiyo-e",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#546b73",
@@ -1846,8 +1846,8 @@
         "#c0a786",
         "#c8ba98"
       ],
-      "famille": "olive",
-      "chaleur": 0.043
+      "famille": "doré",
+      "chaleur": 0.542
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1909,8 +1909,8 @@
         "#678f97",
         "#93a39b"
       ],
-      "famille": "bleu",
-      "chaleur": 0.0
+      "famille": "doré",
+      "chaleur": 0.381
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -1947,17 +1947,17 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Portrait",
         "Animaux",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#725c47",
@@ -1966,8 +1966,8 @@
         "#5f5142",
         "#9c7e5c"
       ],
-      "famille": "olive",
-      "chaleur": 0.088
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2004,20 +2004,20 @@
       ],
       "mouvement": null,
       "palette": [
-        "Tons orangés",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Floral",
         "Nature morte",
-        "Tons orangés",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Tons orangés",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#2a1d14",
@@ -2026,8 +2026,8 @@
         "#342316",
         "#2b2218"
       ],
-      "famille": "doré",
-      "chaleur": 0.625
+      "famille": "orange",
+      "chaleur": 0.996
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2063,20 +2063,20 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Portrait",
         "Impressionnisme",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#342a1e",
@@ -2085,8 +2085,8 @@
         "#261d15",
         "#564730"
       ],
-      "famille": "olive",
-      "chaleur": 0.33
+      "famille": "doré",
+      "chaleur": 0.904
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2122,21 +2122,21 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "collections": [
         "Floral",
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -2147,7 +2147,7 @@
         "#efe9da"
       ],
       "famille": "vert",
-      "chaleur": 0.167
+      "chaleur": 0.461
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2183,21 +2183,21 @@
       ],
       "mouvement": null,
       "palette": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "collections": [
         "Oiseaux & faune",
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -2207,8 +2207,8 @@
         "#edeae8",
         "#cec4b6"
       ],
-      "famille": "olive",
-      "chaleur": 0.329
+      "famille": "doré",
+      "chaleur": 1.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2246,23 +2246,23 @@
       ],
       "mouvement": null,
       "palette": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "collections": [
         "Floral",
         "Botanique",
         "Oiseaux & faune",
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
         "Sépia & neutres",
+        "Tons froids",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -2272,8 +2272,8 @@
         "#b1ac9f",
         "#e9e1dd"
       ],
-      "famille": "vert",
-      "chaleur": 0.448
+      "famille": "rose",
+      "chaleur": 0.472
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2310,22 +2310,22 @@
       ],
       "mouvement": null,
       "palette": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "collections": [
         "Floral",
         "Oiseaux & faune",
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés",
         "Sépia & neutres",
+        "Tons chauds",
         "Camaïeu pastel"
       ],
       "swatches": [
@@ -2335,8 +2335,8 @@
         "#f6ede2",
         "#f4e9dc"
       ],
-      "famille": "olive",
-      "chaleur": 0.379
+      "famille": "doré",
+      "chaleur": 0.933
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2372,17 +2372,17 @@
       ],
       "mouvement": "Âge d'or hollandais",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Nature morte",
         "Âge d'or hollandais",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#201c0f",
@@ -2391,8 +2391,8 @@
         "#48371c",
         "#634722"
       ],
-      "famille": "olive",
-      "chaleur": 0.241
+      "famille": "doré",
+      "chaleur": 0.999
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2428,20 +2428,20 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Marine",
         "Impressionnisme",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#66635e",
@@ -2450,8 +2450,8 @@
         "#9e978c",
         "#b6aa9c"
       ],
-      "famille": "olive",
-      "chaleur": 0.267
+      "famille": "doré",
+      "chaleur": 0.905
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2506,8 +2506,8 @@
         "#806b50",
         "#b6977f"
       ],
-      "famille": "doré",
-      "chaleur": 0.695
+      "famille": "orange",
+      "chaleur": 0.918
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2543,17 +2543,17 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Tons dorés"
+        "Tons orangés"
       ],
       "collections": [
         "Portrait",
         "Impressionnisme",
-        "Tons dorés"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés"
+        "Tons orangés"
       ],
       "swatches": [
         "#0f1311",
@@ -2562,8 +2562,8 @@
         "#2a2c29",
         "#4f4030"
       ],
-      "famille": "doré",
-      "chaleur": 0.445
+      "famille": "orange",
+      "chaleur": 0.854
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2600,21 +2600,21 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Portrait",
         "Animaux",
         "Impressionnisme",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#272827",
@@ -2623,8 +2623,8 @@
         "#644d3d",
         "#86846f"
       ],
-      "famille": "olive",
-      "chaleur": 0.169
+      "famille": "doré",
+      "chaleur": 0.914
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2676,8 +2676,8 @@
         "#837862",
         "#5f4e3c"
       ],
-      "famille": "doré",
-      "chaleur": 0.743
+      "famille": "orange",
+      "chaleur": 0.983
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2732,8 +2732,8 @@
         "#6a753c",
         "#87804b"
       ],
-      "famille": "vert",
-      "chaleur": 0.0
+      "famille": "olive",
+      "chaleur": 0.436
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2769,17 +2769,17 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Paysage",
         "Impressionnisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#d7cfc2",
@@ -2788,8 +2788,8 @@
         "#868961",
         "#cbbdab"
       ],
-      "famille": "olive",
-      "chaleur": 0.032
+      "famille": "doré",
+      "chaleur": 0.823
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2825,20 +2825,20 @@
       ],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "collections": [
         "Paysage",
         "Impressionnisme",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons froids"
       ],
       "swatches": [
         "#21322d",
@@ -2848,7 +2848,7 @@
         "#2f4c41"
       ],
       "famille": "vert",
-      "chaleur": 0.0
+      "chaleur": 0.219
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2884,17 +2884,17 @@
       ],
       "mouvement": "Ukiyo-e",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Cartes célestes & astronomie",
         "Ukiyo-e",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#8b6d43",
@@ -2903,8 +2903,8 @@
         "#2d261b",
         "#897857"
       ],
-      "famille": "olive",
-      "chaleur": 0.01
+      "famille": "doré",
+      "chaleur": 0.842
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2941,18 +2941,18 @@
       ],
       "mouvement": "Ukiyo-e",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Cartes célestes & astronomie",
         "Portrait",
         "Ukiyo-e",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#8f7045",
@@ -2961,8 +2961,8 @@
         "#877650",
         "#56492e"
       ],
-      "famille": "olive",
-      "chaleur": 0.0
+      "famille": "doré",
+      "chaleur": 0.983
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -2998,17 +2998,17 @@
       ],
       "mouvement": "Symbolisme",
       "palette": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "collections": [
         "Floral",
         "Symbolisme",
-        "Verts & nature"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons orangés"
       ],
       "swatches": [
         "#c59d73",
@@ -3017,8 +3017,8 @@
         "#c6a98a",
         "#d0aa80"
       ],
-      "famille": "olive",
-      "chaleur": 0.349
+      "famille": "doré",
+      "chaleur": 0.974
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3055,18 +3055,18 @@
       ],
       "mouvement": "Symbolisme",
       "palette": [
-        "Tons dorés"
+        "Tons orangés"
       ],
       "collections": [
         "Floral",
         "Nature morte",
         "Symbolisme",
-        "Tons dorés"
+        "Tons orangés"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés"
+        "Tons orangés"
       ],
       "swatches": [
         "#8e775f",
@@ -3075,8 +3075,8 @@
         "#7f4737",
         "#8c634c"
       ],
-      "famille": "doré",
-      "chaleur": 0.577
+      "famille": "orange",
+      "chaleur": 0.872
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3113,18 +3113,18 @@
       ],
       "mouvement": "Symbolisme",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Floral",
         "Nature morte",
         "Symbolisme",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#6a573a",
@@ -3133,8 +3133,8 @@
         "#8d835a",
         "#70664f"
       ],
-      "famille": "olive",
-      "chaleur": 0.086
+      "famille": "doré",
+      "chaleur": 0.973
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3170,17 +3170,17 @@
       ],
       "mouvement": "École de Barbizon",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Paysage",
         "École de Barbizon",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#797259",
@@ -3189,8 +3189,8 @@
         "#928e78",
         "#5d4b20"
       ],
-      "famille": "olive",
-      "chaleur": 0.003
+      "famille": "doré",
+      "chaleur": 0.944
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3226,17 +3226,17 @@
       ],
       "mouvement": "École de Barbizon",
       "palette": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "collections": [
         "Paysage",
         "École de Barbizon",
-        "Verts & nature"
+        "Tons dorés"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature"
+        "Tons dorés"
       ],
       "swatches": [
         "#71664b",
@@ -3245,8 +3245,8 @@
         "#797763",
         "#a69168"
       ],
-      "famille": "olive",
-      "chaleur": 0.021
+      "famille": "doré",
+      "chaleur": 0.949
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3280,19 +3280,19 @@
       "sujet": [],
       "mouvement": "Impressionnisme",
       "palette": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "collections": [
         "Impressionnisme",
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ]
     },
     "palette": {
       "tags": [
-        "Verts & nature",
-        "Sépia & neutres"
+        "Sépia & neutres",
+        "Tons chauds"
       ],
       "swatches": [
         "#4b4641",
@@ -3301,8 +3301,8 @@
         "#ac9e82",
         "#8a7663"
       ],
-      "famille": "olive",
-      "chaleur": 0.208
+      "famille": "doré",
+      "chaleur": 0.79
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3358,7 +3358,7 @@
         "#879888"
       ],
       "famille": "turquoise",
-      "chaleur": 0.108
+      "chaleur": 0.368
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3416,7 +3416,7 @@
         "#9d9582"
       ],
       "famille": "bleu",
-      "chaleur": 0.057
+      "chaleur": 0.286
     },
     "fidelite": {
       "verdict": "FIDÈLE",
@@ -3472,7 +3472,7 @@
         "#5d766e"
       ],
       "famille": "bleu",
-      "chaleur": 0.026
+      "chaleur": 0.278
     },
     "fidelite": {
       "verdict": "FIDÈLE",
