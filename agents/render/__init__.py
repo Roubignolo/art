@@ -21,6 +21,7 @@ from .mockup import (
 )
 from .couleur import assurer_srgb, rapport_gamut, srgb_icc_bytes, taguer_srgb
 from .fidelity import RapportFidelite, auditer_fidelite, formater_rapport
+from .layout import PlanMiseEnPage, meilleure_taille, planifier, plans_variants
 from .provenance_card import InfosProvenance, generer_carte, recto, verso, sceau
 from .restoration import RapportRestauration, charger, composer_avant_apres, restaurer
 
@@ -34,6 +35,10 @@ __all__ = [
     "rapport_gamut",
     "srgb_icc_bytes",
     "taguer_srgb",
+    "planifier",
+    "plans_variants",
+    "meilleure_taille",
+    "PlanMiseEnPage",
     "charger",
     "composer_avant_apres",
     "generer_galerie",

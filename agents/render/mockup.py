@@ -21,7 +21,7 @@ from typing import Dict, List, Optional, Tuple
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-from . import frames, scenes
+from . import frames, layout, scenes
 from .couleur import assurer_srgb, rapport_gamut, taguer_srgb
 from .fidelity import auditer_fidelite
 from .perspective import coeffs_vers_quad
@@ -94,7 +94,13 @@ def poster_nu(art: Image.Image, sortie: Tuple[int, int] = (1600, 1600)) -> Image
 def encadre_sur_mur(art: Image.Image, profil: str = "chene",
                     sortie: Tuple[int, int] = (1600, 1600)) -> Image.Image:
     scene = _fond_studio(sortie)
-    piece = frames.encadrer(_redim_long_edge(art, 1400), profil)
+    # Passe-partout / bordure amenant l'œuvre au ratio d'une taille catalogue réelle
+    # (Gelato/Prodigi) → le mockup correspond au produit livré, pas à un cadre sur mesure.
+    art_red = _redim_long_edge(art, 1400)
+    aw, ah = art_red.size
+    taille = layout.meilleure_taille(max(aw, ah) / min(aw, ah))
+    ratio_cible = taille.ratio if aw >= ah else 1.0 / taille.ratio
+    piece = frames.encadrer(art_red, profil, ratio_cible=ratio_cible)
     piece = _redim_long_edge(piece, int(min(sortie) * 0.72))
     avec_ombre = frames.ombre_portee(piece, decalage=(0, 16), flou=24, opacite=120, marge=80)
     x = (sortie[0] - avec_ombre.width) // 2

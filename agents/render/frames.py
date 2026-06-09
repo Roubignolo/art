@@ -115,10 +115,14 @@ def _reflet_verre(img: Image.Image, ouverture: Tuple[int, int, int, int]) -> Non
 
 def encadrer(art: Image.Image, profil: str = "chene", *,
              marie_louise: bool = True, mat_frac: float = 0.10,
-             verre: bool = True) -> Image.Image:
+             verre: bool = True, ratio_cible: float | None = None) -> Image.Image:
     """Encadre ``art`` et retourne une image RGBA opaque (la pièce encadrée).
 
-    ``mat_frac`` : largeur du passe-partout en fraction du petit côté de l'œuvre.
+    ``mat_frac`` : largeur MINIMALE du passe-partout en fraction du petit côté.
+    ``ratio_cible`` : si fourni (largeur/hauteur d'une taille catalogue dans
+    l'orientation de l'œuvre), le passe-partout est calculé ASYMÉTRIQUEMENT pour
+    amener l'ouverture à ce ratio — l'œuvre garde son ratio natif, jamais de crop.
+    C'est ce qui fait correspondre le mockup au produit POD réellement livré.
     """
     if profil not in PROFILS:
         profil = "chene"
@@ -128,10 +132,16 @@ def encadrer(art: Image.Image, profil: str = "chene", *,
     petit_cote = min(aw, ah)
 
     fw = max(14, int(petit_cote * p.largeur_frac))
-    mw = max(0, int(petit_cote * mat_frac)) if marie_louise else 0
+    if marie_louise and ratio_cible:
+        from .layout import ouverture
+        _ow, _oh, mwx, mwy = ouverture(aw, ah, ratio_cible, mat_frac)
+    elif marie_louise:
+        mwx = mwy = max(0, int(petit_cote * mat_frac))
+    else:
+        mwx = mwy = 0
 
-    W = aw + 2 * (fw + mw)
-    H = ah + 2 * (fw + mw)
+    W = aw + 2 * mwx + 2 * fw
+    H = ah + 2 * mwy + 2 * fw
     piece = Image.new("RGBA", (W, H), p.base + (255,))
     draw = ImageDraw.Draw(piece)
 
@@ -140,17 +150,17 @@ def encadrer(art: Image.Image, profil: str = "chene", *,
     _veiner(piece, (0, 0, W - 1, H - 1), fw, p)
 
     # Passe-partout (marie-louise) + biseau d'ouverture
-    if mw > 0:
+    if mwx > 0 or mwy > 0:
         draw.rectangle([fw, fw, W - fw - 1, H - fw - 1], fill=p.marie_louise)
         # ombre douce du cadre sur le mat
         draw.rectangle([fw, fw, W - fw - 1, fw + 2], fill=_assombrir(p.marie_louise, 0.08))
         draw.rectangle([fw, fw, fw + 2, H - fw - 1], fill=_assombrir(p.marie_louise, 0.06))
 
-    # Ouverture où vit l'œuvre
-    ox0, oy0 = fw + mw, fw + mw
+    # Ouverture où vit l'œuvre (centrée dans le passe-partout)
+    ox0, oy0 = fw + mwx, fw + mwy
     ox1, oy1 = ox0 + aw, oy0 + ah
     # liseré du biseau de coupe du mat
-    if mw > 0:
+    if mwx > 0 or mwy > 0:
         draw.rectangle([ox0 - 2, oy0 - 2, ox1 + 1, oy1 + 1], outline=_assombrir(p.marie_louise, 0.18), width=1)
         draw.rectangle([ox0 - 1, oy0 - 1, ox1, oy1], outline=_eclaircir(p.marie_louise, 0.5), width=1)
 

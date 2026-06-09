@@ -148,6 +148,28 @@ L'écart n'est pas énorme en jours, **mais le tracking carrier est en français
 | Vitrage | Plexi standard | Plexi standard (vrai verre optionnel selon zone) |
 | Tailles | A4 → A1 | A4 → A1 + custom |
 | Emballage | Coins + I-beams + double cannelure | Coins + carton + bulle pour grands |
+| Passe-partout (mat) | **Non** (poster bord-à-bord, monté par le client) | **Oui, configurable** (snow white/black/hayseed, sans acide) |
+| Vitrage | Plexi | Plexi · **vrai verre** · anti-reflet (moth-eye) |
+
+### Ratios « musée » non standard : passe-partout / bordure, jamais de crop
+
+Nos œuvres ont des **ratios arbitraires** ; or les deux POD travaillent sur des
+**tailles fixes**. Comportement face à un fichier au mauvais ratio :
+- **Prodigi (API `sizing`)** : `fillPrintArea` (défaut, **crope**), **`fitPrintArea`**
+  (contient, **sans crop ni déformation** ← à utiliser), `stretchToPrintArea` (déforme).
+  Un **PDF est imprimé à la taille reçue**. Passe-partout physique optionnel (mat
+  1″/1,5″/2″ selon taille — ex. cadre 18×24″ → image visible 14×20″).
+- **Gelato** : recadrage « user controlled » + *product fit check* ; **bordure blanche**
+  dispo ; pas d'étirement imposé. **Pas de passe-partout** → la marge se gère **dans le
+  fichier**. (Libellé exact fit/fill + bornes custom **à confirmer par mail**, pages
+  support en 403 — cf. todo §3.2.)
+- **Aucun cadre sur-mesure au mm** chez l'un ou l'autre.
+
+**Décision** (détaillée dans [`decision-encadrement-tailles.md`](decision-encadrement-tailles.md),
+implémentée dans `agents/render/layout.py`) : **jamais de crop/stretch**. Gelato → bordure
+blanche **intégrée au fichier** au ratio d'une taille catalogue ; Prodigi → ratio natif +
+**`fitPrintArea` + passe-partout physique**. Le mockup encadré rend désormais ce vrai
+passe-partout (= produit livré).
 
 ### Ce que reçoit l'acheteur Etsy
 
