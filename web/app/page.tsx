@@ -188,6 +188,7 @@ export default function App() {
   const [cfg, setCfg] = useState<Config>(DEFAULTS);
   const [tab, setTab] = useState<"pilotage" | "oeuvres" | "apercus" | "viabilite" | "import" | "connecteurs" | "commandes">("pilotage");
   const [sel, setSel] = useState<number | null>(null);
+  const [showRegistre, setShowRegistre] = useState(false); // ancien registre base (technique), replié par défaut
   const [imp, setImp] = useState("");
   const [busy, setBusy] = useState(false);
   const [busyMkt, setBusyMkt] = useState(false);
@@ -708,8 +709,11 @@ export default function App() {
                 ))}
               </div>
             )}
-            <h2 className="serif" style={{ fontSize: 16, fontWeight: 600, margin: "8px 0 10px", color: "var(--ink2)" }}>Registre base <span className="mono" style={{ fontSize: 11, color: "var(--ink3)" }}>(technique · {works.length})</span></h2>
-          <div style={{ display: "flex", gap: 18 }}>
+            <button className="btn btn-ghost" onClick={() => setShowRegistre((s) => !s)} style={{ fontSize: 12, padding: "4px 0", color: "var(--ink3)" }} title="Ancienne table Work (import manuel) — distincte du catalogue commercial">
+              {showRegistre ? "▾" : "▸"} Registre base <span className="mono" style={{ fontSize: 11 }}>(technique · {works.length})</span>
+            </button>
+          {showRegistre && (
+          <div style={{ display: "flex", gap: 18, marginTop: 10 }}>
             <div style={{ flex: selected ? "0 0 46%" : "1" }}>
               {works.length === 0 ? (
                 <div className="cd" style={{ padding: 24 }}>
@@ -1057,6 +1061,7 @@ export default function App() {
               </div>
             )}
           </div>
+          )}
           </>
           );
         })()}
