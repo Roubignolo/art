@@ -47,6 +47,11 @@ type PreviewWork = {
   // Collections (cf. agents/tagging.py + agents/render/palette.py)
   tags?: { sujet: string[]; mouvement: string | null; palette: string[]; collections: string[] } | null;
   palette?: { tags: string[]; swatches: string[]; famille: string; chaleur: number } | null;
+  // Mise en page produit — format catalogue fidèle au ratio (cf. agents/render/layout.py · web/lib/layout.ts)
+  layout?: {
+    taille: string; orientation: string; ratioOeuvre: number; bordurePct: number;
+    variants: { taille: string; bordurePct: number }[];
+  } | null;
 };
 
 type Work = {
@@ -1172,6 +1177,15 @@ export default function App() {
                             Saturation (approx.) : zone la + saturée {w.gamut.teinteARisque} (C* {w.gamut.chromaMax}) · {w.gamut.pctChromaElevee}% très saturé
                           </span>
                         ))}
+                      </div>
+                    )}
+                    {w.layout && (
+                      <div
+                        className="mono"
+                        style={{ fontSize: 10, color: "var(--ink2)", marginTop: 8 }}
+                        title={`Taille catalogue la plus fidèle au ratio ${w.layout.ratioOeuvre} de l'œuvre (jamais de crop ni d'étirement — la bordure/passe-partout comble l'écart au format POD). Autres formats offerts : ${w.layout.variants.map((v) => `${v.taille} (bordure ${v.bordurePct}%)`).join(" · ")}.`}
+                      >
+                        Format fidèle : {w.layout.taille} ({w.layout.orientation}) · bordure {w.layout.bordurePct}% · {w.layout.variants.length} formats offerts
                       </div>
                     )}
                     {((w.tags?.collections?.length ?? 0) > 0 || (w.palette?.swatches?.length ?? 0) > 0) && (

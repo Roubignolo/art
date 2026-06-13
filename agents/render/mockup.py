@@ -286,6 +286,22 @@ def generer_galerie(
     web = _redim_long_edge(master, 2000)
     manifeste["fichiers"]["master"] = _sauver(web, f"{dossier}/master_restaure.jpg")
 
+    # Plan de mise en page produit : taille catalogue fidèle au ratio de l'œuvre
+    # (jamais de crop ; la bordure/passe-partout comble l'écart au format POD).
+    # Calculé sur le MASTER WEB persisté (master_restaure.jpg), pas sur le master
+    # print en mémoire : la géométrie est un ratio (invariante d'échelle), et
+    # c'est le seul fichier dont dispose le backfill (build_collections._backfill_layout)
+    # — les deux chemins produisent ainsi EXACTEMENT les mêmes nombres (zéro
+    # divergence print/cockpit). web/lib/layout.ts porte la même géométrie,
+    # vérifiée par tests/test_layout_ts_symmetry.py.
+    aw, ah = web.size
+    manifeste["layout"] = {
+        "gelato": layout.planifier(aw, ah, "gelato").to_dict(),
+        "prodigi": layout.planifier(aw, ah, "prodigi").to_dict(),
+        "variants_gelato": [p.to_dict() for p in layout.plans_variants(aw, ah, "gelato")],
+        "variants_prodigi": [p.to_dict() for p in layout.plans_variants(aw, ah, "prodigi")],
+    }
+
     # Avant/après : honnête seulement quand on a réellement modifié la couleur.
     if restauration and rapport is not None and rapport.deplace_teinte:
         manifeste["fichiers"]["avant_apres"] = _sauver(

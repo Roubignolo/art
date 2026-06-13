@@ -53,6 +53,46 @@
       ],
       "famille": "doré",
       "chaleur": 0.497
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.274,
+      "bordurePct": 24.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.9
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.3
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 36.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 38.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 38.0
+        }
+      ]
     }
   },
   {
@@ -109,6 +149,46 @@
       ],
       "famille": "vert",
       "chaleur": 0.115
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.63,
+      "bordurePct": 23.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 32.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 36.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 23.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 49.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 49.1
+        }
+      ]
     }
   },
   {
@@ -165,6 +245,46 @@
       ],
       "famille": "turquoise",
       "chaleur": 0.206
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.261,
+      "bordurePct": 24.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   },
   {
@@ -223,6 +343,46 @@
       ],
       "famille": "doré",
       "chaleur": 0.779
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.619,
+      "bordurePct": 23.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 31.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 27.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 36.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.3
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 27.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 48.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 48.8
+        }
+      ]
     }
   },
   {
@@ -281,6 +441,46 @@
       "pctChromaElevee": 0.1,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.248,
+      "bordurePct": 25.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 34.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 33.7
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 34.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 38.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.0
+        }
+      ]
     }
   },
   {
@@ -345,6 +545,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.261,
+      "bordurePct": 24.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   },
   {
@@ -400,6 +640,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.338,
+      "bordurePct": 25.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.3
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.3
+        }
+      ]
     }
   },
   {
@@ -459,6 +739,46 @@
       "pctChromaElevee": 35.8,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.263,
+      "bordurePct": 24.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   },
   {
@@ -515,6 +835,46 @@
       "pctChromaElevee": 0.1,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.197,
+      "bordurePct": 28.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 33.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 28.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 36.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 40.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 34.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 34.9
+        }
+      ]
     }
   },
   {
@@ -574,6 +934,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.258,
+      "bordurePct": 25.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.9
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 33.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.4
+        }
+      ]
     }
   },
   {
@@ -630,6 +1030,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.313,
+      "bordurePct": 26.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.4
+        }
+      ]
     }
   },
   {
@@ -693,6 +1133,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.463,
+      "bordurePct": 27.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.3
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.4
+        }
+      ]
     }
   },
   {
@@ -756,6 +1236,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.34,
+      "bordurePct": 25.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.4
+        }
+      ]
     }
   },
   {
@@ -817,6 +1337,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.453,
+      "bordurePct": 23.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.9
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.2
+        }
+      ]
     }
   },
   {
@@ -878,6 +1438,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.334,
+      "bordurePct": 25.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.8
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.1
+        }
+      ]
     }
   },
   {
@@ -939,6 +1539,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.295,
+      "bordurePct": 27.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 31.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 23.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 31.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 38.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 38.8
+        }
+      ]
     }
   },
   {
@@ -1000,6 +1640,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.483,
+      "bordurePct": 26.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 22.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 22.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 45.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 45.0
+        }
+      ]
     }
   },
   {
@@ -1057,6 +1737,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.215,
+      "bordurePct": 27.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 32.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 36.1
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 27.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 35.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 36.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 39.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 35.7
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 35.7
+        }
+      ]
     }
   },
   {
@@ -1119,6 +1839,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.326,
+      "bordurePct": 26.0,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.9
+        }
+      ]
     }
   },
   {
@@ -1175,6 +1935,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.474,
+      "bordurePct": 26.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 22.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 22.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 26.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.7
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.7
+        }
+      ]
     }
   },
   {
@@ -1231,6 +2031,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.334,
+      "bordurePct": 25.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.8
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.1
+        }
+      ]
     }
   },
   {
@@ -1289,6 +2129,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.537,
+      "bordurePct": 23.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.8
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 24.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 33.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 24.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 46.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 46.6
+        }
+      ]
     }
   },
   {
@@ -1347,6 +2227,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.322,
+      "bordurePct": 26.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.8
+        }
+      ]
     }
   },
   {
@@ -1403,6 +2323,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.656,
+      "bordurePct": 24.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 33.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 37.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 28.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 24.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 49.7
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 49.7
+        }
+      ]
     }
   },
   {
@@ -1462,6 +2422,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.456,
+      "bordurePct": 23.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.4
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.1
+        }
+      ]
     }
   },
   {
@@ -1521,6 +2521,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.206,
+      "bordurePct": 28.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 32.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 36.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 28.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 35.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 36.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 40.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 35.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 35.3
+        }
+      ]
     }
   },
   {
@@ -1582,6 +2622,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.186,
+      "bordurePct": 29.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 33.8
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 37.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 29.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 36.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 37.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 41.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 34.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 34.4
+        }
+      ]
     }
   },
   {
@@ -1638,6 +2718,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×30",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.082,
+      "bordurePct": 29.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 39.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 43.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 35.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 42.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 43.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 46.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 29.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 29.8
+        }
+      ]
     }
   },
   {
@@ -1694,6 +2814,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.344,
+      "bordurePct": 25.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.4
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.6
+        }
+      ]
     }
   },
   {
@@ -1750,6 +2910,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×30",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.084,
+      "bordurePct": 29.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 39.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 43.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 35.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 42.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 43.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 46.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 29.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 29.9
+        }
+      ]
     }
   },
   {
@@ -1806,6 +3006,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.253,
+      "bordurePct": 25.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 34.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 33.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 34.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.2
+        }
+      ]
     }
   },
   {
@@ -1866,6 +3106,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.45,
+      "bordurePct": 23.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.0
+        }
+      ]
     }
   },
   {
@@ -1929,6 +3209,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.493,
+      "bordurePct": 25.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 22.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 31.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 22.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 25.9
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 45.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 45.3
+        }
+      ]
     }
   },
   {
@@ -1986,6 +3306,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 2.075,
+      "bordurePct": 37.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 44.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 41.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 48.1
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 41.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 41.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 58.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 58.4
+        }
+      ]
     }
   },
   {
@@ -2046,6 +3406,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.531,
+      "bordurePct": 24.0,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 33.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 25.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 24.0
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 46.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 46.4
+        }
+      ]
     }
   },
   {
@@ -2105,6 +3505,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.312,
+      "bordurePct": 26.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.9
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.4
+        }
+      ]
     }
   },
   {
@@ -2166,6 +3606,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.45,
+      "bordurePct": 23.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.8
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.0
+        }
+      ]
     }
   },
   {
@@ -2227,6 +3707,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "50×70",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.382,
+      "bordurePct": 26.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 22.8
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 27.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 27.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 26.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 27.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 31.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 41.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 41.8
+        }
+      ]
     }
   },
   {
@@ -2292,6 +3812,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.287,
+      "bordurePct": 23.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 32.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 23.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 31.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 32.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 36.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 38.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 38.5
+        }
+      ]
     }
   },
   {
@@ -2355,6 +3915,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.316,
+      "bordurePct": 26.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.8
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.1
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.8
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.5
+        }
+      ]
     }
   },
   {
@@ -2411,6 +4011,46 @@
       "pctChromaElevee": 0.6,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.31,
+      "bordurePct": 27.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.0
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.4
+        }
+      ]
     }
   },
   {
@@ -2470,6 +4110,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.196,
+      "bordurePct": 28.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 33.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 28.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 36.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 40.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 34.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 34.9
+        }
+      ]
     }
   },
   {
@@ -2526,6 +4206,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.245,
+      "bordurePct": 25.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 34.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 33.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 34.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 38.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 36.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 36.9
+        }
+      ]
     }
   },
   {
@@ -2582,6 +4302,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.2,
+      "bordurePct": 28.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 33.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 37.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 28.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 36.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 36.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 40.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 35.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 35.1
+        }
+      ]
     }
   },
   {
@@ -2643,6 +4403,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.254,
+      "bordurePct": 25.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 34.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 33.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 34.0
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.2
+        }
+      ]
     }
   },
   {
@@ -2696,6 +4496,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.422,
+      "bordurePct": 25.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 24.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 25.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 29.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 43.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 43.1
+        }
+      ]
     }
   },
   {
@@ -2752,6 +4592,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "50×70",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.404,
+      "bordurePct": 25.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 23.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 28.2
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 25.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 30.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 42.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 42.6
+        }
+      ]
     }
   },
   {
@@ -2808,6 +4688,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.261,
+      "bordurePct": 24.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   },
   {
@@ -2867,6 +4787,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.238,
+      "bordurePct": 26.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.9
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 34.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 34.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 34.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 38.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 36.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 36.6
+        }
+      ]
     }
   },
   {
@@ -2923,6 +4883,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 3.339,
+      "bordurePct": 59.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 63.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 61.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 65.8
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 61.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 61.4
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 59.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 72.7
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 72.7
+        }
+      ]
     }
   },
   {
@@ -2981,6 +4981,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.984,
+      "bordurePct": 35.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 42.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 38.9
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 46.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 39.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 38.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 56.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 56.8
+        }
+      ]
     }
   },
   {
@@ -3037,6 +5077,46 @@
       "pctChromaElevee": 1.9,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.341,
+      "bordurePct": 25.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.3
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.5
+        }
+      ]
     }
   },
   {
@@ -3095,6 +5175,46 @@
       "pctChromaElevee": 0.7,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.262,
+      "bordurePct": 24.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   },
   {
@@ -3153,6 +5273,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.359,
+      "bordurePct": 24.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 24.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 28.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 26.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 27.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 28.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 32.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 41.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 41.0
+        }
+      ]
     }
   },
   {
@@ -3209,6 +5369,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.232,
+      "bordurePct": 26.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 35.1
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 26.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 34.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 35.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 38.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 36.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 36.3
+        }
+      ]
     }
   },
   {
@@ -3265,6 +5465,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.281,
+      "bordurePct": 23.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 32.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 31.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 32.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 36.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 38.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 38.2
+        }
+      ]
     }
   },
   {
@@ -3321,6 +5561,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.295,
+      "bordurePct": 27.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 31.8
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 23.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 31.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 31.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 38.8
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 38.8
+        }
+      ]
     }
   },
   {
@@ -3377,6 +5657,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.326,
+      "bordurePct": 26.0,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.9
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.9
+        }
+      ]
     }
   },
   {
@@ -3435,6 +5755,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.306,
+      "bordurePct": 27.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 31.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.1
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.6
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 31.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.2
+        }
+      ]
     }
   },
   {
@@ -3491,6 +5851,46 @@
       "pctChromaElevee": 0.0,
       "horsGamutPct": null,
       "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.261,
+      "bordurePct": 24.9,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 32.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 37.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 37.5
+        }
+      ]
     }
   }
 ]

@@ -98,6 +98,23 @@ def _infos(rec):
     )
 
 
+def _layout_leger(manifeste):
+    """Résumé du plan de mise en page pour l'index collection (cockpit/listing) :
+    taille recommandée + orientation + liste des variantes Gelato avec leur bordure."""
+    lay = manifeste.get("layout") or {}
+    g = lay.get("gelato") or {}
+    if not g:
+        return None
+    return {
+        "taille": g.get("taille"),
+        "orientation": g.get("orientation"),
+        "ratioOeuvre": g.get("ratio_oeuvre"),
+        "bordurePct": g.get("bordure_pct"),
+        "variants": [{"taille": p.get("taille"), "bordurePct": p.get("bordure_pct")}
+                     for p in lay.get("variants_gelato") or []],
+    }
+
+
 def _entree_collection(oid, rec, manifeste, tags, pal):
     dossier = os.path.join(OUT, str(oid))
     fid = manifeste.get("fidelite") or {}
@@ -121,7 +138,51 @@ def _entree_collection(oid, rec, manifeste, tags, pal):
         "gamut": {"methode": gam.get("methode"), "teinteARisque": gam.get("teinte_a_risque"),
                   "chromaMax": gam.get("chroma_max"), "pctChromaElevee": gam.get("pct_chroma_elevee"),
                   "horsGamutPct": gam.get("hors_gamut_pct"), "profilPapier": gam.get("profil_papier")},
+        "layout": _layout_leger(manifeste),
     }
+
+
+def _backfill_layout(by_id):
+    """Calcule le plan de mise en page des œuvres déjà rendues qui n'en ont pas
+    (le ratio du master web = celui du print → géométrie invariante d'échelle)."""
+    from agents.render import layout as _layout
+
+    for oid, entry in list(by_id.items()):
+        if entry.get("layout"):
+            continue
+        master_p = os.path.join(OUT, str(oid), "master_restaure.jpg")
+        if not os.path.exists(master_p):
+            continue
+        try:
+            with Image.open(master_p) as im:
+                aw, ah = im.size
+        except Exception as e:  # master tronqué / 0 octet : on saute, sans tuer le run
+            print(f"  ⚠ layout #{oid} ignoré : master illisible ({e})")
+            continue
+        lay = {
+            "gelato": _layout.planifier(aw, ah, "gelato").to_dict(),
+            "prodigi": _layout.planifier(aw, ah, "prodigi").to_dict(),
+            "variants_gelato": [p.to_dict() for p in _layout.plans_variants(aw, ah, "gelato")],
+            "variants_prodigi": [p.to_dict() for p in _layout.plans_variants(aw, ah, "prodigi")],
+        }
+        entry["layout"] = _layout_leger({"layout": lay})
+        mp = os.path.join(OUT, str(oid), "manifest.json")
+        if os.path.exists(mp):
+            try:
+                with open(mp, encoding="utf-8") as f:
+                    man = json.load(f)
+                man["layout"] = lay
+                # Écriture atomique : temp + os.replace. Sans ça, une coupure en
+                # cours de dump laisserait un manifest.json tronqué (et le bloc
+                # except silencieux d'avant masquait la panne).
+                tmp = mp + ".tmp"
+                with open(tmp, "w", encoding="utf-8") as f:
+                    json.dump(man, f, ensure_ascii=False, indent=2)
+                os.replace(tmp, mp)
+            except Exception as e:  # index déjà à jour ; on signale, on ne masque pas
+                print(f"  ⚠ layout #{oid} : manifest non réécrit ({e})")
+        g = lay["gelato"]
+        print(f"  ↻ layout #{oid} → {g['taille']} ({g['orientation']}, bordure {g['bordure_pct']}%)")
 
 
 def _enrichir_existants(by_id):
@@ -160,6 +221,7 @@ def main():
     by_id = _charger_index()
     print(f"Collection actuelle : {len(by_id)} œuvres · cible TOTALE {TARGET} (≤{N_PAR_REQUETE}/requête)\n")
     _enrichir_existants(by_id)
+    _backfill_layout(by_id)
     _sauver_index(by_id)
 
     seen_titres = {_norm_titre(c.get("title")) for c in by_id.values()}

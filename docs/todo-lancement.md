@@ -40,15 +40,6 @@
 
 ### 3.2 ✉️ ÉCRIRE UN MAIL — questions ouvertes à **Gelato** 👤 🔴
 *(Réponses non vérifiables en doc publique — pages support en 403. À confirmer avant de figer le pipeline d'export. Cf. [decision-encadrement-tailles.md](decision-encadrement-tailles.md).)*
-
-- ⬜ **Fallback fit / fill** : si l'image uploadée n'a **pas** le ratio exact du produit (poster/encadré de taille catalogue), que fait Gelato par défaut — **recadrage auto (crop)**, **étirement**, **ajout d'une bordure blanche**, ou **rejet/avertissement** ? Peut-on **forcer un mode** (fit/contain sans crop) via l'API ou l'éditeur ? Quel libellé exact d'attribut ?
-- ⬜ **Posters custom** : quelles sont les **bornes exactes** (largeur/hauteur **min** et **max**) et le **pas** (1 cm ? 1 mm ?) d'un poster sur mesure ? Disponible **via API** ou seulement via l'éditeur drag-and-drop ?
-- ⬜ **Cadres custom** : existe-t-il des **tailles de cadre** hors catalogue, ou les cadres suivent-ils strictement les tailles de poster ? Liste exacte des tailles d'encadrés et des **ratios** disponibles.
-- ⬜ **Passe-partout (mat)** : Gelato propose-t-il une option **passe-partout** sur les encadrés, ou le poster remplit-il toute l'ouverture (monté par le client) ? Si oui, configurable (largeur/couleur) ?
-- ⬜ **Safe area / bleed** : zone de sécurité et fond perdu exacts par produit (poster, encadré, canvas) ? Gabarits téléchargeables ?
-- ⬜ **White-label** : confirmer sender d'expédition **modifiable** (carton, étiquette, packing slip) sans logo Gelato, et conditions (Gelato+ requis ?).
-- ⬜ **Insert provenance** : possibilité de glisser une **carte A6** dans le colis via API, et coût.
-
 ### 3.3 ✉️ ÉCRIRE UN MAIL — questions ouvertes à **Prodigi** 👤
 *(La doc API Prodigi confirme déjà l'essentiel — à valider en conditions réelles.)*
 
