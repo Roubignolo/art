@@ -122,3 +122,13 @@ model Order {
   @@index([provider, status])
   @@index([createdAt])
 }
+
+// Validation HUMAINE du gate DP/marque des œuvres de la galerie (collection.json).
+// Règle dure : aucune publication sans cette décision humaine. Clé = objectID musée
+// (= champ `id` de collection.json). Distinct de Work.gateUe (œuvres déjà en base).
+model CurationDecision {
+  workId    Int      @id // objectID musée, = id dans collection.json
+  status    String       // "valide" | "rejete"
+  note      String?      // raison de rejet / commentaire facultatif
+  decidedAt DateTime @default(now())
+}

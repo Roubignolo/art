@@ -197,6 +197,8 @@ export default function App() {
   const [busyListing, setBusyListing] = useState(false);
   const [collection, setCollection] = useState<PreviewWork[] | null>(null);
   const [collFiltre, setCollFiltre] = useState<string | null>(null);
+  // Décisions de validation DP/marque (gate humain) — clé = id collection.json.
+  const [validations, setValidations] = useState<Record<string, { status: string; note?: string | null }>>({});
 
   const reload = useCallback(async () => {
     try {
@@ -358,6 +360,36 @@ export default function App() {
     }
   }, []);
 
+  /** Charge les décisions de validation DP (gate humain) depuis la base. */
+  const loadValidations = useCallback(async () => {
+    try {
+      const r = await fetch("/api/validation", { cache: "no-store" });
+      if (r.ok) setValidations(await r.json());
+    } catch {
+      /* base indisponible : on reste en lecture seule, sans bloquer la galerie */
+    }
+  }, []);
+
+  /** Enregistre (ou annule) la validation humaine d'une œuvre. status = valide|rejete|null. */
+  const deciderValidation = useCallback(async (workId: number, status: "valide" | "rejete" | null) => {
+    // Optimiste : on met à jour l'UI tout de suite, on réconcilie sur erreur.
+    setValidations((v) => {
+      const next = { ...v };
+      if (status) next[String(workId)] = { status };
+      else delete next[String(workId)];
+      return next;
+    });
+    try {
+      if (status) {
+        await fetch("/api/validation", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ workId, status }) });
+      } else {
+        await fetch(`/api/validation?workId=${workId}`, { method: "DELETE" });
+      }
+    } catch {
+      loadValidations(); // resynchronise si l'écriture a échoué
+    }
+  }, [loadValidations]);
+
   /** Génère les mockups (templates + lifestyle IA) pour une œuvre. */
   const genMockups = useCallback(async (id: number, product = "framed_a2_oak") => {
     setBusyMockup(true); setErr(null);
@@ -395,8 +427,8 @@ export default function App() {
   useEffect(() => {
     if (tab === "connecteurs" && connectors === null) loadConnectors();
     if (tab === "commandes" && orders === null) loadOrders();
-    if (tab === "apercus" && collection === null) loadCollection();
-  }, [tab, connectors, orders, collection, loadConnectors, loadOrders, loadCollection]);
+    if (tab === "apercus" && collection === null) { loadCollection(); loadValidations(); }
+  }, [tab, connectors, orders, collection, loadConnectors, loadOrders, loadCollection, loadValidations]);
 
   if (!works) {
     return <div style={{ padding: 40, fontFamily: "system-ui", color: "#5C5345" }}>Chargement…</div>;
@@ -1091,9 +1123,15 @@ export default function App() {
                 ["Mouvement", compteur((w) => (w.tags?.mouvement ? [w.tags.mouvement] : []))],
                 ["Palette", compteur((w) => w.palette?.tags ?? [])],
               ];
-              // Tri curation : œuvres « à valider DP » en tête (à traiter), dépriorisées en fin.
-              const rangCuration = (w: PreviewWork) =>
-                w.curation?.nouveau ? -1 : w.curation?.deprioritized ? 1 : 0;
+              // Tri curation : à-traiter (sourcées, pas encore décidées) en tête,
+              // puis normales/validées, dépriorisées, et rejetées tout en fin.
+              const rangCuration = (w: PreviewWork) => {
+                const dec = validations[String(w.id)]?.status;
+                if (dec === "rejete") return 2;
+                if (w.curation?.deprioritized) return 1;
+                if (w.curation?.dpAValider && !dec) return -1;
+                return 0;
+              };
               const visibles = (collFiltre
                 ? collection.filter((w) => (w.tags?.collections ?? []).includes(collFiltre))
                 : collection
@@ -1158,13 +1196,25 @@ export default function App() {
                   ["provenance_verso.png", "Provenance · verso"],
                 ];
                 const dep = w.curation?.deprioritized;
+                const decision = validations[String(w.id)]?.status; // "valide" | "rejete" | undefined
+                const aTraiter = w.curation?.dpAValider && !decision;
                 return (
-                  <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18, opacity: dep ? 0.55 : 1 }}>
+                  <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18, opacity: dep || decision === "rejete" ? 0.55 : 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
                       <div>
                         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                           <h2 className="serif" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{w.title}</h2>
-                          {w.curation?.dpAValider && (
+                          {decision === "valide" && (
+                            <span className="badge" title="Gate DP/marque validé par un humain — publication possible." style={{ background: "var(--sage-soft)", color: "var(--sage)" }}>
+                              ✓ DP VALIDÉ
+                            </span>
+                          )}
+                          {decision === "rejete" && (
+                            <span className="badge" title="Rejetée à la validation humaine — ne pas publier." style={{ background: "var(--ox-soft)", color: "var(--ox)" }}>
+                              ✗ REJETÉE
+                            </span>
+                          )}
+                          {aTraiter && (
                             <span className="badge" title={`Œuvre fraîchement sourcée${w.curation?.source ? ` (${w.curation.source})` : ""} — valider le gate domaine public + marque AVANT toute publication (jamais automatisé).`} style={{ background: "var(--warn-soft)", color: "var(--brass)" }}>
                               ⚠ À VALIDER DP
                             </span>
@@ -1199,6 +1249,23 @@ export default function App() {
                           <a href={w.wikidataUrl} target="_blank" rel="noreferrer" className="btn" style={{ textDecoration: "none", color: "var(--brass)" }}>
                             <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />Wikidata
                           </a>
+                        )}
+                        {/* Gate humain DP/marque — règle dure : rien n'est publié sans cette décision. */}
+                        {(w.curation?.dpAValider || decision) && (
+                          decision ? (
+                            <button className="btn" onClick={() => deciderValidation(w.id, null)} title="Revenir à « à valider »">
+                              ↺ Annuler
+                            </button>
+                          ) : (
+                            <>
+                              <button className="btn" style={{ color: "var(--sage)" }} onClick={() => deciderValidation(w.id, "valide")} title="Confirmer DP US+UE + sans marque + image conforme">
+                                <Check size={11} style={{ display: "inline", marginRight: 3 }} />Valider DP
+                              </button>
+                              <button className="btn" style={{ color: "var(--ox)" }} onClick={() => deciderValidation(w.id, "rejete")} title="Écarter cette œuvre">
+                                <X size={11} style={{ display: "inline", marginRight: 3 }} />Rejeter
+                              </button>
+                            </>
+                          )
                         )}
                       </div>
                     </div>
