@@ -32,7 +32,15 @@ def _norm_artiste(s: Optional[str]) -> str:
     s = re.sub(r"\(.*?\)", "", s or "")  # retire les parenthèses « (Rembrandt van Rijn) »
     # insensible aux accents : le Met écrit « Edouard Manet », la table « Édouard Manet »
     s = "".join(c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c))
-    return re.sub(r"\s+", " ", s).strip().lower()
+    s = re.sub(r"\s+", " ", s).strip().lower()
+    # format « Nom, Prénom[, 1834-1919] » (BHL) → « prénom nom », pour matcher la table
+    if "," in s:
+        parts = [p.strip() for p in s.split(",") if p.strip() and not p.strip()[0].isdigit()]
+        if len(parts) >= 2:
+            s = f"{parts[1]} {parts[0]}"
+        elif parts:
+            s = parts[0]
+    return s
 
 
 _MVT_NORM = {_norm_artiste(k): v for k, v in ARTISTE_MVT.items()}

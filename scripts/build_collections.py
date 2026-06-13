@@ -27,7 +27,7 @@ from PIL import Image  # noqa: E402
 from agents import tagging  # noqa: E402
 from agents.render import InfosProvenance, charger, generer_carte, generer_galerie  # noqa: E402
 from agents.render.palette import analyser_palette  # noqa: E402
-from agents.sources import artic, cleveland, met, smithsonian, wikidata_dp  # noqa: E402
+from agents.sources import artic, bhl, cleveland, met, smithsonian, wikidata_dp  # noqa: E402
 from agents.sources.base import finalize_record  # noqa: E402
 
 OUT = os.path.join(ROOT, "web", "public", "renders")
@@ -43,7 +43,16 @@ IDX = os.path.join(OUT, "collection.json")
 # Une requête peut viser un autre musée que le Met via son champ "source" — décisif
 # pour les niches que le Met n'a pas en haute-déf (planches Audubon/Haeckel/Redouté
 # → AIC). Voir docs/audit-rentabilite.md §T2. wikidata_dp enrichit la preuve DP.
-SOURCES = {"met": met, "artic": artic, "cleveland": cleveland, "smithsonian": smithsonian}
+SOURCES = {"met": met, "artic": artic, "cleveland": cleveland,
+           "smithsonian": smithsonian, "bhl": bhl}
+
+
+def _candidats(mod, src, q):
+    """Itérateur de candidats, en gérant la signature propre de BHL (planches
+    d'ouvrages : max_titles/pages_per_title au lieu de max_scan)."""
+    if src == "bhl":
+        return mod.iter_candidates(q, max_titles=4, pages_per_title=12)
+    return mod.iter_candidates(q, max_scan=60)
 
 # Curation automatique : on ne garde que des œuvres MURALES 2D (pas d'objets 3D).
 # Inclut les techniques de gravure/planche naturaliste (AIC) en plus de l'estampe.
@@ -136,6 +145,18 @@ def _hors_theme(rec):
     """Vrai si l'œuvre est un sujet dévotionnel religieux (écarté de la curation déco)."""
     hay = (rec.get("title") or "") + " " + " ".join(rec.get("tags") or [])
     return bool(_HORS_THEME.search(hay))
+
+
+# Pages de garde d'ouvrage (BHL tague parfois une table des matières « Illustration »).
+# Préfixes (pas de \b final : « Inhalts », « contents » avec suffixes allemands).
+_FRONT_MATTER = re.compile(
+    r"\b(inhalt|verzeichnis|index|title\s*page|titelblatt|frontispiece|colophon|vorwort"
+    r"|table\s+of\s+contents|contents|errata|preface|sommaire)", re.I)
+
+
+def _front_matter(rec):
+    """Vrai si la page est une page de garde/texte (table des matières, titre…)."""
+    return bool(_FRONT_MATTER.search(rec.get("title") or ""))
 
 
 def _charger_index():
@@ -328,7 +349,7 @@ def main():
         q = f"{req['artiste']} {req['query']}" if req.get("artiste") else req["query"]
         print(f"\n🔎 [{src}] « {q} »  → attendu {req['collection_attendue']}")
         pris = 0
-        for rec in mod.iter_candidates(q, max_scan=60):
+        for rec in _candidats(mod, src, q):
             if pris >= N_PAR_REQUETE or len(by_id) >= TARGET:
                 break
             if rec.get("decision") != "CANDIDAT" or not rec.get("image_url"):
@@ -341,6 +362,8 @@ def main():
                 continue  # garde-fou marque (NO-GO/CONDITIONNEL vérifié) → jamais
             if not _artiste_concorde(req.get("artiste"), rec.get("artist")):
                 continue  # recherche plein-texte large → on exige le bon artiste
+            if _front_matter(rec):
+                continue  # page de garde BHL (table des matières, titre) → pas une planche
             if not _est_2d(rec):
                 continue  # objet 3D → mauvais wall art
             if _hors_theme(rec):

@@ -7113,5 +7113,828 @@
       "dpAValider": true,
       "source": "met"
     }
+  },
+  {
+    "id": 53543290,
+    "title": "Kunstformen der Natur — page 1",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543290",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#f4f4e5",
+        "#fffff3",
+        "#d9d8c6",
+        "#fefeef",
+        "#fffff7"
+      ],
+      "famille": "olive",
+      "chaleur": 0.132
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.85,
+      "chroma": 0.89,
+      "dominante": 0.891
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 26.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.489,
+      "bordurePct": 26.1,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.9
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 22.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 31.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 22.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 26.1
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 45.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 45.2
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543286,
+    "title": "Kunstformen der Natur — page 2",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543286",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Tons dorés",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#c7c2a9",
+        "#ebe6c6",
+        "#dcd6bb",
+        "#d4cfb6",
+        "#ffffd2"
+      ],
+      "famille": "doré",
+      "chaleur": 0.626
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.67,
+      "chroma": 0.956,
+      "dominante": 0.956
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 30.2,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.46,
+      "bordurePct": 27.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.8
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.3
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543280,
+    "title": "Kunstformen der Natur — page 3",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543280",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#fefef1",
+        "#fffff7",
+        "#f3f3eb",
+        "#e4e6de",
+        "#f8f8ef"
+      ],
+      "famille": "olive",
+      "chaleur": 0.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.56,
+      "chroma": 0.92,
+      "dominante": 0.92
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 11.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.504,
+      "bordurePct": 25.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 32.1
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 45.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 45.6
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543276,
+    "title": "Kunstformen der Natur — page 4",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543276",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#fffff6",
+        "#c8c6bc",
+        "#fffff2",
+        "#e4e4db",
+        "#f0f0e7"
+      ],
+      "famille": "olive",
+      "chaleur": 0.232
+    },
+    "fidelite": {
+      "verdict": "À REVOIR",
+      "deltaE": 1.09,
+      "chroma": 0.847,
+      "dominante": 0.846
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 11.7,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.642,
+      "bordurePct": 24.2,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 32.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 28.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 36.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.1
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 28.4
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 24.2
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 49.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 49.4
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543272,
+    "title": "Kunstformen der Natur — page 5",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543272",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Tons dorés",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#e9e5c8",
+        "#e0dcbf",
+        "#dad5b9",
+        "#cac6ab",
+        "#ffffd5"
+      ],
+      "famille": "doré",
+      "chaleur": 0.61
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.84,
+      "chroma": 0.942,
+      "dominante": 0.942
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 29.3,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "A2 42×59",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.451,
+      "bordurePct": 23.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.1
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.8
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.1
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.1
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543234,
+    "title": "Kunstformen der Natur — page 6",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543234",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#fffff6",
+        "#f1efd9",
+        "#e4dec2",
+        "#fdfdea",
+        "#f7f6e3"
+      ],
+      "famille": "olive",
+      "chaleur": 0.46
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.71,
+      "chroma": 0.926,
+      "dominante": 0.926
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 22.6,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.543,
+      "bordurePct": 23.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 24.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 33.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 25.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 24.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 46.7
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 46.7
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543238,
+    "title": "Kunstformen der Natur — page 7",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543238",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#fffff7",
+        "#dece9c",
+        "#f7f7ec",
+        "#f4f2cf",
+        "#fefeed"
+      ],
+      "famille": "doré",
+      "chaleur": 0.694
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.65,
+      "chroma": 0.945,
+      "dominante": 0.944
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 65.5,
+      "pctChromaElevee": 0.5,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.458,
+      "bordurePct": 27.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.2
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
+  },
+  {
+    "id": 53543242,
+    "title": "Kunstformen der Natur — page 8",
+    "artist": "Haeckel, Ernst,",
+    "source": "Biodiversity Heritage Library (Public Domain)",
+    "dpEvidence": "UE ✓ : Haeckel, Ernst, † 1919 → domaine public depuis 1990 · US ✓ : œuvre 1904 (seuil ≤ 1931) · institution : Public Domain (Biodiversity Heritage Library)",
+    "wikidataUrl": null,
+    "dir": "/renders/53543242",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [],
+      "mouvement": "Illustration naturaliste",
+      "palette": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Illustration naturaliste",
+        "Tons dorés",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#fffff6",
+        "#efe5c1",
+        "#debc92",
+        "#eeece1",
+        "#fbfbe6"
+      ],
+      "famille": "doré",
+      "chaleur": 0.866
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.7,
+      "chroma": 0.953,
+      "dominante": 0.952
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 71.8,
+      "pctChromaElevee": 1.9,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.458,
+      "bordurePct": 27.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.7
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.5
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.3
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.2
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "bhl"
+    }
   }
 ]

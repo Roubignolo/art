@@ -110,16 +110,16 @@ def _author_summary(authors: list[dict[str, Any]]) -> tuple[str | None, str | No
 
 
 def _is_illustration_page(p: dict[str, Any]) -> bool:
-    """Heuristique : page d'illustration si TypeOfText contient 'Illustration'
-    OU s'il y a un PageType.PageTypeName explicite."""
-    tot = (p.get("PageTypes") or [])
-    for pt in tot:
+    """Page de PLANCHE uniquement : PageType explicite Illustration/Plate/Foldout.
+
+    On EXIGE le type explicite — le repli « OCR vide » d'avant ramenait les
+    couvertures et pages blanches (un scan de couverture n'a pas d'OCR) → on
+    sourçait des reliures, pas des planches. Voir docs/audit-rentabilite.md §T2.
+    """
+    for pt in (p.get("PageTypes") or []):
         name = (pt.get("PageTypeName") or "").lower()
-        if "illustration" in name or "plate" in name:
+        if "illustration" in name or "plate" in name or "foldout" in name:
             return True
-    # Fallback : OCRText vide souvent = page d'image
-    if not p.get("OcrText") and p.get("ThumbnailUrl"):
-        return True
     return False
 
 

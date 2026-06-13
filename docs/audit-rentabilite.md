@@ -85,12 +85,19 @@ Audubon/Redouté. Ils apportent les bleus/verts/indigos absents (palette actuell
 - **9 ukiyo-e** (Hiroshige/Hokusai/Kuniyoshi) : GO, fidèles, mais le **papier vieilli
   les fait lire « doré »** → ils diversifient le **sujet**, pas la palette (le mur doré
   passe à 66 %). Les bleus attendus (type Grande Vague) sont l'exception, déjà au catalogue.
-- **Audubon** : le Met **l'a**, mais **< 3000 px** (1766-1876 px) → sous le seuil print
-  → écarté. **Haeckel** : 0 résultat Met/AIC. Les deux niches « oiseaux/naturaliste »
-  colorées (vrai antidote au doré) **exigent BHL** (`BHL_API_KEY` gratuite + câblage
-  driver) — **suivi T2 prioritaire**.
-- Conclusion : la palette ne se casse pas en ajoutant des estampes ; il faut le
-  **naturalisme HD (BHL)** et la botanique. La barre de palette du cockpit pilote la suite.
+- **BHL câblé** (clé posée) : **8 planches Haeckel** *Kunstformen der Natur* sourcées
+  en HD (3900 px), vérifiées **à l'œil** (Tafel 1 Phaeodaria, 2 Globigerina, 3 Ciliata,
+  4 Diatomea… — vraies planches, pas du texte). Olive 4 → 8. Connecteur durci :
+  filtre planche **strict** (PageType Illustration/Plate explicite, plus de repli OCR
+  qui ramenait les couvertures) + garde-fou **page de garde** (table des matières
+  « Inhalts » écartée) + normalisation **« Nom, Prénom » → « Prénom Nom »** (le tagging
+  reconnaît enfin les auteurs BHL).
+- **Audubon** : le Met l'a mais **< 3000 px** ; BHL n'a **pas** la planche-folio couleur
+  tagguée Illustration (que du texte « synopsis ») → Audubon reste à trouver (autre
+  source HD). **Haeckel = le vrai gain naturaliste** (très forte demande Etsy).
+- Le doré reste à 65 % (métrique « famille » grossière : le papier vieilli compte doré).
+  La vraie diversité — sujet (ukiyo-e, Haeckel) + olive/vert (botanique, diatomées) — a
+  progressé ; la **barre de palette** du cockpit + le flag « à valider » pilotent la curation humaine.
 
 ### T3 — Niveaux de prix & lignes *(décision founder — chiffrée, non publiée)*
 
