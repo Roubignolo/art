@@ -8,6 +8,10 @@
 .idea/
 *.swp
 *.swo
+*.code-workspace
+
+# Artefacts de build TS (incrémental)
+*.tsbuildinfo
 
 # Python
 __pycache__/
