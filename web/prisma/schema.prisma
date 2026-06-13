@@ -128,7 +128,8 @@ model Order {
 // (= champ `id` de collection.json). Distinct de Work.gateUe (œuvres déjà en base).
 model CurationDecision {
   workId    Int      @id // objectID musée, = id dans collection.json
-  status    String       // "valide" | "rejete"
+  status    String?      // gate DP humain : "valide" | "rejete" | null (à valider)
+  active    Boolean  @default(false) // dans le catalogue commercial (en vente)
   note      String?      // raison de rejet / commentaire facultatif
   decidedAt DateTime @default(now())
 }

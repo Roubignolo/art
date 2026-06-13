@@ -6,6 +6,10 @@ import {
   ChevronRight, Tag, Image as ImageIcon, ShieldCheck, AlertTriangle,
   Sparkles, RefreshCw, Wand2, Languages, Plug, Package, Truck, ExternalLink,
 } from "lucide-react";
+import { PRODUITS } from "@/lib/pricing";
+
+// Prix d'appel du catalogue commercial : la plus petite variante standard.
+const PRIX_DEPART = Math.min(...PRODUITS.map((p) => p.prix));
 
 /* ---------- Types ---------- */
 type MarketingItem = {
@@ -197,8 +201,8 @@ export default function App() {
   const [busyListing, setBusyListing] = useState(false);
   const [collection, setCollection] = useState<PreviewWork[] | null>(null);
   const [collFiltre, setCollFiltre] = useState<string | null>(null);
-  // Décisions de validation DP/marque (gate humain) — clé = id collection.json.
-  const [validations, setValidations] = useState<Record<string, { status: string; note?: string | null }>>({});
+  // État catalogue par œuvre (clé = id collection.json) : gate DP humain + en vente.
+  const [validations, setValidations] = useState<Record<string, { status: string | null; active?: boolean; note?: string | null }>>({});
 
   const reload = useCallback(async () => {
     try {
@@ -370,25 +374,35 @@ export default function App() {
     }
   }, []);
 
-  /** Enregistre (ou annule) la validation humaine d'une œuvre. status = valide|rejete|null. */
-  const deciderValidation = useCallback(async (workId: number, status: "valide" | "rejete" | null) => {
+  /** Met à jour l'état catalogue d'une œuvre : gate DP (status) et/ou en-vente (active). */
+  const majCatalogue = useCallback(async (workId: number, patch: { status?: "valide" | "rejete"; active?: boolean }) => {
     // Optimiste : on met à jour l'UI tout de suite, on réconcilie sur erreur.
     setValidations((v) => {
       const next = { ...v };
-      if (status) next[String(workId)] = { status };
-      else delete next[String(workId)];
+      const cur = next[String(workId)] ?? { status: null, active: false };
+      const merged = { ...cur, ...patch };
+      if (patch.status === "rejete") merged.active = false; // rejetée → hors vente
+      next[String(workId)] = merged;
       return next;
     });
     try {
-      const r = status
-        ? await fetch("/api/validation", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ workId, status }) })
-        : await fetch(`/api/validation?workId=${workId}`, { method: "DELETE" });
-      if (!r.ok) throw new Error(`validation ${r.status}`);
+      const r = await fetch("/api/validation", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ workId, ...patch }) });
+      if (!r.ok) throw new Error(`maj ${r.status}`);
       setErr(null);
     } catch {
-      setErr("Validation non enregistrée — table absente ? Lancer la migration : cd web && npm run db:push");
-      loadValidations(); // resynchronise (annule la mise à jour optimiste)
+      setErr("Action non enregistrée — table absente ? Lancer : cd web && npm run db:push");
+      loadValidations();
     }
+  }, [loadValidations]);
+
+  /** Annule toute décision sur une œuvre (retour à « à valider », hors catalogue). */
+  const resetCatalogue = useCallback(async (workId: number) => {
+    setValidations((v) => { const next = { ...v }; delete next[String(workId)]; return next; });
+    try {
+      const r = await fetch(`/api/validation?workId=${workId}`, { method: "DELETE" });
+      if (!r.ok) throw new Error();
+      setErr(null);
+    } catch { setErr("Action non enregistrée — voir la migration db:push"); loadValidations(); }
   }, [loadValidations]);
 
   /** Génère les mockups (templates + lifestyle IA) pour une œuvre. */
@@ -428,7 +442,7 @@ export default function App() {
   useEffect(() => {
     if (tab === "connecteurs" && connectors === null) loadConnectors();
     if (tab === "commandes" && orders === null) loadOrders();
-    if (tab === "apercus" && collection === null) { loadCollection(); loadValidations(); }
+    if ((tab === "apercus" || tab === "oeuvres") && collection === null) { loadCollection(); loadValidations(); }
   }, [tab, connectors, orders, collection, loadConnectors, loadOrders, loadCollection, loadValidations]);
 
   if (!works) {
@@ -659,10 +673,44 @@ export default function App() {
           </>
         )}
 
-        {tab === "oeuvres" && (
+        {tab === "oeuvres" && (() => {
+          // Catalogue commercial = œuvres de la galerie mises en vente (validées + actives).
+          const enVente = (collection ?? []).filter((w) => validations[String(w.id)]?.active);
+          return (
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+              <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: 0 }}>Catalogue commercial <span className="mono" style={{ fontSize: 13, color: "var(--brass)" }}>🛒 {enVente.length} en vente</span></h1>
+            </div>
+            <p className="body" style={{ color: "var(--ink2)", margin: "0 0 16px", fontSize: 13 }}>Les œuvres qu&apos;on vend. On les valide (gate DP) puis « Met en vente » depuis <button className="btn btn-ghost" style={{ fontSize: 12, padding: "1px 6px" }} onClick={() => setTab("apercus")}>Aperçus</button>.</p>
+            {enVente.length === 0 ? (
+              <div className="cd" style={{ padding: 24, marginBottom: 28 }}>
+                <div className="body" style={{ fontSize: 13, color: "var(--ink2)" }}>
+                  Aucune œuvre en vente. Dans <strong>Aperçus</strong>, valide une œuvre (gate DP) puis clique <strong>🛒 Mettre en vente</strong> — elle apparaîtra ici.
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 14, marginBottom: 28 }}>
+                {enVente.map((w) => (
+                  <div key={w.id} className="cd" style={{ padding: 10 }}>
+                    <a href={`${w.dir}/${w.encadre || "catalogue/02_encadre_chene.jpg"}`} target="_blank" rel="noreferrer">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`${w.dir}/${w.encadre || "catalogue/02_encadre_chene.jpg"}`} alt={w.title ?? ""} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 3, border: "1px solid var(--line)", background: "var(--paper2)" }} />
+                    </a>
+                    <div className="body" style={{ fontSize: 13, fontWeight: 600, marginTop: 8, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{w.title}</div>
+                    <div className="mono" style={{ fontSize: 10, color: "var(--ink2)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{w.artist || "—"}</div>
+                    <div className="mono" style={{ fontSize: 10, color: "var(--ink3)", marginTop: 4 }}>
+                      {w.layout?.taille ? `${w.layout.taille} · ` : ""}dès {PRIX_DEPART.toFixed(0)}&nbsp;€
+                    </div>
+                    <button className="btn" onClick={() => majCatalogue(w.id, { active: false })} title="Retirer du catalogue commercial" style={{ marginTop: 8, width: "100%", color: "var(--ink2)", fontSize: 11 }}>
+                      🛒 Retirer de la vente
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <h2 className="serif" style={{ fontSize: 16, fontWeight: 600, margin: "8px 0 10px", color: "var(--ink2)" }}>Registre base <span className="mono" style={{ fontSize: 11, color: "var(--ink3)" }}>(technique · {works.length})</span></h2>
           <div style={{ display: "flex", gap: 18 }}>
             <div style={{ flex: selected ? "0 0 46%" : "1" }}>
-              <h1 className="serif" style={{ fontSize: 26, fontWeight: 600, margin: "0 0 14px" }}>Œuvres <span className="mono" style={{ fontSize: 12, color: "var(--ink2)" }}>({works.length})</span></h1>
               {works.length === 0 ? (
                 <div className="cd" style={{ padding: 24 }}>
                   <div className="body" style={{ fontSize: 13, color: "var(--ink2)" }}>
@@ -1009,7 +1057,9 @@ export default function App() {
               </div>
             )}
           </div>
-        )}
+          </>
+          );
+        })()}
 
         {tab === "connecteurs" && (
           <>
@@ -1150,6 +1200,23 @@ export default function App() {
                         </button>
                       )}
                     </div>
+                    {(() => {
+                      let av = 0, val = 0, vente = 0, rej = 0;
+                      for (const w of collection) {
+                        const e = validations[String(w.id)];
+                        if (!e?.status) av++;
+                        else if (e.status === "valide") { val++; if (e.active) vente++; }
+                        else rej++;
+                      }
+                      return (
+                        <div className="mono" style={{ fontSize: 10, marginBottom: 10, display: "flex", gap: 12, flexWrap: "wrap", color: "var(--ink2)" }}>
+                          <span title="Gate DP/marque pas encore tranché">⚠ {av} à valider</span>
+                          <span style={{ color: "var(--sage)" }}>✓ {val} validées</span>
+                          <span style={{ color: "var(--brass)" }} title="Dans le catalogue commercial (onglet Œuvres)">🛒 {vente} en vente</span>
+                          <span style={{ color: "var(--ink3)" }}>✗ {rej} rejetées</span>
+                        </div>
+                      );
+                    })()}
                     {axes.map(([axe, tags]) => tags.length ? (
                       <div key={axe} style={{ display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
                         <span className="mono" style={{ fontSize: 9, color: "var(--ink3)", width: 78, flexShrink: 0 }}>{axe}</span>
@@ -1197,8 +1264,10 @@ export default function App() {
                   ["provenance_verso.png", "Provenance · verso"],
                 ];
                 const dep = w.curation?.deprioritized;
-                const decision = validations[String(w.id)]?.status; // "valide" | "rejete" | undefined
-                const aTraiter = w.curation?.dpAValider && !decision;
+                const etat = validations[String(w.id)];
+                const decision = etat?.status; // "valide" | "rejete" | null/undefined
+                const enVente = !!etat?.active;
+                const aTraiter = !decision; // tout ce qui n'est pas encore décidé (gate humain partout)
                 return (
                   <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18, opacity: dep || decision === "rejete" ? 0.55 : 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
@@ -1206,8 +1275,13 @@ export default function App() {
                         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                           <h2 className="serif" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{w.title}</h2>
                           {decision === "valide" && (
-                            <span className="badge" title="Gate DP/marque validé par un humain — publication possible." style={{ background: "var(--sage-soft)", color: "var(--sage)" }}>
+                            <span className="badge" title="Gate DP/marque validé par un humain." style={{ background: "var(--sage-soft)", color: "var(--sage)" }}>
                               ✓ DP VALIDÉ
+                            </span>
+                          )}
+                          {enVente && (
+                            <span className="badge" title="Dans le catalogue commercial (en vente)." style={{ background: "var(--brass)", color: "var(--paper)" }}>
+                              🛒 EN VENTE
                             </span>
                           )}
                           {decision === "rejete" && (
@@ -1216,7 +1290,7 @@ export default function App() {
                             </span>
                           )}
                           {aTraiter && (
-                            <span className="badge" title={`Œuvre fraîchement sourcée${w.curation?.source ? ` (${w.curation.source})` : ""} — valider le gate domaine public + marque AVANT toute publication (jamais automatisé).`} style={{ background: "var(--warn-soft)", color: "var(--brass)" }}>
+                            <span className="badge" title={`${w.curation?.dpAValider ? `Sourcée (${w.curation?.source ?? "?"}), ` : ""}gate domaine public + marque à valider par un humain AVANT publication (jamais automatisé).`} style={{ background: "var(--warn-soft)", color: "var(--brass)" }}>
                               ⚠ À VALIDER DP
                             </span>
                           )}
@@ -1251,22 +1325,34 @@ export default function App() {
                             <ExternalLink size={11} style={{ display: "inline", marginRight: 4 }} />Wikidata
                           </a>
                         )}
-                        {/* Gate humain DP/marque — règle dure : rien n'est publié sans cette décision. */}
-                        {(w.curation?.dpAValider || decision) && (
-                          decision ? (
-                            <button className="btn" onClick={() => deciderValidation(w.id, null)} title="Revenir à « à valider »">
+                        {/* Gate humain DP/marque (sur TOUTE œuvre) — règle dure : rien n'est publié sans cette décision. */}
+                        {!decision ? (
+                          <>
+                            <button className="btn" style={{ color: "var(--sage)" }} onClick={() => majCatalogue(w.id, { status: "valide" })} title="Confirmer DP US+UE + sans marque + image conforme">
+                              <Check size={11} style={{ display: "inline", marginRight: 3 }} />Valider DP
+                            </button>
+                            <button className="btn" style={{ color: "var(--ox)" }} onClick={() => majCatalogue(w.id, { status: "rejete" })} title="Écarter cette œuvre">
+                              <X size={11} style={{ display: "inline", marginRight: 3 }} />Rejeter
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            {/* Catalogue commercial : activable seulement si DP validée. */}
+                            {decision === "valide" && (
+                              enVente ? (
+                                <button className="btn" style={{ color: "var(--ink2)" }} onClick={() => majCatalogue(w.id, { active: false })} title="Retirer du catalogue commercial">
+                                  🛒 Retirer de la vente
+                                </button>
+                              ) : (
+                                <button className="btn" style={{ color: "var(--brass)" }} onClick={() => majCatalogue(w.id, { active: true })} title="Ajouter au catalogue commercial (Œuvres)">
+                                  🛒 Mettre en vente
+                                </button>
+                              )
+                            )}
+                            <button className="btn" onClick={() => resetCatalogue(w.id)} title="Revenir à « à valider »">
                               ↺ Annuler
                             </button>
-                          ) : (
-                            <>
-                              <button className="btn" style={{ color: "var(--sage)" }} onClick={() => deciderValidation(w.id, "valide")} title="Confirmer DP US+UE + sans marque + image conforme">
-                                <Check size={11} style={{ display: "inline", marginRight: 3 }} />Valider DP
-                              </button>
-                              <button className="btn" style={{ color: "var(--ox)" }} onClick={() => deciderValidation(w.id, "rejete")} title="Écarter cette œuvre">
-                                <X size={11} style={{ display: "inline", marginRight: 3 }} />Rejeter
-                              </button>
-                            </>
-                          )
+                          </>
                         )}
                       </div>
                     </div>
