@@ -150,6 +150,31 @@ def planifier(aw: int, ah: int, fournisseur: str = "gelato",
 
 
 def plans_variants(aw: int, ah: int, fournisseur: str = "gelato") -> List[PlanMiseEnPage]:
-    """Un plan par taille catalogue offerte par le fournisseur (variantes du listing)."""
+    """Un plan par taille catalogue PRODUCTIBLE par le fournisseur (tout le catalogue).
+
+    Utile au rendu (on peut composer n'importe quelle taille). Pour les variantes
+    réellement OFFERTES au listing Etsy, utiliser ``variants_offre`` — un
+    sous-ensemble décidé (pas les carrés ni le 40×50 côté standard).
+    """
     return [planifier(aw, ah, fournisseur, t)
             for t in CATALOGUE if fournisseur in t.fournisseurs]
+
+
+# Offre commerciale décidée (decision-encadrement-tailles.md §5) : sous-ensemble du
+# catalogue réellement proposé au listing. §5.1 standard/Gelato = 5 tailles ;
+# §5.2 signature/Prodigi = 4 tailles. Distinct de ``CATALOGUE`` (tout le productible).
+OFFRE = {
+    "gelato": ("30×40", "A3 30×42", "50×70", "A2 42×59", "61×91"),
+    "prodigi": ("30×40", "40×50", "50×70", "61×91"),
+}
+
+
+def variants_offre(aw: int, ah: int, fournisseur: str = "gelato") -> List[PlanMiseEnPage]:
+    """Un plan par taille de l'OFFRE commerciale du fournisseur (cf. ``OFFRE``).
+
+    Sous-ensemble de ``plans_variants`` : ce qu'on vend vraiment au listing, sans
+    les carrés ni le 40×50 (réservés à des rendus ponctuels hors offre Etsy).
+    """
+    labels = OFFRE.get(fournisseur, ())
+    return [planifier(aw, ah, fournisseur, t)
+            for t in CATALOGUE if t.label in labels and fournisseur in t.fournisseurs]

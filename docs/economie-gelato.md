@@ -5,6 +5,17 @@
 > **Règle de fiabilité.** Aucun prix Gelato ci-dessous n'est un tarif officiel à la décimale. Ce sont les **fourchettes documentées** dans `benchmark-pod-fournisseurs.md` et `process-vente-production.md`, ramenées à un point médian de travail. Chaque coût base/port porte la mention **`[à confirmer via Gelato API]`**. À recalibrer dès qu'on a un compte Gelato + le catalogue `productUid` réel.
 >
 > **Sources prix confirmées (mai 2026)** : Gelato+ = **23,99 $/mo (mensuel)** ou **19,99 $/mo en annuel** (239,88 $/an), remise **jusqu'à −25 %** sur produits (−35 % promo jusqu'au 31/12) — [Gelato Help Center, subscription cost](https://support.gelato.com/en/articles/8996313) et [product discounts](https://support.gelato.com/en/articles/8996297). Fourchettes catalogue poster/encadré issues de `benchmark-pod-fournisseurs.md` §1 (recherche octobre 2026, ~50 sources).
+>
+> ⚠️ **Source de vérité = le code, pas ce doc.** `web/lib/pricing.ts` est ce qui
+> s'exécute en prod (`/api/etsy/publish`). Il diverge **volontairement** (sens plus
+> prudent) des marges tabulées ci-dessous : il ajoute un **frais réglementaire Etsy
+> ~0,47 %** (à confirmer sur la grille FR/UE 2026) et assoit la **provision SAV 5 %
+> sur prix+port** (et non sur le prix seul). Écart par produit : −0,26 € (A4) à
+> −0,85 € (A2 encadré). De plus, les **« margePct » des tableaux §1/§4 sont la marge
+> € rapportée au PRIX, pas au brut** : la vraie marge nette/brut des encadrés est
+> **≈ 36-37 %**, pas 43 %. En cas de doute, recalculer avec `calculerMarge()`.
+> Tailles musée décidées (30×40, 50×70, 61×91) : voir `pricing.ts` (ce doc ne les
+> chiffre pas encore — coûts `aConfirmer`). Plan : [audit-rentabilite.md](audit-rentabilite.md).
 
 ---
 

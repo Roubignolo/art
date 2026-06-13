@@ -139,9 +139,23 @@ export function planifier(
   };
 }
 
-/** Un plan par taille catalogue offerte par le fournisseur (variantes du listing). */
+/** Un plan par taille catalogue PRODUCTIBLE par le fournisseur (tout le catalogue). */
 export function plansVariants(aw: number, ah: number, fournisseur: Fournisseur = "gelato"): PlanMiseEnPage[] {
   return CATALOGUE.filter((t) => t.fournisseurs.includes(fournisseur)).map((t) =>
+    planifier(aw, ah, fournisseur, t),
+  );
+}
+
+// Offre commerciale décidée (decision-encadrement-tailles.md §5) — port de layout.OFFRE.
+export const OFFRE: Record<Fournisseur, readonly string[]> = {
+  gelato: ["30×40", "A3 30×42", "50×70", "A2 42×59", "61×91"],
+  prodigi: ["30×40", "40×50", "50×70", "61×91"],
+};
+
+/** Un plan par taille de l'OFFRE commerciale (sous-ensemble vendu au listing). */
+export function variantsOffre(aw: number, ah: number, fournisseur: Fournisseur = "gelato"): PlanMiseEnPage[] {
+  const labels = OFFRE[fournisseur];
+  return CATALOGUE.filter((t) => labels.includes(t.label) && t.fournisseurs.includes(fournisseur)).map((t) =>
     planifier(aw, ah, fournisseur, t),
   );
 }

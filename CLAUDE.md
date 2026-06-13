@@ -28,7 +28,7 @@ On ne vend pas l'art (il est libre) mais la **curation, la restauration et la co
 - Seuil : ≥ 6.5 produire · 5–6.4 file d'attente · sinon rejet.
 
 ## Économie (pour référence)
-Marge/vente = (prix + port) − frais Etsy (6,5 % + 3 % + 0,25 $ + 0,20 $) − base fournisseur.
+Marge/vente = (prix + port) − frais Etsy (6,5 % + ~4 % + 0,30 € + 0,20 € listing + réglementaire ~0,47 %) − base fournisseur. (Frais réels UE 2026 ; cf. `web/lib/pricing.ts` source de vérité + `docs/economie-gelato.md`.)
 Seuil hit-rate = (designs × coût/design + fixes) / (designs × ventes/gagnant × marge). Voir `finance/`.
 
 ## Structure du repo

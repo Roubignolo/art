@@ -66,6 +66,20 @@ class TestPlan(unittest.TestCase):
         n_gelato = sum(1 for t in layout.CATALOGUE if "gelato" in t.fournisseurs)
         self.assertEqual(len(plans), n_gelato)
 
+    def test_offre_gelato_sous_ensemble_des_5_tailles(self):
+        # L'offre standard = les 5 tailles §5.1, sous-ensemble du catalogue complet.
+        offre = layout.variants_offre(3000, 2000, "gelato")
+        labels = {p.taille for p in offre}
+        self.assertEqual(labels, {"30×40", "A3 30×42", "50×70", "A2 42×59", "61×91"})
+        self.assertNotIn("40×50", labels)  # ni 40×50 ni carrés dans l'offre standard
+        self.assertNotIn("30×30", labels)
+        plein = {p.taille for p in layout.plans_variants(3000, 2000, "gelato")}
+        self.assertTrue(labels <= plein)  # offre ⊆ catalogue productible
+
+    def test_offre_prodigi_signature(self):
+        offre = layout.variants_offre(3000, 2000, "prodigi")
+        self.assertEqual({p.taille for p in offre}, {"30×40", "40×50", "50×70", "61×91"})
+
 
 if __name__ == "__main__":
     unittest.main()
