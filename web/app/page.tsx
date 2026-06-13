@@ -52,6 +52,11 @@ type PreviewWork = {
     taille: string; orientation: string; ratioOeuvre: number; bordurePct: number;
     variants: { taille: string; bordurePct: number }[];
   } | null;
+  // Curation (cf. scripts/build_collections.py + docs/audit-rentabilite.md §T2)
+  curation?: {
+    deprioritized?: boolean; raison?: string;
+    nouveau?: boolean; dpAValider?: boolean; source?: string;
+  } | null;
 };
 
 type Work = {
@@ -1086,9 +1091,15 @@ export default function App() {
                 ["Mouvement", compteur((w) => (w.tags?.mouvement ? [w.tags.mouvement] : []))],
                 ["Palette", compteur((w) => w.palette?.tags ?? [])],
               ];
-              const visibles = collFiltre
+              // Tri curation : œuvres « à valider DP » en tête (à traiter), dépriorisées en fin.
+              const rangCuration = (w: PreviewWork) =>
+                w.curation?.nouveau ? -1 : w.curation?.deprioritized ? 1 : 0;
+              const visibles = (collFiltre
                 ? collection.filter((w) => (w.tags?.collections ?? []).includes(collFiltre))
-                : collection;
+                : collection
+              )
+                .slice()
+                .sort((a, b) => rangCuration(a) - rangCuration(b));
               return (
                 <>
                   <div className="cd" style={{ padding: 14, marginBottom: 18 }}>
@@ -1110,6 +1121,28 @@ export default function App() {
                         ))}
                       </div>
                     ) : null)}
+                    {(() => {
+                      // Équilibre de palette = critère de curation (audit §T2 « casser le mur doré »).
+                      const fam = new Map<string, number>();
+                      for (const w of collection) { const f = w.palette?.famille; if (f) fam.set(f, (fam.get(f) ?? 0) + 1); }
+                      if (!fam.size) return null;
+                      const FAM: Record<string, string> = { doré: "#c9a44a", vert: "#5f8a5f", olive: "#8a8a4a", orange: "#cc8844", bleu: "#46689f", turquoise: "#4aa8a0", rose: "#c87a90", sépia: "#9a7b54" };
+                      const total = collection.length || 1;
+                      const dorePct = Math.round((100 * (fam.get("doré") ?? 0)) / total);
+                      const ordered = [...fam.entries()].sort((a, b) => b[1] - a[1]);
+                      return (
+                        <div style={{ marginTop: 4 }}>
+                          <div className="mono" style={{ fontSize: 9, color: dorePct > 45 ? "var(--brass)" : "var(--ink3)", marginBottom: 4 }}>
+                            ÉQUILIBRE PALETTE — {dorePct}% doré{dorePct > 45 ? " · mur doré à diversifier (audit §T2)" : ""}
+                          </div>
+                          <div style={{ display: "flex", height: 10, borderRadius: 3, overflow: "hidden", border: "1px solid var(--line)" }} title={ordered.map(([f, n]) => `${f} ${n}`).join(" · ")}>
+                            {ordered.map(([f, n]) => (
+                              <span key={f} title={`${f} · ${n} (${Math.round((100 * n) / total)}%)`} style={{ width: `${(100 * n) / total}%`, background: FAM[f] ?? "var(--ink3)" }} />
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                   {visibles.map((w) => {
                 const imgs: [string, string][] = [
@@ -1124,11 +1157,24 @@ export default function App() {
                   ["provenance_recto.png", "Provenance · recto"],
                   ["provenance_verso.png", "Provenance · verso"],
                 ];
+                const dep = w.curation?.deprioritized;
                 return (
-                  <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18 }}>
+                  <div key={w.id} className="cd" style={{ padding: 18, marginBottom: 18, opacity: dep ? 0.55 : 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12 }}>
                       <div>
-                        <h2 className="serif" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{w.title}</h2>
+                        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                          <h2 className="serif" style={{ fontSize: 20, fontWeight: 600, margin: 0 }}>{w.title}</h2>
+                          {w.curation?.dpAValider && (
+                            <span className="badge" title={`Œuvre fraîchement sourcée${w.curation?.source ? ` (${w.curation.source})` : ""} — valider le gate domaine public + marque AVANT toute publication (jamais automatisé).`} style={{ background: "var(--warn-soft)", color: "var(--brass)" }}>
+                              ⚠ À VALIDER DP
+                            </span>
+                          )}
+                          {dep && (
+                            <span className="badge" title={w.curation?.raison || "Œuvre dépriorisée (audit rentabilité §T2)"} style={{ background: "var(--paper2)", color: "var(--ink2)" }}>
+                              ⬇ dépriorisée
+                            </span>
+                          )}
+                        </div>
                         <div className="mono" style={{ fontSize: 11, color: "var(--ink2)", marginTop: 3 }}>
                           #{w.id} · {w.artist || "—"}{w.source ? ` · ${w.source}` : ""}
                         </div>

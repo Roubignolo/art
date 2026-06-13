@@ -59,21 +59,38 @@ Audubon/Redouté. Ils apportent les bleus/verts/indigos absents (palette actuell
 | CLAUDE.md cite des frais Etsy **Printful-era** « 3 % + 0,25 $ » | CONFIRMÉ | Remplacé par le réel UE 2026 (6,5 % + ~4 % + 0,30 € + 0,20 €). |
 | Ligne `signature` déclarée, **aucun produit** signature | CONFIRMÉ | Laissé en l'état (réintroduction = T3, exige des coûts Prodigi inexistants → ne pas inventer). |
 
-### T2 — Curation / sourcing *(validation humaine du gate DP obligatoire)*
+### T2 — Curation / sourcing *(validation humaine du gate DP obligatoire)* — **IMPLÉMENTÉ**
 
-- **Diversifier les sources.** Les 6 connecteurs (Rijksmuseum, BHL, AIC, Cleveland,
-  Smithsonian, Europeana) existent et exposent `iter_candidates()`, mais
-  `build_collections.py` n'importe que `met`. `scripts/build_previews.py` pilote
-  **déjà** met/artic/cleveland/smithsonian vers le même `collection.json` →
-  AIC/Cleveland/Smithsonian diversifiables **sans code neuf**. BHL (planches
-  Haeckel/Audubon) exige `BHL_API_KEY` (gratuite) + un petit câblage driver.
-- **Casser le mur doré** : viser l'équilibre de palette comme **critère de
-  curation** (bleus/verts via ukiyo-e + naturalisme).
-- **Déprioriser les ~14 œuvres faibles confirmées** (vanités à crâne #435904/#436485,
-  scènes brunes #436952/#436162/#436122, portraits d'inconnus #438011/#437432/#438815/#436529,
-  étude inachevée #839041, ratios incadrables #39569 (2,08)/#815478 (3,34)/#815476 (1,98),
-  gravure austère #358367). Les retirer de la **mise en avant**, pas forcément du catalogue.
-- ⚠️ L'agent peut **sourcer et pré-scorer** ; il ne **valide jamais** le gate DP/marque.
+**Fait (code) :**
+
+- **`build_collections.py` multi-source** : dispatch Met/AIC/Cleveland/Smithsonian par
+  requête (champ `source`), au lieu de Met seul. Mode ciblé `diversify` (CLI :
+  `python scripts/build_collections.py 3 73 diversify`).
+- **Garde-fou marque (hard rule, par construction)** : Morris (marque active),
+  Mucha, af Klint, Hasui, Broders ne peuvent **jamais** entrer, même si une requête
+  les vise.
+- **Garde-fou artiste** (sans accents) : la recherche plein-texte large (AIC/Smithsonian
+  remonte une céramique sur « Audubon ») est filtrée — seul le bon artiste passe.
+- **Déprioriser les 14 œuvres faibles** : flag `curation.deprioritized` (persistant,
+  pas suppression) appliqué au catalogue + **cockpit** (carte estompée, badge, tri en fin).
+- **Cockpit** : œuvres fraîchement sourcées badgées « ⚠ À VALIDER DP » + **barre
+  d'équilibre de palette** (le mur doré devient visible comme signal de curation).
+- ⚠️ Tout sourcing produit un **candidat « à valider DP »** ; aucune validation/
+  publication automatique — le gate reste **humain**.
+
+**Diversification réelle (11 candidats ajoutés, à valider) + leçons empiriques :**
+
+- **2 Redouté botanique** (vert/olive) = la **seule diversification de palette qui
+  marche** avec les connecteurs sans clé. ✅
+- **9 ukiyo-e** (Hiroshige/Hokusai/Kuniyoshi) : GO, fidèles, mais le **papier vieilli
+  les fait lire « doré »** → ils diversifient le **sujet**, pas la palette (le mur doré
+  passe à 66 %). Les bleus attendus (type Grande Vague) sont l'exception, déjà au catalogue.
+- **Audubon** : le Met **l'a**, mais **< 3000 px** (1766-1876 px) → sous le seuil print
+  → écarté. **Haeckel** : 0 résultat Met/AIC. Les deux niches « oiseaux/naturaliste »
+  colorées (vrai antidote au doré) **exigent BHL** (`BHL_API_KEY` gratuite + câblage
+  driver) — **suivi T2 prioritaire**.
+- Conclusion : la palette ne se casse pas en ajoutant des estampes ; il faut le
+  **naturalisme HD (BHL)** et la botanique. La barre de palette du cockpit pilote la suite.
 
 ### T3 — Niveaux de prix & lignes *(décision founder — chiffrée, non publiée)*
 

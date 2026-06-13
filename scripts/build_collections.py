@@ -27,18 +27,85 @@ from PIL import Image  # noqa: E402
 from agents import tagging  # noqa: E402
 from agents.render import InfosProvenance, charger, generer_carte, generer_galerie  # noqa: E402
 from agents.render.palette import analyser_palette  # noqa: E402
-from agents.sources import met, wikidata_dp  # noqa: E402
+from agents.sources import artic, cleveland, met, smithsonian, wikidata_dp  # noqa: E402
 from agents.sources.base import finalize_record  # noqa: E402
 
 OUT = os.path.join(ROOT, "web", "public", "renders")
 MIN_RES = 3000
 N_PAR_REQUETE = int(sys.argv[1]) if len(sys.argv) > 1 else 3
 TARGET = int(sys.argv[2]) if len(sys.argv) > 2 else 60  # taille TOTALE visée pour la collection
+# Filtre source optionnel : ne traiter que les requêtes d'un musée donné — utile
+# pour diversifier en ciblé (ex. « artic » pour les niches naturalistes).
+SOURCE_FILTER = sys.argv[3] if len(sys.argv) > 3 else None
 IDX = os.path.join(OUT, "collection.json")
 
+# Connecteurs CC0 disponibles sans clé (Met/AIC/Cleveland) + Smithsonian (clé .env).
+# Une requête peut viser un autre musée que le Met via son champ "source" — décisif
+# pour les niches que le Met n'a pas en haute-déf (planches Audubon/Haeckel/Redouté
+# → AIC). Voir docs/audit-rentabilite.md §T2. wikidata_dp enrichit la preuve DP.
+SOURCES = {"met": met, "artic": artic, "cleveland": cleveland, "smithsonian": smithsonian}
+
 # Curation automatique : on ne garde que des œuvres MURALES 2D (pas d'objets 3D).
+# Inclut les techniques de gravure/planche naturaliste (AIC) en plus de l'estampe.
 _CLASSIF_2D = ("painting", "print", "drawing", "watercolor", "pastel", "miniature",
-               "woodblock", "etching", "engraving", "lithograph")
+               "woodblock", "woodcut", "etching", "engraving", "lithograph",
+               "chromolithograph", "illustration", "aquatint")
+
+# ── GARDE-FOU MARQUE (hard rule) : domaine public ≠ libre de marque. ──
+# Refus PAR CONSTRUCTION des artistes/marques dont la vérification DP a conclu
+# NO-GO/CONDITIONNEL (cf. docs/audit-rentabilite.md §1) : même si une requête les
+# vise un jour, aucune œuvre ne passe. La validation HUMAINE du gate reste requise
+# avant toute production — ce filtre ne fait que bloquer en amont, jamais valider.
+_MARQUE_RISQUE = re.compile(
+    r"\b(william\s+morris|morris\s*&\s*co|alphonse\s+mucha|\bmucha\b"
+    r"|hilma\s+af\s+klint|kawase\s+hasui|roger\s+broders)\b",
+    re.I,
+)
+
+
+def _marque_risque(rec):
+    """Vrai si l'œuvre porte un risque marque vérifié (NO-GO/CONDITIONNEL)."""
+    hay = f"{rec.get('artist') or ''} {rec.get('title') or ''}"
+    return bool(_MARQUE_RISQUE.search(hay))
+
+
+def _sans_accents(s):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", s or "")
+                   if unicodedata.category(c) != "Mn").lower()
+
+
+def _artiste_concorde(req_artiste, rec_artist):
+    """Vrai si l'œuvre est bien du bon artiste (nom de famille présent).
+
+    Garde-fou multi-source : la recherche plein-texte AIC/Smithsonian classe large
+    (un « Audubon » peut remonter une céramique). Sans artiste imposé → toujours vrai.
+    """
+    if not req_artiste:
+        return True
+    cle = _sans_accents(req_artiste).split()[-1]  # nom de famille
+    return cle in _sans_accents(rec_artist)
+
+
+# ── Œuvres commercialement faibles (audit rentabilité §T2) : on les DÉPRIORISE
+# (flag, pas suppression) — vanités macabres, scènes brunes, portraits d'inconnus,
+# ratios incadrables. id → raison courte. Surfacé dans le cockpit.
+DEPRIORISEES = {
+    "435904": "Vanité à crâne — memento mori macabre, faible appétence déco",
+    "436485": "Vanité explicite (crâne) — iconographie morbide, mauvais wall art",
+    "436952": "Sujet funèbre, palette terne — anti-déco",
+    "436162": "Scène brune intérieure, sitter renfrogné — faible traduisibilité",
+    "436122": "Scène de genre brun-sombre d'un personnage obscur — peu décoratif",
+    "438011": "Portrait d'un sitter inconnu — faible reconnaissance",
+    "437432": "Portrait de sitter obscur — niche, faible appétence murale",
+    "438815": "Portrait de notable inconnu — appétence murale faible",
+    "436529": "Portrait nominatif peu connu — sujet à faible hit-rate",
+    "839041": "Étude inachevée, brune, artiste obscur — pas une pièce vendable",
+    "39569": "Ratio extrême 2,08 (panoramique) + artiste non identifié — incadrable",
+    "815478": "Ratio extrême 3,34 (ultra-allongé) — incadrable sur formats POD",
+    "815476": "Ratio extrême 1,98 + sujet macabre — format et thème faibles",
+    "358367": "Gravure austère brune sur fond doré — peu lisible en vignette",
+}
 
 
 def _est_2d(rec):
@@ -185,6 +252,27 @@ def _backfill_layout(by_id):
         print(f"  ↻ layout #{oid} → {g['taille']} ({g['orientation']}, bordure {g['bordure_pct']}%)")
 
 
+def _appliquer_curation(by_id):
+    """Marque les œuvres faibles comme dépriorisées (flag persistant, pas suppression).
+
+    Idempotent : on garde l'œuvre au catalogue, le cockpit la met juste en retrait.
+    """
+    by_str = {str(k): v for k, v in by_id.items()}
+    n = 0
+    for oid, raison in DEPRIORISEES.items():
+        entry = by_str.get(str(oid))
+        if not entry:
+            continue
+        cur = entry.get("curation") or {}
+        if cur.get("deprioritized") and cur.get("raison") == raison:
+            continue
+        cur.update({"deprioritized": True, "raison": raison})
+        entry["curation"] = cur
+        n += 1
+    if n:
+        print(f"  ⬇ {n} œuvre(s) dépriorisée(s) (audit rentabilité §T2)")
+
+
 def _enrichir_existants(by_id):
     """Tague les œuvres déjà rendues qui n'ont pas encore de tags (les 4 pionnières)."""
     for oid, entry in list(by_id.items()):
@@ -222,6 +310,7 @@ def main():
     print(f"Collection actuelle : {len(by_id)} œuvres · cible TOTALE {TARGET} (≤{N_PAR_REQUETE}/requête)\n")
     _enrichir_existants(by_id)
     _backfill_layout(by_id)
+    _appliquer_curation(by_id)
     _sauver_index(by_id)
 
     seen_titres = {_norm_titre(c.get("title")) for c in by_id.values()}
@@ -229,10 +318,17 @@ def main():
     for req in tagging.REQUETES:
         if len(by_id) >= TARGET:
             break
+        src = req.get("source", "met")
+        if SOURCE_FILTER == "diversify":
+            if not req.get("diversify"):
+                continue  # mode diversification : seules les niches GO marquées
+        elif SOURCE_FILTER and src != SOURCE_FILTER:
+            continue  # filtre par musée
+        mod = SOURCES.get(src, met)
         q = f"{req['artiste']} {req['query']}" if req.get("artiste") else req["query"]
-        print(f"\n🔎 « {q} »  → attendu {req['collection_attendue']}")
+        print(f"\n🔎 [{src}] « {q} »  → attendu {req['collection_attendue']}")
         pris = 0
-        for rec in met.iter_candidates(q, max_scan=60):
+        for rec in mod.iter_candidates(q, max_scan=60):
             if pris >= N_PAR_REQUETE or len(by_id) >= TARGET:
                 break
             if rec.get("decision") != "CANDIDAT" or not rec.get("image_url"):
@@ -241,6 +337,10 @@ def main():
             if oid in by_id:
                 continue  # déjà rendu : ne compte PAS dans le quota NEW (on creuse plus loin)
             # ── curation automatique (attention extrême) ──
+            if _marque_risque(rec):
+                continue  # garde-fou marque (NO-GO/CONDITIONNEL vérifié) → jamais
+            if not _artiste_concorde(req.get("artiste"), rec.get("artist")):
+                continue  # recherche plein-texte large → on exige le bon artiste
             if not _est_2d(rec):
                 continue  # objet 3D → mauvais wall art
             if _hors_theme(rec):
@@ -259,7 +359,7 @@ def main():
             if max(img.size) < MIN_RES:
                 continue
             try:
-                wikidata_dp.enrich(rec, source="met")
+                wikidata_dp.enrich(rec, source=src)
             except Exception:
                 pass
             finalize_record(rec)
@@ -284,11 +384,16 @@ def main():
                 generer_carte(_infos(rec), dossier, vignette=img)
             except Exception:
                 pass
-            by_id[oid] = _entree_collection(oid, rec, manifeste, tags, pal)
+            entry = _entree_collection(oid, rec, manifeste, tags, pal)
+            # Œuvre fraîchement sourcée : marquée « à valider » — le gate DP/marque
+            # reste une décision HUMAINE avant toute publication (règle dure). Le
+            # cockpit la signale ; rien n'est publié automatiquement.
+            entry["curation"] = {"nouveau": True, "dpAValider": True, "source": src}
+            by_id[oid] = entry
             seen_titres.add(nt)
             _sauver_index(by_id)  # incrémental : robuste à l'interruption
-            print(f"  ✓ {oid} {rec.get('artist')} — {(rec.get('title') or '')[:36]} · "
-                  f"{tags['collections']} · {verdict}")
+            print(f"  ✓ [{src}] {oid} {rec.get('artist')} — {(rec.get('title') or '')[:36]} · "
+                  f"{tags['collections']} · {verdict} · À VALIDER DP")
             pris += 1
 
     _sauver_index(by_id)

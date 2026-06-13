@@ -680,6 +680,10 @@
           "bordurePct": 40.3
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Étude inachevée, brune, artiste obscur — pas une pièce vendable"
     }
   },
   {
@@ -779,6 +783,10 @@
           "bordurePct": 37.5
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Portrait nominatif peu connu — sujet à faible hit-rate"
     }
   },
   {
@@ -1879,6 +1887,10 @@
           "bordurePct": 39.9
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Gravure austère brune sur fond doré — peu lisible en vignette"
     }
   },
   {
@@ -1975,6 +1987,10 @@
           "bordurePct": 44.7
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Vanité à crâne — memento mori macabre, faible appétence déco"
     }
   },
   {
@@ -3346,6 +3362,10 @@
           "bordurePct": 58.4
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Ratio extrême 2,08 (panoramique) + artiste non identifié — incadrable"
     }
   },
   {
@@ -3446,6 +3466,10 @@
           "bordurePct": 46.4
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Vanité explicite (crâne) — iconographie morbide, mauvais wall art"
     }
   },
   {
@@ -3545,6 +3569,10 @@
           "bordurePct": 39.4
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Scène de genre brun-sombre d'un personnage obscur — peu décoratif"
     }
   },
   {
@@ -4246,6 +4274,10 @@
           "bordurePct": 36.9
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Portrait de sitter obscur — niche, faible appétence murale"
     }
   },
   {
@@ -4342,6 +4374,10 @@
           "bordurePct": 35.1
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Portrait d'un sitter inconnu — faible reconnaissance"
     }
   },
   {
@@ -4443,6 +4479,10 @@
           "bordurePct": 37.2
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Portrait de notable inconnu — appétence murale faible"
     }
   },
   {
@@ -4536,6 +4576,10 @@
           "bordurePct": 43.1
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Scène brune intérieure, sitter renfrogné — faible traduisibilité"
     }
   },
   {
@@ -4827,6 +4871,10 @@
           "bordurePct": 36.6
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Sujet funèbre, palette terne — anti-déco"
     }
   },
   {
@@ -4923,6 +4971,10 @@
           "bordurePct": 72.7
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Ratio extrême 3,34 (ultra-allongé) — incadrable sur formats POD"
     }
   },
   {
@@ -5021,6 +5073,10 @@
           "bordurePct": 56.8
         }
       ]
+    },
+    "curation": {
+      "deprioritized": true,
+      "raison": "Ratio extrême 1,98 + sujet macabre — format et thème faibles"
     }
   },
   {
@@ -5891,6 +5947,1171 @@
           "bordurePct": 37.5
         }
       ]
+    }
+  },
+  {
+    "id": 36971,
+    "title": "Spring Rain at Tsuchiyama, from the series Fifty-three Stations of the Tōkaidō",
+    "artist": "Utagawa Hiroshige",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Hiroshige † 1858 → domaine public depuis 1929 · US ✓ : œuvre 1834 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP520",
+    "wikidataUrl": "",
+    "dir": "/renders/36971",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Sépia & neutres",
+        "Tons chauds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "swatches": [
+        "#b5a692",
+        "#645855",
+        "#767772",
+        "#f4e5cf",
+        "#9f8676"
+      ],
+      "famille": "doré",
+      "chaleur": 0.939
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.45,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 38.0,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.516,
+      "bordurePct": 24.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 28.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 32.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 24.4
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 24.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 46.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 46.0
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 37215,
+    "title": "Mariko, from the series Tokaidō (popularly known as the Reisho Tokaidō)",
+    "artist": "Utagawa Hiroshige",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Hiroshige † 1858 → domaine public depuis 1929 · US ✓ : œuvre 1830 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP771",
+    "wikidataUrl": "",
+    "dir": "/renders/37215",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Sépia & neutres",
+        "Tons chauds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "swatches": [
+        "#6c6f71",
+        "#dbc8ad",
+        "#f3dec0",
+        "#fbe9cc",
+        "#625e60"
+      ],
+      "famille": "doré",
+      "chaleur": 1.0
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.6,
+      "chroma": 0.986,
+      "dominante": 0.982
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 45.9,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.575,
+      "bordurePct": 21.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 30.2
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 34.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 26.7
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 25.9
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 21.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 47.6
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 47.6
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 56132,
+    "title": "Ushibori in Hitachi Province (Jōshū Ushibori), from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei)",
+    "artist": "Katsushika Hokusai",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Katsushika Hokusai † 1849 → domaine public depuis 1920 · US ✓ : œuvre 1820 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP1848",
+    "wikidataUrl": "",
+    "dir": "/renders/56132",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Paysage",
+        "Marine",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#d3bb98",
+        "#a09c87",
+        "#bfaf90",
+        "#7c7c74",
+        "#bba184"
+      ],
+      "famille": "doré",
+      "chaleur": 0.928
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.39,
+      "chroma": 1.0,
+      "dominante": 1.001
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 27.3,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "50×70",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.397,
+      "bordurePct": 25.8,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 26.5
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 27.9
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 25.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 26.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 30.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 42.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 42.3
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 56214,
+    "title": "Fujimigahara in Owari Province (Bishū Fujimigahara), from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei)",
+    "artist": "Katsushika Hokusai",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Katsushika Hokusai † 1849 → domaine public depuis 1920 · US ✓ : œuvre 1830 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP2956",
+    "wikidataUrl": "",
+    "dir": "/renders/56214",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Tons dorés",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#58737a",
+        "#d8c69d",
+        "#e8d2ad",
+        "#c6b48f",
+        "#94a498"
+      ],
+      "famille": "doré",
+      "chaleur": 0.739
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.37,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 44.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.463,
+      "bordurePct": 27.4,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.3
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.4
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.4
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 54384,
+    "title": "Water Scene",
+    "artist": "Utagawa Kuniyoshi",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Kuniyoshi † 1861 → domaine public depuis 1932 · US ✓ : œuvre 1840 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP1252",
+    "wikidataUrl": "",
+    "dir": "/renders/54384",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Marine",
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Marine",
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons chauds",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#877a6b",
+        "#9ca79c",
+        "#dfceb1",
+        "#c2bda7",
+        "#b5a991"
+      ],
+      "famille": "doré",
+      "chaleur": 0.926
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.41,
+      "chroma": 1.0,
+      "dominante": 1.0
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 42.0,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "40×50",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.133,
+      "bordurePct": 32.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 36.9
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 40.4
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 32.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 39.8
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 40.5
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 43.8
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 32.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 32.2
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 931213,
+    "title": "Sumo Wrestlers Kagamiiwa Hamanosuke and Koyanagi Tsunekichi, with Judge Sakaigawa Namiemon and Referee Shikimori Kiichirō",
+    "artist": "Utagawa Kuniyoshi",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Kuniyoshi † 1861 → domaine public depuis 1932 · US ✓ : œuvre 1847 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2025.796.8a–c",
+    "wikidataUrl": "",
+    "dir": "/renders/931213",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Estampes japonaises"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "collections": [
+        "Estampes japonaises",
+        "Ukiyo-e",
+        "Sépia & neutres",
+        "Tons chauds"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons chauds"
+      ],
+      "swatches": [
+        "#3d4d54",
+        "#86897f",
+        "#dbc5a2",
+        "#d0bb9f",
+        "#64726e"
+      ],
+      "famille": "doré",
+      "chaleur": 0.676
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.44,
+      "chroma": 1.0,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 28.2,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "paysage",
+      "ratioOeuvre": 2.07,
+      "bordurePct": 37.7,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 44.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 41.2
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 48.0
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 41.7
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 41.2
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 37.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 58.4
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 58.4
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 762064,
+    "title": "Crown Imperial (Fritillaria imperialis), from \"Les Liliacées\"",
+    "artist": "Pierre Joseph Redouté",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Pierre Joseph Redouté † 1840 → domaine public depuis 1911 · US ✓ : œuvre 1802 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2018.587.2",
+    "wikidataUrl": "",
+    "dir": "/renders/762064",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Floral",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#eee9e4",
+        "#979477",
+        "#ece7e0",
+        "#f2ede8",
+        "#f0ebe6"
+      ],
+      "famille": "olive",
+      "chaleur": 0.368
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.29,
+      "chroma": 1.002,
+      "dominante": 1.002
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 40.4,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "61×91",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.464,
+      "bordurePct": 27.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.0
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 23.0
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 30.6
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 22.2
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 23.1
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 27.3
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 44.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 44.5
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 762055,
+    "title": "‘Empress Josephine’ or Frankfort Rose (Rosa turbinata), from \"Les Roses\" by Claude-Antoine Thory",
+    "artist": "Pierre Joseph Redouté",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Pierre Joseph Redouté † 1840 → domaine public depuis 1911 · US ✓ : œuvre 1817 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession 2018.587.1",
+    "wikidataUrl": "",
+    "dir": "/renders/762055",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Floral"
+      ],
+      "mouvement": null,
+      "palette": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "collections": [
+        "Floral",
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Sépia & neutres",
+        "Tons froids",
+        "Camaïeu pastel"
+      ],
+      "swatches": [
+        "#8e8f7d",
+        "#ebe4dd",
+        "#ece5e0",
+        "#e8e3df",
+        "#f0e9e4"
+      ],
+      "famille": "vert",
+      "chaleur": 0.318
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.34,
+      "chroma": 1.001,
+      "dominante": 1.003
+    },
+    "couleur": {
+      "espaceSource": "sRGB.icc",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 42.1,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "portrait",
+      "ratioOeuvre": 1.3,
+      "bordurePct": 27.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 27.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 31.8
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 23.7
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 31.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 31.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 35.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.0
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.0
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 55694,
+    "title": "Kameyama, from the series The Fifty-three Stations of the Tōkaidō Road",
+    "artist": "Utagawa Hiroshige",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Hiroshige † 1858 → domaine public depuis 1929 · US ✓ : œuvre 1900 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP3487",
+    "wikidataUrl": "",
+    "dir": "/renders/55694",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises",
+        "Architecture & ville"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Architecture & ville",
+        "Ukiyo-e",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#f1d4b4",
+        "#6f5f5b",
+        "#717c71",
+        "#e0c4a6",
+        "#a68e7f"
+      ],
+      "famille": "doré",
+      "chaleur": 0.934
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.47,
+      "chroma": 0.995,
+      "dominante": 0.994
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "jaune",
+      "chromaMax": 46.2,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.335,
+      "bordurePct": 25.5,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.7
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.3
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 29.0
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.7
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.6
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.2
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.2
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 55684,
+    "title": "Akasaka,  from the series The Fifty-three Stations of the Tōkaidō Road",
+    "artist": "Utagawa Hiroshige",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Hiroshige † 1858 → domaine public depuis 1929 · US ✓ : œuvre 1900 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP3477",
+    "wikidataUrl": "",
+    "dir": "/renders/55684",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises",
+        "Architecture & ville",
+        "Animaux"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Architecture & ville",
+        "Animaux",
+        "Ukiyo-e",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#f0d0a6",
+        "#5d5755",
+        "#697468",
+        "#dec098",
+        "#a08b71"
+      ],
+      "famille": "doré",
+      "chaleur": 0.888
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.43,
+      "chroma": 0.997,
+      "dominante": 0.996
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "orange",
+      "chromaMax": 43.5,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.339,
+      "bordurePct": 25.3,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 25.3
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 25.5
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 28.9
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 29.6
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 33.5
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 40.3
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 40.3
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
+    }
+  },
+  {
+    "id": 55687,
+    "title": "Chiryūshuku, from the series The Fifty-three Stations of the Tōkaidō Road",
+    "artist": "Utagawa Hiroshige",
+    "source": "The Metropolitan Museum of Art (Open Access, CC0)",
+    "dpEvidence": "UE ✓ : Utagawa Hiroshige † 1858 → domaine public depuis 1929 · US ✓ : œuvre 1900 (seuil ≤ 1931) · institution : Met Open Access · isPublicDomain=true · accession JP3480",
+    "wikidataUrl": "",
+    "dir": "/renders/55687",
+    "encadre": "catalogue/02_encadre_chene.jpg",
+    "tags": {
+      "sujet": [
+        "Paysage",
+        "Estampes japonaises",
+        "Animaux"
+      ],
+      "mouvement": "Ukiyo-e",
+      "palette": [
+        "Tons dorés"
+      ],
+      "collections": [
+        "Paysage",
+        "Estampes japonaises",
+        "Animaux",
+        "Ukiyo-e",
+        "Tons dorés"
+      ]
+    },
+    "palette": {
+      "tags": [
+        "Tons dorés"
+      ],
+      "swatches": [
+        "#ceaf87",
+        "#7a685e",
+        "#e7c59a",
+        "#a19279",
+        "#c39f76"
+      ],
+      "famille": "doré",
+      "chaleur": 0.982
+    },
+    "fidelite": {
+      "verdict": "FIDÈLE",
+      "deltaE": 0.4,
+      "chroma": 0.999,
+      "dominante": 0.999
+    },
+    "couleur": {
+      "espaceSource": "sRGB présumé (sans profil ICC)",
+      "convertiSrgb": false
+    },
+    "gamut": {
+      "methode": "heuristique-chroma",
+      "teinteARisque": "vert",
+      "chromaMax": 48.6,
+      "pctChromaElevee": 0.0,
+      "horsGamutPct": null,
+      "profilPapier": null
+    },
+    "layout": {
+      "taille": "30×40",
+      "orientation": "paysage",
+      "ratioOeuvre": 1.315,
+      "bordurePct": 26.6,
+      "variants": [
+        {
+          "taille": "30×40",
+          "bordurePct": 26.6
+        },
+        {
+          "taille": "A3 30×42",
+          "bordurePct": 30.8
+        },
+        {
+          "taille": "40×50",
+          "bordurePct": 24.4
+        },
+        {
+          "taille": "50×70",
+          "bordurePct": 30.1
+        },
+        {
+          "taille": "A2 42×59",
+          "bordurePct": 30.8
+        },
+        {
+          "taille": "61×91",
+          "bordurePct": 34.7
+        },
+        {
+          "taille": "30×30",
+          "bordurePct": 39.5
+        },
+        {
+          "taille": "50×50",
+          "bordurePct": 39.5
+        }
+      ]
+    },
+    "curation": {
+      "nouveau": true,
+      "dpAValider": true,
+      "source": "met"
     }
   }
 ]
