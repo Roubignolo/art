@@ -380,13 +380,14 @@ export default function App() {
       return next;
     });
     try {
-      if (status) {
-        await fetch("/api/validation", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ workId, status }) });
-      } else {
-        await fetch(`/api/validation?workId=${workId}`, { method: "DELETE" });
-      }
+      const r = status
+        ? await fetch("/api/validation", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ workId, status }) })
+        : await fetch(`/api/validation?workId=${workId}`, { method: "DELETE" });
+      if (!r.ok) throw new Error(`validation ${r.status}`);
+      setErr(null);
     } catch {
-      loadValidations(); // resynchronise si l'écriture a échoué
+      setErr("Validation non enregistrée — table absente ? Lancer la migration : cd web && npm run db:push");
+      loadValidations(); // resynchronise (annule la mise à jour optimiste)
     }
   }, [loadValidations]);
 
