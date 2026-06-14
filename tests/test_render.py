@@ -77,14 +77,22 @@ class TestPerspective(unittest.TestCase):
 
 class TestRognage(unittest.TestCase):
     def test_supprime_liseré_uniforme(self):
-        # fond noir pur 200×200 avec un carré blanc 100×100 au centre
+        # liseré uniforme autour d'un contenu MAJORITAIRE (carré 160×160 dans 200×200) :
+        # on rogne le bord. (Un contenu < 50 % de l'aire n'est PAS rogné — garde-fou
+        # anti-sur-rognage des compositions étalées, cf. box_bords.)
         img = Image.new("RGB", (200, 200), (1, 1, 1))
-        img.paste(Image.new("RGB", (100, 100), (255, 255, 255)), (50, 50))
+        img.paste(Image.new("RGB", (160, 160), (255, 255, 255)), (20, 20))
         out = rogner_bords(img)
         self.assertLess(out.width, 200)
         self.assertLess(out.height, 200)
-        # ne sur-rogne pas le contenu (garde au moins le carré central)
-        self.assertGreaterEqual(out.width, 100)
+        self.assertGreaterEqual(out.width, 160)  # ne sur-rogne pas le contenu
+
+    def test_pas_de_sur_rognage_composition_etalee(self):
+        # petit sujet (60×60) sur grand fond uni : < 50 % d'aire → on NE rogne PAS
+        # (mieux vaut une marge à revoir qu'une œuvre amputée).
+        img = Image.new("RGB", (200, 200), (250, 250, 248))
+        img.paste(Image.new("RGB", (60, 60), (180, 40, 40)), (70, 70))
+        self.assertEqual(rogner_bords(img).size, (200, 200))
 
     def test_image_sans_bord_inchangee(self):
         img = _image_test(150, 150)

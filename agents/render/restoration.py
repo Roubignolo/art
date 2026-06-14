@@ -89,40 +89,92 @@ def charger(source: str) -> Image.Image:
 
 # ───────────────────────── recadrage des bords ─────────────────────────
 
-def box_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18
-              ) -> Optional[Tuple[int, int, int, int]]:
-    """Boîte de rognage du liseré uniforme, ou None s'il n'y a rien à rogner.
+def _plus_grand_bloc(densite: list, seuil: float, gap_frac: float) -> Tuple[int, int]:
+    """Plus grand segment contigu où ``densite > seuil`` (petits trous tolérés).
 
-    Détecte la couleur des coins (fond uni d'un scan de musée), isole le contenu
-    (différence > ``tol``) et borne à ``max_frac`` par côté. Exposée pour que
-    l'audit de fidélité puisse recaler l'original sur le master (même cadrage).
+    Sépare l'œuvre d'une barre de calibration / d'un montage isolés par une bande
+    de fond (densité ~0). Retourne (debut, fin) inclusifs.
+    """
+    on = [d > seuil for d in densite]
+    n = len(on)
+    gap = max(1, int(n * gap_frac))
+    best = (0, 0, n - 1)
+    i = 0
+    while i < n:
+        if not on[i]:
+            i += 1
+            continue
+        j, trou = i, 0
+        while j < n and (on[j] or trou < gap):
+            trou = 0 if on[j] else trou + 1
+            j += 1
+        k = j - 1
+        while k > i and not on[k]:
+            k -= 1
+        if k - i + 1 > best[0]:
+            best = (k - i + 1, i, k)
+        i = j
+    return best[1], best[2]
+
+
+def box_bords(img: Image.Image, tol: int = 24, max_frac: float = 0.42,
+              dens_frac: float = 0.03, gap_frac: float = 0.02
+              ) -> Optional[Tuple[int, int, int, int]]:
+    """Boîte de rognage de l'APPARATUS de scan musée, ou None si rien à rogner.
+
+    Sur un scan d'œuvre-sur-papier, le musée laisse un fond uni autour, parfois une
+    **barre de calibration colorimétrique** et des **coins de montage** — qui, non
+    retirés, rendent l'œuvre inutilisable encadrée. On détecte un fond uniforme
+    (4 coins concordants), puis on isole le **plus grand bloc de contenu contigu**
+    (= l'œuvre) via des profils de projection : une barre de calibration séparée du
+    sujet par une bande de fond est ainsi écartée. Borné à ``max_frac`` par côté.
+
+    Garde-fous : œuvre **plein cadre** (peinture sans marge) → None (jamais de crop
+    de l'œuvre). Recadrage réutilisé tel quel par l'audit de fidélité (même cadrage
+    sur l'original). N'est PAS un crop de l'œuvre : on retire l'appareillage de photo.
     """
     rgb = img.convert("RGB")
     w, h = rgb.size
-    if w < 3 or h < 3:
-        return None  # image dégénérée (1-2 px de côté) : rien à rogner, et getpixel hors limites
-    coins = [rgb.getpixel((1, 1)), rgb.getpixel((w - 2, 1)),
-             rgb.getpixel((1, h - 2)), rgb.getpixel((w - 2, h - 2))]
-    # couleur de bord = médiane par canal des 4 coins
-    bord = tuple(sorted(c[i] for c in coins)[1] for i in range(3))
-    diff = ImageChops.difference(rgb, Image.new("RGB", rgb.size, bord)).convert("L")
+    if w < 8 or h < 8:
+        return None  # image dégénérée
+    p = max(4, min(w, h) // 50)
+    coins = [rgb.crop((0, 0, p, p)), rgb.crop((w - p, 0, w, p)),
+             rgb.crop((0, h - p, p, h)), rgb.crop((w - p, h - p, w, h))]
+    med = [ImageStat.Stat(c).median for c in coins]  # [r,g,b] par coin
+    bg = tuple(sorted(m[i] for m in med)[1] for i in range(3))
+    # Garde-fou 1 : les 4 coins doivent CONCORDER (vrai fond uni de scan, pas une
+    # peinture plein cadre dont les coins diffèrent).
+    if max(abs(m[i] - bg[i]) for m in med for i in range(3)) > 26:
+        return None
+    diff = ImageChops.difference(rgb, Image.new("RGB", rgb.size, bg)).convert("L")
     masque = diff.point(lambda v: 255 if v > tol else 0)
-    bbox = masque.getbbox()
-    if not bbox:
+    # Garde-fou 2 : si quasi tout est du contenu (pas de marge de fond) → plein cadre.
+    if ImageStat.Stat(masque).mean[0] / 255.0 > 0.92:
         return None
-    g, t, dr, b = bbox
-    # garde-fous : ne jamais rogner plus de max_frac par côté
-    g = min(g, int(w * max_frac))
-    t = min(t, int(h * max_frac))
-    dr = max(dr, w - int(w * max_frac))
-    b = max(b, h - int(h * max_frac))
-    if (g, t, dr, b) == (0, 0, w, h):
+    seuil = dens_frac * 255
+    col = list(masque.resize((w, 1), Image.BOX).getdata())  # densité par colonne
+    row = list(masque.resize((1, h), Image.BOX).getdata())  # densité par ligne
+    x0, x1 = _plus_grand_bloc(col, seuil, gap_frac)
+    y0, y1 = _plus_grand_bloc(row, seuil, gap_frac)
+    # Sécurité : jamais plus de max_frac par côté.
+    x0 = min(x0, int(w * max_frac))
+    y0 = min(y0, int(h * max_frac))
+    x1 = max(x1, w - 1 - int(w * max_frac))
+    y1 = max(y1, h - 1 - int(h * max_frac))
+    box = (x0, y0, x1 + 1, y1 + 1)
+    if box == (0, 0, w, h):
         return None
-    return (g, t, dr, b)
+    # Garde-fou anti-sur-rognage : retirer > 50 % de l'aire = probablement une
+    # composition ÉTALÉE (sujets séparés par du blanc, ex. planche multi-fleurs),
+    # pas de l'apparatus → on laisse l'œuvre intacte. Mieux vaut une marge à revoir
+    # qu'une œuvre amputée. Ces cas relèvent du gate qualité humain, pas de l'auto-crop.
+    if (x1 + 1 - x0) * (y1 + 1 - y0) < 0.50 * w * h:
+        return None
+    return box
 
 
-def rogner_bords(img: Image.Image, tol: int = 22, max_frac: float = 0.18) -> Image.Image:
-    """Supprime un liseré uniforme (fond noir/blanc des scans de musée)."""
+def rogner_bords(img: Image.Image, tol: int = 24, max_frac: float = 0.42) -> Image.Image:
+    """Supprime l'apparatus de scan musée (fond uni + barre de calibration + montage)."""
     rgb = img.convert("RGB")
     box = box_bords(rgb, tol, max_frac)
     return rgb.crop(box) if box else rgb
