@@ -186,3 +186,24 @@ def variants_offre(aw: int, ah: int, fournisseur: str = "gelato") -> List[PlanMi
         labels |= set(CARRES)
     return [planifier(aw, ah, fournisseur, t)
             for t in CATALOGUE if t.label in labels and fournisseur in t.fournisseurs]
+
+
+# Au-delà de ce % de bordure sur la MEILLEURE taille offerte, l'œuvre flotte dans un
+# passe-partout démesuré (ratio trop loin des formats catalogue) → mauvais encadré.
+SEUIL_ENCADRABLE = 42.0
+
+
+def bordure_min_offre(aw: int, ah: int, fournisseur: str = "gelato") -> float:
+    """Plus petite bordure (%) atteignable parmi les tailles offertes."""
+    plans = variants_offre(aw, ah, fournisseur)
+    return min((p.bordure_pct for p in plans), default=100.0)
+
+
+def encadrable(aw: int, ah: int, fournisseur: str = "gelato",
+               seuil: float = SEUIL_ENCADRABLE) -> bool:
+    """Vrai si l'œuvre se présente bien ENCADRÉE (bordure mini ≤ ``seuil``).
+
+    Faux = ratio trop éloigné des formats → bordure démesurée → ne PAS proposer
+    en encadré (poster seul, ou écarter). Garde-fou « inutilisable encadrée ».
+    """
+    return bordure_min_offre(aw, ah, fournisseur) <= seuil
