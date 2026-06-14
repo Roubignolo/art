@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from .mockup import (
     comparatif_tailles,
+    composer_fichier_print,
     detail_texture,
     encadre_sur_mur,
     generer_galerie,
@@ -42,6 +43,7 @@ __all__ = [
     "charger",
     "composer_avant_apres",
     "generer_galerie",
+    "composer_fichier_print",
     "poster_nu",
     "encadre_sur_mur",
     "detail_texture",

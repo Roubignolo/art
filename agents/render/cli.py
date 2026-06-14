@@ -71,6 +71,9 @@ def main(argv: Optional[list[str]] = None) -> int:
     ap.add_argument("--institution", default="")
     ap.add_argument("--accession", default="")
     ap.add_argument("--url-musee", default="")
+    ap.add_argument("--fichier-print", default="",
+                    help="exporte le(s) fichier(s) print prêt(s) à uploader (csv : gelato,prodigi). "
+                         "Gelato = bordure intégrée au ratio catalogue ; Prodigi = ratio natif (mat physique).")
     args = ap.parse_args(argv)
 
     infos: Optional[InfosProvenance] = None
@@ -98,6 +101,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         restauration=not args.no_restauration,
         profil=args.profil,
         profil_papier=args.profil_papier,
+        exporter_print=[f.strip() for f in args.fichier_print.split(",") if f.strip()],
     )
     if manifeste.get("couleur"):
         c = manifeste["couleur"]

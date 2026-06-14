@@ -91,6 +91,38 @@ def poster_nu(art: Image.Image, sortie: Tuple[int, int] = (1600, 1600)) -> Image
     return scene.convert("RGB")
 
 
+def composer_fichier_print(master: Image.Image, fournisseur: str = "gelato",
+                           taille=None, mat_min_frac: float = 0.08,
+                           mat: Tuple[int, int, int] = (255, 255, 255)):
+    """Fichier PRÊT À UPLOADER au POD — full-res, fidèle, JAMAIS de crop.
+
+    - ``gelato`` (bordure-fichier) : ``master`` + bordure blanche (faux passe-partout)
+      intégrée au ratio EXACT de la taille catalogue → le fichier matche le produit,
+      le ``fill`` de Gelato est inoffensif (même ratio). C'est le fichier qu'on upload.
+    - ``prodigi`` (passe-partout physique) : on rend le master au ratio NATIF — le mat
+      physique fournit la marge ; on commande en ``fitPrintArea`` + ``mount``.
+
+    Retourne ``(image_RGB, plan)`` où ``plan`` = ``layout.planifier(...).to_dict()``.
+    L'œuvre n'est jamais ni rognée ni déformée (collée telle quelle dans l'ouverture).
+    """
+    master = master.convert("RGB")
+    aw, ah = master.size
+    plan = layout.planifier(aw, ah, fournisseur, taille, mat_min_frac)
+    if fournisseur == "prodigi":
+        return master, plan.to_dict()  # ratio natif ; le mat physique gère la marge
+    t = taille or layout.meilleure_taille(max(aw, ah) / min(aw, ah), fournisseur)
+    if aw > ah:
+        ratio_cible = t.ratio
+    elif ah > aw:
+        ratio_cible = 1.0 / t.ratio
+    else:
+        ratio_cible = 1.0
+    ow, oh, mwx, mwy = layout.ouverture(aw, ah, ratio_cible, mat_min_frac)
+    canvas = Image.new("RGB", (ow, oh), mat)
+    canvas.paste(master, (mwx, mwy))  # œuvre intacte, centrée dans la bordure
+    return canvas, plan.to_dict()
+
+
 def encadre_sur_mur(art: Image.Image, profil: str = "chene",
                     sortie: Tuple[int, int] = (1600, 1600)) -> Image.Image:
     scene = _fond_studio(sortie)
@@ -238,6 +270,7 @@ def generer_galerie(
     restauration: bool = True,
     profil: str = "fidele",
     profil_papier: Optional[str] = None,
+    exporter_print: Optional[List[str]] = None,
 ) -> Dict:
     """Génère la galerie complète et retourne un manifeste (chemins + métadonnées).
 
@@ -301,6 +334,13 @@ def generer_galerie(
         "variants_gelato": [p.to_dict() for p in layout.plans_variants(aw, ah, "gelato")],
         "variants_prodigi": [p.to_dict() for p in layout.plans_variants(aw, ah, "prodigi")],
     }
+
+    # Fichier(s) print PRÊTS À UPLOADER (full-res, opt-in — lourds, donc à la demande
+    # ex. au moment d'une commande). Composés sur le MASTER print en mémoire.
+    for fourn in exporter_print or []:
+        img_print, plan = composer_fichier_print(master, fourn)
+        chemin = f"{dossier}/print/{fourn}_{plan['taille'].replace(' ', '').replace('×', 'x')}.jpg"
+        manifeste.setdefault("fichiers", {})[f"print_{fourn}"] = _sauver(img_print, chemin, qualite=95)
 
     # Avant/après : honnête seulement quand on a réellement modifié la couleur.
     if restauration and rapport is not None and rapport.deplace_teinte:

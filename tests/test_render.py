@@ -8,8 +8,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from PIL import Image  # noqa: E402
 
+from agents.render import layout  # noqa: E402
 from agents.render.frames import PROFILS, encadrer, ombre_portee  # noqa: E402
-from agents.render.mockup import comparatif_tailles, poster_nu  # noqa: E402
+from agents.render.mockup import comparatif_tailles, composer_fichier_print, poster_nu  # noqa: E402
 from agents.render.perspective import coeffs_perspective, coeffs_vers_quad  # noqa: E402
 from agents.render.restoration import box_bords, restaurer, rogner_bords  # noqa: E402
 
@@ -22,6 +23,38 @@ def _image_test(w=120, h=90):
         for x in range(w):
             px[x, y] = (x % 256, y % 256, (x + y) % 256)
     return img
+
+
+class TestFichierPrint(unittest.TestCase):
+    """Le fichier print POD : fidèle, jamais de crop, ratio = taille catalogue (Gelato)."""
+
+    def test_gelato_ratio_catalogue_sans_crop(self):
+        master = _image_test(3000, 2380)  # ratio ~1.26
+        img, plan = composer_fichier_print(master, "gelato")
+        # jamais de crop : la sortie contient l'œuvre entière (≥ master en chaque dim)
+        self.assertGreaterEqual(img.width, master.width)
+        self.assertGreaterEqual(img.height, master.height)
+        # ratio de sortie == ratio EXACT de la taille catalogue choisie
+        t = layout.meilleure_taille(3000 / 2380, "gelato")
+        self.assertAlmostEqual(img.width / img.height, t.ratio, delta=0.01)
+        self.assertEqual(plan["fournisseur"], "gelato")
+        # l'œuvre est intacte au centre (coin haut-gauche du master présent)
+        mwx = (img.width - master.width) // 2
+        mwy = (img.height - master.height) // 2
+        self.assertEqual(img.getpixel((mwx + 1, mwy + 1)), master.getpixel((1, 1)))
+
+    def test_prodigi_ratio_natif(self):
+        master = _image_test(3000, 2380)
+        img, plan = composer_fichier_print(master, "prodigi")
+        self.assertEqual(img.size, master.size)  # ratio natif (le mat physique gère la marge)
+        self.assertEqual(plan["fournisseur"], "prodigi")
+
+    def test_portrait_reste_portrait(self):
+        master = _image_test(2000, 3000)
+        img, _ = composer_fichier_print(master, "gelato")
+        self.assertGreaterEqual(img.width, master.width)
+        self.assertGreaterEqual(img.height, master.height)
+        self.assertLess(img.width, img.height)  # orientation préservée
 
 
 class TestPerspective(unittest.TestCase):
