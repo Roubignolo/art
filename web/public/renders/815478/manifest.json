@@ -16,8 +16,8 @@
   "restauration": {
     "largeur_avant": 1510,
     "hauteur_avant": 4000,
-    "largeur_apres": 1142,
-    "hauteur_apres": 3812,
+    "largeur_apres": 999,
+    "hauteur_apres": 3799,
     "upscale_methode": "aucun",
     "profil": "fidele",
     "equilibrage_blancs": false,
@@ -25,10 +25,10 @@
     "debruitage": true,
     "accentuation": true,
     "box_rognage": [
-      171,
-      101,
-      1313,
-      3913
+      251,
+      113,
+      1250,
+      3912
     ],
     "espace_source": "sRGB.icc",
     "converti_srgb": false
@@ -38,37 +38,277 @@
     "converti_srgb": false
   },
   "fidelite": {
-    "delta_e_moyen": 0.37,
-    "delta_e_p95": 0.75,
-    "delta_e_max": 1.05,
+    "delta_e_moyen": 0.35,
+    "delta_e_p95": 0.69,
+    "delta_e_max": 0.97,
     "region_max": [
-      0.036,
-      0.219
+      0.808,
+      0.76
     ],
     "chroma_ratio": 1.0,
     "dominante_ratio": 1.0,
-    "derive_teinte_deg": 0.7,
+    "derive_teinte_deg": 0.6,
     "patchs_delaves": 0,
-    "n_patchs": 672,
+    "n_patchs": 624,
     "methode": "ciede2000",
     "verdict": "FIDÈLE",
     "raisons": [
-      "ΔE moyen 0.4, chroma 100% — conforme"
+      "ΔE moyen 0.3, chroma 100% — conforme"
     ]
   },
   "gamut": {
     "methode": "heuristique-chroma",
-    "chroma_max": 31.9,
-    "chroma_p99": 29.7,
+    "chroma_max": 30.7,
+    "chroma_p99": 29.5,
     "pct_chroma_elevee": 0.0,
     "seuil_chroma": 55.0,
     "region_max": [
-      0.464,
-      0.719
+      0.885,
+      0.781
     ],
     "teinte_a_risque": "vert",
     "avertissement": "proxy de SATURATION (C*), pas une mesure de gamut papier : non comparable d'une œuvre à l'autre, et sous-détecte l'écrêtage des bleus/cyans clairs. Fournir --profil-papier pour un vrai soft-proof.",
     "note": "Approximatif (pas de profil papier). Fournir --profil-papier (Hahnemühle/Prodigi) pour un soft-proof ICC exact. Sur mat, les zones très saturées seront partiellement écrêtées par le RIP."
+  },
+  "layout": {
+    "gelato": {
+      "taille": "61×91",
+      "fournisseur": "gelato",
+      "orientation": "portrait",
+      "ratio_oeuvre": 3.802,
+      "ratio_taille": 1.498,
+      "marge_h_frac": 1.643,
+      "marge_v_frac": 0.042,
+      "bordure_pct": 63.7,
+      "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+      "strategie": "bordure-fichier",
+      "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+    },
+    "prodigi": {
+      "taille": "61×91",
+      "fournisseur": "prodigi",
+      "orientation": "portrait",
+      "ratio_oeuvre": 3.802,
+      "ratio_taille": 1.498,
+      "marge_h_frac": 1.643,
+      "marge_v_frac": 0.042,
+      "bordure_pct": 63.7,
+      "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+      "strategie": "passe-partout",
+      "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+    },
+    "variants_gelato": [
+      {
+        "taille": "30×40",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.333,
+        "marge_h_frac": 1.97,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 67.7,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "A3 30×42",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.414,
+        "marge_h_frac": 1.802,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 65.8,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "40×50",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.25,
+        "marge_h_frac": 2.167,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 69.7,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "50×70",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.4,
+        "marge_h_frac": 1.829,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 66.1,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "A2 42×59",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.414,
+        "marge_h_frac": 1.802,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 65.8,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "61×91",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.498,
+        "marge_h_frac": 1.643,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 63.7,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "30×30",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.0,
+        "marge_h_frac": 2.962,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 75.8,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      },
+      {
+        "taille": "50×50",
+        "fournisseur": "gelato",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.0,
+        "marge_h_frac": 2.962,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 75.8,
+        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
+        "strategie": "bordure-fichier",
+        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
+      }
+    ],
+    "variants_prodigi": [
+      {
+        "taille": "20×25",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.25,
+        "marge_h_frac": 2.167,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 69.7,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "28×36",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.271,
+        "marge_h_frac": 2.114,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 69.2,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "30×40",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.333,
+        "marge_h_frac": 1.97,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 67.7,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "40×50",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.25,
+        "marge_h_frac": 2.167,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 69.7,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "50×70",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.4,
+        "marge_h_frac": 1.829,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 66.1,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "61×91",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.498,
+        "marge_h_frac": 1.643,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 63.7,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "30×30",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.0,
+        "marge_h_frac": 2.962,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 75.8,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      },
+      {
+        "taille": "50×50",
+        "fournisseur": "prodigi",
+        "orientation": "portrait",
+        "ratio_oeuvre": 3.802,
+        "ratio_taille": 1.0,
+        "marge_h_frac": 2.962,
+        "marge_v_frac": 0.042,
+        "bordure_pct": 75.8,
+        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
+        "strategie": "passe-partout",
+        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
+      }
+    ]
   },
   "tags": {
     "sujet": [
@@ -92,267 +332,27 @@
     "familles": [
       [
         "doré",
-        0.832
+        0.82
       ],
       [
         "olive",
-        0.158
+        0.169
       ],
       [
         "orange",
-        0.01
+        0.011
       ]
     ],
-    "chaleur": 0.842,
-    "saturation": 18.0,
-    "clarte": 43.4,
-    "contraste": 16.9,
+    "chaleur": 0.831,
+    "saturation": 20.4,
+    "clarte": 49.4,
+    "contraste": 8.4,
     "swatches": [
-      "#8b6d43",
-      "#89846a",
-      "#756847",
-      "#2d261b",
-      "#897857"
-    ]
-  },
-  "layout": {
-    "gelato": {
-      "taille": "61×91",
-      "fournisseur": "gelato",
-      "orientation": "portrait",
-      "ratio_oeuvre": 3.339,
-      "ratio_taille": 1.498,
-      "marge_h_frac": 1.332,
-      "marge_v_frac": 0.047,
-      "bordure_pct": 59.1,
-      "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-      "strategie": "bordure-fichier",
-      "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-    },
-    "prodigi": {
-      "taille": "61×91",
-      "fournisseur": "prodigi",
-      "orientation": "portrait",
-      "ratio_oeuvre": 3.339,
-      "ratio_taille": 1.498,
-      "marge_h_frac": 1.332,
-      "marge_v_frac": 0.047,
-      "bordure_pct": 59.1,
-      "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-      "strategie": "passe-partout",
-      "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-    },
-    "variants_gelato": [
-      {
-        "taille": "30×40",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.333,
-        "marge_h_frac": 1.619,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 63.6,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "A3 30×42",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.414,
-        "marge_h_frac": 1.472,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 61.4,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "40×50",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.25,
-        "marge_h_frac": 1.796,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 65.8,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "50×70",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.4,
-        "marge_h_frac": 1.496,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 61.8,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "A2 42×59",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.414,
-        "marge_h_frac": 1.472,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 61.4,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "61×91",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.498,
-        "marge_h_frac": 1.332,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 59.1,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "30×30",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.0,
-        "marge_h_frac": 2.494,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 72.7,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      },
-      {
-        "taille": "50×50",
-        "fournisseur": "gelato",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.0,
-        "marge_h_frac": 2.494,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 72.7,
-        "sizing_prodigi": "fillPrintArea (le fichier est déjà au ratio exact → aucun crop)",
-        "strategie": "bordure-fichier",
-        "note": "Gelato : composer le fichier print à la taille catalogue avec la bordure blanche intégrée (faux passe-partout). Le ratio du fichier = celui du produit → pas de crop fournisseur."
-      }
-    ],
-    "variants_prodigi": [
-      {
-        "taille": "20×25",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.25,
-        "marge_h_frac": 1.796,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 65.8,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "28×36",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.271,
-        "marge_h_frac": 1.75,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 65.3,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "30×40",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.333,
-        "marge_h_frac": 1.619,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 63.6,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "40×50",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.25,
-        "marge_h_frac": 1.796,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 65.8,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "50×70",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.4,
-        "marge_h_frac": 1.496,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 61.8,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "61×91",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.498,
-        "marge_h_frac": 1.332,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 59.1,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "30×30",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.0,
-        "marge_h_frac": 2.494,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 72.7,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      },
-      {
-        "taille": "50×50",
-        "fournisseur": "prodigi",
-        "orientation": "portrait",
-        "ratio_oeuvre": 3.339,
-        "ratio_taille": 1.0,
-        "marge_h_frac": 2.494,
-        "marge_v_frac": 0.047,
-        "bordure_pct": 72.7,
-        "sizing_prodigi": "fitPrintArea (jamais de crop) + mount activé",
-        "strategie": "passe-partout",
-        "note": "Prodigi : commander en fitPrintArea avec passe-partout (mat) — l'œuvre garde son ratio, le mat physique fournit la marge. Choisir la couleur de mat (snow white)."
-      }
+      "#8f6f45",
+      "#8b866b",
+      "#66583c",
+      "#826e4b",
+      "#867c60"
     ]
   }
 }

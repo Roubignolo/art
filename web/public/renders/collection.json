@@ -92,7 +92,8 @@
           "taille": "50×50",
           "bordurePct": 38.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -188,7 +189,8 @@
           "taille": "50×50",
           "bordurePct": 49.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -284,7 +286,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -382,7 +385,8 @@
           "taille": "50×50",
           "bordurePct": 48.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -480,7 +484,8 @@
           "taille": "50×50",
           "bordurePct": 37.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -584,7 +589,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -679,7 +685,8 @@
           "taille": "50×50",
           "bordurePct": 40.3
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -782,7 +789,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -882,7 +890,8 @@
           "taille": "50×50",
           "bordurePct": 34.9
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -981,7 +990,8 @@
           "taille": "50×50",
           "bordurePct": 37.4
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1077,7 +1087,8 @@
           "taille": "50×50",
           "bordurePct": 39.4
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1180,7 +1191,8 @@
           "taille": "50×50",
           "bordurePct": 44.4
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1193,20 +1205,13 @@
     "dir": "/renders/53449",
     "encadre": "catalogue/02_encadre_chene.jpg",
     "tags": {
-      "sujet": [
-        "Paysage",
-        "Estampes japonaises",
-        "Cartes célestes & astronomie"
-      ],
+      "sujet": [],
       "mouvement": "Ukiyo-e",
       "palette": [
         "Sépia & neutres",
         "Tons froids"
       ],
       "collections": [
-        "Paysage",
-        "Estampes japonaises",
-        "Cartes célestes & astronomie",
         "Ukiyo-e",
         "Sépia & neutres",
         "Tons froids"
@@ -1218,20 +1223,20 @@
         "Tons froids"
       ],
       "swatches": [
-        "#414547",
-        "#66999e",
-        "#fcf6ea",
-        "#6d665e",
-        "#44666a"
+        "#4e8891",
+        "#565650",
+        "#f4e6d0",
+        "#6c615a",
+        "#3b4d52"
       ],
       "famille": "bleu",
-      "chaleur": 0.267
+      "chaleur": 0.241
     },
     "fidelite": {
       "verdict": "FIDÈLE",
       "deltaE": 0.45,
-      "chroma": 0.998,
-      "dominante": 0.996
+      "chroma": 0.999,
+      "dominante": 1.0
     },
     "couleur": {
       "espaceSource": "sRGB.icc",
@@ -1246,44 +1251,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "30×40",
+      "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.34,
-      "bordurePct": 25.2,
+      "ratioOeuvre": 1.52,
+      "bordurePct": 24.6,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 25.2
+          "bordurePct": 28.2
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 29.5
+          "bordurePct": 23.8
         },
         {
           "taille": "40×50",
-          "bordurePct": 25.5
+          "bordurePct": 32.6
         },
         {
           "taille": "50×70",
-          "bordurePct": 28.8
+          "bordurePct": 24.6
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 29.5
+          "bordurePct": 23.8
         },
         {
           "taille": "61×91",
-          "bordurePct": 33.5
+          "bordurePct": 24.6
         },
         {
           "taille": "30×30",
-          "bordurePct": 40.4
+          "bordurePct": 46.1
         },
         {
           "taille": "50×50",
-          "bordurePct": 40.4
+          "bordurePct": 46.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1384,7 +1390,8 @@
           "taille": "50×50",
           "bordurePct": 44.2
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1485,7 +1492,8 @@
           "taille": "50×50",
           "bordurePct": 40.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1521,20 +1529,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#eeeeed",
+        "#eeefee",
         "#eff0f0",
-        "#ebebe9",
+        "#afb69d",
         "#efefef",
-        "#b8bba6"
+        "#f1f2f1"
       ],
       "famille": "vert",
-      "chaleur": 0.382
+      "chaleur": 0.342
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.31,
-      "chroma": 1.0,
-      "dominante": 1.0
+      "deltaE": 0.28,
+      "chroma": 0.999,
+      "dominante": 1.001
     },
     "couleur": {
       "espaceSource": "sRGB.icc",
@@ -1549,44 +1557,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "30×40",
+      "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.295,
-      "bordurePct": 27.7,
+      "ratioOeuvre": 1.589,
+      "bordurePct": 22.0,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 27.7
+          "bordurePct": 30.6
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 31.9
+          "bordurePct": 26.4
         },
         {
           "taille": "40×50",
-          "bordurePct": 23.5
+          "bordurePct": 35.0
         },
         {
           "taille": "50×70",
-          "bordurePct": 31.2
+          "bordurePct": 27.1
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 31.9
+          "bordurePct": 26.5
         },
         {
           "taille": "61×91",
-          "bordurePct": 35.8
+          "bordurePct": 22.0
         },
         {
           "taille": "30×30",
-          "bordurePct": 38.8
+          "bordurePct": 48.0
         },
         {
           "taille": "50×50",
-          "bordurePct": 38.8
+          "bordurePct": 48.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1599,9 +1608,7 @@
     "dir": "/renders/697702",
     "encadre": "catalogue/02_encadre_chene.jpg",
     "tags": {
-      "sujet": [
-        "Botanique"
-      ],
+      "sujet": [],
       "mouvement": null,
       "palette": [
         "Sépia & neutres",
@@ -1609,7 +1616,6 @@
         "Camaïeu pastel"
       ],
       "collections": [
-        "Botanique",
         "Sépia & neutres",
         "Tons chauds",
         "Camaïeu pastel"
@@ -1622,20 +1628,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#edece8",
+        "#f1f1ee",
         "#efeeeb",
-        "#f0efec",
-        "#c6beb8",
-        "#f1f0ee"
+        "#b8ada8",
+        "#f0efed",
+        "#edece9"
       ],
       "famille": "rose",
-      "chaleur": 0.721
+      "chaleur": 0.699
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.29,
-      "chroma": 0.997,
-      "dominante": 0.998
+      "deltaE": 0.27,
+      "chroma": 0.998,
+      "dominante": 1.0
     },
     "couleur": {
       "espaceSource": "sRGB.icc",
@@ -1652,42 +1658,43 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.483,
-      "bordurePct": 26.3,
+      "ratioOeuvre": 2.242,
+      "bordurePct": 41.8,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 26.6
+          "bordurePct": 48.1
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 22.2
+          "bordurePct": 45.0
         },
         {
           "taille": "40×50",
-          "bordurePct": 31.2
+          "bordurePct": 51.4
         },
         {
           "taille": "50×70",
-          "bordurePct": 22.9
+          "bordurePct": 45.6
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 22.1
+          "bordurePct": 45.1
         },
         {
           "taille": "61×91",
-          "bordurePct": 26.3
+          "bordurePct": 41.8
         },
         {
           "taille": "30×30",
-          "bordurePct": 45.0
+          "bordurePct": 61.1
         },
         {
           "taille": "50×50",
-          "bordurePct": 45.0
+          "bordurePct": 61.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1784,7 +1791,8 @@
           "taille": "50×50",
           "bordurePct": 35.7
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -1821,20 +1829,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#e2d9c3",
-        "#b1aca1",
-        "#eee4cb",
-        "#f6ead1",
-        "#fbeed7"
+        "#f2e7d0",
+        "#9d9a93",
+        "#f7ebd4",
+        "#c9c4b6",
+        "#fbefd8"
       ],
       "famille": "doré",
       "chaleur": 1.0
     },
     "fidelite": {
-      "verdict": "FIDÈLE",
-      "deltaE": 1.25,
-      "chroma": 0.908,
-      "dominante": 0.908
+      "verdict": "À REVOIR",
+      "deltaE": 1.7,
+      "chroma": 0.85,
+      "dominante": 0.85
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -1849,44 +1857,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "30×40",
-      "orientation": "portrait",
-      "ratioOeuvre": 1.326,
-      "bordurePct": 26.0,
+      "taille": "30×30",
+      "orientation": "carré",
+      "ratioOeuvre": 1.014,
+      "bordurePct": 26.3,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 26.0
+          "bordurePct": 26.3
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 30.2
+          "bordurePct": 26.3
         },
         {
           "taille": "40×50",
-          "bordurePct": 24.9
+          "bordurePct": 26.3
         },
         {
           "taille": "50×70",
-          "bordurePct": 29.6
+          "bordurePct": 26.3
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 30.3
+          "bordurePct": 26.3
         },
         {
           "taille": "61×91",
-          "bordurePct": 34.2
+          "bordurePct": 26.3
         },
         {
           "taille": "30×30",
-          "bordurePct": 39.9
+          "bordurePct": 26.3
         },
         {
           "taille": "50×50",
-          "bordurePct": 39.9
+          "bordurePct": 26.3
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -1986,7 +1995,8 @@
           "taille": "50×50",
           "bordurePct": 44.7
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -2086,7 +2096,8 @@
           "taille": "50×50",
           "bordurePct": 40.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2184,7 +2195,8 @@
           "taille": "50×50",
           "bordurePct": 46.6
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2282,7 +2294,8 @@
           "taille": "50×50",
           "bordurePct": 39.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2378,7 +2391,8 @@
           "taille": "50×50",
           "bordurePct": 49.7
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2477,7 +2491,8 @@
           "taille": "50×50",
           "bordurePct": 44.1
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2576,7 +2591,8 @@
           "taille": "50×50",
           "bordurePct": 35.3
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2677,7 +2693,8 @@
           "taille": "50×50",
           "bordurePct": 34.4
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2773,7 +2790,8 @@
           "taille": "50×50",
           "bordurePct": 29.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2869,7 +2887,8 @@
           "taille": "50×50",
           "bordurePct": 40.6
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -2965,7 +2984,8 @@
           "taille": "50×50",
           "bordurePct": 29.9
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3061,7 +3081,8 @@
           "taille": "50×50",
           "bordurePct": 37.2
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3161,7 +3182,8 @@
           "taille": "50×50",
           "bordurePct": 44.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3264,7 +3286,8 @@
           "taille": "50×50",
           "bordurePct": 45.3
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3361,7 +3384,8 @@
           "taille": "50×50",
           "bordurePct": 58.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -3465,7 +3489,8 @@
           "taille": "50×50",
           "bordurePct": 46.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -3568,7 +3593,8 @@
           "taille": "50×50",
           "bordurePct": 39.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -3673,7 +3699,8 @@
           "taille": "50×50",
           "bordurePct": 44.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3774,7 +3801,8 @@
           "taille": "50×50",
           "bordurePct": 41.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3789,7 +3817,6 @@
     "tags": {
       "sujet": [
         "Floral",
-        "Botanique",
         "Oiseaux & faune"
       ],
       "mouvement": null,
@@ -3800,7 +3827,6 @@
       ],
       "collections": [
         "Floral",
-        "Botanique",
         "Oiseaux & faune",
         "Sépia & neutres",
         "Tons froids",
@@ -3814,19 +3840,19 @@
         "Camaïeu pastel"
       ],
       "swatches": [
+        "#a09c8d",
+        "#f0eae7",
         "#f3edea",
-        "#efe8e5",
-        "#e2dcd8",
-        "#b1ac9f",
-        "#e9e1dd"
+        "#f5f0ed",
+        "#ebdcda"
       ],
       "famille": "rose",
-      "chaleur": 0.472
+      "chaleur": 0.473
     },
     "fidelite": {
       "verdict": "FIDÈLE",
       "deltaE": 0.26,
-      "chroma": 0.999,
+      "chroma": 1.0,
       "dominante": 1.001
     },
     "couleur": {
@@ -3842,44 +3868,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "40×50",
+      "taille": "30×40",
       "orientation": "portrait",
-      "ratioOeuvre": 1.287,
-      "bordurePct": 23.4,
+      "ratioOeuvre": 1.322,
+      "bordurePct": 26.3,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 28.2
+          "bordurePct": 26.3
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 32.4
+          "bordurePct": 30.5
         },
         {
           "taille": "40×50",
-          "bordurePct": 23.4
+          "bordurePct": 24.8
         },
         {
           "taille": "50×70",
-          "bordurePct": 31.6
+          "bordurePct": 29.8
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 32.3
+          "bordurePct": 30.6
         },
         {
           "taille": "61×91",
-          "bordurePct": 36.2
+          "bordurePct": 34.4
         },
         {
           "taille": "30×30",
-          "bordurePct": 38.5
+          "bordurePct": 39.8
         },
         {
           "taille": "50×50",
-          "bordurePct": 38.5
+          "bordurePct": 39.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -3982,7 +4009,8 @@
           "taille": "50×50",
           "bordurePct": 39.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -4078,7 +4106,8 @@
           "taille": "50×50",
           "bordurePct": 39.4
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -4177,7 +4206,8 @@
           "taille": "50×50",
           "bordurePct": 34.9
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -4273,7 +4303,8 @@
           "taille": "50×50",
           "bordurePct": 36.9
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -4373,7 +4404,8 @@
           "taille": "50×50",
           "bordurePct": 35.1
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -4478,7 +4510,8 @@
           "taille": "50×50",
           "bordurePct": 37.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -4511,10 +4544,10 @@
       ],
       "swatches": [
         "#3d2417",
-        "#231b15",
-        "#5a3620",
-        "#837862",
-        "#5f4e3c"
+        "#241b15",
+        "#5a361f",
+        "#837761",
+        "#5e4d3b"
       ],
       "famille": "orange",
       "chaleur": 0.983
@@ -4522,7 +4555,7 @@
     "fidelite": {
       "verdict": "FIDÈLE",
       "deltaE": 0.44,
-      "chroma": 0.999,
+      "chroma": 1.0,
       "dominante": 1.0
     },
     "couleur": {
@@ -4540,16 +4573,16 @@
     "layout": {
       "taille": "A2 42×59",
       "orientation": "paysage",
-      "ratioOeuvre": 1.422,
-      "bordurePct": 25.2,
+      "ratioOeuvre": 1.423,
+      "bordurePct": 25.1,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 24.2
+          "bordurePct": 24.3
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 25.2
+          "bordurePct": 25.1
         },
         {
           "taille": "40×50",
@@ -4561,21 +4594,22 @@
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 25.2
+          "bordurePct": 25.1
         },
         {
           "taille": "61×91",
-          "bordurePct": 29.4
+          "bordurePct": 29.3
         },
         {
           "taille": "30×30",
-          "bordurePct": 43.1
+          "bordurePct": 43.2
         },
         {
           "taille": "50×50",
-          "bordurePct": 43.1
+          "bordurePct": 43.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -4675,7 +4709,8 @@
           "taille": "50×50",
           "bordurePct": 42.6
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -4771,7 +4806,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -4870,7 +4906,8 @@
           "taille": "50×50",
           "bordurePct": 36.6
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -4905,18 +4942,18 @@
         "Tons dorés"
       ],
       "swatches": [
-        "#8b6d43",
-        "#89846a",
-        "#756847",
-        "#2d261b",
-        "#897857"
+        "#8f6f45",
+        "#8b866b",
+        "#66583c",
+        "#826e4b",
+        "#867c60"
       ],
       "famille": "doré",
-      "chaleur": 0.842
+      "chaleur": 0.831
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.37,
+      "deltaE": 0.35,
       "chroma": 1.0,
       "dominante": 1.0
     },
@@ -4935,42 +4972,43 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 3.339,
-      "bordurePct": 59.1,
+      "ratioOeuvre": 3.802,
+      "bordurePct": 63.7,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 63.6
+          "bordurePct": 67.7
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 61.4
-        },
-        {
-          "taille": "40×50",
           "bordurePct": 65.8
         },
         {
+          "taille": "40×50",
+          "bordurePct": 69.7
+        },
+        {
           "taille": "50×70",
-          "bordurePct": 61.8
+          "bordurePct": 66.1
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 61.4
+          "bordurePct": 65.8
         },
         {
           "taille": "61×91",
-          "bordurePct": 59.1
+          "bordurePct": 63.7
         },
         {
           "taille": "30×30",
-          "bordurePct": 72.7
+          "bordurePct": 75.8
         },
         {
           "taille": "50×50",
-          "bordurePct": 72.7
+          "bordurePct": 75.8
         }
-      ]
+      ],
+      "encadrable": false
     },
     "curation": {
       "deprioritized": true,
@@ -5072,7 +5110,8 @@
           "taille": "50×50",
           "bordurePct": 56.8
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "deprioritized": true,
@@ -5172,7 +5211,8 @@
           "taille": "50×50",
           "bordurePct": 40.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5270,7 +5310,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5368,7 +5409,8 @@
           "taille": "50×50",
           "bordurePct": 41.0
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5464,7 +5506,8 @@
           "taille": "50×50",
           "bordurePct": 36.3
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5560,7 +5603,8 @@
           "taille": "50×50",
           "bordurePct": 38.2
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5656,7 +5700,8 @@
           "taille": "50×50",
           "bordurePct": 38.8
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5752,7 +5797,8 @@
           "taille": "50×50",
           "bordurePct": 39.9
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5850,7 +5896,8 @@
           "taille": "50×50",
           "bordurePct": 39.2
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -5946,7 +5993,8 @@
           "taille": "50×50",
           "bordurePct": 37.5
         }
-      ]
+      ],
+      "encadrable": true
     }
   },
   {
@@ -6047,7 +6095,8 @@
           "taille": "50×50",
           "bordurePct": 46.0
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6153,7 +6202,8 @@
           "taille": "50×50",
           "bordurePct": 47.6
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6258,7 +6308,8 @@
           "taille": "50×50",
           "bordurePct": 42.3
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6364,7 +6415,8 @@
           "taille": "50×50",
           "bordurePct": 44.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6473,7 +6525,8 @@
           "taille": "50×50",
           "bordurePct": 32.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6577,7 +6630,8 @@
           "taille": "50×50",
           "bordurePct": 58.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6683,7 +6737,8 @@
           "taille": "50×50",
           "bordurePct": 44.5
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6724,11 +6779,11 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#8e8f7d",
-        "#ebe4dd",
-        "#ece5e0",
-        "#e8e3df",
-        "#f0e9e4"
+        "#898776",
+        "#ece6e1",
+        "#e9e3dd",
+        "#eae4df",
+        "#a2ad98"
       ],
       "famille": "vert",
       "chaleur": 0.318
@@ -6736,8 +6791,8 @@
     "fidelite": {
       "verdict": "FIDÈLE",
       "deltaE": 0.34,
-      "chroma": 1.001,
-      "dominante": 1.003
+      "chroma": 1.0,
+      "dominante": 1.001
     },
     "couleur": {
       "espaceSource": "sRGB.icc",
@@ -6752,44 +6807,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "30×40",
+      "taille": "A3 30×42",
       "orientation": "portrait",
-      "ratioOeuvre": 1.3,
-      "bordurePct": 27.5,
+      "ratioOeuvre": 1.413,
+      "bordurePct": 25.7,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 27.5
+          "bordurePct": 23.9
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 31.8
+          "bordurePct": 25.7
         },
         {
           "taille": "40×50",
-          "bordurePct": 23.7
+          "bordurePct": 28.6
         },
         {
           "taille": "50×70",
-          "bordurePct": 31.0
+          "bordurePct": 25.0
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 31.7
+          "bordurePct": 25.7
         },
         {
           "taille": "61×91",
-          "bordurePct": 35.5
+          "bordurePct": 29.9
         },
         {
           "taille": "30×30",
-          "bordurePct": 39.0
+          "bordurePct": 42.9
         },
         {
           "taille": "50×50",
-          "bordurePct": 39.0
+          "bordurePct": 42.9
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -6894,7 +6950,8 @@
           "taille": "50×50",
           "bordurePct": 40.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7001,7 +7058,8 @@
           "taille": "50×50",
           "bordurePct": 40.3
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7106,7 +7164,8 @@
           "taille": "50×50",
           "bordurePct": 39.5
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7145,20 +7204,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#f4f4e5",
-        "#fffff3",
-        "#d9d8c6",
+        "#fffff7",
+        "#eaeadb",
+        "#cccbbb",
         "#fefeef",
-        "#fffff7"
+        "#f4f4e5"
       ],
       "famille": "olive",
-      "chaleur": 0.132
+      "chaleur": 0.152
     },
     "fidelite": {
-      "verdict": "FIDÈLE",
-      "deltaE": 0.85,
-      "chroma": 0.89,
-      "dominante": 0.891
+      "verdict": "À REVOIR",
+      "deltaE": 1.59,
+      "chroma": 0.815,
+      "dominante": 0.815
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7173,44 +7232,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "61×91",
-      "orientation": "portrait",
-      "ratioOeuvre": 1.489,
-      "bordurePct": 26.1,
+      "taille": "30×30",
+      "orientation": "carré",
+      "ratioOeuvre": 1.035,
+      "bordurePct": 27.5,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 26.9
+          "bordurePct": 27.5
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 22.6
+          "bordurePct": 27.5
         },
         {
           "taille": "40×50",
-          "bordurePct": 31.5
+          "bordurePct": 27.5
         },
         {
           "taille": "50×70",
-          "bordurePct": 23.3
+          "bordurePct": 27.5
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 22.5
+          "bordurePct": 27.5
         },
         {
           "taille": "61×91",
-          "bordurePct": 26.1
+          "bordurePct": 27.5
         },
         {
           "taille": "30×30",
-          "bordurePct": 45.2
+          "bordurePct": 27.5
         },
         {
           "taille": "50×50",
-          "bordurePct": 45.2
+          "bordurePct": 27.5
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7246,20 +7306,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#c7c2a9",
-        "#ebe6c6",
-        "#dcd6bb",
-        "#d4cfb6",
-        "#ffffd2"
+        "#c5c0a8",
+        "#e7e2c4",
+        "#dad4b9",
+        "#d2cdb4",
+        "#f5f1ce"
       ],
       "famille": "doré",
-      "chaleur": 0.626
+      "chaleur": 0.713
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.67,
-      "chroma": 0.956,
-      "dominante": 0.956
+      "deltaE": 0.71,
+      "chroma": 0.952,
+      "dominante": 0.952
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7274,44 +7334,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "61×91",
+      "taille": "50×70",
       "orientation": "portrait",
-      "ratioOeuvre": 1.46,
-      "bordurePct": 27.5,
+      "ratioOeuvre": 1.394,
+      "bordurePct": 26.0,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 25.8
+          "bordurePct": 22.9
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 23.2
+          "bordurePct": 26.6
         },
         {
           "taille": "40×50",
-          "bordurePct": 30.4
+          "bordurePct": 27.7
         },
         {
           "taille": "50×70",
-          "bordurePct": 22.5
+          "bordurePct": 26.0
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 23.2
+          "bordurePct": 26.6
         },
         {
           "taille": "61×91",
-          "bordurePct": 27.5
+          "bordurePct": 30.7
         },
         {
           "taille": "30×30",
-          "bordurePct": 44.3
+          "bordurePct": 42.2
         },
         {
           "taille": "50×50",
-          "bordurePct": 44.3
+          "bordurePct": 42.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7350,20 +7411,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#fefef1",
-        "#fffff7",
-        "#f3f3eb",
-        "#e4e6de",
-        "#f8f8ef"
+        "#fffff8",
+        "#f2f2ea",
+        "#e3e5dd",
+        "#fffff2",
+        "#f7f7ee"
       ],
       "famille": "olive",
       "chaleur": 0.0
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.56,
-      "chroma": 0.92,
-      "dominante": 0.92
+      "deltaE": 0.59,
+      "chroma": 0.915,
+      "dominante": 0.915
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7380,12 +7441,12 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.504,
-      "bordurePct": 25.4,
+      "ratioOeuvre": 1.463,
+      "bordurePct": 27.4,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 27.5
+          "bordurePct": 26.0
         },
         {
           "taille": "A3 30×42",
@@ -7393,11 +7454,11 @@
         },
         {
           "taille": "40×50",
-          "bordurePct": 32.1
+          "bordurePct": 30.5
         },
         {
           "taille": "50×70",
-          "bordurePct": 23.9
+          "bordurePct": 22.3
         },
         {
           "taille": "A2 42×59",
@@ -7405,17 +7466,18 @@
         },
         {
           "taille": "61×91",
-          "bordurePct": 25.4
+          "bordurePct": 27.4
         },
         {
           "taille": "30×30",
-          "bordurePct": 45.6
+          "bordurePct": 44.4
         },
         {
           "taille": "50×50",
-          "bordurePct": 45.6
+          "bordurePct": 44.4
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7454,20 +7516,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#fffff6",
-        "#c8c6bc",
-        "#fffff2",
-        "#e4e4db",
-        "#f0f0e7"
+        "#fffff7",
+        "#c5c3b9",
+        "#e1e0d8",
+        "#ecece3",
+        "#fffff2"
       ],
       "famille": "olive",
-      "chaleur": 0.232
+      "chaleur": 0.248
     },
     "fidelite": {
       "verdict": "À REVOIR",
-      "deltaE": 1.09,
-      "chroma": 0.847,
-      "dominante": 0.846
+      "deltaE": 1.21,
+      "chroma": 0.832,
+      "dominante": 0.832
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7484,42 +7546,43 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.642,
-      "bordurePct": 24.2,
+      "ratioOeuvre": 1.493,
+      "bordurePct": 26.0,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 32.6
+          "bordurePct": 27.1
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 28.4
+          "bordurePct": 22.7
         },
         {
           "taille": "40×50",
-          "bordurePct": 36.7
+          "bordurePct": 31.6
         },
         {
           "taille": "50×70",
-          "bordurePct": 29.1
+          "bordurePct": 23.4
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 28.4
+          "bordurePct": 22.7
         },
         {
           "taille": "61×91",
-          "bordurePct": 24.2
+          "bordurePct": 26.0
         },
         {
           "taille": "30×30",
-          "bordurePct": 49.4
+          "bordurePct": 45.3
         },
         {
           "taille": "50×50",
-          "bordurePct": 49.4
+          "bordurePct": 45.3
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7540,35 +7603,35 @@
       "sujet": [],
       "mouvement": "Illustration naturaliste",
       "palette": [
-        "Tons dorés",
+        "Verts & nature",
         "Camaïeu pastel"
       ],
       "collections": [
         "Illustration naturaliste",
-        "Tons dorés",
+        "Verts & nature",
         "Camaïeu pastel"
       ]
     },
     "palette": {
       "tags": [
-        "Tons dorés",
+        "Verts & nature",
         "Camaïeu pastel"
       ],
       "swatches": [
-        "#e9e5c8",
-        "#e0dcbf",
-        "#dad5b9",
-        "#cac6ab",
-        "#ffffd5"
+        "#e1ddbf",
+        "#dbd6ba",
+        "#cbc7ac",
+        "#ece8ca",
+        "#fefeda"
       ],
       "famille": "doré",
-      "chaleur": 0.61
+      "chaleur": 0.554
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.84,
-      "chroma": 0.942,
-      "dominante": 0.942
+      "deltaE": 0.79,
+      "chroma": 0.945,
+      "dominante": 0.945
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7583,44 +7646,45 @@
       "profilPapier": null
     },
     "layout": {
-      "taille": "A2 42×59",
+      "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.451,
-      "bordurePct": 23.8,
+      "ratioOeuvre": 1.514,
+      "bordurePct": 24.8,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 25.4
+          "bordurePct": 27.9
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 23.7
+          "bordurePct": 23.5
         },
         {
           "taille": "40×50",
-          "bordurePct": 30.1
+          "bordurePct": 32.4
         },
         {
           "taille": "50×70",
-          "bordurePct": 23.0
+          "bordurePct": 24.3
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 23.8
+          "bordurePct": 23.5
         },
         {
           "taille": "61×91",
-          "bordurePct": 28.0
+          "bordurePct": 24.8
         },
         {
           "taille": "30×30",
-          "bordurePct": 44.1
+          "bordurePct": 45.9
         },
         {
           "taille": "50×50",
-          "bordurePct": 44.1
+          "bordurePct": 45.9
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7660,19 +7724,19 @@
       ],
       "swatches": [
         "#fffff6",
-        "#f1efd9",
-        "#e4dec2",
-        "#fdfdea",
-        "#f7f6e3"
+        "#efedd5",
+        "#e2ddc0",
+        "#fcfce9",
+        "#f5f4df"
       ],
       "famille": "olive",
-      "chaleur": 0.46
+      "chaleur": 0.486
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.71,
-      "chroma": 0.926,
-      "dominante": 0.926
+      "deltaE": 0.77,
+      "chroma": 0.925,
+      "dominante": 0.925
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7689,42 +7753,43 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.543,
-      "bordurePct": 23.3,
+      "ratioOeuvre": 1.465,
+      "bordurePct": 27.3,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 29.0
+          "bordurePct": 26.1
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 24.7
+          "bordurePct": 23.0
         },
         {
           "taille": "40×50",
-          "bordurePct": 33.4
+          "bordurePct": 30.6
         },
         {
           "taille": "50×70",
-          "bordurePct": 25.4
+          "bordurePct": 22.3
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 24.7
+          "bordurePct": 23.0
         },
         {
           "taille": "61×91",
-          "bordurePct": 23.3
+          "bordurePct": 27.3
         },
         {
           "taille": "30×30",
-          "bordurePct": 46.7
+          "bordurePct": 44.5
         },
         {
           "taille": "50×50",
-          "bordurePct": 46.7
+          "bordurePct": 44.5
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7763,20 +7828,20 @@
         "Camaïeu pastel"
       ],
       "swatches": [
+        "#fefef3",
         "#fffff7",
-        "#dece9c",
-        "#f7f7ec",
-        "#f4f2cf",
-        "#fefeed"
+        "#f4f3da",
+        "#ddcc99",
+        "#fdfde7"
       ],
       "famille": "doré",
-      "chaleur": 0.694
+      "chaleur": 0.729
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.65,
-      "chroma": 0.945,
-      "dominante": 0.944
+      "deltaE": 0.71,
+      "chroma": 0.943,
+      "dominante": 0.941
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7793,42 +7858,43 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.458,
-      "bordurePct": 27.6,
+      "ratioOeuvre": 1.49,
+      "bordurePct": 26.0,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 25.7
+          "bordurePct": 27.0
         },
         {
           "taille": "A3 30×42",
-          "bordurePct": 23.3
+          "bordurePct": 22.6
         },
         {
           "taille": "40×50",
-          "bordurePct": 30.3
+          "bordurePct": 31.5
         },
         {
           "taille": "50×70",
-          "bordurePct": 22.5
-        },
-        {
-          "taille": "A2 42×59",
           "bordurePct": 23.3
         },
         {
+          "taille": "A2 42×59",
+          "bordurePct": 22.5
+        },
+        {
           "taille": "61×91",
-          "bordurePct": 27.6
+          "bordurePct": 26.0
         },
         {
           "taille": "30×30",
-          "bordurePct": 44.2
+          "bordurePct": 45.2
         },
         {
           "taille": "50×50",
-          "bordurePct": 44.2
+          "bordurePct": 45.2
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,
@@ -7865,19 +7931,19 @@
       ],
       "swatches": [
         "#fffff6",
-        "#efe5c1",
-        "#debc92",
-        "#eeece1",
-        "#fbfbe6"
+        "#ede1ba",
+        "#ddb88c",
+        "#ebe8db",
+        "#f9f8e1"
       ],
       "famille": "doré",
-      "chaleur": 0.866
+      "chaleur": 0.895
     },
     "fidelite": {
       "verdict": "FIDÈLE",
-      "deltaE": 0.7,
-      "chroma": 0.953,
-      "dominante": 0.952
+      "deltaE": 0.74,
+      "chroma": 0.954,
+      "dominante": 0.953
     },
     "couleur": {
       "espaceSource": "sRGB présumé (sans profil ICC)",
@@ -7894,12 +7960,12 @@
     "layout": {
       "taille": "61×91",
       "orientation": "portrait",
-      "ratioOeuvre": 1.458,
-      "bordurePct": 27.6,
+      "ratioOeuvre": 1.511,
+      "bordurePct": 24.9,
       "variants": [
         {
           "taille": "30×40",
-          "bordurePct": 25.7
+          "bordurePct": 27.8
         },
         {
           "taille": "A3 30×42",
@@ -7907,29 +7973,30 @@
         },
         {
           "taille": "40×50",
-          "bordurePct": 30.3
+          "bordurePct": 32.2
         },
         {
           "taille": "50×70",
-          "bordurePct": 22.5
+          "bordurePct": 24.2
         },
         {
           "taille": "A2 42×59",
-          "bordurePct": 23.3
+          "bordurePct": 23.4
         },
         {
           "taille": "61×91",
-          "bordurePct": 27.6
+          "bordurePct": 24.9
         },
         {
           "taille": "30×30",
-          "bordurePct": 44.2
+          "bordurePct": 45.8
         },
         {
           "taille": "50×50",
-          "bordurePct": 44.2
+          "bordurePct": 45.8
         }
-      ]
+      ],
+      "encadrable": true
     },
     "curation": {
       "nouveau": true,

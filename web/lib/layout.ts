@@ -162,3 +162,18 @@ export function variantsOffre(aw: number, ah: number, fournisseur: Fournisseur =
     planifier(aw, ah, fournisseur, t),
   );
 }
+
+// Au-delà de ce % de bordure sur la meilleure taille offerte, l'œuvre flotte dans un
+// passe-partout démesuré → mauvais encadré (port de layout.SEUIL_ENCADRABLE).
+export const SEUIL_ENCADRABLE = 42.0;
+
+/** Plus petite bordure (%) atteignable parmi les tailles offertes. */
+export function bordureMinOffre(aw: number, ah: number, fournisseur: Fournisseur = "gelato"): number {
+  const plans = variantsOffre(aw, ah, fournisseur);
+  return plans.length ? Math.min(...plans.map((p) => p.bordurePct)) : 100;
+}
+
+/** Vrai si l'œuvre se présente bien ENCADRÉE (bordure mini ≤ seuil), sinon poster seul. */
+export function encadrable(aw: number, ah: number, fournisseur: Fournisseur = "gelato", seuil = SEUIL_ENCADRABLE): boolean {
+  return bordureMinOffre(aw, ah, fournisseur) <= seuil;
+}

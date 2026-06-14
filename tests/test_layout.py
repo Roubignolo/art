@@ -86,6 +86,14 @@ class TestPlan(unittest.TestCase):
         offre = layout.variants_offre(3000, 2000, "prodigi")
         self.assertEqual({p.taille for p in offre}, {"30×40", "40×50", "50×70", "61×91"})
 
+    def test_encadrable_ratio_standard_vs_extreme(self):
+        # ratio standard (3:2) → bien encadrable ; kakemono ultra-allongé → non.
+        self.assertTrue(layout.encadrable(3000, 2000))          # ratio 1.5
+        self.assertTrue(layout.encadrable(3000, 2380))          # ratio ~1.26 (4:5)
+        self.assertFalse(layout.encadrable(3000, 900))          # ratio 3.33 (kakemono)
+        self.assertLess(layout.bordure_min_offre(3000, 2000), 30)
+        self.assertGreater(layout.bordure_min_offre(3000, 900), 50)
+
 
 if __name__ == "__main__":
     unittest.main()

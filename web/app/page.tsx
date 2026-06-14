@@ -55,6 +55,7 @@ type PreviewWork = {
   layout?: {
     taille: string; orientation: string; ratioOeuvre: number; bordurePct: number;
     variants: { taille: string; bordurePct: number }[];
+    encadrable?: boolean; // false = ratio extrême → bordure démesurée → poster seul
   } | null;
   // Curation (cf. scripts/build_collections.py + docs/audit-rentabilite.md §T2)
   curation?: {
@@ -1391,6 +1392,11 @@ export default function App() {
                         title={`Taille catalogue la plus fidèle au ratio ${w.layout.ratioOeuvre} de l'œuvre (jamais de crop ni d'étirement — la bordure/passe-partout comble l'écart au format POD). Autres formats offerts : ${w.layout.variants.map((v) => `${v.taille} (bordure ${v.bordurePct}%)`).join(" · ")}.`}
                       >
                         Format fidèle : {w.layout.taille} ({w.layout.orientation}) · bordure {w.layout.bordurePct}% · {w.layout.variants.length} formats offerts
+                        {w.layout.encadrable === false && (
+                          <span style={{ color: "var(--brass)" }} title="Ratio extrême → bordure démesurée encadrée. Vendre en poster seul (pas d'encadré).">
+                            {" "}· ⚠ cadrage difficile (poster seul)
+                          </span>
+                        )}
                       </div>
                     )}
                     {((w.tags?.collections?.length ?? 0) > 0 || (w.palette?.swatches?.length ?? 0) > 0) && (
