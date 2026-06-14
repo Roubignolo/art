@@ -69,7 +69,11 @@ sur mesure imaginaire).
 ## 5. Décisions
 
 1. **Ligne standard → Gelato, bordure intégrée au fichier** à la taille catalogue
-   choisie (mat ~8-12 %, blanc cassé). Tailles offertes : 30×40, A3, 50×70, A2, 61×91.
+   choisie (mat ~8-12 %, blanc cassé). Tailles offertes : 30×40, **40×50**, A3, 50×70,
+   A2, 61×91. *(40×50 = 4:5, ratio art-print dominant sur Etsy + ratio des vignettes de
+   recherche, matche ~1/4 du catalogue avec bordure minimale — cf.
+   [audit-ratio-cadres.md](audit-ratio-cadres.md). À confirmer au Dashboard Gelato :
+   existe en cadre chêne 4:5, distinct du framed canvas.)*
 2. **Ligne signature → Prodigi, passe-partout physique** + `fitPrintArea`, verre (ou
    anti-reflet), insert provenance. Tailles : 30×40, 40×50, 50×70, 61×91.
 3. **Jamais** `fill`-crop ni `stretch` sur une œuvre. Le fichier Gelato porte déjà la

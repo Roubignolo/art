@@ -147,15 +147,18 @@ export function plansVariants(aw: number, ah: number, fournisseur: Fournisseur =
 }
 
 // Offre commerciale décidée (decision-encadrement-tailles.md §5) — port de layout.OFFRE.
+// 40×50 (4:5) inclus côté Gelato : ratio art-print dominant Etsy + ~1/4 du catalogue.
 export const OFFRE: Record<Fournisseur, readonly string[]> = {
-  gelato: ["30×40", "A3 30×42", "50×70", "A2 42×59", "61×91"],
+  gelato: ["30×40", "40×50", "A3 30×42", "50×70", "A2 42×59", "61×91"],
   prodigi: ["30×40", "40×50", "50×70", "61×91"],
 };
+const CARRES = ["30×30", "50×50"];
 
-/** Un plan par taille de l'OFFRE commerciale (sous-ensemble vendu au listing). */
+/** Un plan par taille de l'OFFRE commerciale (carrés seulement si œuvre ~carrée). */
 export function variantsOffre(aw: number, ah: number, fournisseur: Fournisseur = "gelato"): PlanMiseEnPage[] {
-  const labels = OFFRE[fournisseur];
-  return CATALOGUE.filter((t) => labels.includes(t.label) && t.fournisseurs.includes(fournisseur)).map((t) =>
+  const labels = new Set<string>(OFFRE[fournisseur]);
+  if (Math.max(aw, ah) / Math.min(aw, ah) < 1.12) for (const c of CARRES) labels.add(c);
+  return CATALOGUE.filter((t) => labels.has(t.label) && t.fournisseurs.includes(fournisseur)).map((t) =>
     planifier(aw, ah, fournisseur, t),
   );
 }

@@ -161,20 +161,28 @@ def plans_variants(aw: int, ah: int, fournisseur: str = "gelato") -> List[PlanMi
 
 
 # Offre commerciale décidée (decision-encadrement-tailles.md §5) : sous-ensemble du
-# catalogue réellement proposé au listing. §5.1 standard/Gelato = 5 tailles ;
-# §5.2 signature/Prodigi = 4 tailles. Distinct de ``CATALOGUE`` (tout le productible).
+# catalogue réellement proposé au listing. Le 40×50 (4:5 = 1.25) est inclus côté
+# Gelato : c'est le ratio art-print DOMINANT sur Etsy (et celui des vignettes de
+# recherche), et il matche ~1/4 du catalogue (œuvres ~1.25) avec une bordure minimale.
 OFFRE = {
-    "gelato": ("30×40", "A3 30×42", "50×70", "A2 42×59", "61×91"),
+    "gelato": ("30×40", "40×50", "A3 30×42", "50×70", "A2 42×59", "61×91"),
     "prodigi": ("30×40", "40×50", "50×70", "61×91"),
 }
+
+# Carrés : hors offre par défaut (bordure énorme sur une œuvre rectangulaire),
+# proposés UNIQUEMENT pour les œuvres ~carrées (sinon meilleure_taille les écarte).
+CARRES = ("30×30", "50×50")
 
 
 def variants_offre(aw: int, ah: int, fournisseur: str = "gelato") -> List[PlanMiseEnPage]:
     """Un plan par taille de l'OFFRE commerciale du fournisseur (cf. ``OFFRE``).
 
-    Sous-ensemble de ``plans_variants`` : ce qu'on vend vraiment au listing, sans
-    les carrés ni le 40×50 (réservés à des rendus ponctuels hors offre Etsy).
+    Sous-ensemble de ``plans_variants`` : ce qu'on vend vraiment au listing. Les
+    carrés ne sont ajoutés que pour une œuvre ~carrée (ratio < 1.12), sinon ils
+    donneraient une bordure démesurée.
     """
-    labels = OFFRE.get(fournisseur, ())
+    labels = set(OFFRE.get(fournisseur, ()))
+    if max(aw, ah) / min(aw, ah) < 1.12:
+        labels |= set(CARRES)
     return [planifier(aw, ah, fournisseur, t)
             for t in CATALOGUE if t.label in labels and fournisseur in t.fournisseurs]
